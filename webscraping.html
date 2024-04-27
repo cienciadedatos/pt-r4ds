@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund">
-<title>R para Ciência de Dados (2ª edição) - 24&nbsp; Web scraping</title>
+<title>R para Ciência de Dados (2ª edição) - 24&nbsp; ✅ Raspagem de dados (Web scraping)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./import.html">✅ Importar</a></li><li class="breadcrumb-item"><a href="./webscraping.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Web scraping</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./import.html">✅ Importar</a></li><li class="breadcrumb-item"><a href="./webscraping.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">✅ Raspagem de dados (<em>Web scraping</em>)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -337,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./webscraping.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">✅ Raspagem de dados (<em>Web scraping</em>)</span></span></a>
   </div>
 </li>
       </ul>
@@ -403,50 +403,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">24.1</span> Introduction</a>
+<a href="#introdu%C3%A7%C3%A3o" id="toc-introdução" class="nav-link active" data-scroll-target="#introdu%C3%A7%C3%A3o"><span class="header-section-number">24.1</span> Introdução</a>
   <ul class="collapse">
-<li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">24.1.1</span> Prerequisites</a></li>
+<li><a href="#pr%C3%A9-requisitos" id="toc-pré-requisitos" class="nav-link" data-scroll-target="#pr%C3%A9-requisitos"><span class="header-section-number">24.1.1</span> Pré-requisitos</a></li>
   </ul>
 </li>
   <li>
-<a href="#scraping-ethics-and-legalities" id="toc-scraping-ethics-and-legalities" class="nav-link" data-scroll-target="#scraping-ethics-and-legalities"><span class="header-section-number">24.2</span> Scraping ethics and legalities</a>
+<a href="#%C3%A9tica-e-legalidade-da-raspagem-de-dados" id="toc-ética-e-legalidade-da-raspagem-de-dados" class="nav-link" data-scroll-target="#%C3%A9tica-e-legalidade-da-raspagem-de-dados"><span class="header-section-number">24.2</span> Ética e legalidade da raspagem de dados</a>
   <ul class="collapse">
-<li><a href="#terms-of-service" id="toc-terms-of-service" class="nav-link" data-scroll-target="#terms-of-service"><span class="header-section-number">24.2.1</span> Terms of service</a></li>
-  <li><a href="#personally-identifiable-information" id="toc-personally-identifiable-information" class="nav-link" data-scroll-target="#personally-identifiable-information"><span class="header-section-number">24.2.2</span> Personally identifiable information</a></li>
-  <li><a href="#copyright" id="toc-copyright" class="nav-link" data-scroll-target="#copyright"><span class="header-section-number">24.2.3</span> Copyright</a></li>
+<li><a href="#termos-de-servi%C3%A7o" id="toc-termos-de-serviço" class="nav-link" data-scroll-target="#termos-de-servi%C3%A7o"><span class="header-section-number">24.2.1</span> Termos de serviço</a></li>
+  <li><a href="#informa%C3%A7%C3%B5es-de-identifica%C3%A7%C3%A3o-pessoal" id="toc-informações-de-identificação-pessoal" class="nav-link" data-scroll-target="#informa%C3%A7%C3%B5es-de-identifica%C3%A7%C3%A3o-pessoal"><span class="header-section-number">24.2.2</span> Informações de identificação pessoal</a></li>
+  <li><a href="#direitos-autorais-copyright" id="toc-direitos-autorais-copyright" class="nav-link" data-scroll-target="#direitos-autorais-copyright"><span class="header-section-number">24.2.3</span> Direitos autorais (<em>copyright</em>)</a></li>
   </ul>
 </li>
   <li>
-<a href="#html-basics" id="toc-html-basics" class="nav-link" data-scroll-target="#html-basics"><span class="header-section-number">24.3</span> HTML basics</a>
+<a href="#o-b%C3%A1sico-de-html" id="toc-o-básico-de-html" class="nav-link" data-scroll-target="#o-b%C3%A1sico-de-html"><span class="header-section-number">24.3</span> O básico de HTML</a>
   <ul class="collapse">
-<li><a href="#elements" id="toc-elements" class="nav-link" data-scroll-target="#elements"><span class="header-section-number">24.3.1</span> Elements</a></li>
-  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes"><span class="header-section-number">24.3.2</span> Attributes</a></li>
+<li><a href="#elementos" id="toc-elementos" class="nav-link" data-scroll-target="#elementos"><span class="header-section-number">24.3.1</span> Elementos</a></li>
+  <li><a href="#atributos" id="toc-atributos" class="nav-link" data-scroll-target="#atributos"><span class="header-section-number">24.3.2</span> Atributos</a></li>
   </ul>
 </li>
   <li>
-<a href="#extracting-data" id="toc-extracting-data" class="nav-link" data-scroll-target="#extracting-data"><span class="header-section-number">24.4</span> Extracting data</a>
+<a href="#extraindo-dados" id="toc-extraindo-dados" class="nav-link" data-scroll-target="#extraindo-dados"><span class="header-section-number">24.4</span> Extraindo dados</a>
   <ul class="collapse">
-<li><a href="#find-elements" id="toc-find-elements" class="nav-link" data-scroll-target="#find-elements"><span class="header-section-number">24.4.1</span> Find elements</a></li>
-  <li><a href="#nesting-selections" id="toc-nesting-selections" class="nav-link" data-scroll-target="#nesting-selections"><span class="header-section-number">24.4.2</span> Nesting selections</a></li>
-  <li><a href="#text-and-attributes" id="toc-text-and-attributes" class="nav-link" data-scroll-target="#text-and-attributes"><span class="header-section-number">24.4.3</span> Text and attributes</a></li>
-  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">24.4.4</span> Tables</a></li>
+<li><a href="#encontrando-elementos" id="toc-encontrando-elementos" class="nav-link" data-scroll-target="#encontrando-elementos"><span class="header-section-number">24.4.1</span> Encontrando elementos</a></li>
+  <li><a href="#sele%C3%A7%C3%B5es-aninhadas-nesting" id="toc-seleções-aninhadas-nesting" class="nav-link" data-scroll-target="#sele%C3%A7%C3%B5es-aninhadas-nesting"><span class="header-section-number">24.4.2</span> Seleções aninhadas (<em>nesting</em>)</a></li>
+  <li><a href="#textos-e-atributos" id="toc-textos-e-atributos" class="nav-link" data-scroll-target="#textos-e-atributos"><span class="header-section-number">24.4.3</span> Textos e atributos</a></li>
+  <li><a href="#tabelas" id="toc-tabelas" class="nav-link" data-scroll-target="#tabelas"><span class="header-section-number">24.4.4</span> Tabelas</a></li>
   </ul>
 </li>
-  <li><a href="#sec-css-selectors" id="toc-sec-css-selectors" class="nav-link" data-scroll-target="#sec-css-selectors"><span class="header-section-number">24.5</span> Finding the right selectors</a></li>
+  <li><a href="#sec-css-selectors" id="toc-sec-css-selectors" class="nav-link" data-scroll-target="#sec-css-selectors"><span class="header-section-number">24.5</span> Encontrando os seletores adequados</a></li>
   <li>
-<a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">24.6</span> Putting it all together</a>
+<a href="#juntando-tudo" id="toc-juntando-tudo" class="nav-link" data-scroll-target="#juntando-tudo"><span class="header-section-number">24.6</span> Juntando tudo</a>
   <ul class="collapse">
-<li><a href="#starwars" id="toc-starwars" class="nav-link" data-scroll-target="#starwars"><span class="header-section-number">24.6.1</span> StarWars</a></li>
-  <li><a href="#imdb-top-films" id="toc-imdb-top-films" class="nav-link" data-scroll-target="#imdb-top-films"><span class="header-section-number">24.6.2</span> IMDB top films</a></li>
+<li><a href="#guerra-nas-estrelas-starwars" id="toc-guerra-nas-estrelas-starwars" class="nav-link" data-scroll-target="#guerra-nas-estrelas-starwars"><span class="header-section-number">24.6.1</span> Guerra nas Estrelas (<em>StarWars</em>)</a></li>
+  <li><a href="#melhores-filmes-imdb" id="toc-melhores-filmes-imdb" class="nav-link" data-scroll-target="#melhores-filmes-imdb"><span class="header-section-number">24.6.2</span> Melhores filmes IMDB</a></li>
   </ul>
 </li>
-  <li><a href="#dynamic-sites" id="toc-dynamic-sites" class="nav-link" data-scroll-target="#dynamic-sites"><span class="header-section-number">24.7</span> Dynamic sites</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">24.8</span> Summary</a></li>
+  <li><a href="#sites-din%C3%A2micos" id="toc-sites-dinâmicos" class="nav-link" data-scroll-target="#sites-din%C3%A2micos"><span class="header-section-number">24.7</span> Sites dinâmicos</a></li>
+  <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">24.8</span> Resumo</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/cienciadedatos/pt-r4ds/edit/main/webscraping.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/cienciadedatos/pt-r4ds/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./import.html">✅ Importar</a></li><li class="breadcrumb-item"><a href="./webscraping.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Web scraping</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-scraping" class="quarto-section-identifier"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Web scraping</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./import.html">✅ Importar</a></li><li class="breadcrumb-item"><a href="./webscraping.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">✅ Raspagem de dados (<em>Web scraping</em>)</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-scraping" class="quarto-section-identifier"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">✅ Raspagem de dados (<em>Web scraping</em>)</span></span></h1>
 </div>
 
 
@@ -470,69 +470,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="introduction" class="level2" data-number="24.1"><h2 data-number="24.1" class="anchored" data-anchor-id="introduction">
-<span class="header-section-number">24.1</span> Introduction</h2>
-<p>This chapter introduces you to the basics of web scraping with <a href="https://rvest.tidyverse.org">rvest</a>. Web scraping is a very useful tool for extracting data from web pages. Some websites will offer an API, a set of structured HTTP requests that return data as JSON, which you handle using the techniques from <a href="rectangling.html" class="quarto-xref"><span>Capítulo 23</span></a>. Where possible, you should use the API<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, because typically it will give you more reliable data. Unfortunately, however, programming with web APIs is out of scope for this book. Instead, we are teaching scraping, a technique that works whether or not a site provides an API.</p>
-<p>In this chapter, we’ll first discuss the ethics and legalities of scraping before we dive into the basics of HTML. You’ll then learn the basics of CSS selectors to locate specific elements on the page, and how to use rvest functions to get data from text and attributes out of HTML and into R. We’ll then discuss some techniques to figure out what CSS selector you need for the page you’re scraping, before finishing up with a couple of case studies, and a brief discussion of dynamic websites.</p>
-<section id="prerequisites" class="level3" data-number="24.1.1"><h3 data-number="24.1.1" class="anchored" data-anchor-id="prerequisites">
-<span class="header-section-number">24.1.1</span> Prerequisites</h3>
-<p>In this chapter, we’ll focus on tools provided by rvest. rvest is a member of the tidyverse, but is not a core member so you’ll need to load it explicitly. We’ll also load the full tidyverse since we’ll find it generally useful working with the data we’ve scraped.</p>
+<section id="introdução" class="level2" data-number="24.1"><h2 data-number="24.1" class="anchored" data-anchor-id="introdução">
+<span class="header-section-number">24.1</span> Introdução</h2>
+<p>Este capítulo faz a introdução do básico sobre raspagem de dados (<em>web scraping</em>) com o pacote <a href="https://rvest.tidyverse.org">rvest</a>. Raspagem de dados é uma ferramenta muito útil para extração de dados de páginas web. Alguns websites oferecem uma API, um conjunto de requisições HTTP estruturadas que retornam dados no formato JSON, com o qual você pode lidar usando as técnicas do <a href="rectangling.html" class="quarto-xref"><span>Capítulo 23</span></a>. Sempre que possível, você deve usar uma API<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, pois geralmente te retornará dados mais confiáveis. Entretanto, infelizmente, programar com APIs web está fora do escopo deste livro. Ao invés disso, ensinaremos sobre raspagem de dados, uma técnica que funciona independentemente de o site fornecer uma API ou não.</p>
+<p>Neste capítulo, discutiremos primeiro sobre ética e legalidade da raspagem de dados antes de falar sobre o básico de HTML. Você aprenderá o básico sobre seletores CSS para localizar elementos específicos em uma página, e como usar funções do rvest para obter dados de textos e atributos de um HTML para o R. Depois, discutiremos algumas técnicas para descobrir qual seletor CSS você precisa para a página que está fazendo a raspagem de dados e terminaremos falando sobre alguns estudos de caso e uma breve discussão sobre websites dinâmicos.</p>
+<section id="pré-requisitos" class="level3" data-number="24.1.1"><h3 data-number="24.1.1" class="anchored" data-anchor-id="pré-requisitos">
+<span class="header-section-number">24.1.1</span> Pré-requisitos</h3>
+<p>Neste capítulo, iremos focar nas ferramentas fornecidas pelo pacote rvest. O pacote rvest é um membro do tidyverse, mas não faz parte de seus componentes principais, portanto devemos carregá-lo explicitamente. Iremos também carregar o tidyverse completo, já que é geralmente muito útil para trabalhar com os dados obtidos da raspagem.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="scraping-ethics-and-legalities" class="level2" data-number="24.2"><h2 data-number="24.2" class="anchored" data-anchor-id="scraping-ethics-and-legalities">
-<span class="header-section-number">24.2</span> Scraping ethics and legalities</h2>
-<p>Before we get started discussing the code you’ll need to perform web scraping, we need to talk about whether it’s legal and ethical for you to do so. Overall, the situation is complicated with regards to both of these.</p>
-<p>Legalities depend a lot on where you live. However, as a general principle, if the data is public, non-personal, and factual, you’re likely to be ok<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. These three factors are important because they’re connected to the site’s terms and conditions, personally identifiable information, and copyright, as we’ll discuss below.</p>
-<p>If the data isn’t public, non-personal, or factual or you’re scraping the data specifically to make money with it, you’ll need to talk to a lawyer. In any case, you should be respectful of the resources of the server hosting the pages you are scraping. Most importantly, this means that if you’re scraping many pages, you should make sure to wait a little between each request. One easy way to do so is to use the <a href="https://dmi3kno.github.io/polite/"><strong>polite</strong></a> package by Dmytro Perepolkin. It will automatically pause between requests and cache the results so you never ask for the same page twice.</p>
-<section id="terms-of-service" class="level3" data-number="24.2.1"><h3 data-number="24.2.1" class="anchored" data-anchor-id="terms-of-service">
-<span class="header-section-number">24.2.1</span> Terms of service</h3>
-<p>If you look closely, you’ll find many websites include a “terms and conditions” or “terms of service” link somewhere on the page, and if you read that page closely you’ll often discover that the site specifically prohibits web scraping. These pages tend to be a legal land grab where companies make very broad claims. It’s polite to respect these terms of service where possible, but take any claims with a grain of salt.</p>
-<p>US courts have generally found that simply putting the terms of service in the footer of the website isn’t sufficient for you to be bound by them, e.g., <a href="https://en.wikipedia.org/wiki/HiQ_Labs_v._LinkedIn">HiQ Labs v. LinkedIn</a>. Generally, to be bound to the terms of service, you must have taken some explicit action like creating an account or checking a box. This is why whether or not the data is <strong>public</strong> is important; if you don’t need an account to access them, it is unlikely that you are bound to the terms of service. Note, however, the situation is rather different in Europe where courts have found that terms of service are enforceable even if you don’t explicitly agree to them.</p>
-</section><section id="personally-identifiable-information" class="level3" data-number="24.2.2"><h3 data-number="24.2.2" class="anchored" data-anchor-id="personally-identifiable-information">
-<span class="header-section-number">24.2.2</span> Personally identifiable information</h3>
-<p>Even if the data is public, you should be extremely careful about scraping personally identifiable information like names, email addresses, phone numbers, dates of birth, etc. Europe has particularly strict laws about the collection or storage of such data (<a href="https://gdpr-info.eu/">GDPR</a>), and regardless of where you live you’re likely to be entering an ethical quagmire. For example, in 2016, a group of researchers scraped public profile information (e.g., usernames, age, gender, location, etc.) about 70,000 people on the dating site OkCupid and they publicly released these data without any attempts for anonymization. While the researchers felt that there was nothing wrong with this since the data were already public, this work was widely condemned due to ethics concerns around identifiability of users whose information was released in the dataset. If your work involves scraping personally identifiable information, we strongly recommend reading about the OkCupid study<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> as well as similar studies with questionable research ethics involving the acquisition and release of personally identifiable information.</p>
-</section><section id="copyright" class="level3" data-number="24.2.3"><h3 data-number="24.2.3" class="anchored" data-anchor-id="copyright">
-<span class="header-section-number">24.2.3</span> Copyright</h3>
-<p>Finally, you also need to worry about copyright law. Copyright law is complicated, but it’s worth taking a look at the <a href="https://www.law.cornell.edu/uscode/text/17/102">US law</a> which describes exactly what’s protected: “[…] original works of authorship fixed in any tangible medium of expression, […]”. It then goes on to describe specific categories that it applies like literary works, musical works, motion pictures and more. Notably absent from copyright protection are data. This means that as long as you limit your scraping to facts, copyright protection does not apply. (But note that Europe has a separate “<a href="https://en.wikipedia.org/wiki/Database_right">sui generis</a>” right that protects databases.)</p>
-<p>As a brief example, in the US, lists of ingredients and instructions are not copyrightable, so copyright can not be used to protect a recipe. But if that list of recipes is accompanied by substantial novel literary content, that is copyrightable. This is why when you’re looking for a recipe on the internet there’s always so much content beforehand.</p>
-<p>If you do need to scrape original content (like text or images), you may still be protected under the <a href="https://en.wikipedia.org/wiki/Fair_use">doctrine of fair use</a>. Fair use is not a hard and fast rule, but weighs up a number of factors. It’s more likely to apply if you are collecting the data for research or non-commercial purposes and if you limit what you scrape to just what you need.</p>
-</section></section><section id="html-basics" class="level2" data-number="24.3"><h2 data-number="24.3" class="anchored" data-anchor-id="html-basics">
-<span class="header-section-number">24.3</span> HTML basics</h2>
-<p>To scrape webpages, you need to first understand a little bit about <strong>HTML</strong>, the language that describes web pages. HTML stands for <strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage and looks something like this:</p>
+</section></section><section id="ética-e-legalidade-da-raspagem-de-dados" class="level2" data-number="24.2"><h2 data-number="24.2" class="anchored" data-anchor-id="ética-e-legalidade-da-raspagem-de-dados">
+<span class="header-section-number">24.2</span> Ética e legalidade da raspagem de dados</h2>
+<p>Antes de começarmos a discutir o código que você precisará para efetuar a raspagem de dados, precisamos discutir se é ético e lícito realizá-la. No geral, a situação é complicada em relação a ambos.</p>
+<p>A legislação depende muito de onde você vive. Entretanto, como princípio geral, se um dado é público, impessoal e factual, você provavelmente não terá problemas<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Esses três fatores são importantes porque estão ligados aos termos e condições do site, às informações de identificação pessoal e aos direitos autorais, como discutiremos a seguir.</p>
+<p>Se os dados não forem públicos, impessoais ou factuais, ou se você estiver coletando os dados especificamente para ganhar dinheiro com eles, será necessário falar com um advogado. Em qualquer caso, você deve respeitar os recursos do servidor que hospeda as páginas em que você está efetuando a raspagem de dados. Mais importante ainda, isso significa que se você estiver fazendo raspagem de muitas páginas, certifique-se de esperar um pouco entre cada requisição. Um jeito fácil é utilizar o pacote <a href="https://dmi3kno.github.io/polite/"><strong>polite</strong></a> de Dmytro Perepolkin. Ele fará uma pausa automatica entre as requisições e armazenará os resultados (<em>cache</em>) para que você não precise solicitar a mesma página duas vezes.</p>
+<section id="termos-de-serviço" class="level3" data-number="24.2.1"><h3 data-number="24.2.1" class="anchored" data-anchor-id="termos-de-serviço">
+<span class="header-section-number">24.2.1</span> Termos de serviço</h3>
+<p>Se você olhar atentamente, descobrirá que muitos websites incluem em algum lugar da página um <em>link</em> para “termos e condições” ou “termos de serviço”, e se você ler a página atentamente, você geralmente descobrirá que o site especificamente proíbe sua raspagem de dados. Essas páginas tendem a ser uma terra sem lei, onde as empresas fazem reivindicações muito amplas. É educado respeitar estes termos de serviço sempre que possível, mas considere as reivindicações com cautela.</p>
+<p>Os tribunais dos Estados Unidos concluíram que simplesmente colocar os termos de serviço no rodapé do website não é suficiente para que você fique vinculado a eles, e.x., <a href="https://en.wikipedia.org/wiki/HiQ_Labs_v._LinkedIn">HiQ Labs v. LinkedIn</a>. Em geral, para que você seja submetido aos termos de serviços, você deve ter tido uma ação explícita, como criar uma conta ou marcar uma opção. Isto torna importante saber se um dado é <strong>público</strong> ou não; se você não precisa ter uma conta para acessá-lo, é improvável que você tenha qualquer vínculo com os termos de serviço. Note que a situação é diferente na Europa, onde os tribunais concluíram que os termos de serviços são aplicáveis mesmo que você não concorde explicitamente com eles.</p>
+</section><section id="informações-de-identificação-pessoal" class="level3" data-number="24.2.2"><h3 data-number="24.2.2" class="anchored" data-anchor-id="informações-de-identificação-pessoal">
+<span class="header-section-number">24.2.2</span> Informações de identificação pessoal</h3>
+<p>Mesmo que o dado seja público, você deve ter extremo cuidado em fazer raspagem de informações pessoais como nomes, endereços de <em>email</em>, números telefônicos, datas de nascimento, etc. A Europa, em particular, tem leis bem restritas sobre coleta e armazenamento destes tipos de dados (<a href="https://gdpr-info.eu/">GDPR</a>), e independente de onde você viva, é provável que passe por complicações éticas. Por exemplo, em 2016, um grupo de pesquisadores rasparam dados públicos contendo informações pessoais (e.x., nomes de usuário, idade, genero, localização, etc.) sobre 70.000 pessoas do site de relacionamento OkCupid e eles liberaram publicamente estes dados sem qualquer tentativa de torná-los anônimos (<em>anonymization</em>). Enquanto os pesquisadores acharam que não havia nada de errado com isso, uma vez que os dados já eram públicos, este trabalho foi largamente condenado devido a preocupações éticas sobre a identificação dos usuários cuja informação foi liberada no conjunto de dados. Se seu trabalho envolve raspagem de dados de informações com identificação pessoal, nós recomendamos fortemente que você leia sobre o estudo do caso OkCupid<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> bem como casos similares de estudos com éticas de pesquisa questionáveis envolvendo a aquisição e liberação de informações com idenficação pessoal.</p>
+</section><section id="direitos-autorais-copyright" class="level3" data-number="24.2.3"><h3 data-number="24.2.3" class="anchored" data-anchor-id="direitos-autorais-copyright">
+<span class="header-section-number">24.2.3</span> Direitos autorais (<em>copyright</em>)</h3>
+<p>Finalmente, você também deve se preocupar com as leis de direitos autorais. As leis de direitos autorais são complicadas, mas vale a pena dar uma olhada na <a href="https://www.law.cornell.edu/uscode/text/17/102">lei estadunidense</a> que descreve exatamente o que é protegido: “[…] obras originais de autoria fixadas em qualquer meio de expressão tangível, […]”. Em seguida, descreve categorias específicas em que as leis se aplicam, como obras literárias, obras musicais, filmes e muito mais. Os dados estão notavelmente ausentes da proteção de direitos autorais. Isso significa que, desde que você limite sua raspagem de dados a fatos, a proteção de direitos autorais não se aplica. (Porém, observe que a Europa possui um direito separado “<a href="https://en.wikipedia.org/wiki/Database_right">sui generis</a>” que protege bases de dados (<em>databases</em>).)</p>
+<p>Como um breve exemplo, nos Estados Unidos, listas de ingredientes e de instruções não estão sujeitas às leis de direitos autorais, portanto estas leis não podem ser usadas para proteger uma receita. Mas se esta lista de receitas estiver acompanhada de um conteúdo literário substancial, então ela poderá ser protegida. É por isso que quando você procura por uma receita na internet, ela é acompanhada de tanto conteúdo.</p>
+<p>Se você realmente precisa fazer raspagem de dados de conteúdo original, (como texto ou imagem), você ainda pode estar protegido pela <a href="https://en.wikipedia.org/wiki/Fair_use">doutrina de uso justo</a> (<em>doctrine of fair use</em>). O uso justo (<em>fair use</em>) não é uma regra rígida e rápida, mas pesa uma série de fatores. É mais provável que se aplique caso você esteja coletando dados para pesquisa ou para fins não comerciais e se limite a coletar apenas o que precisa.</p>
+</section></section><section id="o-básico-de-html" class="level2" data-number="24.3"><h2 data-number="24.3" class="anchored" data-anchor-id="o-básico-de-html">
+<span class="header-section-number">24.3</span> O básico de HTML</h2>
+<p>Para fazer raspagem de dados em páginas web, você precisa primeiro entender um pouco sobre <strong>HTML</strong>, a linguagem usada para criar páginas web. HTML é abreviação <strong>H</strong><em>yper</em><strong>T</strong><em>ext</em> <strong>M</strong><em>arkup</em> <strong>L</strong><em>anguage</em> e se parece com algo deste tipo:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Page title<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Título da Página<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">h1</span><span class="ot"> id</span><span class="op">=</span><span class="st">'first'</span><span class="dt">&gt;</span>A heading<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Some text <span class="dv">&amp;amp;</span> <span class="dt">&lt;</span><span class="kw">b</span><span class="dt">&gt;</span>some bold text.<span class="dt">&lt;/</span><span class="kw">b</span><span class="dt">&gt;&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">h1</span><span class="ot"> id</span><span class="op">=</span><span class="st">'primeiro'</span><span class="dt">&gt;</span>Um cabeçalho<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Algum texto <span class="dv">&amp;amp;</span> <span class="dt">&lt;</span><span class="kw">b</span><span class="dt">&gt;</span>algum texto em negrito.<span class="dt">&lt;/</span><span class="kw">b</span><span class="dt">&gt;&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">'myimg.png'</span><span class="ot"> width</span><span class="op">=</span><span class="st">'100'</span><span class="ot"> height</span><span class="op">=</span><span class="st">'100'</span><span class="dt">&gt;</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>HTML has a hierarchical structure formed by <strong>elements</strong> which consist of a start tag (e.g., <code>&lt;tag&gt;</code>), optional <strong>attributes</strong> (<code>id='first'</code>), an end tag<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> (like <code>&lt;/tag&gt;</code>), and <strong>contents</strong> (everything in between the start and end tag).</p>
-<p>Since <code>&lt;</code> and <code>&gt;</code> are used for start and end tags, you can’t write them directly. Instead you have to use the HTML <strong>escapes</strong> <code>&amp;gt;</code> (greater than) and <code>&amp;lt;</code> (less than). And since those escapes use <code>&amp;</code>, if you want a literal ampersand you have to escape it as <code>&amp;amp;</code>. There are a wide range of possible HTML escapes but you don’t need to worry about them too much because rvest automatically handles them for you.</p>
-<p>Web scraping is possible because most pages that contain data that you want to scrape generally have a consistent structure.</p>
-<section id="elements" class="level3" data-number="24.3.1"><h3 data-number="24.3.1" class="anchored" data-anchor-id="elements">
-<span class="header-section-number">24.3.1</span> Elements</h3>
-<p>There are over 100 HTML elements. Some of the most important are:</p>
+<p>HTML tem uma estrutura hierárquica formada por <strong>elementos</strong> que consiste em uma marcação (<em>tag</em>) de início (e.x., <code>&lt;tag&gt;</code>), opcionalmente um <strong>atributo</strong> (<em>attributes</em>) (<code>id='primeiro'</code>), e uma marcação de fim<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> (como <code>&lt;/tag&gt;</code>), e <strong>conteúdo</strong> (<em>contents</em>) (tudo entre a marcação de início e de fim).</p>
+<p>Como <code>&lt;</code> e <code>&gt;</code> são usados para início e fim das marcações, você não pode escrevê-los diretamente. Ao invés disso, você deve usar os caracteres de <strong>fuga</strong> (<em>escapes</em>) <code>&amp;gt;</code> (maior que ou <em>greater than</em>) e <code>&amp;lt;</code> (menor que ou <em>less than</em>) do HTML. E como estas fugas usam <code>&amp;</code>, se você quiser escrever o “&amp;” (E comercial ou <em>ampersand</em>) deve usar a fuga <code>&amp;amp;</code>. Há uma grande variedade de caracteres de fuga no HTML, mas você não precisa se preocupar muito com isto, pois o rvest lida automaticamente com elas para você.</p>
+<p>A raspagem de dados é possível porque a maioria das páginas que contém o dado que você quer extrair geralmente possuem uma estrutura consistente.</p>
+<section id="elementos" class="level3" data-number="24.3.1"><h3 data-number="24.3.1" class="anchored" data-anchor-id="elementos">
+<span class="header-section-number">24.3.1</span> Elementos</h3>
+<p>Existem mais de 100 elementos HTML. Alguns dos mais importantes são:</p>
 <ul>
-<li><p>Every HTML page must be in an <code>&lt;html&gt;</code> element, and it must have two children: <code>&lt;head&gt;</code>, which contains document metadata like the page title, and <code>&lt;body&gt;</code>, which contains the content you see in the browser.</p></li>
-<li><p>Block tags like <code>&lt;h1&gt;</code> (heading 1), <code>&lt;section&gt;</code> (section), <code>&lt;p&gt;</code> (paragraph), and <code>&lt;ol&gt;</code> (ordered list) form the overall structure of the page.</p></li>
-<li><p>Inline tags like <code>&lt;b&gt;</code> (bold), <code>&lt;i&gt;</code> (italics), and <code>&lt;a&gt;</code> (link) format text inside block tags.</p></li>
+<li><p>Toda página HTML deve estar entre um elemento <code>&lt;html&gt;</code>, que deve ter dois elementos descendentes (<em>children</em>): <code>&lt;head&gt;</code>, que contém metadados como título da página, e <code>&lt;body&gt;</code>, que tem o conteúdo que você vê através do navegador (<em>browser</em>).</p></li>
+<li><p>Marcações de <strong>bloco</strong> (<em>block</em>) como <code>&lt;h1&gt;</code> (cabeçalho 1 ou <em>heading</em> 1), <code>&lt;section&gt;</code> (seção ou <em>section</em>), <code>&lt;p&gt;</code> (parágrafo ou <em>paragraph</em>), e <code>&lt;ol&gt;</code> (lista ordenada ou <em>ordered list</em>) formam a estrutura geral da página.</p></li>
+<li><p>Marcações <strong>em linha</strong> (<em>inline</em>) como <code>&lt;b&gt;</code> (negrito ou <em>bold</em>), <code>&lt;i&gt;</code> (itálico ou <em>italics</em>), e <code>&lt;a&gt;</code> (<em>link</em>) formatam o texto dentro das marcações de bloco.</p></li>
 </ul>
-<p>If you encounter a tag that you’ve never seen before, you can find out what it does with a little googling. Another good place to start are the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">MDN Web Docs</a> which describe just about every aspect of web programming.</p>
-<p>Most elements can have content in between their start and end tags. This content can either be text or more elements. For example, the following HTML contains paragraph of text, with one word in bold.</p>
+<p>Se você encontrar uma marcação que nunca viu antes, você pode pesquisar o que ela faz usando a pesquisa do <em>Google</em>. Um outro ótimo lugar para começar é o <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">MDN Web Docs</a> que descreve todos os aspectos da programação web.</p>
+<p>A maioria dos elementos podem ter conteúdo entre suas marcações de início e fim. Este conteúdo pode ser um texto ou outros elementos. Por exemplo, o HTML a seguir contém um parágrafo de texto com uma palavra em negrito.</p>
 <pre><code>&lt;p&gt;
-  Hi! My &lt;b&gt;name&lt;/b&gt; is Hadley.
+  Olá! Meu &lt;b&gt;nome&lt;/b&gt; é Hadley.
 &lt;/p&gt;</code></pre>
-<p>The <strong>children</strong> are the elements it contains, so the <code>&lt;p&gt;</code> element above has one child, the <code>&lt;b&gt;</code> element. The <code>&lt;b&gt;</code> element has no children, but it does have contents (the text “name”).</p>
-</section><section id="attributes" class="level3" data-number="24.3.2"><h3 data-number="24.3.2" class="anchored" data-anchor-id="attributes">
-<span class="header-section-number">24.3.2</span> Attributes</h3>
-<p>Tags can have named <strong>attributes</strong> which look like <code>name1='value1' name2='value2'</code>. Two of the most important attributes are <code>id</code> and <code>class</code>, which are used in conjunction with CSS (Cascading Style Sheets) to control the visual appearance of the page. These are often useful when scraping data off a page. Attributes are also used to record the destination of links (the <code>href</code> attribute of <code>&lt;a&gt;</code> elements) and the source of images (the <code>src</code> attribute of the <code>&lt;img&gt;</code> element).</p>
-</section></section><section id="extracting-data" class="level2" data-number="24.4"><h2 data-number="24.4" class="anchored" data-anchor-id="extracting-data">
-<span class="header-section-number">24.4</span> Extracting data</h2>
-<p>To get started scraping, you’ll need the URL of the page you want to scrape, which you can usually copy from your web browser. You’ll then need to read the HTML for that page into R with <code><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html()</a></code>. This returns an <code>xml_document</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> object which you’ll then manipulate using rvest functions:</p>
+<p>Os <strong>descendentes</strong> (<em>children</em>) são os elementos contidos em outro, portanto, o elemento <code>&lt;p&gt;</code> acima possui um descendente, o elemento <code>&lt;b&gt;</code>. O elemento <code>&lt;b&gt;</code> não possui descendentes, porém ele tem conteúdo (o texto “nome”).</p>
+</section><section id="atributos" class="level3" data-number="24.3.2"><h3 data-number="24.3.2" class="anchored" data-anchor-id="atributos">
+<span class="header-section-number">24.3.2</span> Atributos</h3>
+<p>Marcações podem ter <strong>atributos</strong> (<em>attributes</em>) com nomes que se parecem com <code>nome1='valor1' nome2='valor2'</code>. Dois dos mais importantes atributos são <code>id</code> e <code>class</code>, que são usados juntamente com as folhas de estilo CSS (<em>Cascading Style Sheets</em>) para controlar a aparência visual da página. Eles são muito úteis quando raspamos dados de uma página. Atributos também são usados para gravar os destinos dos <em>links</em> (o atributo <code>href</code> do elemento <code>&lt;a&gt;</code>) e a origem de imagens (o atributo <code>src</code> do elemento <code>&lt;img&gt;</code>).</p>
+</section></section><section id="extraindo-dados" class="level2" data-number="24.4"><h2 data-number="24.4" class="anchored" data-anchor-id="extraindo-dados">
+<span class="header-section-number">24.4</span> Extraindo dados</h2>
+<p>Para começar com a raspagem de dados, você precisará do endereço (URL) da página que deseja fazer a raspagem, a qual normalmente pode ser copiada do seu navegador. Você precisará então importar o HTML daquela página para o R com <code><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html()</a></code>. Esta função retorna um objeto <code>xml_document</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> que você então irá manipular usando as funções do rvest:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="st">"http://rvest.tidyverse.org/"</span><span class="op">)</span></span>
 <span><span class="va">html</span></span>
@@ -541,58 +541,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html; charset=UT ...</span></span>
 <span><span class="co">#&gt; [2] &lt;body&gt;\n    &lt;a href="#container" class="visually-hidden-focusable"&gt;Ski ...</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>rvest also includes a function that lets you write HTML inline. We’ll use this a bunch in this chapter as we teach how the various rvest functions work with simple examples.</p>
+<p>rvest também possui uma função que te permite criar um HTML (<em>inline</em>). Usaremos muito isso neste capítulo conforme ensinamos várias funções do rvest com exemplos simples.</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/minimal_html.html">minimal_html</a></span><span class="op">(</span><span class="st">"</span></span>
-<span><span class="st">  &lt;p&gt;This is a paragraph&lt;/p&gt;</span></span>
+<span><span class="st">  &lt;p&gt;Este é um parágrafo&lt;/p&gt;</span></span>
 <span><span class="st">  &lt;ul&gt;</span></span>
-<span><span class="st">    &lt;li&gt;This is a bulleted list&lt;/li&gt;</span></span>
+<span><span class="st">    &lt;li&gt;Esta é uma lista com marcadores&lt;/li&gt;</span></span>
 <span><span class="st">  &lt;/ul&gt;</span></span>
 <span><span class="st">"</span><span class="op">)</span></span>
 <span><span class="va">html</span></span>
 <span><span class="co">#&gt; {html_document}</span></span>
 <span><span class="co">#&gt; &lt;html&gt;</span></span>
 <span><span class="co">#&gt; [1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html; charset=UT ...</span></span>
-<span><span class="co">#&gt; [2] &lt;body&gt;\n&lt;p&gt;This is a paragraph&lt;/p&gt;\n  &lt;ul&gt;\n&lt;li&gt;This is a bulleted lis ...</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [2] &lt;body&gt;\n&lt;p&gt;Este é um parágrafo&lt;/p&gt;\n  &lt;ul&gt;\n&lt;li&gt;Esta é uma lista com m ...</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now that you have the HTML in R, it’s time to extract the data of interest. You’ll first learn about the CSS selectors that allow you to identify the elements of interest and the rvest functions that you can use to extract data from them. Then we’ll briefly cover HTML tables, which have some special tools.</p>
-<section id="find-elements" class="level3" data-number="24.4.1"><h3 data-number="24.4.1" class="anchored" data-anchor-id="find-elements">
-<span class="header-section-number">24.4.1</span> Find elements</h3>
-<p>CSS is short for cascading style sheets, and is a tool for defining the visual styling of HTML documents. CSS includes a miniature language for selecting elements on a page called <strong>CSS selectors</strong>. CSS selectors define patterns for locating HTML elements, and are useful for scraping because they provide a concise way of describing which elements you want to extract.</p>
-<p>We’ll come back to CSS selectors in more detail in <a href="#sec-css-selectors" class="quarto-xref"><span>Seção 24.5</span></a>, but luckily you can get a long way with just three:</p>
+<p>Agora que você tem o HTML no R, é hora de extrair os dados de interesse. Você aprenderá primeiro sobre seletores CSS, os quais permitem que você identifique elementos de interesse e sobre as funções do rvest que permitem que você extraia dados desses elementos. Depois, falaremos brevemente sobre tabelas HTML, que possuem algumas ferramentas especiais.</p>
+<section id="encontrando-elementos" class="level3" data-number="24.4.1"><h3 data-number="24.4.1" class="anchored" data-anchor-id="encontrando-elementos">
+<span class="header-section-number">24.4.1</span> Encontrando elementos</h3>
+<p>CSS é a abreviação para “folha de estilo em cascata” (<em>cascading style sheets</em>), que é uma ferramenta para definir os estilos visuais dos documentos HTML. CSS inclui uma pequena linguagem chamada <strong>seletores CSS</strong> (<em>CSS Selectors</em>) para seleção de elementos em uma página. Seletores CSS definem padrões para localizar elementos HTML e são úteis para raspagem de dados, pois definem uma forma concisa de descrever o elemento do qual você quer extrair os dados.</p>
+<p>Retornaremos aos seletores CSS em mais detalhes na <a href="#sec-css-selectors" class="quarto-xref"><span>Seção 24.5</span></a>, mas felizmente você já pode percorrer um bom caminho com apenas três seletores:</p>
 <ul>
-<li><p><code>p</code> selects all <code>&lt;p&gt;</code> elements.</p></li>
-<li><p><code>.title</code> selects all elements with <code>class</code> “title”.</p></li>
-<li><p><code>#title</code> selects the element with the <code>id</code> attribute that equals “title”. Id attributes must be unique within a document, so this will only ever select a single element.</p></li>
+<li><p><code>p</code> seleciona todos elementos <code>&lt;p&gt;</code>.</p></li>
+<li><p><code>.titulo</code> seleciona todos elementos com <code>class</code> “titulo”.</p></li>
+<li><p><code>#titulo</code> seleciona os elemento com o atributo <code>id</code> igual a “titulo”. Atributos Id devem ser únicos dentro de um documento HTML, portanto isto sempre retornará apenas um elemento.</p></li>
 </ul>
-<p>Let’s try out these selectors with a simple example:</p>
+<p>Vamos testar estes seletores com um exemplo simples:</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/minimal_html.html">minimal_html</a></span><span class="op">(</span><span class="st">"</span></span>
-<span><span class="st">  &lt;h1&gt;This is a heading&lt;/h1&gt;</span></span>
-<span><span class="st">  &lt;p id='first'&gt;This is a paragraph&lt;/p&gt;</span></span>
-<span><span class="st">  &lt;p class='important'&gt;This is an important paragraph&lt;/p&gt;</span></span>
+<span><span class="st">  &lt;h1&gt;Isto é um cabeçalho&lt;/h1&gt;</span></span>
+<span><span class="st">  &lt;p id='primeiro'&gt;Isto é um parágrafo&lt;/p&gt;</span></span>
+<span><span class="st">  &lt;p class='importante'&gt;Isto é um parágrafo importante&lt;/p&gt;</span></span>
 <span><span class="st">"</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Use <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> to find all elements that match the selector:</p>
+<p>Use <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> para encontrar todos os elementos que correspondem ao seletor:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; {xml_nodeset (2)}</span></span>
-<span><span class="co">#&gt; [1] &lt;p id="first"&gt;This is a paragraph&lt;/p&gt;</span></span>
-<span><span class="co">#&gt; [2] &lt;p class="important"&gt;This is an important paragraph&lt;/p&gt;</span></span>
-<span><span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">".important"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] &lt;p id="primeiro"&gt;Isto é um parágrafo&lt;/p&gt;</span></span>
+<span><span class="co">#&gt; [2] &lt;p class="importante"&gt;Isto é um parágrafo importante&lt;/p&gt;</span></span>
+<span><span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">".importante"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; {xml_nodeset (1)}</span></span>
-<span><span class="co">#&gt; [1] &lt;p class="important"&gt;This is an important paragraph&lt;/p&gt;</span></span>
-<span><span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"#first"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] &lt;p class="importante"&gt;Isto é um parágrafo importante&lt;/p&gt;</span></span>
+<span><span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"#primeiro"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; {xml_nodeset (1)}</span></span>
-<span><span class="co">#&gt; [1] &lt;p id="first"&gt;This is a paragraph&lt;/p&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] &lt;p id="primeiro"&gt;Isto é um parágrafo&lt;/p&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Another important function is <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> which always returns the same number of outputs as inputs. If you apply it to a whole document it’ll give you the first match:</p>
+<p>Outra função importante é a <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> que sempre retorna o mesmo número de saídas que entradas. Se você a usar no documento inteiro, ela retornará a primeira correspondência:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; {html_node}</span></span>
-<span><span class="co">#&gt; &lt;p id="first"&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; &lt;p id="primeiro"&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>There’s an important difference between <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> and <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> when you use a selector that doesn’t match any elements. <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> returns a vector of length 0, where <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> returns a missing value. This will be important shortly.</p>
+<p>Há uma diferença importante entre <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> e <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> quando você usa um seletor que não corresponde a nenhum elemento. <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> retorna um vetor de tamanho 0, enquanto <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> retorna um valor faltante (<em>missing value</em>). Esta diferença será muito importante em breve.</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"b"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; {xml_nodeset (0)}</span></span>
@@ -600,76 +600,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; {xml_missing}</span></span>
 <span><span class="co">#&gt; &lt;NA&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="nesting-selections" class="level3" data-number="24.4.2"><h3 data-number="24.4.2" class="anchored" data-anchor-id="nesting-selections">
-<span class="header-section-number">24.4.2</span> Nesting selections</h3>
-<p>In most cases, you’ll use <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> and <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> together, typically using <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> to identify elements that will become observations then using <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> to find elements that will become variables. Let’s see this in action using a simple example. Here we have an unordered list (<code>&lt;ul&gt;)</code> where each list item (<code>&lt;li&gt;</code>) contains some information about four characters from StarWars:</p>
+</section><section id="seleções-aninhadas-nesting" class="level3" data-number="24.4.2"><h3 data-number="24.4.2" class="anchored" data-anchor-id="seleções-aninhadas-nesting">
+<span class="header-section-number">24.4.2</span> Seleções aninhadas (<em>nesting</em>)</h3>
+<p>Na maioria das vezes, você usará <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> e <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> juntas, geralmente usando <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> para identificar elementos que virão com várias observações e então usar <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> para identificar elementos que se tornarão variáveis. Vamos ver isso em ação com um exemplo simples. Aqui temos uma lista não ordenada (<code>&lt;ul&gt;</code>) onde cada item da lista (<code>&lt;li&gt;</code>) contém alguma informação sobre quatro personagens de Guerra nas Estrelas (<em>StarWars</em>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/minimal_html.html">minimal_html</a></span><span class="op">(</span><span class="st">"</span></span>
 <span><span class="st">  &lt;ul&gt;</span></span>
-<span><span class="st">    &lt;li&gt;&lt;b&gt;C-3PO&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class='weight'&gt;167 kg&lt;/span&gt;&lt;/li&gt;</span></span>
-<span><span class="st">    &lt;li&gt;&lt;b&gt;R4-P17&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt;&lt;/li&gt;</span></span>
-<span><span class="st">    &lt;li&gt;&lt;b&gt;R2-D2&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class='weight'&gt;96 kg&lt;/span&gt;&lt;/li&gt;</span></span>
-<span><span class="st">    &lt;li&gt;&lt;b&gt;Yoda&lt;/b&gt; weighs &lt;span class='weight'&gt;66 kg&lt;/span&gt;&lt;/li&gt;</span></span>
+<span><span class="st">    &lt;li&gt;&lt;b&gt;C-3PO&lt;/b&gt; é um &lt;i&gt;robô&lt;/i&gt; que pesa &lt;span class='weight'&gt;167 kg&lt;/span&gt;&lt;/li&gt;</span></span>
+<span><span class="st">    &lt;li&gt;&lt;b&gt;R4-P17&lt;/b&gt; é um &lt;i&gt;robô&lt;/i&gt;&lt;/li&gt;</span></span>
+<span><span class="st">    &lt;li&gt;&lt;b&gt;R2-D2&lt;/b&gt; é um &lt;i&gt;robô&lt;/i&gt; que pesa &lt;span class='weight'&gt;96 kg&lt;/span&gt;&lt;/li&gt;</span></span>
+<span><span class="st">    &lt;li&gt;&lt;b&gt;Yoda&lt;/b&gt; pesa &lt;span class='peso'&gt;66 kg&lt;/span&gt;&lt;/li&gt;</span></span>
 <span><span class="st">  &lt;/ul&gt;</span></span>
 <span><span class="st">  "</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can use <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> to make a vector where each element corresponds to a different character:</p>
+<p>Podemos usar <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> para criar um vetor onde cada elemento corresponde a um personagem diferente:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">characters</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"li"</span><span class="op">)</span></span>
-<span><span class="va">characters</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">personagens</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"li"</span><span class="op">)</span></span>
+<span><span class="va">personagens</span></span>
 <span><span class="co">#&gt; {xml_nodeset (4)}</span></span>
-<span><span class="co">#&gt; [1] &lt;li&gt;\n&lt;b&gt;C-3PO&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class="weight"&gt; ...</span></span>
-<span><span class="co">#&gt; [2] &lt;li&gt;\n&lt;b&gt;R4-P17&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt;\n&lt;/li&gt;</span></span>
-<span><span class="co">#&gt; [3] &lt;li&gt;\n&lt;b&gt;R2-D2&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class="weight"&gt; ...</span></span>
-<span><span class="co">#&gt; [4] &lt;li&gt;\n&lt;b&gt;Yoda&lt;/b&gt; weighs &lt;span class="weight"&gt;66 kg&lt;/span&gt;\n&lt;/li&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] &lt;li&gt;\n&lt;b&gt;C-3PO&lt;/b&gt; é um &lt;i&gt;robô&lt;/i&gt; que pesa &lt;span class="weight"&gt;167  ...</span></span>
+<span><span class="co">#&gt; [2] &lt;li&gt;\n&lt;b&gt;R4-P17&lt;/b&gt; é um &lt;i&gt;robô&lt;/i&gt;\n&lt;/li&gt;</span></span>
+<span><span class="co">#&gt; [3] &lt;li&gt;\n&lt;b&gt;R2-D2&lt;/b&gt; é um &lt;i&gt;robô&lt;/i&gt; que pesa &lt;span class="weight"&gt;96 k ...</span></span>
+<span><span class="co">#&gt; [4] &lt;li&gt;\n&lt;b&gt;Yoda&lt;/b&gt; pesa &lt;span class="peso"&gt;66 kg&lt;/span&gt;\n&lt;/li&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>To extract the name of each character, we use <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code>, because when applied to the output of <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> it’s guaranteed to return one response per element:</p>
+<p>Para extrair o nome de cada personagem, usamos <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code>, pois quando aplicada à saída da <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> é garantido retornar uma resposta por elemento:</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">characters</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">"b"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">personagens</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">"b"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; {xml_nodeset (4)}</span></span>
 <span><span class="co">#&gt; [1] &lt;b&gt;C-3PO&lt;/b&gt;</span></span>
 <span><span class="co">#&gt; [2] &lt;b&gt;R4-P17&lt;/b&gt;</span></span>
 <span><span class="co">#&gt; [3] &lt;b&gt;R2-D2&lt;/b&gt;</span></span>
 <span><span class="co">#&gt; [4] &lt;b&gt;Yoda&lt;/b&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The distinction between <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> and <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> isn’t important for name, but it is important for weight. We want to get one weight for each character, even if there’s no weight <code>&lt;span&gt;</code>. That’s what <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> does:</p>
+<p>A diferença entre <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> e <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> não é importante para o nome, mas é importante para o peso. Queremos ter um peso para cada personagem, até mesmo quando não há <code>&lt;span&gt;</code> peso. Isto é o que <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> faz:</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">characters</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">".weight"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">personagens</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">".peso"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; {xml_nodeset (4)}</span></span>
-<span><span class="co">#&gt; [1] &lt;span class="weight"&gt;167 kg&lt;/span&gt;</span></span>
+<span><span class="co">#&gt; [1] NA</span></span>
 <span><span class="co">#&gt; [2] NA</span></span>
-<span><span class="co">#&gt; [3] &lt;span class="weight"&gt;96 kg&lt;/span&gt;</span></span>
-<span><span class="co">#&gt; [4] &lt;span class="weight"&gt;66 kg&lt;/span&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [3] NA</span></span>
+<span><span class="co">#&gt; [4] &lt;span class="peso"&gt;66 kg&lt;/span&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> finds all weight <code>&lt;span&gt;</code>s that are children of <code>characters</code>. There’s only three of these, so we lose the connection between names and weights:</p>
+<p><code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> encontra todos os <code>&lt;span&gt;</code>s peso que são descendentes de <code>personagens</code>. Existem apenas três deles, então perdemos a conexão entre os nomes e os pesos:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">characters</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">".weight"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; {xml_nodeset (3)}</span></span>
-<span><span class="co">#&gt; [1] &lt;span class="weight"&gt;167 kg&lt;/span&gt;</span></span>
-<span><span class="co">#&gt; [2] &lt;span class="weight"&gt;96 kg&lt;/span&gt;</span></span>
-<span><span class="co">#&gt; [3] &lt;span class="weight"&gt;66 kg&lt;/span&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">personagens</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">".peso"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; {xml_nodeset (1)}</span></span>
+<span><span class="co">#&gt; [1] &lt;span class="peso"&gt;66 kg&lt;/span&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now that you’ve selected the elements of interest, you’ll need to extract the data, either from the text contents or some attributes.</p>
-</section><section id="text-and-attributes" class="level3" data-number="24.4.3"><h3 data-number="24.4.3" class="anchored" data-anchor-id="text-and-attributes">
-<span class="header-section-number">24.4.3</span> Text and attributes</h3>
-<p><code><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2()</a></code><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> extracts the plain text contents of an HTML element:</p>
+<p>Agora que você selecionou os elementos de interesse, você precisa extrair os dados, sejam do conteúdo texto quanto de alguns atributos.</p>
+</section><section id="textos-e-atributos" class="level3" data-number="24.4.3"><h3 data-number="24.4.3" class="anchored" data-anchor-id="textos-e-atributos">
+<span class="header-section-number">24.4.3</span> Textos e atributos</h3>
+<p><code><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2()</a></code><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> extrai o texto puro de um elemento HTML:</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">characters</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">personagens</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">"b"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "C-3PO"  "R4-P17" "R2-D2"  "Yoda"</span></span>
 <span></span>
-<span><span class="va">characters</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">".weight"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">personagens</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">".peso"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "167 kg" NA       "96 kg"  "66 kg"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] NA      NA      NA      "66 kg"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that any escapes will be automatically handled; you’ll only ever see HTML escapes in the source HTML, not in the data returned by rvest.</p>
-<p><code><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr()</a></code> extracts data from attributes:</p>
+<p>Observe que qualquer caractere de fuga é automaticamente endereçado; você apenas verá estes caracteres no código fonte HTML, mas não nos dados retornados pelo rvest.</p>
+<p><code><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr()</a></code> extrai dados dos atributos:</p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/minimal_html.html">minimal_html</a></span><span class="op">(</span><span class="st">"</span></span>
-<span><span class="st">  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Cat'&gt;cats&lt;/a&gt;&lt;/p&gt;</span></span>
-<span><span class="st">  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Dog'&gt;dogs&lt;/a&gt;&lt;/p&gt;</span></span>
+<span><span class="st">  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Cat'&gt;gatos&lt;/a&gt;&lt;/p&gt;</span></span>
+<span><span class="st">  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Dog'&gt;cães&lt;/a&gt;&lt;/p&gt;</span></span>
 <span><span class="st">"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">html</span> <span class="op">|&gt;</span> </span>
@@ -678,14 +676,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr</a></span><span class="op">(</span><span class="st">"href"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "https://en.wikipedia.org/wiki/Cat" "https://en.wikipedia.org/wiki/Dog"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr()</a></code> always returns a string, so if you’re extracting numbers or dates, you’ll need to do some post-processing.</p>
-</section><section id="tables" class="level3" data-number="24.4.4"><h3 data-number="24.4.4" class="anchored" data-anchor-id="tables">
-<span class="header-section-number">24.4.4</span> Tables</h3>
-<p>If you’re lucky, your data will be already stored in an HTML table, and it’ll be a matter of just reading it from that table. It’s usually straightforward to recognize a table in your browser: it’ll have a rectangular structure of rows and columns, and you can copy and paste it into a tool like Excel.</p>
-<p>HTML tables are built up from four main elements: <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code> (table row), <code>&lt;th&gt;</code> (table heading), and <code>&lt;td&gt;</code> (table data). Here’s a simple HTML table with two columns and three rows:</p>
+<p><code><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr()</a></code> sempre retorna uma <em>string</em>, portanto, se você está extraindo números ou datas, você precisará fazer algum processamento posterior.</p>
+</section><section id="tabelas" class="level3" data-number="24.4.4"><h3 data-number="24.4.4" class="anchored" data-anchor-id="tabelas">
+<span class="header-section-number">24.4.4</span> Tabelas</h3>
+<p>Se você estiver com sorte, seus dados já estarão armazenados em uma tabela HTML, portanto, é apenas uma questão de lê-los diretamenta desta tabela. Geralmente é muito fácil reconhecer uma tabela em seu navegador: ela terá uma estrutura retangular de linhas e colunas e você pode copiar e colar em uma ferramenta como o Excel.</p>
+<p>Tabelas HTML são constituídas por quatro elementos principais: <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code> (linha da tabela), <code>&lt;th&gt;</code> (cabeçalho da tabela), e <code>&lt;td&gt;</code> (dado da tabela). Aqui está uma tabela HTML simples com duas colunas e três linhas:</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/minimal_html.html">minimal_html</a></span><span class="op">(</span><span class="st">"</span></span>
-<span><span class="st">  &lt;table class='mytable'&gt;</span></span>
+<span><span class="st">  &lt;table class='minha_tabela'&gt;</span></span>
 <span><span class="st">    &lt;tr&gt;&lt;th&gt;x&lt;/th&gt;   &lt;th&gt;y&lt;/th&gt;&lt;/tr&gt;</span></span>
 <span><span class="st">    &lt;tr&gt;&lt;td&gt;1.5&lt;/td&gt; &lt;td&gt;2.7&lt;/td&gt;&lt;/tr&gt;</span></span>
 <span><span class="st">    &lt;tr&gt;&lt;td&gt;4.9&lt;/td&gt; &lt;td&gt;1.3&lt;/td&gt;&lt;/tr&gt;</span></span>
@@ -693,10 +691,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="st">  &lt;/table&gt;</span></span>
 <span><span class="st">  "</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>rvest provides a function that knows how to read this sort of data: <code><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table()</a></code>. It returns a list containing one tibble for each table found on the page. Use <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> to identify the table you want to extract:</p>
+<p>rvest fornece uma função que sabe como ler este tipo de dado: <code><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table()</a></code>. Ela retorna uma lista contendo um <em>tibble</em> para cada tabela encontrada na página. Use <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element()</a></code> para identificar a tabela que deseja extrair:</p>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">".mytable"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">".minha_tabela"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
 <span><span class="co">#&gt;       x     y</span></span>
@@ -705,21 +703,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 2   4.9   1.3</span></span>
 <span><span class="co">#&gt; 3   7.2   8.1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that <code>x</code> and <code>y</code> have automatically been converted to numbers. This automatic conversion doesn’t always work, so in more complex scenarios you may want to turn it off with <code>convert = FALSE</code> and then do your own conversion.</p>
+<p>Note que <code>x</code> e <code>y</code> foram automaticamente convertidos para números. Esta conversão automática nem sempre funciona bem, portanto, em cenários mais complexos você deve querer desligá-la com <code>convert = FALSE</code> e então fazer sua própria conversão.</p>
 </section></section><section id="sec-css-selectors" class="level2" data-number="24.5"><h2 data-number="24.5" class="anchored" data-anchor-id="sec-css-selectors">
-<span class="header-section-number">24.5</span> Finding the right selectors</h2>
-<p>Figuring out the selector you need for your data is typically the hardest part of the problem. You’ll often need to do some experimenting to find a selector that is both specific (i.e.&nbsp;it doesn’t select things you don’t care about) and sensitive (i.e.&nbsp;it does select everything you care about). Lots of trial and error is a normal part of the process! There are two main tools that are available to help you with this process: SelectorGadget and your browser’s developer tools.</p>
-<p><a href="https://rvest.tidyverse.org/articles/selectorgadget.html">SelectorGadget</a> is a javascript bookmarklet that automatically generates CSS selectors based on the positive and negative examples that you provide. It doesn’t always work, but when it does, it’s magic! You can learn how to install and use SelectorGadget either by reading <a href="https://rvest.tidyverse.org/articles/selectorgadget.html" class="uri">https://rvest.tidyverse.org/articles/selectorgadget.html</a> or watching Mine’s video at <a href="https://www.youtube.com/watch?v=PetWV5g1Xsc" class="uri">https://www.youtube.com/watch?v=PetWV5g1Xsc</a>.</p>
-<p>Every modern browser comes with some toolkit for developers, but we recommend Chrome, even if it isn’t your regular browser: its web developer tools are some of the best and they’re immediately available. Right click on an element on the page and click <code>Inspect</code>. This will open an expandable view of the complete HTML page, centered on the element that you just clicked. You can use this to explore the page and get a sense of what selectors might work. Pay particular attention to the class and id attributes, since these are often used to form the visual structure of the page, and hence make for good tools to extract the data that you’re looking for.</p>
-<p>Inside the Elements view, you can also right click on an element and choose <code>Copy as Selector</code> to generate a selector that will uniquely identify the element of interest.</p>
-<p>If either SelectorGadget or Chrome DevTools have generated a CSS selector that you don’t understand, try <a href="https://kittygiraudel.github.io/selectors-explained/" class="uri">Selectors Explained</a> which translates CSS selectors into plain English. If you find yourself doing this a lot, you might want to learn more about CSS selectors generally. We recommend starting with the fun <a href="https://flukeout.github.io/">CSS dinner</a> tutorial and then referring to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">MDN web docs</a>.</p>
-</section><section id="putting-it-all-together" class="level2" data-number="24.6"><h2 data-number="24.6" class="anchored" data-anchor-id="putting-it-all-together">
-<span class="header-section-number">24.6</span> Putting it all together</h2>
-<p>Let’s put this all together to scrape some websites. There’s some risk that these examples may no longer work when you run them — that’s the fundamental challenge of web scraping; if the structure of the site changes, then you’ll have to change your scraping code.</p>
-<section id="starwars" class="level3" data-number="24.6.1"><h3 data-number="24.6.1" class="anchored" data-anchor-id="starwars">
-<span class="header-section-number">24.6.1</span> StarWars</h3>
-<p>rvest includes a very simple example in <code><a href="https://rvest.tidyverse.org/articles/starwars.html">vignette("starwars")</a></code>. This is a simple page with minimal HTML so it’s a good place to start. I’d encourage you to navigate to that page now and use “Inspect Element” to inspect one of the headings that’s the title of a Star Wars movie. Use the keyboard or mouse to explore the hierarchy of the HTML and see if you can get a sense of the shared structure used by each movie.</p>
-<p>You should be able to see that each movie has a shared structure that looks like this:</p>
+<span class="header-section-number">24.5</span> Encontrando os seletores adequados</h2>
+<p>Descobrir o seletor que você precisa para seus dados é geralmente a parte mais difícil do problema. Você geralmente deverá fazer alguns experimentos para encontrar um seletor que seja ao mesmo tempo específico (e.x. ele não seleciona algo que não interessa) e sensível (e.x. ele seleciona tudo que interessa). Tentativa e erro é parte normal do processo! Existem duas principais ferramentas disponíveis para te ajudar com este processo: <em>SelectorGadget</em> e as Ferramentas do Desenvolvedor de seu navegador.</p>
+<p><a href="https://rvest.tidyverse.org/articles/selectorgadget.html">SelectorGadget</a> é um aplicativo (<em>bookmarklet</em>) <em>javascript</em> que gera seletores automaticamente baseado em exemplos negativos e positivos fornecidos por você. Ele nem sempre funciona, mas quando o faz, é uma mágica! Você pode aprender a instalar e usar o <em>SelectorGadget</em> lendo <a href="https://rvest.tidyverse.org/articles/selectorgadget.html" class="uri">https://rvest.tidyverse.org/articles/selectorgadget.html</a> ou assistindo o video de Mine em <a href="https://www.youtube.com/watch?v=PetWV5g1Xsc" class="uri">https://www.youtube.com/watch?v=PetWV5g1Xsc</a>.</p>
+<p>Todo navegador moderno vem com um <em>kit</em> de ferramentas para desenvolvedores, mas recomendamos o <em>Chrome</em>, mesmo que não seja seu navegador padrão: suas ferramentas para desenvolvedores web são algumas das melhores e estão imediatamente disponíveis. Clique com o botão direito em um elemento da página e clique <code>Inspecionar</code>. Isto abrirá uma visão expandida da página HTML completa, centralizando o elemento que você acabou de clicar. Você pode usar isto para explorar a página e ter uma ideia de quais seletores podem funcionar. Preste atenção aos atributos class e id, uma vez que geralmente são usados para formar a estrutura visual da página, e portanto, são boas ferramentas para extrair os dados que você está procurando.</p>
+<p>Dentro do menu Elementos, você também pode clicar com o botão direito em um elemento e selecionar <code>Copiar como Seletor</code> para gerar um seletor que identificará de forma única o elemento de interesse.</p>
+<p>Caso o <em>SelectorGadget</em> ou as Ferramentas do Desenvolvedor (DevTools<em>) do </em>Chrome* gerarem um seletor CSS que você não entende, tente <a href="https://kittygiraudel.github.io/selectors-explained/" class="uri">Seletores Explicados</a> (<em>Selectors Explained</em>) que traduz seletores CSS para inglês básico. Caso você se encontre fazendo isso muitas vezes, você pode querer aprender mais sobre seletores CSS em geral. Recomendamos começar com o engraçado tutorial <a href="https://flukeout.github.io/">jantar CSS</a> e então conferir o <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">MDN web docs</a>.</p>
+</section><section id="juntando-tudo" class="level2" data-number="24.6"><h2 data-number="24.6" class="anchored" data-anchor-id="juntando-tudo">
+<span class="header-section-number">24.6</span> Juntando tudo</h2>
+<p>Vamos juntar tudo isso e fazer a raspagem de dados de alguns websites. Há algum risco destes exemplos não funcionarem mais quando você executá-los — este é o desafio fundamental da raspagem de dados; se a estrutura do site muda, então você terá que mudar seu código de raspagem.</p>
+<section id="guerra-nas-estrelas-starwars" class="level3" data-number="24.6.1"><h3 data-number="24.6.1" class="anchored" data-anchor-id="guerra-nas-estrelas-starwars">
+<span class="header-section-number">24.6.1</span> Guerra nas Estrelas (<em>StarWars</em>)</h3>
+<p>rvest inclui um simples exemplo na <code><a href="https://rvest.tidyverse.org/articles/starwars.html">vignette("starwars")</a></code>. Esta é uma página simples com o mínimo de HTML, portanto, é um bom lugar para se começar. Eu encorajo você a navegar até essa página agora e usar “Inspecionar Elemento” para inspecionar um dos cabeçalhos que tem o título de um filme de Guerra nas Estrelas. Use o teclado ou o <em>mouse</em> para explorar a hierarquia do HTML e veja se consegue ter uma noção da estrutura compartilhada de cada filme.</p>
+<p>Você deve conseguir ver que cada filme possui uma estrutura compartilhada que se parece com isto:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">section</span><span class="dt">&gt;</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">h2</span><span class="ot"> data-id</span><span class="op">=</span><span class="st">"1"</span><span class="dt">&gt;</span>The Phantom Menace<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Released: 1999-05-19<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
@@ -731,13 +729,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>...<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">section</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Our goal is to turn this data into a 7 row data frame with variables <code>title</code>, <code>year</code>, <code>director</code>, and <code>intro</code>. We’ll start by reading the HTML and extracting all the <code>&lt;section&gt;</code> elements:</p>
+<p>Nossa meta é transformar isto em um <em>data frame</em> com 7 linhas e as variáveis <code>titulo</code>, <code>data_lancamento</code>, <code>diretor</code>, e <code>introducao</code>. Começaremos lendo o HTML e extraindo todos os elementos <code>&lt;section&gt;</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://rvest.tidyverse.org/articles/starwars.html"</span></span>
 <span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">section</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"section"</span><span class="op">)</span></span>
-<span><span class="va">section</span></span>
+<span><span class="va">secao</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"section"</span><span class="op">)</span></span>
+<span><span class="va">secao</span></span>
 <span><span class="co">#&gt; {xml_nodeset (7)}</span></span>
 <span><span class="co">#&gt; [1] &lt;section&gt;&lt;h2 data-id="1"&gt;\nThe Phantom Menace\n&lt;/h2&gt;\n&lt;p&gt;\nReleased: 1 ...</span></span>
 <span><span class="co">#&gt; [2] &lt;section&gt;&lt;h2 data-id="2"&gt;\nAttack of the Clones\n&lt;/h2&gt;\n&lt;p&gt;\nReleased: ...</span></span>
@@ -747,73 +745,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [6] &lt;section&gt;&lt;h2 data-id="6"&gt;\nReturn of the Jedi\n&lt;/h2&gt;\n&lt;p&gt;\nReleased: 1 ...</span></span>
 <span><span class="co">#&gt; [7] &lt;section&gt;&lt;h2 data-id="7"&gt;\nThe Force Awakens\n&lt;/h2&gt;\n&lt;p&gt;\nReleased: 20 ...</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This retrieves seven elements matching the seven movies found on that page, suggesting that using <code>section</code> as a selector is good. Extracting the individual elements is straightforward since the data is always found in the text. It’s just a matter of finding the right selector:</p>
+<p>Isto retorna sete elementos que correspondem aos sete filmes encontrados na página, sugerindo que usar <code>section</code> como seletor é bom. Extrair cada elemento é direto, já que o dado está sempre presente no texto. É simplesmente uma questão de encontrar o seletor correto:</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">section</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">"h2"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">secao</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">"h2"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "The Phantom Menace"      "Attack of the Clones"   </span></span>
 <span><span class="co">#&gt; [3] "Revenge of the Sith"     "A New Hope"             </span></span>
 <span><span class="co">#&gt; [5] "The Empire Strikes Back" "Return of the Jedi"     </span></span>
 <span><span class="co">#&gt; [7] "The Force Awakens"</span></span>
 <span></span>
-<span><span class="va">section</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">".director"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">secao</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">".director"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "George Lucas"     "George Lucas"     "George Lucas"    </span></span>
 <span><span class="co">#&gt; [4] "George Lucas"     "Irvin Kershner"   "Richard Marquand"</span></span>
 <span><span class="co">#&gt; [7] "J. J. Abrams"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Once we’ve done that for each component, we can wrap all the results up into a tibble:</p>
+<p>Uma vez feito isso para cada componente, podemos encapsular todo o resultado em um <em>tibble</em>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>  title <span class="op">=</span> <span class="va">section</span> <span class="op">|&gt;</span> </span>
+<span>  titulo <span class="op">=</span> <span class="va">secao</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">"h2"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  released <span class="op">=</span> <span class="va">section</span> <span class="op">|&gt;</span> </span>
+<span>  data_lancamento <span class="op">=</span> <span class="va">secao</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove</a></span><span class="op">(</span><span class="st">"Released: "</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_datetime.html">parse_date</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  director <span class="op">=</span> <span class="va">section</span> <span class="op">|&gt;</span> </span>
+<span>  diretor <span class="op">=</span> <span class="va">secao</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">".director"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  intro <span class="op">=</span> <span class="va">section</span> <span class="op">|&gt;</span> </span>
+<span>  introducao <span class="op">=</span> <span class="va">secao</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">".crawl"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 7 × 4</span></span>
-<span><span class="co">#&gt;   title                   released   director         intro                  </span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;                   &lt;date&gt;     &lt;chr&gt;            &lt;chr&gt;                  </span></span>
-<span><span class="co">#&gt; 1 The Phantom Menace      1999-05-19 George Lucas     "Turmoil has engulfed …</span></span>
-<span><span class="co">#&gt; 2 Attack of the Clones    2002-05-16 George Lucas     "There is unrest in th…</span></span>
-<span><span class="co">#&gt; 3 Revenge of the Sith     2005-05-19 George Lucas     "War! The Republic is …</span></span>
-<span><span class="co">#&gt; 4 A New Hope              1977-05-25 George Lucas     "It is a period of civ…</span></span>
-<span><span class="co">#&gt; 5 The Empire Strikes Back 1980-05-17 Irvin Kershner   "It is a dark time for…</span></span>
-<span><span class="co">#&gt; 6 Return of the Jedi      1983-05-25 Richard Marquand "Luke Skywalker has re…</span></span>
+<span><span class="co">#&gt;   titulo                  data_lancamento diretor          introducao        </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                   &lt;date&gt;          &lt;chr&gt;            &lt;chr&gt;             </span></span>
+<span><span class="co">#&gt; 1 The Phantom Menace      1999-05-19      George Lucas     "Turmoil has engu…</span></span>
+<span><span class="co">#&gt; 2 Attack of the Clones    2002-05-16      George Lucas     "There is unrest …</span></span>
+<span><span class="co">#&gt; 3 Revenge of the Sith     2005-05-19      George Lucas     "War! The Republi…</span></span>
+<span><span class="co">#&gt; 4 A New Hope              1977-05-25      George Lucas     "It is a period o…</span></span>
+<span><span class="co">#&gt; 5 The Empire Strikes Back 1980-05-17      Irvin Kershner   "It is a dark tim…</span></span>
+<span><span class="co">#&gt; 6 Return of the Jedi      1983-05-25      Richard Marquand "Luke Skywalker h…</span></span>
 <span><span class="co">#&gt; # ℹ 1 more row</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We did a little more processing of <code>released</code> to get a variable that will be easy to use later in our analysis.</p>
-</section><section id="imdb-top-films" class="level3" data-number="24.6.2"><h3 data-number="24.6.2" class="anchored" data-anchor-id="imdb-top-films">
-<span class="header-section-number">24.6.2</span> IMDB top films</h3>
-<p>For our next task we’ll tackle something a little trickier, extracting the top 250 movies from the internet movie database (IMDb). At the time we wrote this chapter, the page looked like <a href="#fig-scraping-imdb" class="quarto-xref">Figura&nbsp;<span>24.1</span></a>.</p>
+<p>Nós processamos um pouco mais a <code>data_lancamento</code> para obter uma variável que será mais fácil de usar depois em nossas análises.</p>
+</section><section id="melhores-filmes-imdb" class="level3" data-number="24.6.2"><h3 data-number="24.6.2" class="anchored" data-anchor-id="melhores-filmes-imdb">
+<span class="header-section-number">24.6.2</span> Melhores filmes IMDB</h3>
+<p>Para nossa próxima tarefa, abordaremos algo um pouco mais complicado, extraindo os 250 melhores filmes da base de dados da Internet (IMDb). Quando este capítulo foi escrito, a página se parecia com a <a href="#fig-scraping-imdb" class="quarto-xref">Figura&nbsp;<span>24.1</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-scraping-imdb" class="quarto-figure quarto-figure-center quarto-float anchored" alt="The screenshot shows a table with columns &quot;Rank and Title&quot;, &quot;IMDb Rating&quot;, and &quot;Your Rating&quot;. 9 movies out of the top 250 are shown. The top 5 are the Shawshank Redemption, The Godfather, The Dark Knight, The Godfather: Part II, and 12 Angry Men.">
+<div id="fig-scraping-imdb" class="quarto-figure quarto-figure-center quarto-float anchored" alt="A imagem mostra uma tabela com as colunas &quot;Classificação e Título&quot;, &quot;Nota IMDb&quot; e &quot;Sua Nota&quot;. 9 filmes dentre os 250 melhores são mostrados. Os 5 melhores são &quot;Um sonho de liberdade&quot;, &quot;O Poderoso Chefão&quot;, &quot;O Cavaleiro das Trevas&quot;, &quot;O Poderoso Chefão: Parte 2&quot; e &quot;Doze Homens e uma Sentença&quot;.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-scraping-imdb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="screenshots/scraping-imdb.png" class="img-fluid figure-img" alt="The screenshot shows a table with columns &quot;Rank and Title&quot;, &quot;IMDb Rating&quot;, and &quot;Your Rating&quot;. 9 movies out of the top 250 are shown. The top 5 are the Shawshank Redemption, The Godfather, The Dark Knight, The Godfather: Part II, and 12 Angry Men." width="418">
+<img src="screenshots/scraping-imdb.png" class="img-fluid figure-img" alt="A imagem mostra uma tabela com as colunas &quot;Classificação e Título&quot;, &quot;Nota IMDb&quot; e &quot;Sua Nota&quot;. 9 filmes dentre os 250 melhores são mostrados. Os 5 melhores são &quot;Um sonho de liberdade&quot;, &quot;O Poderoso Chefão&quot;, &quot;O Cavaleiro das Trevas&quot;, &quot;O Poderoso Chefão: Parte 2&quot; e &quot;Doze Homens e uma Sentença&quot;." width="418">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scraping-imdb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;24.1: Screenshot of the IMDb top movies web page taken on 2022-12-05.
+Figura&nbsp;24.1: Captura de tela dos melhores filmes da página IMDb feita em 05-12-2022.
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>This data has a clear tabular structure so it’s worth starting with <code><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table()</a></code>:</p>
+<p>Este dados têm uma clara estrutura tabular, então vale a pena começar com <code><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://web.archive.org/web/20220201012049/https://www.imdb.com/chart/top/"</span></span>
 <span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">table</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">tabela</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">table</span></span>
+<span><span class="va">tabela</span></span>
 <span><span class="co">#&gt; # A tibble: 250 × 5</span></span>
 <span><span class="co">#&gt;   ``    `Rank &amp; Title`                    `IMDb Rating` `Your Rating`   ``   </span></span>
 <span><span class="co">#&gt;   &lt;lgl&gt; &lt;chr&gt;                                     &lt;dbl&gt; &lt;chr&gt;           &lt;lgl&gt;</span></span>
@@ -825,37 +823,37 @@ Figura&nbsp;24.1: Screenshot of the IMDb top movies web page taken on 2022-12-05
 <span><span class="co">#&gt; 6 NA    "6.\n      Schindler's List\n   …           8.9 "12345678910\n… NA   </span></span>
 <span><span class="co">#&gt; # ℹ 244 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This includes a few empty columns, but overall does a good job of capturing the information from the table. However, we need to do some more processing to make it easier to use. First, we’ll rename the columns to be easier to work with, and remove the extraneous whitespace in rank and title. We will do this with <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> (instead of <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>) to do the renaming and selecting of just these two columns in one step. Then we’ll remove the new lines and extra spaces, and then apply <code><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_regex()</a></code> (from <a href="regexps.html#sec-extract-variables" class="quarto-xref"><span>Seção 15.3.4</span></a>) to pull out the title, year, and rank into their own variables.</p>
+<p>Isto inclui algumas colunas vazias, mas no geral, faz um bom trabalho ao capturar as informações da tabela. No entanto, precisamos fazer mais alguns processamentos para torná-la mais fácil de usar. Primeiro, renomearemos as colunas para facilitar o trabalho e removeremos os espaços em branco estranhos na classificação (<em>rank</em>) e no título (<em>title</em>). Faremos isto com <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> (ao invés de <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>) para renomear e selecionar apenas essas duas colunas em uma única etapa. Em seguida, removeremos as novas linhas e espaços extras e usaremos <code><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_regex()</a></code> (da <a href="regexps.html#sec-extract-variables" class="quarto-xref"><span>Seção 15.3.4</span></a>) para extrair o título, ano e classificação em suas próprias variáveis.</p>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ratings</span> <span class="op">&lt;-</span> <span class="va">table</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">classificacao</span> <span class="op">&lt;-</span> <span class="va">tabela</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
-<span>    rank_title_year <span class="op">=</span> <span class="va">`Rank &amp; Title`</span>,</span>
-<span>    rating <span class="op">=</span> <span class="va">`IMDb Rating`</span></span>
+<span>    classificacao_titulo_ano <span class="op">=</span> <span class="va">`Rank &amp; Title`</span>,</span>
+<span>    nota_imdb <span class="op">=</span> <span class="va">`IMDb Rating`</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    rank_title_year <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="va">rank_title_year</span>, <span class="st">"\n +"</span>, <span class="st">" "</span><span class="op">)</span></span>
+<span>    classificacao_titulo_ano <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="va">classificacao_titulo_ano</span>, <span class="st">"\n +"</span>, <span class="st">" "</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_regex</a></span><span class="op">(</span></span>
-<span>    <span class="va">rank_title_year</span>,</span>
+<span>    <span class="va">classificacao_titulo_ano</span>,</span>
 <span>    patterns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>      rank <span class="op">=</span> <span class="st">"\\d+"</span>, <span class="st">"\\. "</span>,</span>
-<span>      title <span class="op">=</span> <span class="st">".+"</span>, <span class="st">" +\\("</span>,</span>
-<span>      year <span class="op">=</span> <span class="st">"\\d+"</span>, <span class="st">"\\)"</span></span>
+<span>      classificacao <span class="op">=</span> <span class="st">"\\d+"</span>, <span class="st">"\\. "</span>,</span>
+<span>      titulo <span class="op">=</span> <span class="st">".+"</span>, <span class="st">" +\\("</span>,</span>
+<span>      ano <span class="op">=</span> <span class="st">"\\d+"</span>, <span class="st">"\\)"</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="va">ratings</span></span>
+<span><span class="va">classificacao</span></span>
 <span><span class="co">#&gt; # A tibble: 250 × 4</span></span>
-<span><span class="co">#&gt;   rank  title                    year  rating</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;                    &lt;chr&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 1     The Shawshank Redemption 1994     9.2</span></span>
-<span><span class="co">#&gt; 2 2     The Godfather            1972     9.1</span></span>
-<span><span class="co">#&gt; 3 3     The Godfather: Part II   1974     9  </span></span>
-<span><span class="co">#&gt; 4 4     The Dark Knight          2008     9  </span></span>
-<span><span class="co">#&gt; 5 5     12 Angry Men             1957     8.9</span></span>
-<span><span class="co">#&gt; 6 6     Schindler's List         1993     8.9</span></span>
+<span><span class="co">#&gt;   classificacao titulo                   ano   nota_imdb</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                    &lt;chr&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 1             The Shawshank Redemption 1994        9.2</span></span>
+<span><span class="co">#&gt; 2 2             The Godfather            1972        9.1</span></span>
+<span><span class="co">#&gt; 3 3             The Godfather: Part II   1974        9  </span></span>
+<span><span class="co">#&gt; 4 4             The Dark Knight          2008        9  </span></span>
+<span><span class="co">#&gt; 5 5             12 Angry Men             1957        8.9</span></span>
+<span><span class="co">#&gt; 6 6             Schindler's List         1993        8.9</span></span>
 <span><span class="co">#&gt; # ℹ 244 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Even in this case where most of the data comes from table cells, it’s still worth looking at the raw HTML. If you do so, you’ll discover that we can add a little extra data by using one of the attributes. This is one of the reasons it’s worth spending a little time spelunking the source of the page; you might find extra data, or might find a parsing route that’s slightly easier.</p>
+<p>Mesmo neste caso, em que a maioria dos dados vêm de células de tabela, ainda vale a pena dar uma olhada no HTML bruto. Se você fizer isso, descobrirá que podemos adicionar alguns dados extras usando um dos atributos. Esse é um dos motivos pelos quais vale a pena gastar um pouco de tempo explorando o código fonte da página; você pode encontrar dados extras ou uma rota de análise um pouco mais fácil.</p>
 <div class="cell">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"td strong"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -868,53 +866,53 @@ Figura&nbsp;24.1: Screenshot of the IMDb top movies web page taken on 2022-12-05
 <span><span class="co">#&gt; [5] "8.9 based on 749,563 user ratings"  </span></span>
 <span><span class="co">#&gt; [6] "8.9 based on 1,295,705 user ratings"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can combine this with the tabular data and again apply <code><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_regex()</a></code> to extract out the bit of data we care about:</p>
+<p>Podemos combinar isto com os dados tabulares e aplicar novamente <code><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_regex()</a></code> para extrair os dados que nos interessam:</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ratings</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">classificacao</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    rating_n <span class="op">=</span> <span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"td strong"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr</a></span><span class="op">(</span><span class="st">"title"</span><span class="op">)</span></span>
+<span>    classificacao_n <span class="op">=</span> <span class="va">html</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"td strong"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr</a></span><span class="op">(</span><span class="st">"title"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_regex</a></span><span class="op">(</span></span>
-<span>    <span class="va">rating_n</span>,</span>
+<span>    <span class="va">classificacao_n</span>,</span>
 <span>    patterns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>      <span class="st">"[0-9.]+ based on "</span>,</span>
-<span>      number <span class="op">=</span> <span class="st">"[0-9,]+"</span>,</span>
+<span>      numero_usuarios <span class="op">=</span> <span class="st">"[0-9,]+"</span>,</span>
 <span>      <span class="st">" user ratings"</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    number <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">number</span><span class="op">)</span></span>
+<span>    numero_usuarios <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">numero_usuarios</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 250 × 5</span></span>
-<span><span class="co">#&gt;   rank  title                    year  rating  number</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;                    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 1     The Shawshank Redemption 1994     9.2 2536415</span></span>
-<span><span class="co">#&gt; 2 2     The Godfather            1972     9.1 1745675</span></span>
-<span><span class="co">#&gt; 3 3     The Godfather: Part II   1974     9   1211032</span></span>
-<span><span class="co">#&gt; 4 4     The Dark Knight          2008     9   2486931</span></span>
-<span><span class="co">#&gt; 5 5     12 Angry Men             1957     8.9  749563</span></span>
-<span><span class="co">#&gt; 6 6     Schindler's List         1993     8.9 1295705</span></span>
+<span><span class="co">#&gt;   classificacao titulo                   ano   nota_imdb numero_usuarios</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                    &lt;chr&gt;     &lt;dbl&gt;           &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 1             The Shawshank Redemption 1994        9.2         2536415</span></span>
+<span><span class="co">#&gt; 2 2             The Godfather            1972        9.1         1745675</span></span>
+<span><span class="co">#&gt; 3 3             The Godfather: Part II   1974        9           1211032</span></span>
+<span><span class="co">#&gt; 4 4             The Dark Knight          2008        9           2486931</span></span>
+<span><span class="co">#&gt; 5 5             12 Angry Men             1957        8.9          749563</span></span>
+<span><span class="co">#&gt; 6 6             Schindler's List         1993        8.9         1295705</span></span>
 <span><span class="co">#&gt; # ℹ 244 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="dynamic-sites" class="level2" data-number="24.7"><h2 data-number="24.7" class="anchored" data-anchor-id="dynamic-sites">
-<span class="header-section-number">24.7</span> Dynamic sites</h2>
-<p>So far we have focused on websites where <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> returns what you see in the browser and discussed how to parse what it returns and how to organize that information in tidy data frames. From time-to-time, however, you’ll hit a site where <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> and friends don’t return anything like what you see in the browser. In many cases, that’s because you’re trying to scrape a website that dynamically generates the content of the page with javascript. This doesn’t currently work with rvest, because rvest downloads the raw HTML and doesn’t run any javascript.</p>
-<p>It’s still possible to scrape these types of sites, but rvest needs to use a more expensive process: fully simulating the web browser including running all javascript. This functionality is not available at the time of writing, but it’s something we’re actively working on and might be available by the time you read this. It uses the <a href="https://rstudio.github.io/chromote/index.html">chromote package</a> which actually runs the Chrome browser in the background, and gives you additional tools to interact with the site, like a human typing text and clicking buttons. Check out the <a href="http://rvest.tidyverse.org/">rvest website</a> for more details.</p>
-</section><section id="summary" class="level2" data-number="24.8"><h2 data-number="24.8" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">24.8</span> Summary</h2>
-<p>In this chapter, you’ve learned about the why, the why not, and the how of scraping data from web pages. First, you’ve learned about the basics of HTML and using CSS selectors to refer to specific elements, then you’ve learned about using the rvest package to get data out of HTML into R. We then demonstrated web scraping with two case studies: a simpler scenario on scraping data on StarWars films from the rvest package website and a more complex scenario on scraping the top 250 films from IMDB.</p>
-<p>Technical details of scraping data off the web can be complex, particularly when dealing with sites, however legal and ethical considerations can be even more complex. It’s important for you to educate yourself about both of these before setting out to scrape data.</p>
-<p>This brings us to the end of the import part of the book where you’ve learned techniques to get data from where it lives (spreadsheets, databases, JSON files, and web sites) into a tidy form in R. Now it’s time to turn our sights to a new topic: making the most of R as a programming language.</p>
+</section></section><section id="sites-dinâmicos" class="level2" data-number="24.7"><h2 data-number="24.7" class="anchored" data-anchor-id="sites-dinâmicos">
+<span class="header-section-number">24.7</span> Sites dinâmicos</h2>
+<p>Até agora nos concentramos em sites onde <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> retorna o que você vê no navegador e discutimos como processar o que ele retorna e como organizar essas informações em um <em>data frame</em>. Entretanto, algumas vezes você chegará a um site onde <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> e companhia não retornam nada parecido com o que você vê no navegador. Em muitos casos, isso ocorre porque você está tentando raspar dados de um site que gera dinamicamente o conteúdo da página com <em>javascript</em>. Atualmente, isso não funciona com o rvest, porque o rvest baixa o HTML bruto e não executa nenhum <em>javascript</em>.</p>
+<p>Ainda assim é possível raspar os dados desses tipos de sites, mas o rvest precisa usar um processo mais caro: simular totalmente o navegador da web, incluindo a execução de todo <em>javascript</em>. Esta funcionalidade não estava disponível quando escrevemos este livro, mas é algo em que estamos trabalhando ativamente e pode estar disponível quando você ler isto. Ele usa o <a href="https://rstudio.github.io/chromote/index.html">pacote chromote</a> que, na verdade, executa um navegador <em>Chrome</em> em segundo plano e oferece ferramentas adicionais para interação com o site, como se fosse uma pessoa digitando o texto ou clicando em botões. Veja maiores informações sobre isto no <a href="http://rvest.tidyverse.org/">website do rvest</a>.</p>
+</section><section id="resumo" class="level2" data-number="24.8"><h2 data-number="24.8" class="anchored" data-anchor-id="resumo">
+<span class="header-section-number">24.8</span> Resumo</h2>
+<p>Neste capítulo, você aprendeu sobre o porquê, o porque não e como fazer raspagem de dados em páginas da web. Primeiro, você aprendeu sobre o básico de HTML e como usar seletores CSS para se referir a elementos específicos, depois aprendeu como usar o pacote rvest para transferir dados do HTML para o R. Em seguida, demonstramos a raspagem de dados em dois estudos de caso: um cenário mais simples de raspagem de dados do site do pacote rvest com filmes de “Guerra nas Estrelas” e um cenário mais complexo de extração de dados dos 250 melhores filmes do IMDB.</p>
+<p>Os detalhes técnicos da raspagem de dados da web podem ser complexos, especialmente quando se trata de sites, mas as considerações legais e éticas podem ser ainda mais complexas. É importante que você se informe sobre ambos antes de começar a coletar dados.</p>
+<p>Isso nos leva ao final da parte de importação do livro, onde você aprendeu técnicas para obter dados de onde eles residem (planilhas, bancos de dados, arquivos JSON e websites) em um formato organizado (<em>tidy</em>) para o R. Agora é hora de voltarmos para um novo tópico: aproveitar ao máximo do R como linguagem de programação.</p>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>And many popular APIs already have CRAN packages that wrap them, so start with a little research first!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Obviously we’re not lawyers, and this is not legal advice. But this is the best summary we can give having read a bunch about this topic.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>One example of an article on the OkCupid study was published by Wired, <a href="https://www.wired.com/2016/05/okcupid-study-reveals-perils-big-data-science" class="uri">https://www.wired.com/2016/05/okcupid-study-reveals-perils-big-data-science</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>A number of tags (including <code>&lt;p&gt;</code> and <code>&lt;li&gt;)</code> don’t require end tags, but we think it’s best to include them because it makes seeing the structure of the HTML a little easier.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>This class comes from the <a href="https://xml2.r-lib.org">xml2</a> package. xml2 is a low-level package that rvest builds on top of.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>rvest also provides <code><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text()</a></code> but you should almost always use <code><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2()</a></code> since it does a better job of converting nested HTML to text.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Muitas APIs populares já possuem um pacote no CRAN que as encapsulam, então comece sempre fazendo uma pesquisa antes!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Obviamente não somos advogados, e este não é um aconselhamento jurídico. Mas este é o melhor resumo que podemos dar depois de ler muito sobre esse assunto.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Um exemplo de artigo sobre o estudo do OkCupid foi publicado pela Wired, <a href="https://www.wired.com/2016/05/okcupid-study-reveals-perils-big-data-science" class="uri">https://www.wired.com/2016/05/okcupid-study-reveals-perils-big-data-science</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Em várias marcações (incluindo <code>&lt;p&gt;</code> e <code>&lt;li&gt;</code>) a marcação de fim não é obrigatória, mas acreditamos ser melhor incluí-la, pois torna a visualização da estrutura HTML mais fácil.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Esta classe vem do pacote <a href="https://xml2.r-lib.org">xml2</a>. xml2 é um pacote de baixo nível a partir do qual o rvest foi criado.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>rvest também fornece <code><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text()</a></code>, porém você deve usar quase sempre <code><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2()</a></code>, já que esta faz um trabalho melhor ao converter HTML anihadas em texto.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
