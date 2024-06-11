@@ -1,4 +1,4 @@
-# Transformação de dados {#sec-data-transform}
+# Data transformation {#sec-data-transform}
 
 ```{r}
 #| echo: false
@@ -6,21 +6,21 @@
 source("_common.R")
 ```
 
-## Introdução
+## Introduction
 
-Visualização de dados é uma ferramenta importante para gerar insights, mas é raro que você pegue os dados exatamente na forma que você precisa para fazer o gráfico que você quer. 
-Geralmente você precisará criar algumas variáveis novas ou agregações para responder às perguntas com seus dados, ou talvez você precise apenas renomear as variáveis ou reordenar as observações para facilitar o trabalho com os dados.
-Você vai aprender a fazer tudo isso (e mais um pouco!) nesse capítulo, em que nós iremos lhe apresentar as possibilidades de transformações de dados utilizando o pacote **dplyr** e um novo conjunto de dados sobre vôos que partiram de Nova York em 2013.
+Visualization is an important tool for generating insight, but it's rare that you get the data in exactly the right form you need to make the graph you want.
+Often you'll need to create some new variables or summaries to answer your questions with your data, or maybe you just want to rename the variables or reorder the observations to make the data a little easier to work with.
+You'll learn how to do all that (and more!) in this chapter, which will introduce you to data transformation using the **dplyr** package and a new dataset on flights that departed from New York City in 2013.
 
-O objetivo desse capítulo é te dar uma visão geral de todas as principais ferramentas para transformar um data frame.
-Começaremos com as funções que operam sobre as linhas e colunas de um data frame, em seguida voltaremos para falar mais um pouco sobre o *pipe*, que é uma importante ferramenta que você utilizará para combinar os verbos das transformações.
-Depois, iremos introduzir a habilidade de trabalhar com grupos.
-Finalizaremos o capítulo com um caso de estudo que demonstra todas essas funções em ação, e, mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, quando começaremos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas)
+The goal of this chapter is to give you an overview of all the key tools for transforming a data frame.
+We'll start with functions that operate on rows and then columns of a data frame, then circle back to talk more about the pipe, an important tool that you use to combine verbs.
+We will then introduce the ability to work with groups.
+We will end the chapter with a case study that showcases these functions in action and we'll come back to the functions in more detail in later chapters, as we start to dig into specific types of data (e.g., numbers, strings, dates).
 
-### Pré-requisitos
+### Prerequisites
 
-Nesse capítulo focaremos no pacote dplyr, outro membro central do tidyverse.
-Ilustraremos as ideias principais utilizando dados do pacote nycflights13, e visualizaremos com o ggplot2 para nos ajudar a entender os dados.
+In this chapter we'll focus on the dplyr package, another core member of the tidyverse.
+We'll illustrate the key ideas using data from the nycflights13 package, and use ggplot2 to help us understand the data.
 
 ```{r}
 #| label: setup
@@ -29,55 +29,50 @@ library(nycflights13)
 library(tidyverse)
 ```
 
-Preste bastante atenção às mensagens de conflito exibidas quando você carregar o tidyverse. 
-Elas te indicam que o dplyr sobrescreve algumas funções do R base.
-Se você quiser utilizar a versão R base dessas funções depois de carregar o dplyr, você deverá usar seus nomes completos: `stats::filter()` e `stats::lag()`.
-Até agora nós basicamente ignoramos o pacote ao qual uma função pertence, pois na maioria das vezes isso não importava. 
-
-No entanto, conhecer o pacote pode te auxiliar na obtenção de ajuda e na busca por funções relacionadas, então quando for necessário sermos precisos a respeito de qual pacote uma função pertence, nós utilizaremos a mesma sintaxe que o R: `nomedopacote::nomedafuncao()`.
+Take careful note of the conflicts message that's printed when you load the tidyverse.
+It tells you that dplyr overwrites some functions in base R.
+If you want to use the base version of these functions after loading dplyr, you'll need to use their full names: `stats::filter()` and `stats::lag()`.
+So far we've mostly ignored which package a function comes from because most of the time it doesn't matter.
+However, knowing the package can help you find help and find related functions, so when we need to be precise about which package a function comes from, we'll use the same syntax as R: `packagename::functionname()`.
 
 ### nycflights13
 
-Para explorar os verbos básicos do dplyr iremos utilizar a base de dados `nycflights13::flights`.
-Essa base contém todos os `r format(nrow(nycflights13::flights), big.mark = ",")` vôos que saíram da cidade de Nova Iorque em 2013.
-Esses dados vêm de um órgão de transporte dos EUA chamado [Bureau of Transportation Statistics](http://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&Link=0), e estão documentados em `?flights`.
+To explore the basic dplyr verbs, we're going to use `nycflights13::flights`.
+This dataset contains all `r format(nrow(nycflights13::flights), big.mark = ",")` flights that departed from New York City in 2013.
+The data comes from the US [Bureau of Transportation Statistics](http://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&Link=0), and is documented in `?flights`.
 
 ```{r}
 flights
 ```
 
-`flights` é um tibble, um tipo especial de data frame utilizado pelo tidyverse para evitar algumas "pegadinhas" comuns.
-A diferença principal entre tibbles e data frames é forma como tibbles são exibidos no console; eles foram pensados para grandes conjuntos de dados, então eles mostram apenas algumas das primeiras linhas e somente as colunas que cabem na tela.
-Existem algumas opções para visualizar tudo.
-Se você estiver utilizando o RStudio, o mais conveniente provavelmente é `View(flights)`, que vai abrir uma visualização interativa, com filtros e rolagem de tela.
-Caso não esteja,  você pode utilizar `print(flights, width = Inf)` para mostrar todas as colunas, ou utilizar `glimpse()`:
+`flights` is a tibble, a special type of data frame used by the tidyverse to avoid some common gotchas.
+The most important difference between tibbles and data frames is the way tibbles print; they are designed for large datasets, so they only show the first few rows and only the columns that fit on one screen.
+There are a few options to see everything.
+If you're using RStudio, the most convenient is probably `View(flights)`, which will open an interactive scrollable and filterable view.
+Otherwise you can use `print(flights, width = Inf)` to show all columns, or use `glimpse()`:
 
 ```{r}
 glimpse(flights)
 ```
 
-Em ambas as visualizações, o nome das variáveis estão seguidos por abreviaturas que te indicam o tipo de cada variável: `<int>` para inteiros, `<dbl>` double[^NT-1] (números reais), `<chr>` para caracteres (strings) e `<dttm>` para date-time (data e tempo).
-Isso é importante pois as operações possíveis sobre uma coluna depende muito do seu "tipo".
+In both views, the variables names are followed by abbreviations that tell you the type of each variable: `<int>` is short for integer, `<dbl>` is short for double (aka real numbers), `<chr>` for character (aka strings), and `<dttm>` for date-time.
+These are important because the operations you can perform on a column depend so much on its "type".
 
-[^NT-1]: de _double precision floating number_ - remete à forma como números reais são representados nos computadores, utilizando 64 bits em vez dos tradicionais 32 bits de um inteiro comum, por isso "double" (dobro).
+### dplyr basics
 
-### básico do dplyr 
+You're about to learn the primary dplyr verbs (functions) which will allow you to solve the vast majority of your data manipulation challenges.
+But before we discuss their individual differences, it's worth stating what they have in common:
 
-Você está prestes a aprender os verbos (funções) primários do dplyr que já vão lhe permitir resolver a vasta maioria dos desafios de manipulação de dados.
-Mas antes de discutirir suas diferenças individuais, é importante destacar o que eles têm em comum:
+1.  The first argument is always a data frame.
 
-1.  O primeiro argumento é sempre um data frame. 
+2.  The subsequent arguments typically describe which columns to operate on, using the variable names (without quotes).
 
-2.  Os demais argumentos geralmente descrevem sobre quais colunas a operação será executada, utilizando o nome das variáveis (sem aspas).
+3.  The output is always a new data frame.
 
-3.  A saída é sempre um novo data frame.
-    
-
-Pelo fato de cada verbo fazer bem apenas UMA coisa, a resolução de problemas complexos normalmente requer a combinação de múltiplos verbos. Fazemos isso utilizando o pipe: `|>`.
-
-  Falaremos mais do pipe em @sec-the-pipe, mas resumindo, o pipe recebe alguma coisa à sua esquerda e repassa essa coisa para a função à sua direita, de forma que `x |> f(y)` seja equivalente a  `f(x, y)`, e `x |> f(y) |> g(z)` seja equivalente a `g(f(x, y), z)`.
-A forma mais fácil de pronunciar o pipe é "então" (_"then"_).
-Isso torna possível pegar a visão geral do código abaixo, mesmo que você ainda não tenha aprendido os detalhes:
+Because each verb does one thing well, solving complex problems will usually require combining multiple verbs, and we'll do so with the pipe, `|>`.
+We'll discuss the pipe more in @sec-the-pipe, but in brief, the pipe takes the thing on its left and passes it along to the function on its right so that `x |> f(y)` is equivalent to `f(x, y)`, and `x |> f(y) |> g(z)` is equivalent to `g(f(x, y), z)`.
+The easiest way to pronounce the pipe is "then".
+That makes it possible to get a sense of the following code even though you haven't yet learned the details:
 
 ```{r}
 #| eval: false
@@ -90,32 +85,32 @@ flights |>
   )
 ```
 
-Verbos do dplyr são organizados em quatro grupos baseados na estrutura sobre a qual operam: **linhas** (_rows_), **colunas** (_columns_), **grupos** (_groups_) ou **tabelas** (_tables_).
-Nas próximas seções você aparenderá os verbos mais importantes para linhas, colunas e grupos, então voltaremos para os verbos de _join_ que operam em tabelas na seção @sec-joins.
-Vamos nessa!
+dplyr's verbs are organized into four groups based on what they operate on: **rows**, **columns**, **groups**, or **tables**.
+In the following sections you'll learn the most important verbs for rows, columns, and groups, then we'll come back to the join verbs that work on tables in @sec-joins.
+Let's dive in!
 
-## Linhas (rows)
+## Rows
 
-Os verbos mais importantes que operam nas linhas de um conjunto de dados são `filter()`, que modifica quais linhas estão presentes sem mudar a sua ordem, e `arrange()`, que modifica a ordem das linhas sem modificar quais estão presentes.
-Ambas as funções afetam apenas as linhas e as colunas permanecem intocadas.
-Também vamos falar sobre `distinct()`, que acha as linhas com valores únicos, mas diferentemente de `arrange()` e `filter()` também pode, opcionalmente, modificar as colunas.
+The most important verbs that operate on rows of a dataset are `filter()`, which changes which rows are present without changing their order, and `arrange()`, which changes the order of the rows without changing which are present.
+Both functions only affect the rows, and the columns are left unchanged.
+We'll also discuss `distinct()` which finds rows with unique values but unlike `arrange()` and `filter()` it can also optionally modify the columns.
 
 ### `filter()`
 
-`filter()` lhe permite manter linhas com base nos valores das colunas[^data-transform-1].
-O primeiro argumento é o data frame.
-O segundo e demais argumentos são as condições que devem ser verdadeiras para manter a linha.
-Por exemplo, podemos achar todos os vôos que decolaram com mais de 120 minutos (duas horas) de atraso:
+`filter()` allows you to keep rows based on the values of the columns[^data-transform-1].
+The first argument is the data frame.
+The second and subsequent arguments are the conditions that must be true to keep the row.
+For example, we could find all flights that departed more than 120 minutes (two hours) late:
 
-[^data-transform-1]: Depos você irá aprender sobre a família de funções `slice_*()` que permite escolher linhas com base em suas posições.
+[^data-transform-1]: Later, you'll learn about the `slice_*()` family which allows you to choose rows based on their positions.
 
 ```{r}
 flights |> 
   filter(dep_delay > 120)
 ```
 
-Assim como `>` (maior que), você também pode usar `>=` (maior ou igual a), `<` (menor que), `<=` (menor ou igual a), `==` (igual a), e `!=` (diferente de).
-Você também pode combinar condições com `&` ou `,` para indicar "e" (avalia ambas as condições) ou com `|` para indicar "ou" (avalia ao menos uma condição):
+As well as `>` (greater than), you can use `>=` (greater than or equal to), `<` (less than), `<=` (less than or equal to), `==` (equal to), and `!=` (not equal to).
+You can also combine conditions with `&` or `,` to indicate "and" (check for both conditions) or with `|` to indicate "or" (check for either condition):
 
 ```{r}
 # Flights that departed on January 1
@@ -127,30 +122,30 @@ flights |>
   filter(month == 1 | month == 2)
 ```
 
-Existe um atalho útil quando você está combinando `|` e `==`: `%in%`.
-Ele vai manter as linhas cujas variáveis são iguais a um dos valores à direita:
+There's a useful shortcut when you're combining `|` and `==`: `%in%`.
+It keeps rows where the variable equals one of the values on the right:
 
 ```{r}
-# Uma forma mais curta de selecionar vôos que decolaram em janeiro ou fevereiro
+# A shorter way to select flights that departed in January or February
 flights |> 
   filter(month %in% c(1, 2))
 ```
 
-Vamos voltar para essas comparações e operadores lógicos com mais detalhes em @sec-logicals.
+We'll come back to these comparisons and logical operators in more detail in @sec-logicals.
 
-Quando você roda `filter()` o dplyr executa a operação de filtragem, criando um novo data frame, e em seguida o exibe. 
-Ele não modifica o conjunto de dados `flights` já existente, pois as funções do dplyr nunca modificam seus argumentos de entrada.
-Para salvar o resultado, você precisa utilizar o operador de atribuição `<-`:
+When you run `filter()` dplyr executes the filtering operation, creating a new data frame, and then prints it.
+It doesn't modify the existing `flights` dataset because dplyr functions never modify their inputs.
+To save the result, you need to use the assignment operator, `<-`:
 
 ```{r}
 jan1 <- flights |> 
   filter(month == 1 & day == 1)
 ```
 
-### Erros comuns 
+### Common mistakes
 
-Quando você está começando com o R, o erro mais fácil de se cometer é utilizar `=` em vez de `==` quando se está testando igualdade. 
-`filter()` vai te avisar quando isso acontecer: 
+When you're starting out with R, the easiest mistake to make is to use `=` instead of `==` when testing for equality.
+`filter()` will let you know when this happens:
 
 ```{r}
 #| error: true
@@ -158,7 +153,8 @@ Quando você está começando com o R, o erro mais fácil de se cometer é utili
 flights |> 
   filter(month = 1)
 ```
-Outro erro é escrever as expressões com "ou" como faríamos em Português:
+
+Another mistakes is you write "or" statements like you would in English:
 
 ```{r}
 #| eval: false
@@ -167,99 +163,99 @@ flights |>
   filter(month == 1 | 2)
 ```
 
-Isso até "funciona", no sentido de que não retornará um erro, mas ele não vai fazer o que você esperaria, pois `|` primeiro vai avaliar a condição `month == 1` e depois a condição `2`, que não é uma condição adequada para se avaliar nesse caso.
-Iremos aprender mais sobre o que está acontecendo aqui em @sec-boolean-operations.
+This "works", in the sense that it doesn't throw an error, but it doesn't do what you want because `|` first checks the condition `month == 1` and then checks the condition `2`, which is not a sensible condition to check.
+We'll learn more about what's happening here and why in @sec-boolean-operations.
 
 ### `arrange()`
 
-`arrange()` modifica a ordem das linhas com base no valor das colunas. 
-Ela recebe um data frame e um conjunto de nomes de colunas (ou expressões mais complicadas) para ordenar por eles. 
-Se você fornecer mais de um nome de coluna, cada coluna a mais será utilizada para desempatar os valores das colunas anteriores.
-Por exemplo, o código a seguir vai ordenar por horário da decolagem, que está distribuído em 4 colunas. 
-Nós pegamos primeiro os anos mais antigos e então, dentro de cada ano, os primeiros meses e assim por diante.
+`arrange()` changes the order of the rows based on the value of the columns.
+It takes a data frame and a set of column names (or more complicated expressions) to order by.
+If you provide more than one column name, each additional column will be used to break ties in the values of preceding columns.
+For example, the following code sorts by the departure time, which is spread over four columns.
+We get the earliest years first, then within a year the earliest months, etc.
 
 ```{r}
 flights |> 
   arrange(year, month, day, dep_time)
 ```
 
-Você pode utilizar `desc()` em uma coluna dentro de `arrange()` para re-ordenar o data frame com base naquele coluna em ordem decrescente (do maior para o menor).
-Por exemplo, esse código ordena os vôos do mais para os menos atrasados:
+You can use `desc()` on a column inside of `arrange()` to re-order the data frame based on that column in descending (big-to-small) order.
+For example, this code orders flights from most to least delayed:
 
 ```{r}
 flights |> 
   arrange(desc(dep_delay))
 ```
 
-Perceba que o número de linhas não se alterou -- estamos apenas organizando os dados e não filtrando. 
+Note that the number of rows has not changed -- we're only arranging the data, we're not filtering it.
 
 ### `distinct()`
 
-`distinct()` acha todas as linhas únicas em um conjunto de dados, então, do ponto de vista técnico ela opera principialmente nas linhas. 
-No entanto, na maioria das vezes você vai querer combinações distintas de algumas variáveis, então você pode, opcionalmente, fornecer nome de colunas:
+`distinct()` finds all the unique rows in a dataset, so in a technical sense, it primarily operates on the rows.
+Most of the time, however, you'll want the distinct combination of some variables, so you can also optionally supply column names:
 
 ```{r}
-# Remove linhas duplicadas, se existirem 
+# Remove duplicate rows, if any
 flights |> 
   distinct()
 
-# Acha todos os pares únicos de origens e destinos
+# Find all unique origin and destination pairs
 flights |> 
   distinct(origin, dest)
 ```
 
-Por outro lado, caso você queira manter outras colunas quando estiver filtrando para linhas únicas, você pode usar a opção `.keep_all = TRUE`.
+Alternatively, if you want to the keep other columns when filtering for unique rows, you can use the `.keep_all = TRUE` option.
 
 ```{r}
 flights |> 
   distinct(origin, dest, .keep_all = TRUE)
 ```
 
-Não é uma coincidência que todos esses vôos distintos sejam em 1º de janeiro: `distinct()` irá achar a primeira ocorrência de uma linha única no conjunto de dados e decartar todas as demais.
+It's not a coincidence that all of these distinct flights are on January 1: `distinct()` will find the first occurrence of a unique row in the dataset and discard the rest.
 
-Se, em vez disso, você quiser achar o número de ocorrências, é melhor trocar `distinct()` por `count()`, e com o argumento `sort = TRUE` você pode organizá-los em ordem decrescente do número de ocorrências. 
-Você vai aprendar mais sobre contagens em @sec-counts.
+If you want to find the number of occurrences instead, you're better off swapping `distinct()` for `count()`, and with the `sort = TRUE` argument you can arrange them in descending order of number of occurrences.
+You'll learn more about count in @sec-counts.
 
 ```{r}
 flights |>
   count(origin, dest, sort = TRUE)
 ```
 
-### Exercícios
+### Exercises
 
-1.  Utilizando um único pipeline para cada condição, ache todos os vôos que cumpram a condição: 
+1.  In a single pipeline for each condition, find all flights that meet the condition:
 
-    -   Teve um atraso na chegada de duas ou mais horas 
-    -   Voou para Houston (`IAH` ou `HOU`)
-    -   Foi operado pela United, American ou Delta 
-    -   Decolou no verão^[no hemisfério norte] (julho, agosto e setembro)
-    -   Chegou com mais de duas horas de atraso, mas não teve atraso na decolagem. 
-    -   Atrasou pelo menos uma hora, mas recuperou mais de 30 minutos em vôo. 
+    -   Had an arrival delay of two or more hours
+    -   Flew to Houston (`IAH` or `HOU`)
+    -   Were operated by United, American, or Delta
+    -   Departed in summer (July, August, and September)
+    -   Arrived more than two hours late, but didn't leave late
+    -   Were delayed by at least an hour, but made up over 30 minutes in flight
 
-2.  Ordene `flights` para achar os vôos com os maiores atrasos na decolagem. 
-    Ache os vôos que saíram o mais cedo pela manhã. 
+2.  Sort `flights` to find the flights with longest departure delays.
+    Find the flights that left earliest in the morning.
 
-3.  Ordene `flights` para achar os vôos mais rápidos.
-    (Dica: tente incluir algum cálculo matemático dentro da sua função.)
+3.  Sort `flights` to find the fastest flights.
+    (Hint: Try including a math calculation inside of your function.)
 
-4.  Houve pelo menos um vôo em cada dia de 2013?
+4.  Was there a flight on every day of 2013?
 
-5.  Quais vôos percorream as maiores distâncias? 
-    Quais percorreram as menores?
+5.  Which flights traveled the farthest distance?
+    Which traveled the least distance?
 
-6.  Faz diferença a ordem em que você usa `filter()` e `arrange()` se você estiver utilizando ambos? 
-    Por que/por que não?
-    Reflita sobre os resultados e quanto trabalho as funções teriam que executar.
+6.  Does it matter what order you used `filter()` and `arrange()` if you're using both?
+    Why/why not?
+    Think about the results and how much work the functions would have to do.
 
-## Colunas (columns)
+## Columns
 
-Existem quatro verbos importantes que afetam as colunas sem modificar as linhas: `mutate()` cria novas colunas que são derivadas das colunas existentes, `select()` alteram as colunas que estão presentes, `rename()` modifica o nome das colunas e `relocate()` modifica as posições das colunas.
+There are four important verbs that affect the columns without changing the rows: `mutate()` creates new columns that are derived from the existing columns, `select()` changes which columns are present, `rename()` changes the names of the columns, and `relocate()` changes the positions of the columns.
 
 ### `mutate()` {#sec-mutate}
 
-O papel de `mutate()` é adicionar novas colunas que são calculadas a partir de colunas existentes. 
-Nos capítulos sobre transformações, você aprenderá sobre um grande conjunto de funções que podem ser utilizadas para manipular diferentes tipos de variáveis.
-Por enquanto, vamos nos ater à álgebra básica, que nos permite calcular o `gain`, ou seja, quanto tempo um vôo atrasado recuperou no ar, e a velocidade `speed` em milhas por hora:
+The job of `mutate()` is to add new columns that are calculated from the existing columns.
+In the transform chapters, you'll learn a large set of functions that you can use to manipulate different types of variables.
+For now, we'll stick with basic algebra, which allows us to compute the `gain`, how much time a delayed flight made up in the air, and the `speed` in miles per hour:
 
 ```{r}
 flights |> 
@@ -269,10 +265,10 @@ flights |>
   )
 ```
 
-Por padrão, `mutate()` adiciona novas colunas à direita do seu conjunto de dados, o que torna difícil ver o que está acontecendo aqui.
-Podemos usar o argumento `.before` para, em vez disso, adicionar as variáveis à esquerda[^data-transform-2]:
+By default, `mutate()` adds new columns on the right hand side of your dataset, which makes it difficult to see what's happening here.
+We can use the `.before` argument to instead add the variables to the left hand side[^data-transform-2]:
 
-[^data-transform-2]: Lembre-se que no RStudio, o jeito mais fácil de visualizar um conjunto de dados com muitas colunas é `View()`.
+[^data-transform-2]: Remember that in RStudio, the easiest way to see a dataset with many columns is `View()`.
 
 ```{r}
 flights |> 
@@ -283,9 +279,9 @@ flights |>
   )
 ```
 
-O `.` é um sinal que mostra que `.before` é um argumento da função e não o nome de uma terceira variável que estamos criando.
-Você também pode utilizar `.after` para adicionar após uma variável, e tanto com `.before` quanto com `.after` você pode utilizar o nome da variável em vez da posição. 
-Por exemplo, nós podemos adicionar novas variáveis após `day`:
+The `.` is a sign that `.before` is an argument to the function, not the name of a third new variable we are creating.
+You can also use `.after` to add after a variable, and in both `.before` and `.after` you can use the variable name instead of a position.
+For example, we could add the new variables after `day`:
 
 ```{r}
 #| results: false
@@ -298,9 +294,9 @@ flights |>
   )
 ```
 
-Ou então, você pode controlar quais variáveis são mantidas com o argumento `.keep`. 
-Um argumento particularmente útil é `"used"` que especifica que nós queremos manter apenas as colunas que estiveram envolvidas ou foram criadas pela etapa de `mutate()`.
-Por exemplo, a saída a seguir conterá apenas as variáveis `dep_delay`, `arr_delay`, `air_time`, `gain`, `hours` e `gain_per_hour`.
+Alternatively, you can control which variables are kept with the `.keep` argument.
+A particularly useful argument is `"used"` which specifies that we only keep the columns that were involved or created in the `mutate()` step.
+For example, the following output will contain only the variables `dep_delay`, `arr_delay`, `air_time`, `gain`, `hours`, and `gain_per_hour`.
 
 ```{r}
 #| results: false
@@ -314,17 +310,17 @@ flights |>
   )
 ```
 
-Perceba que, uma vez que nós não atribuímos o resultado da operação de volta a `flights`, as novas variáveis `gain,` `hours` e `gain_per_hour` serão apenas exibidas no console mas não serão armazenadas em um data frame. 
-Se nós quisermos tê-las disponíveis em um data frame para usá-las no futuro, devemos pensar com cuidado a respeito de atribuir o resultado de volta a `flights`, sobrescrevendo o data frame original com muito mais variáveis, ou em um novo objeto. 
-Normalmente, a resposta correta é utilizar um novo objeto, que será nomeado de forma informativa para indicar seu conteúdo, ex: `delay_gain`, mas você talvez tenha boas razões para sobrescrever `flights`.
+Note that since we haven't assigned the result of the above computation back to `flights`, the new variables `gain,` `hours`, and `gain_per_hour` will only be printed but will not be stored in a data frame.
+And if we want them to be available in a data frame for future use, we should think carefully about whether we want the result to be assigned back to `flights`, overwriting the original data frame with many more variables, or to a new object.
+Often, the right answer is a new object that is named informatively to indicate its contents, e.g., `delay_gain`, but you might also have good reasons for overwriting `flights`.
 
 ### `select()` {#sec-select}
 
-Não é incomum obter conjuntos de dados com centenas ou até mesmo milhares de variáveis.
-Nessa situação, o primeiro desafio tende as ser focar apenas nas variáveis que você está interessado.
-`select()` permite que você rapidamente dê um _zoom_ (foque) em um subconjunto adequado utilizando operações baseadas no nome das variáveis: 
+It's not uncommon to get datasets with hundreds or even thousands of variables.
+In this situation, the first challenge is often just focusing on the variables you're interested in.
+`select()` allows you to rapidly zoom in on a useful subset using operations based on the names of the variables:
 
--   Seleciona colunas por nome:
+-   Select columns by name:
 
     ```{r}
     #| results: false
@@ -333,7 +329,7 @@ Nessa situação, o primeiro desafio tende as ser focar apenas nas variáveis qu
       select(year, month, day)
     ```
 
--   Seleciona todas as colunas entre ano e dia (inclusos):
+-   Select all columns between year and day (inclusive):
 
     ```{r}
     #| results: false
@@ -342,7 +338,7 @@ Nessa situação, o primeiro desafio tende as ser focar apenas nas variáveis qu
       select(year:day)
     ```
 
--   Seleciona todas as colunas exceto aquelas entre ano e dia (inclusos):
+-   Select all columns except those from year to day (inclusive):
 
     ```{r}
     #| results: false
@@ -351,9 +347,9 @@ Nessa situação, o primeiro desafio tende as ser focar apenas nas variáveis qu
       select(!year:day)
     ```
 
-    Você também pode utilizar `-` em vez de  `!` (e há grandes chances de você ver isso na vida real); nós recomendamos `!` pois lê-se como _"not"_, e combina bem com  `&` e `|`.
+    You can also use `-` instead of `!` (and you're likely to see that in the wild); we recommend `!` because it reads as "not", and combines well with `&` and `|`.
 
--   Seleciona todas as colunas que são caracteres: 
+-   Select all columns that are characters:
 
     ```{r}
     #| results: false
@@ -362,18 +358,18 @@ Nessa situação, o primeiro desafio tende as ser focar apenas nas variáveis qu
       select(where(is.character))
     ```
 
-Existe uma variedade de funções auxiliares que você pode utilizar junto com `select()`:
+There are a number of helper functions you can use within `select()`:
 
--   `starts_with("abc")`: dá match em nomes que se iniciam com "abc".
--   `ends_with("xyz")`: dá match em nomes que terminam "xyz".
--   `contains("ijk")`: dá match em nomes que contém "ijk".
--   `num_range("x", 1:3)`: buscará `x1`, `x2` e `x3`.
+-   `starts_with("abc")`: matches names that begin with "abc".
+-   `ends_with("xyz")`: matches names that end with "xyz".
+-   `contains("ijk")`: matches names that contain "ijk".
+-   `num_range("x", 1:3)`: matches `x1`, `x2` and `x3`.
 
-Confira `?select` para mais detalhes. 
-Uma vez que você saiba expressões regulares (o tópico de @sec-regular-expressions) você também poderá utilizar `matches()` para selecionar variáveis que são identificáveis por um dado padrão.
+See `?select` for more details.
+Once you know regular expressions (the topic of @sec-regular-expressions) you'll also be able to use `matches()` to select variables that match a pattern.
 
-Você pode renomear variáveis à media que seleciona elas com `select()` utilizando `=`.
-O novo nome aparece à esquerda do `=` e o nome antigo à direita: 
+You can rename variables as you `select()` them by using `=`.
+The new name appears on the left hand side of the `=`, and the old variable appears on the right hand side:
 
 ```{r}
 flights |> 
@@ -382,27 +378,27 @@ flights |>
 
 ### `rename()`
 
-Se você quiser manter todas as variáveis disponíveis e quer renomear apenas algumas delas, você pode utilizar `rename()` em vez de `select()`:
+If you want to keep all the existing variables and just want to rename a few, you can use `rename()` instead of `select()`:
 
 ```{r}
 flights |> 
   rename(tail_num = tailnum)
 ```
 
-Se você tem várias colunas com nomes inconsistentes e gostaria de manualmente consertá-las de uma vez, confira o pacote `janitor::clean_names()` que fornece alguns métodos úteis de limpeza. 
+If you have a bunch of inconsistently named columns and it would be painful to fix them all by hand, check out `janitor::clean_names()` which provides some useful automated cleaning.
 
 ### `relocate()`
 
-Utilize `relocate()` para mover as variáveis de lugar. 
-Talvez você queira deixar variáveis relacionadas juntas ou mover variáveis importantes para a frente do data frame.
-Por padrão `relocate()` já move as variáveis para a frente: 
+Use `relocate()` to move variables around.
+You might want to collect related variables together or move important variables to the front.
+By default `relocate()` moves variables to the front:
 
 ```{r}
 flights |> 
   relocate(time_hour, air_time)
 ```
 
-Você também pode especificar onde quer colocá-las utilizando `.before` e `.after`, assim como em `mutate()`:
+You can also specify where to put them using the `.before` and `.after` arguments, just like in `mutate()`:
 
 ```{r}
 #| results: false
@@ -413,13 +409,13 @@ flights |>
   relocate(starts_with("arr"), .before = dep_time)
 ```
 
-### Exercícios
+### Exercises
 
 ```{r}
 #| eval: false
 #| echo: false
 
-# Para checagem de dados, não é utilizado nos resultados mostrados no livro 
+# For data checking, not used in results shown in book
 flights <- flights |> mutate(
   dep_time = hour * 60 + minute,
   arr_time = (arr_time %/% 100) * 60 + (arr_time %% 100),
@@ -432,23 +428,23 @@ ggplot(flights, aes(x = dep_sched %% 60)) + geom_histogram(binwidth = 1)
 ggplot(flights, aes(x = air_time - airtime2)) + geom_histogram()
 ```
 
-1.  Compare `dep_time`, `sched_dep_time`, e `dep_delay`.
-    Como você esperaria que esses três números estivessem relacionados?
+1.  Compare `dep_time`, `sched_dep_time`, and `dep_delay`.
+    How would you expect those three numbers to be related?
 
-2.  Esboce a maior quantidade possível de maneiras de selecionar `dep_time`, `dep_delay`, `arr_time`, e `arr_delay` a partir de `flights`.
+2.  Brainstorm as many ways as possible to select `dep_time`, `dep_delay`, `arr_time`, and `arr_delay` from `flights`.
 
-3.  O que acontece se você especificar o nome de uma mesma variável múltiplas vezes em uma chamada à `select()`?
+3.  What happens if you specify the name of the same variable multiple times in a `select()` call?
 
-4.  O que a função `any_of()` faz?
-    Por que ela pode ser útil se utilizada em conjunto com esse vetor?
+4.  What does the `any_of()` function do?
+    Why might it be helpful in conjunction with this vector?
 
     ```{r}
     variables <- c("year", "month", "day", "dep_delay", "arr_delay")
     ```
 
-5.  O resultado de rodar o código a seguir te surpreende de alguma forma?
-    Como que que as funções auxiliares de seleção lidam, por padrão, com maiúsculas e minúsculas?
-    Como você pode alterar esse padrão? 
+5.  Does the result of running the following code surprise you?
+    How do the select helpers deal with upper and lower case by default?
+    How can you change that default?
 
     ```{r}
     #| eval: false
@@ -456,9 +452,9 @@ ggplot(flights, aes(x = air_time - airtime2)) + geom_histogram()
     flights |> select(contains("TIME"))
     ```
 
-6.  Renomeie `air_time` para `air_time_min` para indicar as unidades de medida e mova-a para o início do data frame. 
+6.  Rename `air_time` to `air_time_min` to indicate units of measurement and move it to the beginning of the data frame.
 
-7.  Por que o código abaixo não funciona e o que o erro significa? 
+7.  Why doesn't the following work, and what does the error mean?
 
     ```{r}
     #| error: true
@@ -468,11 +464,10 @@ ggplot(flights, aes(x = air_time - airtime2)) + geom_histogram()
       arrange(arr_delay)
     ```
 
-## O pipe {#sec-the-pipe}
+## The pipe {#sec-the-pipe}
 
-Nós te mostramos acima alguns exemplos simples do uso do pipe, mas o seu real poder emerge quando você começa a combinar múltiplos verbos.
-Por exemplo, imagine que você gostaria de achar os vôos mais rápidos do aeroporto IAH em Houston: você precisaria combinar `filter()`, `mutate()`, `select()` e `arrange()`:
-
+We've shown you simple examples of the pipe above, but its real power arises when you start to combine multiple verbs.
+For example, imagine that you wanted to find the fast flights to Houston's IAH airport: you need to combine `filter()`, `mutate()`, `select()`, and `arrange()`:
 
 ```{r}
 flights |> 
@@ -482,10 +477,10 @@ flights |>
   arrange(desc(speed))
 ```
 
-Mesmo que esse pipeline tenha quatro etapas, é fácil passar o olho e entendê-lo pois os verbos vêm no início de cada linha: começa com os dados de `flights`, então filtra (_filter_), então modifica (_mutate_), então seleciona (_select_), então ordena(_arrange_).
+Even though this pipeline has four steps, it's easy to skim because the verbs come at the start of each line: start with the `flights` data, then filter, then mutate, then select, then arrange.
 
-O que aconteceria se não tivéssemos o pipe?
-Poderíamos aninhar cada chamada de função dentro da chamada anterior:
+What would happen if we didn't have the pipe?
+We could nest each function call inside the previous call:
 
 ```{r}
 #| results: false
@@ -505,7 +500,7 @@ arrange(
 )
 ```
 
-Ou poderíamos utilizar um bando de objedos intermediários:
+Or we could use a bunch of intermediate objects:
 
 ```{r}
 #| results: false
@@ -516,19 +511,19 @@ flights3 <- select(flights2, year:day, dep_time, carrier, flight, speed)
 arrange(flights3, desc(speed))
 ```
 
-Ainda que ambas as formas tenham o sua hora e lugar, o pipe geralmente produz o código de análise de dados que é mais fácil de escrever e ler.
+While both forms have their time and place, the pipe generally produces data analysis code that is easier to write and read.
 
-Para adicionar o pipe ao seu código, recomendamos utilizar o atalho nativo do teclado: Ctrl/Cmd + Shift + M.
-Você terá que fazer uma mudança nas opções do RStudio para utilizar `|>` em vez de  `%>%` conforme mostrado em @fig-pipe-options; mais sobre `%>%` em breve.
+To add the pipe to your code, we recommend using the build-in keyboard shortcut Ctrl/Cmd + Shift + M.
+You'll need to make one change to your RStudio options to use `|>` instead of `%>%` as shown in @fig-pipe-options; more on `%>%` shortly.
 
 ```{r}
 #| label: fig-pipe-options
 #| echo: false
 #| fig-cap: |
-#|   Para inserir `|>`, certifique-se de que a opção "Use native pipe operator" está marcada.
+#|   To insert `|>`, make sure the "Use native pipe operator" option is checked.
 #| fig-alt: | 
-#|   Captura de tela mostrando a opção "Use native pipe operator" que pode 
-#|   ser encontrada no painel "Editing" das opções de "Code".
+#|   Screenshot showing the "Use native pipe operator" option which can
+#|   be found on the "Editing" panel of the "Code" options.
 
 knitr::include_graphics("screenshots/rstudio-pipe-options.png")
 ```
@@ -536,8 +531,8 @@ knitr::include_graphics("screenshots/rstudio-pipe-options.png")
 ::: callout-note
 ## magrittr
 
-Se você vem utilizando o tidyverse há um tempo, você deve estar familiarizado com o pipe `%>%` fornecido pelo pacote **magrittr**.
-O pacote magrittr está incluído no core do tidyverse, então você pode utilizar `%>%` sempre que carregar o tidyverse:
+If you've been using the tidyverse for a while, you might be familiar with the `%>%` pipe provided by the **magrittr** package.
+The magrittr package is included in the core tidyverse, so you can use `%>%` whenever you load the tidyverse:
 
 ```{r}
 #| eval: false
@@ -549,39 +544,38 @@ mtcars %>%
   summarize(n = n())
 ```
 
-Para casos simples, `|>` e `%>%` se comportam de forma idêntica. 
-Então por que recomendamos o pipe do R base?
-Primeiramente, porque o fato de ser parte do R base, significa que ele está sempre disponível para uso, mesmo que você não esteja utilizando o tidyverse.
-Em segundo lugar, `|>` é bem mais simples que `%>%`: nesse meio tempo entre a invenção do `%>%` em 2014 e a inclusão do `|>` no R 4.1.0 em 2021, aprendemos muita coisa sobre o pipe. 
-Isso permitiu que a implementação no R base se livrasse de funcionalidades com usos pouco frequentes e menos importantes.
+For simple cases, `|>` and `%>%` behave identically.
+So why do we recommend the base pipe?
+Firstly, because it's part of base R, it's always available for you to use, even when you're not using the tidyverse.
+Secondly, `|>` is quite a bit simpler than `%>%`: in the time between the invention of `%>%` in 2014 and the inclusion of `|>` in R 4.1.0 in 2021, we gained a better understanding of the pipe.
+This allowed the base implementation to jettison infrequently used and less important features.
 :::
 
-## Grupos (groups)
+## Groups
 
-Até aqui você aprendeu sobre funções que trabalham com linhas e colunas.
-dplyr se torna ainda mais poderoso quando você acrescenta a habilidade de trabalhar com grupos. 
-Nessa seção, focaremos nas funções mais importantes: `group_by()`, `summarize()`, e a família de funções _slice_. 
+So far you've learned about functions that work with rows and columns.
+dplyr gets even more powerful when you add in the ability to work with groups.
+In this section, we'll focus on the most important functions: `group_by()`, `summarize()`, and the slice family of functions.
 
 ### `group_by()`
 
-Utilize `group_by()` para dividir o seu conjunto de dados em grupos que tenham algum significado para sua análise: 
+Use `group_by()` to divide your dataset into groups meaningful for your analysis:
 
 ```{r}
 flights |> 
   group_by(month)
 ```
 
-`group_by()` não modifica seus dados mas, se você observar a saída de perto, você verá que a há uma indicação de que ela está agrupada (_"grouped by"_) mês (`Groups: month [12]`).
-Isso significa que todas as operações subsequentes irão operar "por mês".
-`group_by()` adiciona essa funcionalidade agrupada (_"grouped"_) (referenciada como uma classe) ao data frame, que modifica o comportamento dos verbos subsequentes que são aplicados aos dados. 
+`group_by()` doesn't change the data but, if you look closely at the output, you'll notice that the output indicates that it is "grouped by" month (`Groups: month [12]`).
+This means subsequent operations will now work "by month".
+`group_by()` adds this grouped feature (referred to as class) to the data frame, which changes the behavior of the subsequent verbs applied to the data.
 
 ### `summarize()` {#sec-summarize}
 
-A operação agrupada mais importante é a sumarização (_"summary"_), que caso esteja sendo utilizada para calcular uma única sumarização estatística, reduz o data frame para ter apenas uma única linha para cada grupo.
+The most important grouped operation is a summary, which, if being used to calculate a single summary statistic, reduces the data frame to have a single row for each group.
+In dplyr, this operation is performed by `summarize()`[^data-transform-3], as shown by the following example, which computes the average departure delay by month:
 
-No dplyr, essa operação é feita pela função `summarize()`[^data-transform-3], como mostrado pelo exemplo a seguir, que calcula o atraso médio das decolagens por mês:
-
-[^data-transform-3]: Ou `summarise()`, se você preferir o inglês britânico. 
+[^data-transform-3]: Or `summarise()`, if you prefer British English.
 
 ```{r}
 flights |> 
@@ -591,10 +585,10 @@ flights |>
   )
 ```
 
-Uow!
-Alguma coisa deu errado e todos os nosso resultados viraram `NA`s (pronuncia-se "N-A"), que é o símbolo do R para valores ausentes.
-Isso ocorreu pois alguns dos vôos observados possuíam dados ausentes na coluna de atrasos (_delay_), e por isso, quando calculamos a média incluindo esses valores, obtemos um `NA` como resultado.
-Voltaremos a falar de valores ausentes em detalhes em @sec-missing-values, mas por enquanto, vamos pedir à função `mean()` para ignorar todos os valores ausentes definindo o argumento `na.rm` como `TRUE`:
+Uhoh!
+Something has gone wrong and all of our results are `NA`s (pronounced "N-A"), R's symbol for missing value.
+This happened because some of the observed flights had missing data in the delay column, and so when we calculated the mean including those values, we got an `NA` result.
+We'll come back to discuss missing values in detail in @sec-missing-values, but for now we'll tell the `mean()` function to ignore all missing values by setting the argument `na.rm` to `TRUE`:
 
 ```{r}
 flights |> 
@@ -604,8 +598,8 @@ flights |>
   )
 ```
 
-Você pode criar quantas sínteses quiser em uma única chamada à `summarize()`.
-Você irá aprender várias sumarizações úteis nos próximos capítulos, mas uma que é muito útil é `n()`, que retorna o número de linhas de cada grupo.
+You can create any number of summaries in a single call to `summarize()`.
+You'll learn various useful summaries in the upcoming chapters, but one very useful summary is `n()`, which returns the number of rows in each group:
 
 ```{r}
 flights |> 
@@ -616,20 +610,20 @@ flights |>
   )
 ```
 
-Surpreendentemente, médias e contagens podem te levar longe em ciência de dados! 
+Means and counts can get you a surprisingly long way in data science!
 
-### As funções `slice_`
+### The `slice_` functions
 
-Existem cinco funções úteis que lhe permite extrair linhas específicas de dentro de cada grupo:
+There are five handy functions that allow you extract specific rows within each group:
 
--   `df |> slice_head(n = 1)` pega a primeira linha de cada grupo. 
--   `df |> slice_tail(n = 1)` pega a última linha de cada grupo. 
--   `df |> slice_min(x, n = 1)` pega a linha com o menor valor da coluna `x`.
--   `df |> slice_max(x, n = 1)` pega a linha com o maior valor da coluna `x`.
--   `df |> slice_sample(n = 1)` pega uma linha aleatória. 
+-   `df |> slice_head(n = 1)` takes the first row from each group.
+-   `df |> slice_tail(n = 1)` takes the last row in each group.
+-   `df |> slice_min(x, n = 1)` takes the row with the smallest value of column `x`.
+-   `df |> slice_max(x, n = 1)` takes the row with the largest value of column `x`.
+-   `df |> slice_sample(n = 1)` takes one random row.
 
-Você pode variar `n` para selecionar mais do que uma linha, ou, em vez de usar `n =`, você pode usar `prop = 0.1` para selecionar (por exemplo) 10% das linhas de cada grupo.
-Por exemplo, o código a seguir acha os vôos que estão mais atrasados na chegada em cada destino.
+You can vary `n` to select more than one row, or instead of `n =`, you can use `prop = 0.1` to select (e.g.) 10% of the rows in each group.
+For example, the following code finds the flights that are most delayed upon arrival at each destination:
 
 ```{r}
 flights |> 
@@ -638,17 +632,17 @@ flights |>
   relocate(dest)
 ```
 
-Perceba que existem 105 destinos, mas obtivemos 108 linhas aqui.
-O que aconteceu?
-`slice_min()` e `slice_max()` mantém os valores empatados, então `n = 1` significa "nos dê todas as linhas com o maior valor".
-Se você quiser exatamente uma linha por grupo, você pode definir `with_ties = FALSE`.
+Note that there are 105 destinations but we get 108 rows here.
+What's up?
+`slice_min()` and `slice_max()` keep tied values so `n = 1` means give us all rows with the highest value.
+If you want exactly one row per group you can set `with_ties = FALSE`.
 
-Isso é similar a calcular o atraso máximo com `summarize()`, mas você obtém toda a linha correspondente (ou linhas, se houver um empate) em vez de apenas uma síntese estatística. 
+This is similar to computing the max delay with `summarize()`, but you get the whole corresponding row (or rows if there's a tie) instead of the single summary statistic.
 
-### Agrupando por múltiplas variáveis
+### Grouping by multiple variables
 
-Você pode criar grupos utilizando mais de uma variável.
-Por exemplo, podemos fazer um grupo para cada data.
+You can create groups using more than one variable.
+For example, we could make a group for each date.
 
 ```{r}
 daily <- flights |>  
@@ -656,16 +650,16 @@ daily <- flights |>
 daily
 ```
 
-Quando você cria um sumário de um tibble agrupado por mais de uma variável, cada sumário remove a camada do último grupo.
-Na verdade, essa não era uma boa forma de fazer essa função funcionar, mas é difícil mudar agora sem quebrar códigos que já existem.
-Para tornar óbvio o que está acontecendo, o dplyr exibe uma mensagem que te diz como modificar esse comportamento: 
+When you summarize a tibble grouped by more than one variable, each summary peels off the last group.
+In hindsight, this wasn't a great way to make this function work, but it's difficult to change without breaking existing code.
+To make it obvious what's happening, dplyr displays a message that tells you how you can change this behavior:
 
 ```{r}
 daily_flights <- daily |> 
   summarize(n = n())
 ```
 
-Se você acha que esse comportamente está adequado, você pode requisitá-lo explicitamente para que a mensagem seja suprimida:
+If you're happy with this behavior, you can explicitly request it in order to suppress the message:
 
 ```{r}
 #| results: false
@@ -677,19 +671,19 @@ daily_flights <- daily |>
   )
 ```
 
-Ou então, modifique o comportamento padrão definindo um valor diferente, por exemplo, `"drop"`, para descartar todos os agrupamentos ou `"keep"` para manter os mesmos grupos.
+Alternatively, change the default behavior by setting a different value, e.g., `"drop"` to drop all grouping or `"keep"` to preserve the same groups.
 
-### Desagrupando 
+### Ungrouping
 
-Você também pode querer remover agrupamentos de um data frame sem utilizar `summarize()`.
-Você pode fazer isso com `ungroup()`.
+You might also want to remove grouping from a data frame without using `summarize()`.
+You can do this with `ungroup()`.
 
 ```{r}
 daily |> 
   ungroup()
 ```
 
-Agora, vamos ver o que acontece quando você tenta sumarizar um data frame desagrupado.
+Now let's see what happens when you summarize an ungrouped data frame.
 
 ```{r}
 daily |> 
@@ -700,12 +694,12 @@ daily |>
   )
 ```
 
-Você obtém uma única linha, pois o dplyr trata todas as linhas de um data frame desagrupado como pertencentes a um único grupo.
+You get a single row back because dplyr treats all the rows in an ungrouped data frame as belonging to one group.
 
 ### `.by`
 
-dplyr 1.1.0 inclui uma nova e experimental sintaxe para agrupamentos por operação, trata-se do argumento `.by`.
-`group_by()` e `ungroup()` não serão abandonados, mas você pode também utilizar `.by` para agrupar no âmbito de uma única operação:
+dplyr 1.1.0 includes a new, experimental, syntax for per-operation grouping, the `.by` argument.
+`group_by()` and `ungroup()` aren't going away, but you can now also use the `.by` argument to group within a single operation:
 
 ```{r}
 #| results: false
@@ -717,7 +711,7 @@ flights |>
   )
 ```
 
-Ou, se você quiser agrupar por múltiplas variáveis:
+Or if you want to group by multiple variables:
 
 ```{r}
 #| results: false
@@ -729,31 +723,30 @@ flights |>
   )
 ```
 
-`.by` funciona com todos os verbos e tem a vantagem de você não precisar utilizar o argumento `.groups` para suprimir a mensagem de agrupamento ou `ungroup()` quando já tiver terminado a operação.
+`.by` works with all verbs and has the advantage that you don't need to use the `.groups` argument to suppress the grouping message or `ungroup()` when you're done.
 
+We didn't focus on this syntax in this chapter because it was very new when we wrote the book.
+We did want to mention it because we think it has a lot of promise and it's likely to be quite popular.
+You can learn more about it in the [dplyr 1.1.0 blog post](https://www.tidyverse.org/blog/2023/02/dplyr-1-1-0-per-operation-grouping/).
 
-Nós não focamos nessa sintaxe nesse capítulo pois ela era muito nova quando escrevemos o livro.
-No entanto, quisemos mencioná-la pois achamos que ela tem muito potencial e provavelmente se tonará bastante popular.
-Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.org/blog/2023/02/dplyr-1-1-0-per-operation-grouping/).
+### Exercises
 
-### Exercícios
+1.  Which carrier has the worst average delays?
+    Challenge: can you disentangle the effects of bad airports vs. bad carriers?
+    Why/why not?
+    (Hint: think about `flights |> group_by(carrier, dest) |> summarize(n())`)
 
-1.  Qual companhia aérea (_carrier_) possui a pior média de atrasos?
-    Desafio: você consegue desenrolar os efeitos de aeroportos ruins vs. companhias ruins?
-    Por que/por que não? 
-    (Dica: experimente usar `flights |> group_by(carrier, dest) |> summarize(n())`)
+2.  Find the flights that are most delayed upon departure from each destination.
 
-2.  Ache os vôos que estão mais atrasados no momento da decolagem, a partir de cada destino. 
+3.  How do delays vary over the course of the day.
+    Illustrate your answer with a plot.
 
-3.  Como os atrasaso variam ao longo do dia. 
-    Ilustre sua resposta com um gráfico. 
+4.  What happens if you supply a negative `n` to `slice_min()` and friends?
 
-4.  O que acontece se você passar um `n` negativo para `slice_min()` e funções similares? 
+5.  Explain what `count()` does in terms of the dplyr verbs you just learned.
+    What does the `sort` argument to `count()` do?
 
-5.  Explique o que `count()` faz em termos dos verbos dplyr que você acabou de aprender.
-    O que o argumento `sort` faz para a função `count()`?
-
-6.  Suponha que temos o pequeno data frame a seguir: 
+6.  Suppose we have the following tiny data frame:
 
     ```{r}
     df <- tibble(
@@ -763,7 +756,7 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
     )
     ```
 
-    a.  Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que `group_by()` faz:
+    a.  Write down what you think the output will look like, then check if you were correct, and describe what `group_by()` does.
 
         ```{r}
         #| eval: false
@@ -772,8 +765,8 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
           group_by(y)
         ```
 
-    b.  Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que `arrange()` faz.
-        Comente também a respeito da diferença em relação ao `group_by()` da parte (a):
+    b.  Write down what you think the output will look like, then check if you were correct, and describe what `arrange()` does.
+        Also comment on how it's different from the `group_by()` in part (a)?
 
         ```{r}
         #| eval: false
@@ -782,7 +775,7 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
           arrange(y)
         ```
 
-    c.  Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que o seguinte pipeline faz:
+    c.  Write down what you think the output will look like, then check if you were correct, and describe what the pipeline does.
 
         ```{r}
         #| eval: false
@@ -792,8 +785,8 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
           summarize(mean_x = mean(x))
         ```
 
-    d.  Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que o seguinte pipeline faz.
-        Em seguida, comente sobre o que a mensagem diz:
+    d.  Write down what you think the output will look like, then check if you were correct, and describe what the pipeline does.
+        Then, comment on what the message says.
 
         ```{r}
         #| eval: false
@@ -803,8 +796,8 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
           summarize(mean_x = mean(x))
         ```
 
-    e.  Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que o seguinte pipeline faz.
-        Como a saída difere da saída da parte (d):
+    e.  Write down what you think the output will look like, then check if you were correct, and describe what the pipeline does.
+        How is the output different from the one in part (d).
 
         ```{r}
         #| eval: false
@@ -814,8 +807,8 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
           summarize(mean_x = mean(x), .groups = "drop")
         ```
 
-    f.  Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que cada pipeline faz:
-        Em que os dois pipelines diferem?
+    f.  Write down what you think the outputs will look like, then check if you were correct, and describe what each pipeline does.
+        How are the outputs of the two pipelines different?
 
         ```{r}
         #| eval: false
@@ -829,12 +822,12 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
           mutate(mean_x = mean(x))
         ```
 
-## Caso de estudo: agregados e tamanho de amostra {#sec-sample-size}
+## Case study: aggregates and sample size {#sec-sample-size}
 
-Sempre que você fizer alguma agregação, é sempre uma boa ideia incluir a contagem (`n()`).
-Dessa foma, você pode se certificar que não está tirando conclusões baseadas em pequenas quantidades de dados.
-Vamos demonstrar isso com alguns dados de baseball do pacote **Lahman**.
-Especificamente, iremos comparar qual a proporção de vezes um jogador acertou a bola (_"hit"_) (`H`) vs. o número de vezes que ele tentou colocar a bola em jogo (`AB`):
+Whenever you do any aggregation, it's always a good idea to include a count (`n()`).
+That way, you can ensure that you're not drawing conclusions based on very small amounts of data.
+We'll demonstrate this with some baseball data from the **Lahman** package.
+Specifically, we will compare what proportion of times a player gets a hit (`H`) vs. the number of times they try to put the ball in play (`AB`):
 
 ```{r}
 batters <- Lahman::Batting |> 
@@ -846,23 +839,23 @@ batters <- Lahman::Batting |>
 batters
 ```
 
-Quando montamos um gráfico da habilidade dos rebatedores (medidas pela média de acerto, `performance`) contra o número de oportunidades de acertar a bola (medidas pela númer de vezes ao bastão, `n`), é possível ver dois padrões:
+When we plot the skill of the batter (measured by the batting average, `performance`) against the number of opportunities to hit the ball (measured by times at bat, `n`), you see two patterns:
 
-1.  A variação em `performance` é maior entre os jogadores que foram menos vezes ao bastão. 
-    A forma do gráfico é muito característica: sempre que você projetar no gráfico uma média (ou alguma outra sumarização estatística)  vs. tamanho do grupo, você verá que a variação diminui à medida que o tamanho da amostra aumenta[^data-transform-4].
+1.  The variation in `performance` is larger among players with fewer at-bats.
+    The shape of this plot is very characteristic: whenever you plot a mean (or other summary statistics) vs. group size, you'll see that the variation decreases as the sample size increases[^data-transform-4].
 
-2.  Existe uma correlação positiva entre a habilidade (`performance`) e as oportunidades de acertar a bola (`n`), pois os times querem dar aos melhores jogadores o maior número de oportunidades de acertar a bola.
+2.  There's a positive correlation between skill (`performance`) and opportunities to hit the ball (`n`) because teams want to give their best batters the most opportunities to hit the ball.
 
-[^data-transform-4]: \*cof-cof\* a lei dos grandes números \*cof-cof\*.
+[^data-transform-4]: \*cough\* the law of large numbers \*cough\*.
 
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   Um gráfico de dispersão do performance de rebatidas vs. oportunidades de rebatidas 
-#|   sobrepostas por uma linha suavizada. Performance média cresce agudamente 
-#|   a partir de 0.2 quando n é 1 até 0.25 quando n é ~1000. Performance média 
-#|   continua crescendo linearmente em uma inclinação muito mais suave atingindo 
-#|   ~0.3 quando n é ~15,000.
+#|   A scatterplot of number of batting performance vs. batting opportunites 
+#|   overlaid with a smoothed line. Average performance increases sharply
+#|   from 0.2 at when n is 1 to 0.25 when n is ~1000. Average performance
+#|   continues to increase linearly at a much shallower slope reaching
+#|   ~0.3 when n is ~15,000.
 
 batters |> 
   filter(n > 100) |> 
@@ -871,25 +864,24 @@ batters |>
   geom_smooth(se = FALSE)
 ```
 
-Perceba o padrão conveniente de combinar ggplot2 e dplyr.
-Você só precisa lembrar de mudar do `|>`, para processamento do conjunto de dados, para o `+` para adicionar camadas ao seu gráfico. 
+Note the handy pattern for combining ggplot2 and dplyr.
+You just have to remember to switch from `|>`, for dataset processing, to `+` for adding layers to your plot.
 
-Isso também tem implicações importantes para ranqueamento.
-Se você simplesmente ordenar com `desc(performance)`, as pessoas com as melhoras médias de rebatidas serão claramente aquelas que tentaram botar a bola em jogo apenas algumas poucas vezes mas calhou de acertarem, esses não são necessariamente os jogadores mais hábeis:
+This also has important implications for ranking.
+If you naively sort on `desc(performance)`, the people with the best batting averages are clearly the ones who tried to put the ball in play very few times and happened to get a hit, they're not necessarily the most skilled players:
 
 ```{r}
 batters |> 
   arrange(desc(performance))
 ```
 
-Você pode achar uma boa explicação sobre esse problema e como resolvê-lo em <http://varianceexplained.org/r/empirical_bayes_baseball/> e <https://www.evanmiller.org/how-not-to-sort-by-average-rating.html>.
+You can find a good explanation of this problem and how to overcome it at <http://varianceexplained.org/r/empirical_bayes_baseball/> and <https://www.evanmiller.org/how-not-to-sort-by-average-rating.html>.
 
-## Resumo
+## Summary
 
-Nesse capítulo,  você aprendeu a usar as ferramentas que o pacote dplyr fornece para trabalhar com data frames.
+In this chapter, you've learned the tools that dplyr provides for working with data frames.
+The tools are roughly grouped into three categories: those that manipulate the rows (like `filter()` and `arrange()`, those that manipulate the columns (like `select()` and `mutate()`), and those that manipulate groups (like `group_by()` and `summarize()`).
+In this chapter, we've focused on these "whole data frame" tools, but you haven't yet learned much about what you can do with the individual variable.
+We'll come back to that in the Transform part of the book, where each chapter will give you tools for a specific type of variable.
 
-Podemos considerar que elas estão agrupadas em três categorias: as que manipulam as linhas (como `filter()` e `arrange()`, as que manipulam colunas (como `select()` e `mutate()`), e aquelas que manipulam grupos (como `group_by()` e `summarize()`).
-Nesse capítulo, nós focamos nas ferramentas que trabalham "no data frame como um todo", mas você ainda não aprendeu muito sobre o que é possível fazer com uma variável individualmente. 
-Nós voltaremos para essa assunto na parte do livro sobre Transformações, onde cada capítulo vai te mostrar ferramentas para cada tipo específico de variáveis.
-
-No próximo capítulo, voltaremos ao fluxo de trabalho para discutir sobre a importância do estilo de código, mantendo seu código bem organizado facilitando que você e outros leiam e entendam. 
+In the next chapter, we'll pivot back to workflow to discuss the importance of code style, keeping your code well organized in order to make it easy for you and others to read and understand your code.
