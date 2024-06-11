@@ -178,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-transform.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">✅ Transformação de dados</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -492,9 +492,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To get the current date or date-time you can use <code><a href="https://lubridate.tidyverse.org/reference/now.html">today()</a></code> or <code><a href="https://lubridate.tidyverse.org/reference/now.html">now()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-05-12"</span></span>
+<span><span class="co">#&gt; [1] "2024-06-11"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-05-12 18:52:13 AEST"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2024-06-11 14:38:49 -03"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Otherwise, the following sections describe the four ways you’re likely to create a date/time:</p>
 <ul>
@@ -782,9 +782,9 @@ Tabela&nbsp;17.1: All date formats understood by readr
 <p>You may want to switch between a date-time and a date. That’s the job of <code><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code> and <code><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_date()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-05-12 UTC"</span></span>
+<span><span class="co">#&gt; [1] "2024-06-11 UTC"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-05-12"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2024-06-11"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Sometimes you’ll get date/times as numeric offsets from the “Unix Epoch”, 1970-01-01. If the offset is in seconds, use <code><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code>; if it’s in days, use <code><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_date()</a></code>.</p>
 <div class="cell">
@@ -1010,12 +1010,12 @@ Figura&nbsp;17.1: A frequency polygon showing the number of flights scheduled to
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># How old is Hadley?</span></span>
 <span><span class="va">h_age</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"1979-10-14"</span><span class="op">)</span></span>
 <span><span class="va">h_age</span></span>
-<span><span class="co">#&gt; Time difference of 16282 days</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; Time difference of 16312 days</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A <code>difftime</code> class object records a time span of seconds, minutes, hours, days, or weeks. This ambiguity can make difftimes a little painful to work with, so lubridate provides an alternative which always uses seconds: the <strong>duration</strong>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as.duration.html">as.duration</a></span><span class="op">(</span><span class="va">h_age</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "1406764800s (~44.58 years)"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "1409356800s (~44.66 years)"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Durations come with a bunch of convenient constructors:</p>
 <div class="cell">
@@ -1171,7 +1171,7 @@ Figura&nbsp;17.1: A frequency polygon showing the number of flights scheduled to
 <p>You can find out what R thinks your current time zone is with <code><a href="https://rdrr.io/r/base/timezones.html">Sys.timezone()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/timezones.html">Sys.timezone</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Australia/Sydney"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "America/Sao_Paulo"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>(If R doesn’t know, you’ll get an <code>NA</code>.)</p>
 <p>And see the complete list of all time zone names with <code><a href="https://rdrr.io/r/base/timezones.html">OlsonNames()</a></code>:</p>

@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund">
-<title>R para Ciência de Dados (2ª edição) - 3&nbsp; Data transformation</title>
+<title>R para Ciência de Dados (2ª edição) - 3&nbsp; ✅ Transformação de dados</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./whole-game.html">✅ Visão geral</a></li><li class="breadcrumb-item"><a href="./data-transform.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data transformation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./whole-game.html">✅ Visão geral</a></li><li class="breadcrumb-item"><a href="./data-transform.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">✅ Transformação de dados</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -178,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-transform.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">✅ Transformação de dados</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -403,53 +403,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">3.1</span> Introduction</a>
+<a href="#introdu%C3%A7%C3%A3o" id="toc-introdução" class="nav-link active" data-scroll-target="#introdu%C3%A7%C3%A3o"><span class="header-section-number">3.1</span> Introdução</a>
   <ul class="collapse">
-<li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">3.1.1</span> Prerequisites</a></li>
+<li><a href="#pr%C3%A9-requisitos" id="toc-pré-requisitos" class="nav-link" data-scroll-target="#pr%C3%A9-requisitos"><span class="header-section-number">3.1.1</span> Pré-requisitos</a></li>
   <li><a href="#nycflights13" id="toc-nycflights13" class="nav-link" data-scroll-target="#nycflights13"><span class="header-section-number">3.1.2</span> nycflights13</a></li>
-  <li><a href="#dplyr-basics" id="toc-dplyr-basics" class="nav-link" data-scroll-target="#dplyr-basics"><span class="header-section-number">3.1.3</span> dplyr basics</a></li>
+  <li><a href="#b%C3%A1sico-do-dplyr" id="toc-básico-do-dplyr" class="nav-link" data-scroll-target="#b%C3%A1sico-do-dplyr"><span class="header-section-number">3.1.3</span> básico do dplyr</a></li>
   </ul>
 </li>
   <li>
-<a href="#rows" id="toc-rows" class="nav-link" data-scroll-target="#rows"><span class="header-section-number">3.2</span> Rows</a>
+<a href="#linhas-rows" id="toc-linhas-rows" class="nav-link" data-scroll-target="#linhas-rows"><span class="header-section-number">3.2</span> Linhas (rows)</a>
   <ul class="collapse">
 <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><span class="header-section-number">3.2.1</span> <code>filter()</code></a></li>
-  <li><a href="#common-mistakes" id="toc-common-mistakes" class="nav-link" data-scroll-target="#common-mistakes"><span class="header-section-number">3.2.2</span> Common mistakes</a></li>
+  <li><a href="#erros-comuns" id="toc-erros-comuns" class="nav-link" data-scroll-target="#erros-comuns"><span class="header-section-number">3.2.2</span> Erros comuns</a></li>
   <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"><span class="header-section-number">3.2.3</span> <code>arrange()</code></a></li>
   <li><a href="#distinct" id="toc-distinct" class="nav-link" data-scroll-target="#distinct"><span class="header-section-number">3.2.4</span> <code>distinct()</code></a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.2.5</span> Exercises</a></li>
+  <li><a href="#exerc%C3%ADcios" id="toc-exercícios" class="nav-link" data-scroll-target="#exerc%C3%ADcios"><span class="header-section-number">3.2.5</span> Exercícios</a></li>
   </ul>
 </li>
   <li>
-<a href="#columns" id="toc-columns" class="nav-link" data-scroll-target="#columns"><span class="header-section-number">3.3</span> Columns</a>
+<a href="#colunas-columns" id="toc-colunas-columns" class="nav-link" data-scroll-target="#colunas-columns"><span class="header-section-number">3.3</span> Colunas (columns)</a>
   <ul class="collapse">
 <li><a href="#sec-mutate" id="toc-sec-mutate" class="nav-link" data-scroll-target="#sec-mutate"><span class="header-section-number">3.3.1</span> <code>mutate()</code></a></li>
   <li><a href="#sec-select" id="toc-sec-select" class="nav-link" data-scroll-target="#sec-select"><span class="header-section-number">3.3.2</span> <code>select()</code></a></li>
   <li><a href="#rename" id="toc-rename" class="nav-link" data-scroll-target="#rename"><span class="header-section-number">3.3.3</span> <code>rename()</code></a></li>
   <li><a href="#relocate" id="toc-relocate" class="nav-link" data-scroll-target="#relocate"><span class="header-section-number">3.3.4</span> <code>relocate()</code></a></li>
-  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1"><span class="header-section-number">3.3.5</span> Exercises</a></li>
+  <li><a href="#exerc%C3%ADcios-1" id="toc-exercícios-1" class="nav-link" data-scroll-target="#exerc%C3%ADcios-1"><span class="header-section-number">3.3.5</span> Exercícios</a></li>
   </ul>
 </li>
-  <li><a href="#sec-the-pipe" id="toc-sec-the-pipe" class="nav-link" data-scroll-target="#sec-the-pipe"><span class="header-section-number">3.4</span> The pipe</a></li>
+  <li><a href="#sec-the-pipe" id="toc-sec-the-pipe" class="nav-link" data-scroll-target="#sec-the-pipe"><span class="header-section-number">3.4</span> O pipe</a></li>
   <li>
-<a href="#groups" id="toc-groups" class="nav-link" data-scroll-target="#groups"><span class="header-section-number">3.5</span> Groups</a>
+<a href="#grupos-groups" id="toc-grupos-groups" class="nav-link" data-scroll-target="#grupos-groups"><span class="header-section-number">3.5</span> Grupos (groups)</a>
   <ul class="collapse">
 <li><a href="#group_by" id="toc-group_by" class="nav-link" data-scroll-target="#group_by"><span class="header-section-number">3.5.1</span> <code>group_by()</code></a></li>
   <li><a href="#sec-summarize" id="toc-sec-summarize" class="nav-link" data-scroll-target="#sec-summarize"><span class="header-section-number">3.5.2</span> <code>summarize()</code></a></li>
-  <li><a href="#the-slice_-functions" id="toc-the-slice_-functions" class="nav-link" data-scroll-target="#the-slice_-functions"><span class="header-section-number">3.5.3</span> The <code>slice_</code> functions</a></li>
-  <li><a href="#grouping-by-multiple-variables" id="toc-grouping-by-multiple-variables" class="nav-link" data-scroll-target="#grouping-by-multiple-variables"><span class="header-section-number">3.5.4</span> Grouping by multiple variables</a></li>
-  <li><a href="#ungrouping" id="toc-ungrouping" class="nav-link" data-scroll-target="#ungrouping"><span class="header-section-number">3.5.5</span> Ungrouping</a></li>
+  <li><a href="#as-fun%C3%A7%C3%B5es-slice_" id="toc-as-funções-slice_" class="nav-link" data-scroll-target="#as-fun%C3%A7%C3%B5es-slice_"><span class="header-section-number">3.5.3</span> As funções <code>slice_</code></a></li>
+  <li><a href="#agrupando-por-m%C3%BAltiplas-vari%C3%A1veis" id="toc-agrupando-por-múltiplas-variáveis" class="nav-link" data-scroll-target="#agrupando-por-m%C3%BAltiplas-vari%C3%A1veis"><span class="header-section-number">3.5.4</span> Agrupando por múltiplas variáveis</a></li>
+  <li><a href="#desagrupando" id="toc-desagrupando" class="nav-link" data-scroll-target="#desagrupando"><span class="header-section-number">3.5.5</span> Desagrupando</a></li>
   <li><a href="#by" id="toc-by" class="nav-link" data-scroll-target="#by"><span class="header-section-number">3.5.6</span> <code>.by</code></a></li>
-  <li><a href="#exercises-2" id="toc-exercises-2" class="nav-link" data-scroll-target="#exercises-2"><span class="header-section-number">3.5.7</span> Exercises</a></li>
+  <li><a href="#exerc%C3%ADcios-2" id="toc-exercícios-2" class="nav-link" data-scroll-target="#exerc%C3%ADcios-2"><span class="header-section-number">3.5.7</span> Exercícios</a></li>
   </ul>
 </li>
-  <li><a href="#sec-sample-size" id="toc-sec-sample-size" class="nav-link" data-scroll-target="#sec-sample-size"><span class="header-section-number">3.6</span> Case study: aggregates and sample size</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.7</span> Summary</a></li>
+  <li><a href="#sec-sample-size" id="toc-sec-sample-size" class="nav-link" data-scroll-target="#sec-sample-size"><span class="header-section-number">3.6</span> Caso de estudo: agregados e tamanho de amostra</a></li>
+  <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">3.7</span> Resumo</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/cienciadedatos/pt-r4ds/edit/main/data-transform.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/cienciadedatos/pt-r4ds/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./whole-game.html">✅ Visão geral</a></li><li class="breadcrumb-item"><a href="./data-transform.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data transformation</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-data-transform" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data transformation</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./whole-game.html">✅ Visão geral</a></li><li class="breadcrumb-item"><a href="./data-transform.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">✅ Transformação de dados</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-data-transform" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">✅ Transformação de dados</span></span></h1>
 </div>
 
 
@@ -463,23 +463,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><div class="callout callout-style-simple callout-warning">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Olá! Este capítulo do livro ainda <strong>não está traduzido</strong> para a versão Português-BR. <br> Caso você queira contribuir com o projeto de tradução, leia as instruções em: <a href="https://github.com/cienciadedatos/pt-r4ds/wiki" class="uri">https://github.com/cienciadedatos/pt-r4ds/wiki</a> <br> A versão original (em inglês) do livro R for Data Science está disponível em: <a href="https://r4ds.hadley.nz/" class="uri">https://r4ds.hadley.nz/</a></p>
-</div>
-</div>
-</div>
-<section id="introduction" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="introduction">
-<span class="header-section-number">3.1</span> Introduction</h2>
-<p>Visualization is an important tool for generating insight, but it’s rare that you get the data in exactly the right form you need to make the graph you want. Often you’ll need to create some new variables or summaries to answer your questions with your data, or maybe you just want to rename the variables or reorder the observations to make the data a little easier to work with. You’ll learn how to do all that (and more!) in this chapter, which will introduce you to data transformation using the <strong>dplyr</strong> package and a new dataset on flights that departed from New York City in 2013.</p>
-<p>The goal of this chapter is to give you an overview of all the key tools for transforming a data frame. We’ll start with functions that operate on rows and then columns of a data frame, then circle back to talk more about the pipe, an important tool that you use to combine verbs. We will then introduce the ability to work with groups. We will end the chapter with a case study that showcases these functions in action and we’ll come back to the functions in more detail in later chapters, as we start to dig into specific types of data (e.g., numbers, strings, dates).</p>
-<section id="prerequisites" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="prerequisites">
-<span class="header-section-number">3.1.1</span> Prerequisites</h3>
-<p>In this chapter we’ll focus on the dplyr package, another core member of the tidyverse. We’ll illustrate the key ideas using data from the nycflights13 package, and use ggplot2 to help us understand the data.</p>
+</header><section id="introdução" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="introdução">
+<span class="header-section-number">3.1</span> Introdução</h2>
+<p>Visualização de dados é uma ferramenta importante para gerar insights, mas é raro que você pegue os dados exatamente na forma que você precisa para fazer o gráfico que você quer. Geralmente você precisará criar algumas variáveis novas ou agregações para responder às perguntas com seus dados, ou talvez você precise apenas renomear as variáveis ou reordenar as observações para facilitar o trabalho com os dados. Você vai aprender a fazer tudo isso (e mais um pouco!) nesse capítulo, em que nós iremos lhe apresentar as possibilidades de transformações de dados utilizando o pacote <strong>dplyr</strong> e um novo conjunto de dados sobre vôos que partiram de Nova York em 2013.</p>
+<p>O objetivo desse capítulo é te dar uma visão geral de todas as principais ferramentas para transformar um data frame. Começaremos com as funções que operam sobre as linhas e colunas de um data frame, em seguida voltaremos para falar mais um pouco sobre o <em>pipe</em>, que é uma importante ferramenta que você utilizará para combinar os verbos das transformações. Depois, iremos introduzir a habilidade de trabalhar com grupos. Finalizaremos o capítulo com um caso de estudo que demonstra todas essas funções em ação, e, mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, quando começaremos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas)</p>
+<section id="pré-requisitos" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="pré-requisitos">
+<span class="header-section-number">3.1.1</span> Pré-requisitos</h3>
+<p>Nesse capítulo focaremos no pacote dplyr, outro membro central do tidyverse. Ilustraremos as ideias principais utilizando dados do pacote nycflights13, e visualizaremos com o ggplot2 para nos ajudar a entender os dados.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -494,10 +484,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></span>
 <span><span class="co">#&gt; ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Take careful note of the conflicts message that’s printed when you load the tidyverse. It tells you that dplyr overwrites some functions in base R. If you want to use the base version of these functions after loading dplyr, you’ll need to use their full names: <code><a href="https://rdrr.io/r/stats/filter.html">stats::filter()</a></code> and <code><a href="https://rdrr.io/r/stats/lag.html">stats::lag()</a></code>. So far we’ve mostly ignored which package a function comes from because most of the time it doesn’t matter. However, knowing the package can help you find help and find related functions, so when we need to be precise about which package a function comes from, we’ll use the same syntax as R: <code>packagename::functionname()</code>.</p>
+<p>Preste bastante atenção às mensagens de conflito exibidas quando você carregar o tidyverse. Elas te indicam que o dplyr sobrescreve algumas funções do R base. Se você quiser utilizar a versão R base dessas funções depois de carregar o dplyr, você deverá usar seus nomes completos: <code><a href="https://rdrr.io/r/stats/filter.html">stats::filter()</a></code> e <code><a href="https://rdrr.io/r/stats/lag.html">stats::lag()</a></code>. Até agora nós basicamente ignoramos o pacote ao qual uma função pertence, pois na maioria das vezes isso não importava.</p>
+<p>No entanto, conhecer o pacote pode te auxiliar na obtenção de ajuda e na busca por funções relacionadas, então quando for necessário sermos precisos a respeito de qual pacote uma função pertence, nós utilizaremos a mesma sintaxe que o R: <code>nomedopacote::nomedafuncao()</code>.</p>
 </section><section id="nycflights13" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="nycflights13">
 <span class="header-section-number">3.1.2</span> nycflights13</h3>
-<p>To explore the basic dplyr verbs, we’re going to use <code><a href="https://rdrr.io/pkg/nycflights13/man/flights.html">nycflights13::flights</a></code>. This dataset contains all 336,776 flights that departed from New York City in 2013. The data comes from the US <a href="https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FGJ&amp;QO_fu146_anzr=b0-gvzr">Bureau of Transportation Statistics</a>, and is documented in <code><a href="https://rdrr.io/pkg/nycflights13/man/flights.html">?flights</a></code>.</p>
+<p>Para explorar os verbos básicos do dplyr iremos utilizar a base de dados <code><a href="https://rdrr.io/pkg/nycflights13/man/flights.html">nycflights13::flights</a></code>. Essa base contém todos os 336,776 vôos que saíram da cidade de Nova Iorque em 2013. Esses dados vêm de um órgão de transporte dos EUA chamado <a href="http://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&amp;Link=0">Bureau of Transportation Statistics</a>, e estão documentados em <code><a href="https://rdrr.io/pkg/nycflights13/man/flights.html">?flights</a></code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span></span>
 <span><span class="co">#&gt; # A tibble: 336,776 × 19</span></span>
@@ -512,7 +503,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>flights</code> is a tibble, a special type of data frame used by the tidyverse to avoid some common gotchas. The most important difference between tibbles and data frames is the way tibbles print; they are designed for large datasets, so they only show the first few rows and only the columns that fit on one screen. There are a few options to see everything. If you’re using RStudio, the most convenient is probably <code>View(flights)</code>, which will open an interactive scrollable and filterable view. Otherwise you can use <code>print(flights, width = Inf)</code> to show all columns, or use <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>:</p>
+<p><code>flights</code> é um tibble, um tipo especial de data frame utilizado pelo tidyverse para evitar algumas “pegadinhas” comuns. A diferença principal entre tibbles e data frames é forma como tibbles são exibidos no console; eles foram pensados para grandes conjuntos de dados, então eles mostram apenas algumas das primeiras linhas e somente as colunas que cabem na tela. Existem algumas opções para visualizar tudo. Se você estiver utilizando o RStudio, o mais conveniente provavelmente é <code>View(flights)</code>, que vai abrir uma visualização interativa, com filtros e rolagem de tela. Caso não esteja, você pode utilizar <code>print(flights, width = Inf)</code> para mostrar todas as colunas, ou utilizar <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">flights</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 336,776</span></span>
@@ -537,16 +528,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; $ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59…</span></span>
 <span><span class="co">#&gt; $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-0…</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In both views, the variables names are followed by abbreviations that tell you the type of each variable: <code>&lt;int&gt;</code> is short for integer, <code>&lt;dbl&gt;</code> is short for double (aka real numbers), <code>&lt;chr&gt;</code> for character (aka strings), and <code>&lt;dttm&gt;</code> for date-time. These are important because the operations you can perform on a column depend so much on its “type”.</p>
-</section><section id="dplyr-basics" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="dplyr-basics">
-<span class="header-section-number">3.1.3</span> dplyr basics</h3>
-<p>You’re about to learn the primary dplyr verbs (functions) which will allow you to solve the vast majority of your data manipulation challenges. But before we discuss their individual differences, it’s worth stating what they have in common:</p>
+<p>Em ambas as visualizações, o nome das variáveis estão seguidos por abreviaturas que te indicam o tipo de cada variável: <code>&lt;int&gt;</code> para inteiros, <code>&lt;dbl&gt;</code> double<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (números reais), <code>&lt;chr&gt;</code> para caracteres (strings) e <code>&lt;dttm&gt;</code> para date-time (data e tempo). Isso é importante pois as operações possíveis sobre uma coluna depende muito do seu “tipo”.</p>
+</section><section id="básico-do-dplyr" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="básico-do-dplyr">
+<span class="header-section-number">3.1.3</span> básico do dplyr</h3>
+<p>Você está prestes a aprender os verbos (funções) primários do dplyr que já vão lhe permitir resolver a vasta maioria dos desafios de manipulação de dados. Mas antes de discutirir suas diferenças individuais, é importante destacar o que eles têm em comum:</p>
 <ol type="1">
-<li><p>The first argument is always a data frame.</p></li>
-<li><p>The subsequent arguments typically describe which columns to operate on, using the variable names (without quotes).</p></li>
-<li><p>The output is always a new data frame.</p></li>
+<li><p>O primeiro argumento é sempre um data frame.</p></li>
+<li><p>Os demais argumentos geralmente descrevem sobre quais colunas a operação será executada, utilizando o nome das variáveis (sem aspas).</p></li>
+<li><p>A saída é sempre um novo data frame.</p></li>
 </ol>
-<p>Because each verb does one thing well, solving complex problems will usually require combining multiple verbs, and we’ll do so with the pipe, <code>|&gt;</code>. We’ll discuss the pipe more in <a href="#sec-the-pipe" class="quarto-xref"><span>Seção 3.4</span></a>, but in brief, the pipe takes the thing on its left and passes it along to the function on its right so that <code>x |&gt; f(y)</code> is equivalent to <code>f(x, y)</code>, and <code>x |&gt; f(y) |&gt; g(z)</code> is equivalent to <code>g(f(x, y), z)</code>. The easiest way to pronounce the pipe is “then”. That makes it possible to get a sense of the following code even though you haven’t yet learned the details:</p>
+<p>Pelo fato de cada verbo fazer bem apenas UMA coisa, a resolução de problemas complexos normalmente requer a combinação de múltiplos verbos. Fazemos isso utilizando o pipe: <code>|&gt;</code>.</p>
+<p>Falaremos mais do pipe em <a href="#sec-the-pipe" class="quarto-xref"><span>Seção 3.4</span></a>, mas resumindo, o pipe recebe alguma coisa à sua esquerda e repassa essa coisa para a função à sua direita, de forma que <code>x |&gt; f(y)</code> seja equivalente a <code>f(x, y)</code>, e <code>x |&gt; f(y) |&gt; g(z)</code> seja equivalente a <code>g(f(x, y), z)</code>. A forma mais fácil de pronunciar o pipe é “então” (<em>“then”</em>). Isso torna possível pegar a visão geral do código abaixo, mesmo que você ainda não tenha aprendido os detalhes:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">dest</span> <span class="op">==</span> <span class="st">"IAH"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -555,14 +547,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    arr_delay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">arr_delay</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>dplyr’s verbs are organized into four groups based on what they operate on: <strong>rows</strong>, <strong>columns</strong>, <strong>groups</strong>, or <strong>tables</strong>. In the following sections you’ll learn the most important verbs for rows, columns, and groups, then we’ll come back to the join verbs that work on tables in <a href="joins.html" class="quarto-xref"><span>Capítulo 19</span></a>. Let’s dive in!</p>
-</section></section><section id="rows" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="rows">
-<span class="header-section-number">3.2</span> Rows</h2>
-<p>The most important verbs that operate on rows of a dataset are <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, which changes which rows are present without changing their order, and <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, which changes the order of the rows without changing which are present. Both functions only affect the rows, and the columns are left unchanged. We’ll also discuss <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> which finds rows with unique values but unlike <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> it can also optionally modify the columns.</p>
+<p>Verbos do dplyr são organizados em quatro grupos baseados na estrutura sobre a qual operam: <strong>linhas</strong> (<em>rows</em>), <strong>colunas</strong> (<em>columns</em>), <strong>grupos</strong> (<em>groups</em>) ou <strong>tabelas</strong> (<em>tables</em>). Nas próximas seções você aparenderá os verbos mais importantes para linhas, colunas e grupos, então voltaremos para os verbos de <em>join</em> que operam em tabelas na seção <a href="joins.html" class="quarto-xref"><span>Capítulo 19</span></a>. Vamos nessa!</p>
+</section></section><section id="linhas-rows" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="linhas-rows">
+<span class="header-section-number">3.2</span> Linhas (rows)</h2>
+<p>Os verbos mais importantes que operam nas linhas de um conjunto de dados são <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, que modifica quais linhas estão presentes sem mudar a sua ordem, e <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, que modifica a ordem das linhas sem modificar quais estão presentes. Ambas as funções afetam apenas as linhas e as colunas permanecem intocadas. Também vamos falar sobre <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code>, que acha as linhas com valores únicos, mas diferentemente de <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> também pode, opcionalmente, modificar as colunas.</p>
 <section id="filter" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="filter">
 <span class="header-section-number">3.2.1</span> <code>filter()</code>
 </h3>
-<p><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> allows you to keep rows based on the values of the columns<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The first argument is the data frame. The second and subsequent arguments are the conditions that must be true to keep the row. For example, we could find all flights that departed more than 120 minutes (two hours) late:</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> lhe permite manter linhas com base nos valores das colunas<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. O primeiro argumento é o data frame. O segundo e demais argumentos são as condições que devem ser verdadeiras para manter a linha. Por exemplo, podemos achar todos os vôos que decolaram com mais de 120 minutos (duas horas) de atraso:</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">dep_delay</span> <span class="op">&gt;</span> <span class="fl">120</span><span class="op">)</span></span>
@@ -578,7 +570,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 9,717 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As well as <code>&gt;</code> (greater than), you can use <code>&gt;=</code> (greater than or equal to), <code>&lt;</code> (less than), <code>&lt;=</code> (less than or equal to), <code>==</code> (equal to), and <code>!=</code> (not equal to). You can also combine conditions with <code>&amp;</code> or <code>,</code> to indicate “and” (check for both conditions) or with <code>|</code> to indicate “or” (check for either condition):</p>
+<p>Assim como <code>&gt;</code> (maior que), você também pode usar <code>&gt;=</code> (maior ou igual a), <code>&lt;</code> (menor que), <code>&lt;=</code> (menor ou igual a), <code>==</code> (igual a), e <code>!=</code> (diferente de). Você também pode combinar condições com <code>&amp;</code> ou <code>,</code> para indicar “e” (avalia ambas as condições) ou com <code>|</code> para indicar “ou” (avalia ao menos uma condição):</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Flights that departed on January 1</span></span>
 <span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
@@ -610,9 +602,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 51,949 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>There’s a useful shortcut when you’re combining <code>|</code> and <code>==</code>: <code>%in%</code>. It keeps rows where the variable equals one of the values on the right:</p>
+<p>Existe um atalho útil quando você está combinando <code>|</code> e <code>==</code>: <code>%in%</code>. Ele vai manter as linhas cujas variáveis são iguais a um dos valores à direita:</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># A shorter way to select flights that departed in January or February</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Uma forma mais curta de selecionar vôos que decolaram em janeiro ou fevereiro</span></span>
 <span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">month</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 51,955 × 19</span></span>
@@ -627,15 +619,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 51,949 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We’ll come back to these comparisons and logical operators in more detail in <a href="logicals.html" class="quarto-xref"><span>Capítulo 12</span></a>.</p>
-<p>When you run <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> dplyr executes the filtering operation, creating a new data frame, and then prints it. It doesn’t modify the existing <code>flights</code> dataset because dplyr functions never modify their inputs. To save the result, you need to use the assignment operator, <code>&lt;-</code>:</p>
+<p>Vamos voltar para essas comparações e operadores lógicos com mais detalhes em <a href="logicals.html" class="quarto-xref"><span>Capítulo 12</span></a>.</p>
+<p>Quando você roda <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> o dplyr executa a operação de filtragem, criando um novo data frame, e em seguida o exibe. Ele não modifica o conjunto de dados <code>flights</code> já existente, pois as funções do dplyr nunca modificam seus argumentos de entrada. Para salvar o resultado, você precisa utilizar o operador de atribuição <code>&lt;-</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jan1</span> <span class="op">&lt;-</span> <span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">month</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">day</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="common-mistakes" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="common-mistakes">
-<span class="header-section-number">3.2.2</span> Common mistakes</h3>
-<p>When you’re starting out with R, the easiest mistake to make is to use <code>=</code> instead of <code>==</code> when testing for equality. <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> will let you know when this happens:</p>
+</section><section id="erros-comuns" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="erros-comuns">
+<span class="header-section-number">3.2.2</span> Erros comuns</h3>
+<p>Quando você está começando com o R, o erro mais fácil de se cometer é utilizar <code>=</code> em vez de <code>==</code> quando se está testando igualdade. <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> vai te avisar quando isso acontecer:</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -644,16 +636,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; ℹ This usually means that you've used `=` instead of `==`.</span></span>
 <span><span class="co">#&gt; ℹ Did you mean `month == 1`?</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Another mistakes is you write “or” statements like you would in English:</p>
+<p>Outro erro é escrever as expressões com “ou” como faríamos em Português:</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">month</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This “works”, in the sense that it doesn’t throw an error, but it doesn’t do what you want because <code>|</code> first checks the condition <code>month == 1</code> and then checks the condition <code>2</code>, which is not a sensible condition to check. We’ll learn more about what’s happening here and why in <a href="regexps.html#sec-boolean-operations" class="quarto-xref"><span>Seção 15.6.2</span></a>.</p>
+<p>Isso até “funciona”, no sentido de que não retornará um erro, mas ele não vai fazer o que você esperaria, pois <code>|</code> primeiro vai avaliar a condição <code>month == 1</code> e depois a condição <code>2</code>, que não é uma condição adequada para se avaliar nesse caso. Iremos aprender mais sobre o que está acontecendo aqui em <a href="regexps.html#sec-boolean-operations" class="quarto-xref"><span>Seção 15.6.2</span></a>.</p>
 </section><section id="arrange" class="level3" data-number="3.2.3"><h3 data-number="3.2.3" class="anchored" data-anchor-id="arrange">
 <span class="header-section-number">3.2.3</span> <code>arrange()</code>
 </h3>
-<p><code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> changes the order of the rows based on the value of the columns. It takes a data frame and a set of column names (or more complicated expressions) to order by. If you provide more than one column name, each additional column will be used to break ties in the values of preceding columns. For example, the following code sorts by the departure time, which is spread over four columns. We get the earliest years first, then within a year the earliest months, etc.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> modifica a ordem das linhas com base no valor das colunas. Ela recebe um data frame e um conjunto de nomes de colunas (ou expressões mais complicadas) para ordenar por eles. Se você fornecer mais de um nome de coluna, cada coluna a mais será utilizada para desempatar os valores das colunas anteriores. Por exemplo, o código a seguir vai ordenar por horário da decolagem, que está distribuído em 4 colunas. Nós pegamos primeiro os anos mais antigos e então, dentro de cada ano, os primeiros meses e assim por diante.</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">dep_time</span><span class="op">)</span></span>
@@ -669,7 +661,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can use <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> on a column inside of <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> to re-order the data frame based on that column in descending (big-to-small) order. For example, this code orders flights from most to least delayed:</p>
+<p>Você pode utilizar <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> em uma coluna dentro de <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> para re-ordenar o data frame com base naquele coluna em ordem decrescente (do maior para o menor). Por exemplo, esse código ordena os vôos do mais para os menos atrasados:</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">dep_delay</span><span class="op">)</span><span class="op">)</span></span>
@@ -685,13 +677,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that the number of rows has not changed – we’re only arranging the data, we’re not filtering it.</p>
+<p>Perceba que o número de linhas não se alterou – estamos apenas organizando os dados e não filtrando.</p>
 </section><section id="distinct" class="level3" data-number="3.2.4"><h3 data-number="3.2.4" class="anchored" data-anchor-id="distinct">
 <span class="header-section-number">3.2.4</span> <code>distinct()</code>
 </h3>
-<p><code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> finds all the unique rows in a dataset, so in a technical sense, it primarily operates on the rows. Most of the time, however, you’ll want the distinct combination of some variables, so you can also optionally supply column names:</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> acha todas as linhas únicas em um conjunto de dados, então, do ponto de vista técnico ela opera principialmente nas linhas. No entanto, na maioria das vezes você vai querer combinações distintas de algumas variáveis, então você pode, opcionalmente, fornecer nome de colunas:</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Remove duplicate rows, if any</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Remove linhas duplicadas, se existirem </span></span>
 <span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 336,776 × 19</span></span>
@@ -706,7 +698,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span>
 <span></span>
-<span><span class="co"># Find all unique origin and destination pairs</span></span>
+<span><span class="co"># Acha todos os pares únicos de origens e destinos</span></span>
 <span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">origin</span>, <span class="va">dest</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 224 × 2</span></span>
@@ -720,7 +712,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6 EWR    ORD  </span></span>
 <span><span class="co">#&gt; # ℹ 218 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Alternatively, if you want to the keep other columns when filtering for unique rows, you can use the <code>.keep_all = TRUE</code> option.</p>
+<p>Por outro lado, caso você queira manter outras colunas quando estiver filtrando para linhas únicas, você pode usar a opção <code>.keep_all = TRUE</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">origin</span>, <span class="va">dest</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -736,8 +728,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 218 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>It’s not a coincidence that all of these distinct flights are on January 1: <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> will find the first occurrence of a unique row in the dataset and discard the rest.</p>
-<p>If you want to find the number of occurrences instead, you’re better off swapping <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> for <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>, and with the <code>sort = TRUE</code> argument you can arrange them in descending order of number of occurrences. You’ll learn more about count in <a href="numbers.html#sec-counts" class="quarto-xref"><span>Seção 13.3</span></a>.</p>
+<p>Não é uma coincidência que todos esses vôos distintos sejam em 1º de janeiro: <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> irá achar a primeira ocorrência de uma linha única no conjunto de dados e decartar todas as demais.</p>
+<p>Se, em vez disso, você quiser achar o número de ocorrências, é melhor trocar <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> por <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>, e com o argumento <code>sort = TRUE</code> você pode organizá-los em ordem decrescente do número de ocorrências. Você vai aprendar mais sobre contagens em <a href="numbers.html#sec-counts" class="quarto-xref"><span>Seção 13.3</span></a>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">origin</span>, <span class="va">dest</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -752,32 +744,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6 EWR    ORD    6100</span></span>
 <span><span class="co">#&gt; # ℹ 218 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="exercises" class="level3" data-number="3.2.5"><h3 data-number="3.2.5" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">3.2.5</span> Exercises</h3>
+</section><section id="exercícios" class="level3" data-number="3.2.5"><h3 data-number="3.2.5" class="anchored" data-anchor-id="exercícios">
+<span class="header-section-number">3.2.5</span> Exercícios</h3>
 <ol type="1">
 <li>
-<p>In a single pipeline for each condition, find all flights that meet the condition:</p>
+<p>Utilizando um único pipeline para cada condição, ache todos os vôos que cumpram a condição:</p>
 <ul>
-<li>Had an arrival delay of two or more hours</li>
-<li>Flew to Houston (<code>IAH</code> or <code>HOU</code>)</li>
-<li>Were operated by United, American, or Delta</li>
-<li>Departed in summer (July, August, and September)</li>
-<li>Arrived more than two hours late, but didn’t leave late</li>
-<li>Were delayed by at least an hour, but made up over 30 minutes in flight</li>
+<li>Teve um atraso na chegada de duas ou mais horas</li>
+<li>Voou para Houston (<code>IAH</code> ou <code>HOU</code>)</li>
+<li>Foi operado pela United, American ou Delta</li>
+<li>Decolou no verão<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> (julho, agosto e setembro)</li>
+<li>Chegou com mais de duas horas de atraso, mas não teve atraso na decolagem.</li>
+<li>Atrasou pelo menos uma hora, mas recuperou mais de 30 minutos em vôo.</li>
 </ul>
 </li>
-<li><p>Sort <code>flights</code> to find the flights with longest departure delays. Find the flights that left earliest in the morning.</p></li>
-<li><p>Sort <code>flights</code> to find the fastest flights. (Hint: Try including a math calculation inside of your function.)</p></li>
-<li><p>Was there a flight on every day of 2013?</p></li>
-<li><p>Which flights traveled the farthest distance? Which traveled the least distance?</p></li>
-<li><p>Does it matter what order you used <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> if you’re using both? Why/why not? Think about the results and how much work the functions would have to do.</p></li>
-</ol></section></section><section id="columns" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="columns">
-<span class="header-section-number">3.3</span> Columns</h2>
-<p>There are four important verbs that affect the columns without changing the rows: <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> creates new columns that are derived from the existing columns, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> changes which columns are present, <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> changes the names of the columns, and <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code> changes the positions of the columns.</p>
+<li><p>Ordene <code>flights</code> para achar os vôos com os maiores atrasos na decolagem. Ache os vôos que saíram o mais cedo pela manhã.</p></li>
+<li><p>Ordene <code>flights</code> para achar os vôos mais rápidos. (Dica: tente incluir algum cálculo matemático dentro da sua função.)</p></li>
+<li><p>Houve pelo menos um vôo em cada dia de 2013?</p></li>
+<li><p>Quais vôos percorream as maiores distâncias? Quais percorreram as menores?</p></li>
+<li><p>Faz diferença a ordem em que você usa <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> se você estiver utilizando ambos? Por que/por que não? Reflita sobre os resultados e quanto trabalho as funções teriam que executar.</p></li>
+</ol></section></section><section id="colunas-columns" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="colunas-columns">
+<span class="header-section-number">3.3</span> Colunas (columns)</h2>
+<p>Existem quatro verbos importantes que afetam as colunas sem modificar as linhas: <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> cria novas colunas que são derivadas das colunas existentes, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> alteram as colunas que estão presentes, <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> modifica o nome das colunas e <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code> modifica as posições das colunas.</p>
 <section id="sec-mutate" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="sec-mutate">
 <span class="header-section-number">3.3.1</span> <code>mutate()</code>
 </h3>
-<p>The job of <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> is to add new columns that are calculated from the existing columns. In the transform chapters, you’ll learn a large set of functions that you can use to manipulate different types of variables. For now, we’ll stick with basic algebra, which allows us to compute the <code>gain</code>, how much time a delayed flight made up in the air, and the <code>speed</code> in miles per hour:</p>
+<p>O papel de <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> é adicionar novas colunas que são calculadas a partir de colunas existentes. Nos capítulos sobre transformações, você aprenderá sobre um grande conjunto de funções que podem ser utilizadas para manipular diferentes tipos de variáveis. Por enquanto, vamos nos ater à álgebra básica, que nos permite calcular o <code>gain</code>, ou seja, quanto tempo um vôo atrasado recuperou no ar, e a velocidade <code>speed</code> em milhas por hora:</p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
@@ -796,7 +788,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 13 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>By default, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> adds new columns on the right hand side of your dataset, which makes it difficult to see what’s happening here. We can use the <code>.before</code> argument to instead add the variables to the left hand side<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
+<p>Por padrão, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> adiciona novas colunas à direita do seu conjunto de dados, o que torna difícil ver o que está acontecendo aqui. Podemos usar o argumento <code>.before</code> para, em vez disso, adicionar as variáveis à esquerda<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
@@ -816,7 +808,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>.</code> is a sign that <code>.before</code> is an argument to the function, not the name of a third new variable we are creating. You can also use <code>.after</code> to add after a variable, and in both <code>.before</code> and <code>.after</code> you can use the variable name instead of a position. For example, we could add the new variables after <code>day</code>:</p>
+<p>O <code>.</code> é um sinal que mostra que <code>.before</code> é um argumento da função e não o nome de uma terceira variável que estamos criando. Você também pode utilizar <code>.after</code> para adicionar após uma variável, e tanto com <code>.before</code> quanto com <code>.after</code> você pode utilizar o nome da variável em vez da posição. Por exemplo, nós podemos adicionar novas variáveis após <code>day</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
@@ -825,7 +817,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    .after <span class="op">=</span> <span class="va">day</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Alternatively, you can control which variables are kept with the <code>.keep</code> argument. A particularly useful argument is <code>"used"</code> which specifies that we only keep the columns that were involved or created in the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> step. For example, the following output will contain only the variables <code>dep_delay</code>, <code>arr_delay</code>, <code>air_time</code>, <code>gain</code>, <code>hours</code>, and <code>gain_per_hour</code>.</p>
+<p>Ou então, você pode controlar quais variáveis são mantidas com o argumento <code>.keep</code>. Um argumento particularmente útil é <code>"used"</code> que especifica que nós queremos manter apenas as colunas que estiveram envolvidas ou foram criadas pela etapa de <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Por exemplo, a saída a seguir conterá apenas as variáveis <code>dep_delay</code>, <code>arr_delay</code>, <code>air_time</code>, <code>gain</code>, <code>hours</code> e <code>gain_per_hour</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
@@ -835,55 +827,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    .keep <span class="op">=</span> <span class="st">"used"</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that since we haven’t assigned the result of the above computation back to <code>flights</code>, the new variables <code>gain,</code> <code>hours</code>, and <code>gain_per_hour</code> will only be printed but will not be stored in a data frame. And if we want them to be available in a data frame for future use, we should think carefully about whether we want the result to be assigned back to <code>flights</code>, overwriting the original data frame with many more variables, or to a new object. Often, the right answer is a new object that is named informatively to indicate its contents, e.g., <code>delay_gain</code>, but you might also have good reasons for overwriting <code>flights</code>.</p>
+<p>Perceba que, uma vez que nós não atribuímos o resultado da operação de volta a <code>flights</code>, as novas variáveis <code>gain,</code> <code>hours</code> e <code>gain_per_hour</code> serão apenas exibidas no console mas não serão armazenadas em um data frame. Se nós quisermos tê-las disponíveis em um data frame para usá-las no futuro, devemos pensar com cuidado a respeito de atribuir o resultado de volta a <code>flights</code>, sobrescrevendo o data frame original com muito mais variáveis, ou em um novo objeto. Normalmente, a resposta correta é utilizar um novo objeto, que será nomeado de forma informativa para indicar seu conteúdo, ex: <code>delay_gain</code>, mas você talvez tenha boas razões para sobrescrever <code>flights</code>.</p>
 </section><section id="sec-select" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="sec-select">
 <span class="header-section-number">3.3.2</span> <code>select()</code>
 </h3>
-<p>It’s not uncommon to get datasets with hundreds or even thousands of variables. In this situation, the first challenge is often just focusing on the variables you’re interested in. <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> allows you to rapidly zoom in on a useful subset using operations based on the names of the variables:</p>
+<p>Não é incomum obter conjuntos de dados com centenas ou até mesmo milhares de variáveis. Nessa situação, o primeiro desafio tende as ser focar apenas nas variáveis que você está interessado. <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> permite que você rapidamente dê um <em>zoom</em> (foque) em um subconjunto adequado utilizando operações baseadas no nome das variáveis:</p>
 <ul>
 <li>
-<p>Select columns by name:</p>
+<p>Seleciona colunas por nome:</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </li>
 <li>
-<p>Select all columns between year and day (inclusive):</p>
+<p>Seleciona todas as colunas entre ano e dia (inclusos):</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">year</span><span class="op">:</span><span class="va">day</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </li>
 <li>
-<p>Select all columns except those from year to day (inclusive):</p>
+<p>Seleciona todas as colunas exceto aquelas entre ano e dia (inclusos):</p>
 <div class="cell">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="va">year</span><span class="op">:</span><span class="va">day</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Historically this operation was done with <code>-</code> instead of <code>!</code>, so you’re likely to see that in the wild. These two operators serve the same purpose but with subtle differences in behavior. We recommend using <code>!</code> because it reads as “not” and combines well with <code>&amp;</code> and <code>|</code>.</p>
 </li>
+</ul>
+<p>Historicamente, essa operação era feita com <code>-</code> em vez de <code>!</code>, então é provável que você veja isso por aí. Esses dois operadores servem ao mesmo propósito, mas com diferenças sutis no comportamento. Recomendamos usar <code>!</code> porque é lido como “não” e se combina bem com <code>&amp;</code> e <code>|</code>.</p>
+<ul>
 <li>
-<p>Select all columns that are characters:</p>
+<p>Seleciona todas as colunas que são caracteres:</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.character</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </li>
 </ul>
-<p>There are a number of helper functions you can use within <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>:</p>
+<p>Existe uma variedade de funções auxiliares que você pode utilizar junto com <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>:</p>
 <ul>
 <li>
-<code>starts_with("abc")</code>: matches names that begin with “abc”.</li>
+<code>starts_with("abc")</code>: dá match em nomes que se iniciam com “abc”.</li>
 <li>
-<code>ends_with("xyz")</code>: matches names that end with “xyz”.</li>
+<code>ends_with("xyz")</code>: dá match em nomes que terminam “xyz”.</li>
 <li>
-<code>contains("ijk")</code>: matches names that contain “ijk”.</li>
+<code>contains("ijk")</code>: dá match em nomes que contém “ijk”.</li>
 <li>
-<code>num_range("x", 1:3)</code>: matches <code>x1</code>, <code>x2</code> and <code>x3</code>.</li>
+<code>num_range("x", 1:3)</code>: buscará <code>x1</code>, <code>x2</code> e <code>x3</code>.</li>
 </ul>
-<p>See <code><a href="https://dplyr.tidyverse.org/reference/select.html">?select</a></code> for more details. Once you know regular expressions (the topic of <a href="regexps.html" class="quarto-xref"><span>Capítulo 15</span></a>) you’ll also be able to use <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches()</a></code> to select variables that match a pattern.</p>
-<p>You can rename variables as you <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> them by using <code>=</code>. The new name appears on the left hand side of the <code>=</code>, and the old variable appears on the right hand side:</p>
+<p>Confira <code><a href="https://dplyr.tidyverse.org/reference/select.html">?select</a></code> para mais detalhes. Uma vez que você saiba expressões regulares (o tópico de <a href="regexps.html" class="quarto-xref"><span>Capítulo 15</span></a>) você também poderá utilizar <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches()</a></code> para selecionar variáveis que são identificáveis por um dado padrão.</p>
+<p>Você pode renomear variáveis à media que seleciona elas com <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> utilizando <code>=</code>. O novo nome aparece à esquerda do <code>=</code> e o nome antigo à direita:</p>
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>tail_num <span class="op">=</span> <span class="va">tailnum</span><span class="op">)</span></span>
@@ -901,7 +895,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="rename" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="rename">
 <span class="header-section-number">3.3.3</span> <code>rename()</code>
 </h3>
-<p>If you want to keep all the existing variables and just want to rename a few, you can use <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> instead of <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>:</p>
+<p>Se você quiser manter todas as variáveis disponíveis e quer renomear apenas algumas delas, você pode utilizar <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> em vez de <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>tail_num <span class="op">=</span> <span class="va">tailnum</span><span class="op">)</span></span>
@@ -917,11 +911,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If you have a bunch of inconsistently named columns and it would be painful to fix them all by hand, check out <code><a href="https://sfirke.github.io/janitor/reference/clean_names.html">janitor::clean_names()</a></code> which provides some useful automated cleaning.</p>
+<p>Se você tem várias colunas com nomes inconsistentes e gostaria de manualmente consertá-las de uma vez, confira o pacote <code><a href="https://sfirke.github.io/janitor/reference/clean_names.html">janitor::clean_names()</a></code> que fornece alguns métodos úteis de limpeza.</p>
 </section><section id="relocate" class="level3" data-number="3.3.4"><h3 data-number="3.3.4" class="anchored" data-anchor-id="relocate">
 <span class="header-section-number">3.3.4</span> <code>relocate()</code>
 </h3>
-<p>Use <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code> to move variables around. You might want to collect related variables together or move important variables to the front. By default <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code> moves variables to the front:</p>
+<p>Utilize <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code> para mover as variáveis de lugar. Talvez você queira deixar variáveis relacionadas juntas ou mover variáveis importantes para a frente do data frame. Por padrão <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code> já move as variáveis para a frente:</p>
 <div class="cell">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">time_hour</span>, <span class="va">air_time</span><span class="op">)</span></span>
@@ -937,34 +931,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 12 more variables: dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can also specify where to put them using the <code>.before</code> and <code>.after</code> arguments, just like in <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>:</p>
+<p>Você também pode especificar onde quer colocá-las utilizando <code>.before</code> e <code>.after</code>, assim como em <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">year</span><span class="op">:</span><span class="va">dep_time</span>, .after <span class="op">=</span> <span class="va">time_hour</span><span class="op">)</span></span>
 <span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"arr"</span><span class="op">)</span>, .before <span class="op">=</span> <span class="va">dep_time</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="exercises-1" class="level3" data-number="3.3.5"><h3 data-number="3.3.5" class="anchored" data-anchor-id="exercises-1">
-<span class="header-section-number">3.3.5</span> Exercises</h3>
+</section><section id="exercícios-1" class="level3" data-number="3.3.5"><h3 data-number="3.3.5" class="anchored" data-anchor-id="exercícios-1">
+<span class="header-section-number">3.3.5</span> Exercícios</h3>
 <ol type="1">
-<li><p>Compare <code>dep_time</code>, <code>sched_dep_time</code>, and <code>dep_delay</code>. How would you expect those three numbers to be related?</p></li>
-<li><p>Brainstorm as many ways as possible to select <code>dep_time</code>, <code>dep_delay</code>, <code>arr_time</code>, and <code>arr_delay</code> from <code>flights</code>.</p></li>
-<li><p>What happens if you specify the name of the same variable multiple times in a <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> call?</p></li>
+<li><p>Compare <code>dep_time</code>, <code>sched_dep_time</code>, e <code>dep_delay</code>. Como você esperaria que esses três números estivessem relacionados?</p></li>
+<li><p>Esboce a maior quantidade possível de maneiras de selecionar <code>dep_time</code>, <code>dep_delay</code>, <code>arr_time</code>, e <code>arr_delay</code> a partir de <code>flights</code>.</p></li>
+<li><p>O que acontece se você especificar o nome de uma mesma variável múltiplas vezes em uma chamada à <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>?</p></li>
 <li>
-<p>What does the <code><a href="https://tidyselect.r-lib.org/reference/all_of.html">any_of()</a></code> function do? Why might it be helpful in conjunction with this vector?</p>
+<p>O que a função <code><a href="https://tidyselect.r-lib.org/reference/all_of.html">any_of()</a></code> faz? Por que ela pode ser útil se utilizada em conjunto com esse vetor?</p>
 <div class="cell">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">variables</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </li>
 <li>
-<p>Does the result of running the following code surprise you? How do the select helpers deal with upper and lower case by default? How can you change that default?</p>
+<p>O resultado de rodar o código a seguir te surpreende de alguma forma? Como que que as funções auxiliares de seleção lidam, por padrão, com maiúsculas e minúsculas? Como você pode alterar esse padrão?</p>
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"TIME"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </li>
-<li><p>Rename <code>air_time</code> to <code>air_time_min</code> to indicate units of measurement and move it to the beginning of the data frame.</p></li>
+<li><p>Renomeie <code>air_time</code> para <code>air_time_min</code> para indicar as unidades de medida e mova-a para o início do data frame.</p></li>
 <li>
-<p>Why doesn’t the following work, and what does the error mean?</p>
+<p>Por que o código abaixo não funciona e o que o erro significa?</p>
 <div class="cell">
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">tailnum</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -976,8 +970,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </li>
 </ol></section></section><section id="sec-the-pipe" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="sec-the-pipe">
-<span class="header-section-number">3.4</span> The pipe</h2>
-<p>We’ve shown you simple examples of the pipe above, but its real power arises when you start to combine multiple verbs. For example, imagine that you wanted to find the fast flights to Houston’s IAH airport: you need to combine <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>:</p>
+<span class="header-section-number">3.4</span> O pipe</h2>
+<p>Nós te mostramos acima alguns exemplos simples do uso do pipe, mas o seu real poder emerge quando você começa a combinar múltiplos verbos. Por exemplo, imagine que você gostaria de achar os vôos mais rápidos do aeroporto IAH em Houston: você precisaria combinar <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">dest</span> <span class="op">==</span> <span class="st">"IAH"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -995,8 +989,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6  2013     8    27     1017 UA         333  515.</span></span>
 <span><span class="co">#&gt; # ℹ 7,192 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Even though this pipeline has four steps, it’s easy to skim because the verbs come at the start of each line: start with the <code>flights</code> data, then filter, then mutate, then select, then arrange.</p>
-<p>What would happen if we didn’t have the pipe? We could nest each function call inside the previous call:</p>
+<p>Mesmo que esse pipeline tenha quatro etapas, é fácil passar o olho e entendê-lo pois os verbos vêm no início de cada linha: começa com os dados de <code>flights</code>, então filtra (<em>filter</em>), então modifica (<em>mutate</em>), então seleciona (<em>select</em>), então ordena(<em>arrange</em>).</p>
+<p>O que aconteceria se não tivéssemos o pipe? Poderíamos aninhar cada chamada de função dentro da chamada anterior:</p>
 <div class="cell">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
@@ -1012,23 +1006,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Or we could use a bunch of intermediate objects:</p>
+<p>Ou poderíamos utilizar um bando de objedos intermediários:</p>
 <div class="cell">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">flights</span>, <span class="va">dest</span> <span class="op">==</span> <span class="st">"IAH"</span><span class="op">)</span></span>
 <span><span class="va">flights2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">flights1</span>, speed <span class="op">=</span> <span class="va">distance</span> <span class="op">/</span> <span class="va">air_time</span> <span class="op">*</span> <span class="fl">60</span><span class="op">)</span></span>
 <span><span class="va">flights3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">flights2</span>, <span class="va">year</span><span class="op">:</span><span class="va">day</span>, <span class="va">dep_time</span>, <span class="va">carrier</span>, <span class="va">flight</span>, <span class="va">speed</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">flights3</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>While both forms have their time and place, the pipe generally produces data analysis code that is easier to write and read.</p>
-<p>To add the pipe to your code, we recommend using the built-in keyboard shortcut Ctrl/Cmd + Shift + M. You’ll need to make one change to your RStudio options to use <code>|&gt;</code> instead of <code>%&gt;%</code> as shown in <a href="#fig-pipe-options" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>; more on <code>%&gt;%</code> shortly.</p>
+<p>Ainda que ambas as formas tenham o sua hora e lugar, o pipe geralmente produz o código de análise de dados que é mais fácil de escrever e ler.</p>
+<p>Para adicionar o pipe ao seu código, recomendamos utilizar o atalho nativo do teclado: Ctrl/Cmd + Shift + M. Você terá que fazer uma mudança nas opções do RStudio para utilizar <code>|&gt;</code> em vez de <code>%&gt;%</code> conforme mostrado em <a href="#fig-pipe-options" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>; mais sobre <code>%&gt;%</code> em breve.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pipe-options" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Screenshot showing the &quot;Use native pipe operator&quot; option which can be found on the &quot;Editing&quot; panel of the &quot;Code&quot; options.">
+<div id="fig-pipe-options" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Captura de tela mostrando a opção &quot;Use native pipe operator&quot; que pode ser encontrada no painel &quot;Editing&quot; das opções de &quot;Code&quot;.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pipe-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="screenshots/rstudio-pipe-options.png" class="img-fluid figure-img" alt="Screenshot showing the &quot;Use native pipe operator&quot; option which can be found on the &quot;Editing&quot; panel of the &quot;Code&quot; options." width="616">
+<img src="screenshots/rstudio-pipe-options.png" class="img-fluid figure-img" alt="Captura de tela mostrando a opção &quot;Use native pipe operator&quot; que pode ser encontrada no painel &quot;Editing&quot; das opções de &quot;Code&quot;." width="616">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pipe-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.1: To insert <code>|&gt;</code>, make sure the “Use native pipe operator” option is checked.
+Figura&nbsp;3.1: Para inserir <code>|&gt;</code>, certifique-se de que a opção “Use native pipe operator” está marcada.
 </figcaption></figure>
 </div>
 </div>
@@ -1043,7 +1037,7 @@ magrittr
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you’ve been using the tidyverse for a while, you might be familiar with the <code>%&gt;%</code> pipe provided by the <strong>magrittr</strong> package. The magrittr package is included in the core tidyverse, so you can use <code>%&gt;%</code> whenever you load the tidyverse:</p>
+<p>Se você vem utilizando o tidyverse há um tempo, você deve estar familiarizado com o pipe <code>%&gt;%</code> fornecido pelo pacote <strong>magrittr</strong>. O pacote magrittr está incluído no core do tidyverse, então você pode utilizar <code>%&gt;%</code> sempre que carregar o tidyverse:</p>
 <div class="cell">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
@@ -1051,16 +1045,16 @@ magrittr
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For simple cases, <code>|&gt;</code> and <code>%&gt;%</code> behave identically. So why do we recommend the base pipe? Firstly, because it’s part of base R, it’s always available for you to use, even when you’re not using the tidyverse. Secondly, <code>|&gt;</code> is quite a bit simpler than <code>%&gt;%</code>: in the time between the invention of <code>%&gt;%</code> in 2014 and the inclusion of <code>|&gt;</code> in R 4.1.0 in 2021, we gained a better understanding of the pipe. This allowed the base implementation to jettison infrequently used and less important features.</p>
+<p>Para casos simples, <code>|&gt;</code> e <code>%&gt;%</code> se comportam de forma idêntica. Então por que recomendamos o pipe do R base? Primeiramente, porque o fato de ser parte do R base, significa que ele está sempre disponível para uso, mesmo que você não esteja utilizando o tidyverse. Em segundo lugar, <code>|&gt;</code> é bem mais simples que <code>%&gt;%</code>: nesse meio tempo entre a invenção do <code>%&gt;%</code> em 2014 e a inclusão do <code>|&gt;</code> no R 4.1.0 em 2021, aprendemos muita coisa sobre o pipe. Isso permitiu que a implementação no R base se livrasse de funcionalidades com usos pouco frequentes e menos importantes.</p>
 </div>
 </div>
-</section><section id="groups" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="groups">
-<span class="header-section-number">3.5</span> Groups</h2>
-<p>So far you’ve learned about functions that work with rows and columns. dplyr gets even more powerful when you add in the ability to work with groups. In this section, we’ll focus on the most important functions: <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>, and the slice family of functions.</p>
+</section><section id="grupos-groups" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="grupos-groups">
+<span class="header-section-number">3.5</span> Grupos (groups)</h2>
+<p>Até aqui você aprendeu sobre funções que trabalham com linhas e colunas. dplyr se torna ainda mais poderoso quando você acrescenta a habilidade de trabalhar com grupos. Nessa seção, focaremos nas funções mais importantes: <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>, e a família de funções <em>slice</em>.</p>
 <section id="group_by" class="level3" data-number="3.5.1"><h3 data-number="3.5.1" class="anchored" data-anchor-id="group_by">
 <span class="header-section-number">3.5.1</span> <code>group_by()</code>
 </h3>
-<p>Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> to divide your dataset into groups meaningful for your analysis:</p>
+<p>Utilize <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> para dividir o seu conjunto de dados em grupos que tenham algum significado para sua análise:</p>
 <div class="cell">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span></span>
@@ -1077,11 +1071,12 @@ magrittr
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> doesn’t change the data but, if you look closely at the output, you’ll notice that the output indicates that it is “grouped by” month (<code>Groups: month [12]</code>). This means subsequent operations will now work “by month”. <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> adds this grouped feature (referred to as class) to the data frame, which changes the behavior of the subsequent verbs applied to the data.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> não modifica seus dados mas, se você observar a saída de perto, você verá que a há uma indicação de que ela está agrupada (<em>“grouped by”</em>) mês (<code>Groups: month [12]</code>). Isso significa que todas as operações subsequentes irão operar “por mês”. <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> adiciona essa funcionalidade agrupada (<em>“grouped”</em>) (referenciada como uma classe) ao data frame, que modifica o comportamento dos verbos subsequentes que são aplicados aos dados.</p>
 </section><section id="sec-summarize" class="level3" data-number="3.5.2"><h3 data-number="3.5.2" class="anchored" data-anchor-id="sec-summarize">
 <span class="header-section-number">3.5.2</span> <code>summarize()</code>
 </h3>
-<p>The most important grouped operation is a summary, which, if being used to calculate a single summary statistic, reduces the data frame to have a single row for each group. In dplyr, this operation is performed by <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, as shown by the following example, which computes the average departure delay by month:</p>
+<p>A operação agrupada mais importante é a sumarização (<em>“summary”</em>), que caso esteja sendo utilizada para calcular uma única sumarização estatística, reduz o data frame para ter apenas uma única linha para cada grupo.</p>
+<p>No dplyr, essa operação é feita pela função <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, como mostrado pelo exemplo a seguir, que calcula o atraso médio das decolagens por mês:</p>
 <div class="cell">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1099,7 +1094,7 @@ magrittr
 <span><span class="co">#&gt; 6     6        NA</span></span>
 <span><span class="co">#&gt; # ℹ 6 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Uhoh! Something has gone wrong and all of our results are <code>NA</code>s (pronounced “N-A”), R’s symbol for missing value. This happened because some of the observed flights had missing data in the delay column, and so when we calculated the mean including those values, we got an <code>NA</code> result. We’ll come back to discuss missing values in detail in <a href="missing-values.html" class="quarto-xref"><span>Capítulo 18</span></a>, but for now we’ll tell the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> function to ignore all missing values by setting the argument <code>na.rm</code> to <code>TRUE</code>:</p>
+<p>Uow! Alguma coisa deu errado e todos os nosso resultados viraram <code>NA</code>s (pronuncia-se “N-A”), que é o símbolo do R para valores ausentes. Isso ocorreu pois alguns dos vôos observados possuíam dados ausentes na coluna de atrasos (<em>delay</em>), e por isso, quando calculamos a média incluindo esses valores, obtemos um <code>NA</code> como resultado. Voltaremos a falar de valores ausentes em detalhes em <a href="missing-values.html" class="quarto-xref"><span>Capítulo 18</span></a>, mas por enquanto, vamos pedir à função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> para ignorar todos os valores ausentes definindo o argumento <code>na.rm</code> como <code>TRUE</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1117,7 +1112,7 @@ magrittr
 <span><span class="co">#&gt; 6     6  20.8</span></span>
 <span><span class="co">#&gt; # ℹ 6 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can create any number of summaries in a single call to <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>. You’ll learn various useful summaries in the upcoming chapters, but one very useful summary is <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>, which returns the number of rows in each group:</p>
+<p>Você pode criar quantas sínteses quiser em uma única chamada à <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>. Você irá aprender várias sumarizações úteis nos próximos capítulos, mas uma que é muito útil é <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>, que retorna o número de linhas de cada grupo.</p>
 <div class="cell">
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1136,23 +1131,24 @@ magrittr
 <span><span class="co">#&gt; 6     6  20.8 28243</span></span>
 <span><span class="co">#&gt; # ℹ 6 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Means and counts can get you a surprisingly long way in data science!</p>
-</section><section id="the-slice_-functions" class="level3" data-number="3.5.3"><h3 data-number="3.5.3" class="anchored" data-anchor-id="the-slice_-functions">
-<span class="header-section-number">3.5.3</span> The <code>slice_</code> functions</h3>
-<p>There are five handy functions that allow you extract specific rows within each group:</p>
+<p>Surpreendentemente, médias e contagens podem te levar longe em ciência de dados!</p>
+</section><section id="as-funções-slice_" class="level3" data-number="3.5.3"><h3 data-number="3.5.3" class="anchored" data-anchor-id="as-funções-slice_">
+<span class="header-section-number">3.5.3</span> As funções <code>slice_</code>
+</h3>
+<p>Existem cinco funções úteis que lhe permite extrair linhas específicas de dentro de cada grupo:</p>
 <ul>
 <li>
-<code>df |&gt; slice_head(n = 1)</code> takes the first row from each group.</li>
+<code>df |&gt; slice_head(n = 1)</code> pega a primeira linha de cada grupo.</li>
 <li>
-<code>df |&gt; slice_tail(n = 1)</code> takes the last row in each group.</li>
+<code>df |&gt; slice_tail(n = 1)</code> pega a última linha de cada grupo.</li>
 <li>
-<code>df |&gt; slice_min(x, n = 1)</code> takes the row with the smallest value of column <code>x</code>.</li>
+<code>df |&gt; slice_min(x, n = 1)</code> pega a linha com o menor valor da coluna <code>x</code>.</li>
 <li>
-<code>df |&gt; slice_max(x, n = 1)</code> takes the row with the largest value of column <code>x</code>.</li>
+<code>df |&gt; slice_max(x, n = 1)</code> pega a linha com o maior valor da coluna <code>x</code>.</li>
 <li>
-<code>df |&gt; slice_sample(n = 1)</code> takes one random row.</li>
+<code>df |&gt; slice_sample(n = 1)</code> pega uma linha aleatória.</li>
 </ul>
-<p>You can vary <code>n</code> to select more than one row, or instead of <code>n =</code>, you can use <code>prop = 0.1</code> to select (e.g.) 10% of the rows in each group. For example, the following code finds the flights that are most delayed upon arrival at each destination:</p>
+<p>Você pode variar <code>n</code> para selecionar mais do que uma linha, ou, em vez de usar <code>n =</code>, você pode usar <code>prop = 0.1</code> para selecionar (por exemplo) 10% das linhas de cada grupo. Por exemplo, o código a seguir acha os vôos que estão mais atrasados na chegada em cada destino.</p>
 <div class="cell">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">dest</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1171,11 +1167,11 @@ magrittr
 <span><span class="co">#&gt; # ℹ 102 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that there are 105 destinations but we get 108 rows here. What’s up? <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code> keep tied values so <code>n = 1</code> means give us all rows with the highest value. If you want exactly one row per group you can set <code>with_ties = FALSE</code>.</p>
-<p>This is similar to computing the max delay with <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>, but you get the whole corresponding row (or rows if there’s a tie) instead of the single summary statistic.</p>
-</section><section id="grouping-by-multiple-variables" class="level3" data-number="3.5.4"><h3 data-number="3.5.4" class="anchored" data-anchor-id="grouping-by-multiple-variables">
-<span class="header-section-number">3.5.4</span> Grouping by multiple variables</h3>
-<p>You can create groups using more than one variable. For example, we could make a group for each date.</p>
+<p>Perceba que existem 105 destinos, mas obtivemos 108 linhas aqui. O que aconteceu? <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code> mantém os valores empatados, então <code>n = 1</code> significa “nos dê todas as linhas com o maior valor”. Se você quiser exatamente uma linha por grupo, você pode definir <code>with_ties = FALSE</code>.</p>
+<p>Isso é similar a calcular o atraso máximo com <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>, mas você obtém toda a linha correspondente (ou linhas, se houver um empate) em vez de apenas uma síntese estatística.</p>
+</section><section id="agrupando-por-múltiplas-variáveis" class="level3" data-number="3.5.4"><h3 data-number="3.5.4" class="anchored" data-anchor-id="agrupando-por-múltiplas-variáveis">
+<span class="header-section-number">3.5.4</span> Agrupando por múltiplas variáveis</h3>
+<p>Você pode criar grupos utilizando mais de uma variável. Por exemplo, podemos fazer um grupo para cada data.</p>
 <div class="cell">
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">daily</span> <span class="op">&lt;-</span> <span class="va">flights</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span><span class="op">)</span></span>
@@ -1193,14 +1189,14 @@ magrittr
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>When you summarize a tibble grouped by more than one variable, each summary peels off the last group. In hindsight, this wasn’t a great way to make this function work, but it’s difficult to change without breaking existing code. To make it obvious what’s happening, dplyr displays a message that tells you how you can change this behavior:</p>
+<p>Quando você cria um sumário de um tibble agrupado por mais de uma variável, cada sumário remove a camada do último grupo. Na verdade, essa não era uma boa forma de fazer essa função funcionar, mas é difícil mudar agora sem quebrar códigos que já existem. Para tornar óbvio o que está acontecendo, o dplyr exibe uma mensagem que te diz como modificar esse comportamento:</p>
 <div class="cell">
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">daily_flights</span> <span class="op">&lt;-</span> <span class="va">daily</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; `summarise()` has grouped output by 'year', 'month'. You can override using</span></span>
 <span><span class="co">#&gt; the `.groups` argument.</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If you’re happy with this behavior, you can explicitly request it in order to suppress the message:</p>
+<p>Se você acha que esse comportamente está adequado, você pode requisitá-lo explicitamente para que a mensagem seja suprimida:</p>
 <div class="cell">
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">daily_flights</span> <span class="op">&lt;-</span> <span class="va">daily</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
@@ -1208,10 +1204,10 @@ magrittr
 <span>    .groups <span class="op">=</span> <span class="st">"drop_last"</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Alternatively, change the default behavior by setting a different value, e.g., <code>"drop"</code> to drop all grouping or <code>"keep"</code> to preserve the same groups.</p>
-</section><section id="ungrouping" class="level3" data-number="3.5.5"><h3 data-number="3.5.5" class="anchored" data-anchor-id="ungrouping">
-<span class="header-section-number">3.5.5</span> Ungrouping</h3>
-<p>You might also want to remove grouping from a data frame without using <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>. You can do this with <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code>.</p>
+<p>Ou então, modifique o comportamento padrão definindo um valor diferente, por exemplo, <code>"drop"</code>, para descartar todos os agrupamentos ou <code>"keep"</code> para manter os mesmos grupos.</p>
+</section><section id="desagrupando" class="level3" data-number="3.5.5"><h3 data-number="3.5.5" class="anchored" data-anchor-id="desagrupando">
+<span class="header-section-number">3.5.5</span> Desagrupando</h3>
+<p>Você também pode querer remover agrupamentos de um data frame sem utilizar <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>. Você pode fazer isso com <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">daily</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -1227,7 +1223,7 @@ magrittr
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now let’s see what happens when you summarize an ungrouped data frame.</p>
+<p>Agora, vamos ver o que acontece quando você tenta sumarizar um data frame desagrupado.</p>
 <div class="cell">
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">daily</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1240,11 +1236,11 @@ magrittr
 <span><span class="co">#&gt;       &lt;dbl&gt;   &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1      12.6  336776</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You get a single row back because dplyr treats all the rows in an ungrouped data frame as belonging to one group.</p>
+<p>Você obtém uma única linha, pois o dplyr trata todas as linhas de um data frame desagrupado como pertencentes a um único grupo.</p>
 </section><section id="by" class="level3" data-number="3.5.6"><h3 data-number="3.5.6" class="anchored" data-anchor-id="by">
 <span class="header-section-number">3.5.6</span> <code>.by</code>
 </h3>
-<p>dplyr 1.1.0 includes a new, experimental, syntax for per-operation grouping, the <code>.by</code> argument. <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> aren’t going away, but you can now also use the <code>.by</code> argument to group within a single operation:</p>
+<p>dplyr 1.1.0 inclui uma nova e experimental sintaxe para agrupamentos por operação, trata-se do argumento <code>.by</code>. <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> não serão abandonados, mas você pode também utilizar <code>.by</code> para agrupar no âmbito de uma única operação:</p>
 <div class="cell">
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
@@ -1253,7 +1249,7 @@ magrittr
 <span>    .by <span class="op">=</span> <span class="va">month</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Or if you want to group by multiple variables:</p>
+<p>Ou, se você quiser agrupar por múltiplas variáveis:</p>
 <div class="cell">
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
@@ -1262,18 +1258,18 @@ magrittr
 <span>    .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">origin</span>, <span class="va">dest</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>.by</code> works with all verbs and has the advantage that you don’t need to use the <code>.groups</code> argument to suppress the grouping message or <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> when you’re done.</p>
-<p>We didn’t focus on this syntax in this chapter because it was very new when we wrote the book. We did want to mention it because we think it has a lot of promise and it’s likely to be quite popular. You can learn more about it in the <a href="https://www.tidyverse.org/blog/2023/02/dplyr-1-1-0-per-operation-grouping/">dplyr 1.1.0 blog post</a>.</p>
-</section><section id="exercises-2" class="level3" data-number="3.5.7"><h3 data-number="3.5.7" class="anchored" data-anchor-id="exercises-2">
-<span class="header-section-number">3.5.7</span> Exercises</h3>
+<p><code>.by</code> funciona com todos os verbos e tem a vantagem de você não precisar utilizar o argumento <code>.groups</code> para suprimir a mensagem de agrupamento ou <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> quando já tiver terminado a operação.</p>
+<p>Nós não focamos nessa sintaxe nesse capítulo pois ela era muito nova quando escrevemos o livro. No entanto, quisemos mencioná-la pois achamos que ela tem muito potencial e provavelmente se tonará bastante popular. Você pode ler mais sobre ela em <a href="https://www.tidyverse.org/blog/2023/02/dplyr-1-1-0-per-operation-grouping/">dplyr 1.1.0 blog post</a>.</p>
+</section><section id="exercícios-2" class="level3" data-number="3.5.7"><h3 data-number="3.5.7" class="anchored" data-anchor-id="exercícios-2">
+<span class="header-section-number">3.5.7</span> Exercícios</h3>
 <ol type="1">
-<li><p>Which carrier has the worst average delays? Challenge: can you disentangle the effects of bad airports vs.&nbsp;bad carriers? Why/why not? (Hint: think about <code>flights |&gt; group_by(carrier, dest) |&gt; summarize(n())</code>)</p></li>
-<li><p>Find the flights that are most delayed upon departure from each destination.</p></li>
-<li><p>How do delays vary over the course of the day. Illustrate your answer with a plot.</p></li>
-<li><p>What happens if you supply a negative <code>n</code> to <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code> and friends?</p></li>
-<li><p>Explain what <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> does in terms of the dplyr verbs you just learned. What does the <code>sort</code> argument to <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> do?</p></li>
+<li><p>Qual companhia aérea (<em>carrier</em>) possui a pior média de atrasos? Desafio: você consegue desenrolar os efeitos de aeroportos ruins vs.&nbsp;companhias ruins? Por que/por que não? (Dica: experimente usar <code>flights |&gt; group_by(carrier, dest) |&gt; summarize(n())</code>)</p></li>
+<li><p>Ache os vôos que estão mais atrasados no momento da decolagem, a partir de cada destino.</p></li>
+<li><p>Como os atrasaso variam ao longo do dia. Ilustre sua resposta com um gráfico.</p></li>
+<li><p>O que acontece se você passar um <code>n</code> negativo para <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code> e funções similares?</p></li>
+<li><p>Explique o que <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> faz em termos dos verbos dplyr que você acabou de aprender. O que o argumento <code>sort</code> faz para a função <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>?</p></li>
 <li>
-<p>Suppose we have the following tiny data frame:</p>
+<p>Suponha que temos o pequeno data frame a seguir:</p>
 <div class="cell">
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span>
@@ -1283,21 +1279,21 @@ magrittr
 </div>
 <ol type="a">
 <li>
-<p>Write down what you think the output will look like, then check if you were correct, and describe what <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> does.</p>
+<p>Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> faz:</p>
 <div class="cell">
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </li>
 <li>
-<p>Write down what you think the output will look like, then check if you were correct, and describe what <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> does. Also comment on how it’s different from the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> in part (a)?</p>
+<p>Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> faz. Comente também a respeito da diferença em relação ao <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> da parte (a):</p>
 <div class="cell">
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </li>
 <li>
-<p>Write down what you think the output will look like, then check if you were correct, and describe what the pipeline does.</p>
+<p>Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que o seguinte pipeline faz:</p>
 <div class="cell">
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1305,7 +1301,7 @@ magrittr
 </div>
 </li>
 <li>
-<p>Write down what you think the output will look like, then check if you were correct, and describe what the pipeline does. Then, comment on what the message says.</p>
+<p>Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que o seguinte pipeline faz. Em seguida, comente sobre o que a mensagem diz:</p>
 <div class="cell">
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">z</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1313,7 +1309,7 @@ magrittr
 </div>
 </li>
 <li>
-<p>Write down what you think the output will look like, then check if you were correct, and describe what the pipeline does. How is the output different from the one in part (d).</p>
+<p>Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que o seguinte pipeline faz. Como a saída difere da saída da parte (d):</p>
 <div class="cell">
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">z</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1321,7 +1317,7 @@ magrittr
 </div>
 </li>
 <li>
-<p>Write down what you think the outputs will look like, then check if you were correct, and describe what each pipeline does. How are the outputs of the two pipelines different?</p>
+<p>Escreva como você acha que será a saída, e em seguida confira se acertou e descreva o que cada pipeline faz: Em que os dois pipelines diferem?</p>
 <div class="cell">
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">z</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1335,8 +1331,8 @@ magrittr
 </ol>
 </li>
 </ol></section></section><section id="sec-sample-size" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="sec-sample-size">
-<span class="header-section-number">3.6</span> Case study: aggregates and sample size</h2>
-<p>Whenever you do any aggregation, it’s always a good idea to include a count (<code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>). That way, you can ensure that you’re not drawing conclusions based on very small amounts of data. We’ll demonstrate this with some baseball data from the <strong>Lahman</strong> package. Specifically, we will compare what proportion of times a player gets a hit (<code>H</code>) vs.&nbsp;the number of times they try to put the ball in play (<code>AB</code>):</p>
+<span class="header-section-number">3.6</span> Caso de estudo: agregados e tamanho de amostra</h2>
+<p>Sempre que você fizer alguma agregação, é sempre uma boa ideia incluir a contagem (<code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>). Dessa foma, você pode se certificar que não está tirando conclusões baseadas em pequenas quantidades de dados. Vamos demonstrar isso com alguns dados de baseball do pacote <strong>Lahman</strong>. Especificamente, iremos comparar qual a proporção de vezes um jogador acertou a bola (<em>“hit”</em>) (<code>H</code>) vs.&nbsp;o número de vezes que ele tentou colocar a bola em jogo (<code>AB</code>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">batters</span> <span class="op">&lt;-</span> <span class="fu">Lahman</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/Lahman/man/Batting.html">Batting</a></span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">playerID</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1356,10 +1352,10 @@ magrittr
 <span><span class="co">#&gt; 6 abadfe01       0.111      9</span></span>
 <span><span class="co">#&gt; # ℹ 20,463 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>When we plot the skill of the batter (measured by the batting average, <code>performance</code>) against the number of opportunities to hit the ball (measured by times at bat, <code>n</code>), you see two patterns:</p>
+<p>Quando montamos um gráfico da habilidade dos rebatedores (medidas pela média de acerto, <code>performance</code>) contra o número de oportunidades de acertar a bola (medidas pela númer de vezes ao bastão, <code>n</code>), é possível ver dois padrões:</p>
 <ol type="1">
-<li><p>The variation in <code>performance</code> is larger among players with fewer at-bats. The shape of this plot is very characteristic: whenever you plot a mean (or other summary statistics) vs.&nbsp;group size, you’ll see that the variation decreases as the sample size increases<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p></li>
-<li><p>There’s a positive correlation between skill (<code>performance</code>) and opportunities to hit the ball (<code>n</code>) because teams want to give their best batters the most opportunities to hit the ball.</p></li>
+<li><p>A variação em <code>performance</code> é maior entre os jogadores que foram menos vezes ao bastão. A forma do gráfico é muito característica: sempre que você projetar no gráfico uma média (ou alguma outra sumarização estatística) vs.&nbsp;tamanho do grupo, você verá que a variação diminui à medida que o tamanho da amostra aumenta<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p></li>
+<li><p>Existe uma correlação positiva entre a habilidade (<code>performance</code>) e as oportunidades de acertar a bola (<code>n</code>), pois os times querem dar aos melhores jogadores o maior número de oportunidades de acertar a bola.</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">batters</span> <span class="op">|&gt;</span> </span>
@@ -1369,13 +1365,13 @@ magrittr
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="data-transform_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" alt="A scatterplot of number of batting performance vs. batting opportunites overlaid with a smoothed line. Average performance increases sharply from 0.2 at when n is 1 to 0.25 when n is ~1000. Average performance continues to increase linearly at a much shallower slope reaching ~0.3 when n is ~15,000." width="576"></p>
+<figure class="figure"><p><img src="data-transform_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" alt="Um gráfico de dispersão do performance de rebatidas vs. oportunidades de rebatidas sobrepostas por uma linha suavizada. Performance média cresce agudamente a partir de 0.2 quando n é 1 até 0.25 quando n é ~1000. Performance média continua crescendo linearmente em uma inclinação muito mais suave atingindo ~0.3 quando n é ~15,000." width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Note the handy pattern for combining ggplot2 and dplyr. You just have to remember to switch from <code>|&gt;</code>, for dataset processing, to <code>+</code> for adding layers to your plot.</p>
-<p>This also has important implications for ranking. If you naively sort on <code>desc(performance)</code>, the people with the best batting averages are clearly the ones who tried to put the ball in play very few times and happened to get a hit, they’re not necessarily the most skilled players:</p>
+<p>Perceba o padrão conveniente de combinar ggplot2 e dplyr. Você só precisa lembrar de mudar do <code>|&gt;</code>, para processamento do conjunto de dados, para o <code>+</code> para adicionar camadas ao seu gráfico.</p>
+<p>Isso também tem implicações importantes para ranqueamento. Se você simplesmente ordenar com <code>desc(performance)</code>, as pessoas com as melhoras médias de rebatidas serão claramente aquelas que tentaram botar a bola em jogo apenas algumas poucas vezes mas calhou de acertarem, esses não são necessariamente os jogadores mais hábeis:</p>
 <div class="cell">
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">batters</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">performance</span><span class="op">)</span><span class="op">)</span></span>
@@ -1390,19 +1386,22 @@ magrittr
 <span><span class="co">#&gt; 6 birasst01           1     2</span></span>
 <span><span class="co">#&gt; # ℹ 20,463 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can find a good explanation of this problem and how to overcome it at <a href="http://varianceexplained.org/r/empirical_bayes_baseball/" class="uri">http://varianceexplained.org/r/empirical_bayes_baseball/</a> and <a href="https://www.evanmiller.org/how-not-to-sort-by-average-rating.html" class="uri">https://www.evanmiller.org/how-not-to-sort-by-average-rating.html</a>.</p>
-</section><section id="summary" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">3.7</span> Summary</h2>
-<p>In this chapter, you’ve learned the tools that dplyr provides for working with data frames. The tools are roughly grouped into three categories: those that manipulate the rows (like <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, those that manipulate the columns (like <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>), and those that manipulate groups (like <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>). In this chapter, we’ve focused on these “whole data frame” tools, but you haven’t yet learned much about what you can do with the individual variable. We’ll come back to that in the Transform part of the book, where each chapter will give you tools for a specific type of variable.</p>
-<p>In the next chapter, we’ll pivot back to workflow to discuss the importance of code style, keeping your code well organized in order to make it easy for you and others to read and understand your code.</p>
+<p>Você pode achar uma boa explicação sobre esse problema e como resolvê-lo em <a href="http://varianceexplained.org/r/empirical_bayes_baseball/" class="uri">http://varianceexplained.org/r/empirical_bayes_baseball/</a> e <a href="https://www.evanmiller.org/how-not-to-sort-by-average-rating.html" class="uri">https://www.evanmiller.org/how-not-to-sort-by-average-rating.html</a>.</p>
+</section><section id="resumo" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="resumo">
+<span class="header-section-number">3.7</span> Resumo</h2>
+<p>Nesse capítulo, você aprendeu a usar as ferramentas que o pacote dplyr fornece para trabalhar com data frames.</p>
+<p>Podemos considerar que elas estão agrupadas em três categorias: as que manipulam as linhas (como <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, as que manipulam colunas (como <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>), e aquelas que manipulam grupos (como <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>). Nesse capítulo, nós focamos nas ferramentas que trabalham “no data frame como um todo”, mas você ainda não aprendeu muito sobre o que é possível fazer com uma variável individualmente. Nós voltaremos para essa assunto na parte do livro sobre Transformações, onde cada capítulo vai te mostrar ferramentas para cada tipo específico de variáveis.</p>
+<p>No próximo capítulo, voltaremos ao fluxo de trabalho para discutir sobre a importância do estilo de código, mantendo seu código bem organizado facilitando que você e outros leiam e entendam.</p>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>Later, you’ll learn about the <code>slice_*()</code> family which allows you to choose rows based on their positions.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Remember that in RStudio, the easiest way to see a dataset with many columns is <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Or <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, if you prefer British English.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>*cough* the law of large numbers *cough*.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>de <em>double precision floating number</em> - remete à forma como números reais são representados nos computadores, utilizando 64 bits em vez dos tradicionais 32 bits de um inteiro comum, por isso “double” (dobro).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Depos você irá aprender sobre a família de funções <code>slice_*()</code> que permite escolher linhas com base em suas posições.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>no hemisfério norte<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Lembre-se que no RStudio, o jeito mais fácil de visualizar um conjunto de dados com muitas colunas é <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Ou <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, se você preferir o inglês britânico.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>*cof-cof* a lei dos grandes números *cof-cof*.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
