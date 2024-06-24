@@ -1,4 +1,4 @@
-# Hierarchical data {#sec-rectangling}
+# Dado hierárquico {#sec-rectangling}
 
 ```{r}
 #| echo: false
@@ -8,20 +8,20 @@ source("_common.R")
 mensagem_capitulo_sem_traducao()
 ```
 
-## Introduction
+## Introdução
 
-In this chapter, you'll learn the art of data **rectangling**: taking data that is fundamentally hierarchical, or tree-like, and converting it into a rectangular data frame made up of rows and columns.
-This is important because hierarchical data is surprisingly common, especially when working with data that comes from the web.
+Neste capítulo, você aprenderá a arte da **representação retangular** dos dados (*rectangling*): pegar um dado que é fundamentalmente hierárquico ou baseado em uma estrutura de árvore (*tree-like*) e convertê-lo em um *data frame* retangular, composto por linhas e colunas.
+Isto é importante porque dados hierárquicos são surpreendentemente comuns, especialmente quando se trabalha com dados vindos da web.
 
-To learn about rectangling, you'll need to first learn about lists, the data structure that makes hierarchical data possible.
-Then you'll learn about two crucial tidyr functions: `tidyr::unnest_longer()` and `tidyr::unnest_wider()`.
-We'll then show you a few case studies, applying these simple functions again and again to solve real problems.
-We'll finish off by talking about JSON, the most frequent source of hierarchical datasets and a common format for data exchange on the web.
+Para aprender sobre representação retangular, você precisa aprender primeiro sobre listas, que são estruturas de dados que tornam os dados hierárquicos possíveis.
+Depois, você aprenderá sobre duas funções críticas do tidyr: `tidyr::unnest_longer()` e `tidyr::unnest_wider()`.
+Iremos então mostrar alguns estudos de caso, aplicando estas funções simples diversas vezes para resolver problemas reais.
+Concluiremos falando sobre JSON, a fonte mais frequente de conjuntos de dados hierárquicos e um formato comum para intercambio de dados na web.
 
-### Prerequisites
+### Pré-requisitos
 
-In this chapter, we'll use many functions from tidyr, a core member of the tidyverse.
-We'll also use repurrrsive to provide some interesting datasets for rectangling practice, and we'll finish by using jsonlite to read JSON files into R lists.
+Neste capítulo, usaremos várias funções do tidyr, um componente principal do tidyverse.
+Usaremos também o pacote repurrrsive para nos fornecer alguns conjuntos de dados interessantes para praticar a representação retangular e concluiremos usando o pacote jsonlite para importar arquivos JSON para o R como listas.
 
 ```{r}
 #| label: setup
@@ -32,46 +32,46 @@ library(repurrrsive)
 library(jsonlite)
 ```
 
-## Lists
+## Listas
 
-So far you've worked with data frames that contain simple vectors like integers, numbers, characters, date-times, and factors.
-These vectors are simple because they're homogeneous: every element is of the same data type.
-If you want to store elements of different types in the same vector, you'll need a **list**, which you create with `list()`:
+Até agora você trabalhou com *data frames* que continham vetores simples como inteiros, números, caracteres, data_hora e fatores.
+Estes vetores são tidos como simples pois são homogêneos: cada elemento tem o mesmo tipo de dado.
+Se você quiser armazenar elementos de diferentes tipos no mesmo vetor, você precisará de uma **lista**, que pode ser criada com a função `list()`:
 
 ```{r}
 x1 <- list(1:4, "a", TRUE)
 x1
 ```
 
-It's often convenient to name the components, or **children**, of a list, which you can do in the same way as naming the columns of a tibble:
+Em geral, é conveniente nomear os componentes ou **elementos** de uma lista, o que pode ser feito da mesma forma que nomeamos colunas de um *tibble*:
 
 ```{r}
 x2 <- list(a = 1:2, b = 1:3, c = 1:4)
 x2
 ```
 
-Even for these very simple lists, printing takes up quite a lot of space.
-A useful alternative is `str()`, which generates a compact display of the **str**ucture, de-emphasizing the contents:
+Até para estas listas simples, é necessário um espaço razoável para exibi-las no Console.
+Uma alternativa é usar `str()`, que gera uma visualização compacta da e**str**utura, tirando o foco de seu contéudo:
 
 ```{r}
 str(x1)
 str(x2)
 ```
 
-As you can see, `str()` displays each child of the list on its own line.
-It displays the name, if present, then an abbreviation of the type, then the first few values.
+Como você pode ver, `str()` mostra cada elemento da lista em uma linha própria.
+Esta função mostra o nome, quando presente, seguido de uma abreviação do tipo e então os primeiros valores.
 
-### Hierarchy
+### Hierarquia
 
-Lists can contain any type of object, including other lists.
-This makes them suitable for representing hierarchical (tree-like) structures:
+Listas podem conter qualquer tipo de objeto, incluindo outras listas.
+Isto as tornam adequadas para representar estruturas hierárquicas (*tree-like*):
 
 ```{r}
 x3 <- list(list(1, 2), list(3, 4))
 str(x3)
 ```
 
-This is notably different to `c()`, which generates a flat vector:
+Isto é notoriamente diferente de `c()`, que gera um vetor achatado (*flat*):
 
 ```{r}
 c(c(1, 2), c(3, 4))
@@ -80,28 +80,28 @@ x4 <- c(list(1, 2), list(3, 4))
 str(x4)
 ```
 
-As lists get more complex, `str()` gets more useful, as it lets you see the hierarchy at a glance:
+Conforme as listas se tornam mais complexas, `str()` se torna mais útil, pois permite que você veja a hierarquia rapidamente:
 
 ```{r}
 x5 <- list(1, list(2, list(3, list(4, list(5)))))
 str(x5)
 ```
 
-As lists get even larger and more complex, `str()` eventually starts to fail, and you'll need to switch to `View()`[^rectangling-1].
-@fig-view-collapsed shows the result of calling `View(x5)`. The viewer starts by showing just the top level of the list, but you can interactively expand any of the components to see more, as in @fig-view-expand-1. RStudio will also show you the code you need to access that element, as in @fig-view-expand-2. We'll come back to how this code works in @sec-subset-one.
+Conforme as listas aumentam ainda mais e se tornam ainda mais complexas, `str()` pode começar a deixar de ser útil e você precisará mudar para a `View()`[^rectangling-1].
+A @fig-view-collapsed mostra o resultado da chamada de `View(x5)`. O visualizador começa mostrando o nível mais alto da lista, mas você pode expandir interativamente qualquer componente para ver mais, como na @fig-view-expand-1. O RStudio também lhe mostra o código que você precisaria para acessar aquele elemento, como na @fig-view-expand-2. Retornaremos a como este código funciona na @sec-subset-one.
 
-[^rectangling-1]: This is an RStudio feature.
+[^rectangling-1]: Esta é uma funcionalidade do RStudio.
 
 ```{r}
 #| label: fig-view-collapsed
 #| fig.cap: >
-#|   The RStudio view lets you interactively explore a complex list.  
-#|   The viewer opens showing only the top level of the list.
+#|   A visualização do RStudio permite que você explore interativamente listas complexas.  
+#|   O visualizador inicia mostrando apenas os primeiros níveis da lista.
 #| fig.alt: >
-#|   A screenshot of RStudio showing the list-viewer. It shows the
-#|   two children of x5: the first child is a double vector and the
-#|   second child is a list. A rightward facing triable indicates that the
-#|   second child itself has children but you can't see them.
+#|   Uma captura de tela do RStudio mostrando o visualizador de listas. Mostra os
+#|   dois componentes filhos de x5: o primeiro elemento é um vetor *double* e
+#|   o segundo é uma lista. Um triangulo apontando para a direita indica que
+#|   o segundo elemento possue em si elementos filhos mas que você não consegue ver.
 #| echo: false
 #| out-width: NULL
 knitr::include_graphics("screenshots/View-1.png", dpi = 220)
@@ -110,12 +110,12 @@ knitr::include_graphics("screenshots/View-1.png", dpi = 220)
 ```{r}
 #| label: fig-view-expand-1
 #| fig.cap: >
-#|   Clicking on the rightward facing triangle expands that component
-#|   of the list so that you can also see its children.
+#|   Clicando no triangulo  apontado para a direita, o elemento de lista se expande 
+#|   e então você pode ver seus elementos filhos.
 #| fig.alt: >
-#|   Another screenshot of the list-viewer having expand the second
-#|   child of x5. It also has two children, a double vector and another
-#|   list.
+#|   Outra captura de tela do visualizador de listas com os elements do segundo elemento de
+#|   x5. Ele também tem dois filhos, um vetor *double* e outra
+#|   lista.
 #| echo: false
 #| out-width: NULL
 knitr::include_graphics("screenshots/View-2.png", dpi = 220)
@@ -124,13 +124,13 @@ knitr::include_graphics("screenshots/View-2.png", dpi = 220)
 ```{r}
 #| label: fig-view-expand-2
 #| fig.cap: >
-#|   You can repeat this operation as many times as needed to get to the 
-#|   data you're interested in. Note the bottom-left corner: if you click
-#|   an element of the list, RStudio will give you the subsetting code
-#|   needed to access it, in this case `x5[[2]][[2]][[2]]`.
+#|   Você pode repetir esta operação quantas vezes quiser até 
+#|   chegar aos dados desejados. Note no canto inferior esquerdo: se você clicar
+#|   em um elemento da lista, o RStudio lhe fornece o código necessário para acessar tal elemento
+#|   neste caso `x5[[2]][[2]][[2]]`.
 #| fig.alt: >
-#|   Another screenshot, having expanded the grandchild of x5 to see its
-#|   two children, again a double vector and a list.
+#|   Outra captura de tela com o elemento neto de x5 expandido
+#|   para ver seus dois filhos, novamente um vetor *double* e uma lista.
 #| echo: false
 #| out-width: NULL
 knitr::include_graphics("screenshots/View-3.png", dpi = 220)
@@ -138,11 +138,11 @@ knitr::include_graphics("screenshots/View-3.png", dpi = 220)
 
 ### List-columns
 
-Lists can also live inside a tibble, where we call them list-columns.
-List-columns are useful because they allow you to place objects in a tibble that wouldn't usually belong in there.
-In particular, list-columns are used a lot in the [tidymodels](https://www.tidymodels.org) ecosystem, because they allow you to store things like model outputs or resamples in a data frame.
+Listas também podem estar presentes em um *tibble*, quando isto acontece as chamamos de colunas-lista (*list-columns*).
+*List-columns* são úteis porque elas permitem que você coloque objetos em um *tibble* que normalmente não pertenceriam a ele.
+Em particular, *list-columns* são muito usadas no ecosistema [tidymodels](https://www.tidymodels.org), pois permitem que você armazene coisas como saída de modelos ou amostras (*resamples*) em um *data frame*.
 
-Here's a simple example of a list-column:
+Aqui está um simples exemplo de uma *list-column*:
 
 ```{r}
 df <- tibble(
@@ -153,30 +153,30 @@ df <- tibble(
 df
 ```
 
-There's nothing special about lists in a tibble; they behave like any other column:
+Não há nada de especial nesta lista dentro de um *tibble*; se comportando como qualquer outra coluna:
 
 ```{r}
 df |> 
   filter(x == 1)
 ```
 
-Computing with list-columns is harder, but that's because computing with lists is harder in general; we'll come back to that in @sec-iteration.
-In this chapter, we'll focus on unnesting list-columns out into regular variables so you can use your existing tools on them.
+Trabalhar com *list-column* é mais difícil, mas isto se dá porque trabalhar com listas é difícil de modo geral; voltaremos a este assunto no @sec-iteration.
+Neste capítulo, nos concetraremos em desaninhar (*unnest*) as colunas-lista em variáveis regulares para que você possa usar tuas ferramentas já existentes nelas.
 
-The default print method just displays a rough summary of the contents.
-The list column could be arbitrarily complex, so there's no good way to print it.
-If you want to see it, you'll need to pull out just the one list-column and apply one of the techniques that you've learned above, like `df |> pull(z) |> str()` or `df |> pull(z) |> View()`.
+O método de exibição padrão é um resumo grosseiro de seus conteúdos.
+A *list-column* poderia ser arbitrariamente complexa, portanto não há um jeito fácil de exibi-las ("printa-las").
+Se quiser visualizá-la, você precisará extrair apenas a *list-column* em questão e aplicar uma das técnicas que aprendeu acima, como `df |> pull(z) |> str()` ou `df |> pull(z) |> View()`.
 
 ::: callout-note
-## Base R
+## R base
 
-It's possible to put a list in a column of a `data.frame`, but it's a lot fiddlier because `data.frame()` treats a list as a list of columns:
+É possível colocar uma lista em uma coluna de um *data frame*, mas é muito mais complicado, porque `data.frame()` trata uma lista como uma *list-column*:
 
 ```{r}
 data.frame(x = list(1:3, 3:5))
 ```
 
-You can force `data.frame()` to treat a list as a list of rows by wrapping it in list `I()`, but the result doesn't print particularly well:
+Você pode forçar `data.frame()` a tratar uma lista como uma lista de linhas envolvendo-a com a função `I()`, mas o resultado não gera uma exibição muito boa:
 
 ```{r}
 data.frame(
@@ -185,18 +185,18 @@ data.frame(
 )
 ```
 
-It's easier to use list-columns with tibbles because `tibble()` treats lists like vectors and the print method has been designed with lists in mind.
+É mais fácil usar *list-columns* com *tibbles*, pois a função `tibble()` trata listas como vetores e o método de impressão exibição foi projetado tendo listas em mente.
 :::
 
-## Unnesting
+## Desaninhando (*unnesting*)
 
-Now that you've learned the basics of lists and list-columns, let's explore how you can turn them back into regular rows and columns.
-Here we'll use very simple sample data so you can get the basic idea; in the next section we'll switch to real data.
+Agora que você aprendeu o básico sobre listas e *list-columns*, vamos explorar como você pode transformá-las novamente em linhas e colunas regulares.
+Aqui usaremos uma amostra de dados simples para que você entenda a ideia básica; na próxima seção mudaremos para dados reais.
 
-List-columns tend to come in two basic forms: named and unnamed.
-When the children are **named**, they tend to have the same names in every row.
-For example, in `df1`, every element of list-column `y` has two elements named `a` and `b`.
-Named list-columns naturally unnest into columns: each named element becomes a new named column.
+*List-columns* tendem a aparecer em duas formas básicas: nomeadas (*named*) e não nomeadas (*unnamed*).
+Quando os elementos filhos são **nomeados**, eles tendem a ter o mesmo nome em todas as linhas.
+Por exemplo, em `df1`, cada elemento da *list-column* `y` tem dois elementos nomeados `a` e `b`.
+*List-columns* nomeadas naturalmente se desaninham em colunas: cada elemento nomeado se torna uma nova coluna nomeada.
 
 ```{r}
 df1 <- tribble(
@@ -207,9 +207,9 @@ df1 <- tribble(
 )
 ```
 
-When the children are **unnamed**, the number of elements tends to vary from row-to-row.
-For example, in `df2`, the elements of list-column `y` are unnamed and vary in length from one to three.
-Unnamed list-columns naturally unnest into rows: you'll get one row for each child.
+Quando os elementos filhos são **não nomeados**, o número de elementos tendem a variar de linha para linha.
+Por exemplo, em `df2`, os elementos da *list-column* `y` são não nomeados e variam em tamanhos de um até três.
+*List-columns* não nomeadas se desaninham naturalmente em linhas: você terá uma linha para cada elemento filho.
 
 ```{r}
 
@@ -221,20 +221,20 @@ df2 <- tribble(
 )
 ```
 
-tidyr provides two functions for these two cases: `unnest_wider()` and `unnest_longer()`.
-The following sections explain how they work.
+tidyr fornece duas funções para estes dois casos: `unnest_wider()` e `unnest_longer()`.
+As seções seguintes explicam como elas funcionam.
 
 ### `unnest_wider()`
 
-When each row has the same number of elements with the same names, like `df1`, it's natural to put each component into its own column with `unnest_wider()`:
+Quado cada linha tem o mesmo número de elementos com o mesmo nome, como em `df1`, é natural colocar cada elemento em sua própria coluna com `unnest_wider()`:
 
 ```{r}
 df1 |> 
   unnest_wider(y)
 ```
 
-By default, the names of the new columns come exclusively from the names of the list elements, but you can use the `names_sep` argument to request that they combine the column name and the element name.
-This is useful for disambiguating repeated names.
+Por padrão, os nomes das novas colunas vem exclusivamente dos nomes dos elementos da lista, mas você pode usar o argumento `names_sep` para solicitar que o nome da coluna seja combinado com o nome do elemento.
+Isto é útil para remover ambiguidades de nomes repetidos.
 
 ```{r}
 df1 |> 
@@ -243,15 +243,15 @@ df1 |>
 
 ### `unnest_longer()`
 
-When each row contains an unnamed list, it's most natural to put each element into its own row with `unnest_longer()`:
+Quando cada linha contiver uma lista não nomeada, é mais natural colocar cada elemento em sua própria linha com `unnest_longer()`:
 
 ```{r}
 df2 |> 
   unnest_longer(y)
 ```
 
-Note how `x` is duplicated for each element inside of `y`: we get one row of output for each element inside the list-column.
-But what happens if one of the elements is empty, as in the following example?
+Note como `x` está duplicado para cada elemento dentro de `y`: temos uma linha de saída para cada elemento dentro da *list-column*.
+Mas o que acontece se algum dos elementos estiver vazio, como no exemplo a seguir?
 
 ```{r}
 df6 <- tribble(
@@ -263,13 +263,13 @@ df6 <- tribble(
 df6 |> unnest_longer(y)
 ```
 
-We get zero rows in the output, so the row effectively disappears.
-If you want to preserve that row, adding `NA` in `y`, set `keep_empty = TRUE`.
+Temos zero linhas na saída, portanto a linha efetivamente desaparece.
+Se quiser preservar esta linha, adicionando `NA` em `y`, defina `keep_empty = TRUE`.
 
-### Inconsistent types
+### Tipos inconsistentes
 
-What happens if you unnest a list-column that contains different types of vector?
-For example, take the following dataset where the list-column `y` contains two numbers, a character, and a logical, which can't normally be mixed in a single column.
+O que acontece se você desaninhar uma *list-column* que contém diferentes tipos de vetores?
+Por exemplo, veja o seguinte conjunto de dados onde a *list-column* `y` contém dois números, um caractere e um lógico, a qual você normalmente não pode juntar em uma única coluna.
 
 ```{r}
 df4 <- tribble(
@@ -279,46 +279,46 @@ df4 <- tribble(
 )
 ```
 
-`unnest_longer()` always keeps the set of columns unchanged, while changing the number of rows.
-So what happens?
-How does `unnest_longer()` produce five rows while keeping everything in `y`?
+`unnest_longer()` sempre mantém o conjunto de colunas inmutável, enquanto muda o número de linhas.
+Então, o que acontece?
+Como que `unnest_longer()` produz cinco linhas e ao mesmo tempo mantém tudo em `y`?
 
 ```{r}
 df4 |> 
   unnest_longer(y)
 ```
 
-As you can see, the output contains a list-column, but every element of the list-column contains a single element.
-Because `unnest_longer()` can't find a common type of vector, it keeps the original types in a list-column.
-You might wonder if this breaks the commandment that every element of a column must be the same type.
-It doesn't: every element is a list, even though the contents are of different types.
+Como você pode ver, a saída contém uma *list-column*, mas cada elemento da *list-column* contém um único elemento.
+Como `unnest_longer()` não pode encontrar um tipo de vetor comum, ela mantém os tipos originais em uma *list-column*.
+Você pode estar se perguntando se isso viola o mandamento de que cada elemento de uma coluna deve ser do mesmo tipo.
+Não: cada elemento é uma lista, mesmo que o conteúdo seja de tipos diferentes.
 
-Dealing with inconsistent types is challenging and the details depend on the precise nature of the problem and your goals, but you'll most likely need tools from @sec-iteration.
+Lidar com tipos inconsistentes é desafiador e os detalhes dependem da natureza precisa do problema e dos seus objetivos, mas você provavelmente precisará de ferramentas do @sec-iteration.
 
-### Other functions
+### Outras funções
 
-tidyr has a few other useful rectangling functions that we're not going to cover in this book:
+O tidyr tem algumas outras funções de representação retangular que não iremos cobrir neste livro:
 
--   `unnest_auto()` automatically picks between `unnest_longer()` and `unnest_wider()` based on the structure of the list-column. It's great for rapid exploration, but ultimately it's a bad idea because it doesn't force you to understand how your data is structured, and makes your code harder to understand.
--   `unnest()` expands both rows and columns. It's useful when you have a list-column that contains a 2d structure like a data frame, which you don't see in this book, but you might encounter if you use the [tidymodels](https://www.tmwr.org/base-r.html#combining-base-r-models-and-the-tidyverse) ecosystem.
+-   `unnest_auto()` automaticamente escolhe entre `unnest_longer()` e `unnest_wider()` baseado na estrutura da *list-column*. Esta função é ótima para uma exploração rápida, mas no fim das contas é uma má ideia pois não força você a entender como seus dados estão estruturados e torna teu código mais difícil de entender.
+-   `unnest()` expande tanto linhas quanto colunas. É muito poderosa quando você tem uma *list-column* que contém uma estrutura 2d como um *data frame*, algo que você não verá neste livro, mas você deve encontrar se usar o ecosistema [tidymodels](https://www.tmwr.org/base-r.html#combining-base-r-models-and-the-tidyverse).
 
-These functions are good to know about as you might encounter them when reading other people's code or tackling rarer rectangling challenges yourself.
+É bom conhecer estas funções pois você pode encontrá-las em códigos de outras pessoas ou enfrentar você mesmo desafios mais raros de representação retangular.
 
-### Exercises
+### Exercícios
 
-1.  What happens when you use `unnest_wider()` with unnamed list-columns like `df2`?
-    What argument is now necessary?
-    What happens to missing values?
+1.  O que acontece quando você utiliza `unnest_wider()` com *list-columns* não nomeadas como em `df2`?
+    Qual argumento é necessário agora?
+    O que acontece com valores faltantes (*missing*)?
 
-2.  What happens when you use `unnest_longer()` with named list-columns like `df1`?
-    What additional information do you get in the output?
-    How can you suppress that extra detail?
+2.  O que acontece quando você utiliza `unnest_longer()` com *list-columns* nomeadas como em `df1`?
+    Qual informação adicional você recebe na saída?
+    Como você pode suprimir estes detalhes extras?
 
-3.  From time-to-time you encounter data frames with multiple list-columns with aligned values.
-    For example, in the following data frame, the values of `y` and `z` are aligned (i.e. `y` and `z` will always have the same length within a row, and the first value of `y` corresponds to the first value of `z`).
-    What happens if you apply two `unnest_longer()` calls to this data frame?
-    How can you preserve the relationship between `x` and `y`?
-    (Hint: carefully read the docs).
+3.  De tempos em tempos, você encontra *data frames* com várias *list-columns* com valores alinhados.
+    Por exemplo, no *data frame* seguinte, os valores de `y`e `z` estão alinhados (ex: `y` e `z` sempre terão o mesmo tamanho dentro de uma linha e o primeiro valor de `y` corresponde ao primeiro valor de `z`).
+    O que acontece quando você executa a função `unnest_longer()` duas vezes neste *data frame*?
+    Como você pode preservar a relação entre `x` e `y`?
+    (Dica: leia atentamente a documentação).
 
     ```{r}
     df4 <- tribble(
@@ -328,35 +328,35 @@ These functions are good to know about as you might encounter them when reading 
     )
     ```
 
-## Case studies
+## Estudos de casos
 
-The main difference between the simple examples we used above and real data is that real data typically contains multiple levels of nesting that require multiple calls to `unnest_longer()` and/or `unnest_wider()`.
-To show that in action, this section works through three real rectangling challenges using datasets from the repurrrsive package.
+A principal diferença entre os exemplos simples que usamos acima e o de dados reais, é que os dados reais tipicamente contém vários níveis de aninhamento (*nesting*) que requerem o uso consecutivo de `unnest_longer()` e/ou `unnest_wider()`.
+Para mostrar isto em ação, esta seção faz uso de três desafios de representação retangular, usando conjunto de dados do pacote repurrrsive.
 
-### Very wide data
+### Dados bem largos (*wide data*)
 
-We'll start with `gh_repos`.
-This is a list that contains data about a collection of GitHub repositories retrieved using the GitHub API. It's a very deeply nested list so it's difficult to show the structure in this book; we recommend exploring a little on your own with `View(gh_repos)` before we continue.
+Começaremos com `gh_repos`.
+Esta é uma lista que contém dados de uma coleção de repositórios do GitHub obtidos usando a API do GitHub. É uma lista aninhada em vários níveis, por isso é difícil de mostrar sua estrutura neste livro; nós recomendamos que você a explore por conta própria usando `View(gh_repos)` antes de continuar.
 
-`gh_repos` is a list, but our tools work with list-columns, so we'll begin by putting it into a tibble.
-We call this column `json` for reasons we'll get to later.
+`gh_repos` é uma lista, mas nossas ferramentas trabalham com *list-columns*, então iremos começar colocando-a em um *tibble*.
+Chamaremos esta coluna de `json` por razões que veremos mais tarde.
 
 ```{r}
 repos <- tibble(json = gh_repos)
 repos
 ```
 
-This tibble contains 6 rows, one row for each child of `gh_repos`.
-Each row contains a unnamed list with either 26 or 30 rows.
-Since these are unnamed, we'll start with `unnest_longer()` to put each child in its own row:
+Este *tibble* contém 6 linhas, uma linha para cada elemento filho de `gh_repos`.
+Cada linha contém uma lista não nomeada com 26 ou 30 linhas.
+Como elas são não nomeadas, começaremos com `unnest_longer()` para colocar cada filho em sua própria linha:
 
 ```{r}
 repos |> 
   unnest_longer(json)
 ```
 
-At first glance, it might seem like we haven't improved the situation: while we have more rows (176 instead of 6) each element of `json` is still a list.
-However, there's an important difference: now each element is a **named** list so we can use `unnest_wider()` to put each element into its own column:
+À primeira vista, pode parecer que não melhoramos a situação: apesar de termos mais linhas (176 ao invés de 6), cada elemento de `json` ainda é uma lista.
+Entretando, há uma importante diferença: agora, cada elemento é uma lista **nomeada**, então podemos usar `unnest_wider()` para colocar cada elemento em sua própria coluna:
 
 ```{r}
 repos |> 
@@ -364,8 +364,8 @@ repos |>
   unnest_wider(json) 
 ```
 
-This has worked but the result is a little overwhelming: there are so many columns that tibble doesn't even print all of them!
-We can see them all with `names()`; and here we look at the first 10:
+Isto fucionou, mas o resultado ficou um pouco estranho: Existem tantas colunas que o *tibble* nem exibe todas elas!
+Podemos ver todas as colunas com `names()`; e aqui vemos as primeiras 10:
 
 ```{r}
 repos |> 
@@ -375,7 +375,7 @@ repos |>
   head(10)
 ```
 
-Let's pull out a few that look interesting:
+Vamos extrair algumas que parecem interessantes:
 
 ```{r}
 repos |> 
@@ -384,9 +384,9 @@ repos |>
   select(id, full_name, owner, description)
 ```
 
-You can use this to work back to understand how `gh_repos` was structured: each child was a GitHub user containing a list of up to 30 GitHub repositories that they created.
+Você pode usar isso para entender como o `gh_repos` foi estruturado: cada elemento era um usuário do GitHub contendo uma lista de até 30 repositórios do GitHub que eles criaram.
 
-`owner` is another list-column, and since it contains a named list, we can use `unnest_wider()` to get at the values:
+`owner` é uma outra *list-column*, e uma vez que contém uma lista nomeada, podemos usar `unnest_wider()` para obter seus valores:
 
 ```{r}
 #| error: true
@@ -397,8 +397,8 @@ repos |>
   unnest_wider(owner)
 ```
 
-Uh oh, this list column also contains an `id` column and we can't have two `id` columns in the same data frame.
-As suggested, lets use `names_sep` to resolve the problem:
+Uh uh, esta *list-column* também contém uma coluna `id` e não podemos ter duas colunas `id` no mesmo *data frame*.
+Conforme sugerido, vamos usar `names_sep` para resolver este problema:
 
 ```{r}
 repos |> 
@@ -408,27 +408,27 @@ repos |>
   unnest_wider(owner, names_sep = "_")
 ```
 
-This gives another wide dataset, but you can get the sense that `owner` appears to contain a lot of additional data about the person who "owns" the repository.
+Isto nos dá um outro conjunto de dados largo (*wide*), mas você pode perceber que `owner` (pessoa proprietária) parece conter muitos dados adicionais sobre a pessoa "proprietária" do repositório.
 
-### Relational data
+### Dados relacionais
 
-Nested data is sometimes used to represent data that we'd usually spread across multiple data frames.
-For example, take `got_chars` which contains data about characters that appear in the Game of Thrones books and TV series.
-Like `gh_repos` it's a list, so we start by turning it into a list-column of a tibble:
+Dados aninhados (*nested*) muitas vezes são usados para representar dados que normalmente estariam espalhados por vários *data frames*.
+Por exemplo, veja `got_chars` que contém dados sobre os personagens (*characters*) que aparecem nos livros e série de TV *Game of Thrones*.
+Assim como `gh_repos`, ela também é uma lista, então começamos transformado-a em uma *list-column* de um *tibble*:
 
 ```{r}
 chars <- tibble(json = got_chars)
 chars
 ```
 
-The `json` column contains named elements, so we'll start by widening it:
+A coluna `json` contém elementos nomeados, estão vamos começar alargando-os (*widening*):
 
 ```{r}
 chars |> 
   unnest_wider(json)
 ```
 
-And selecting a few columns to make it easier to read:
+E selecionando algumas colunas para lermos mais facilmente:
 
 ```{r}
 characters <- chars |> 
@@ -437,7 +437,7 @@ characters <- chars |>
 characters
 ```
 
-This dataset contains also many list-columns:
+Este conjunto de dados também contém várias *list-columns*:
 
 ```{r}
 chars |> 
@@ -445,8 +445,8 @@ chars |>
   select(id, where(is.list))
 ```
 
-Let's explore the `titles` column.
-It's an unnamed list-column, so we'll unnest it into rows:
+Vamos explorar a coluna `titles` (títulos).
+É uma *list-column* não nomeada, então desaninharemos em linhas:
 
 ```{r}
 chars |> 
@@ -455,8 +455,8 @@ chars |>
   unnest_longer(titles)
 ```
 
-You might expect to see this data in its own table because it would be easy to join to the characters data as needed.
-Let's do that, which requires little cleaning: removing the rows containing empty strings and renaming `titles` to `title` since each row now only contains a single title.
+Você esperaria ver estes dados em um tabela própria, pois seria mais fácil uní-los com os dados dos personagens conforme necessário.
+Vamos fazer isso, o que requer um pouco de limpeza: removendo as linhas que contém *strings* vazias e renomeando `titles` para `title` já que cada linha agora contém um único título.
 
 ```{r}
 titles <- chars |> 
@@ -468,27 +468,27 @@ titles <- chars |>
 titles
 ```
 
-You could imagine creating a table like this for each of the list-columns, then using joins to combine them with the character data as you need it.
+Você poderia imaginar criar uma tabela como esta para cada *list-column* e então usar uniões (*joins*) para combiná-las com os dados dos personagens conforme você achar necessário.
 
-### Deeply nested
+### Profundamente aninhados (*deeply nested*)
 
-We'll finish off these case studies with a list-column that's very deeply nested and requires repeated rounds of `unnest_wider()` and `unnest_longer()` to unravel: `gmaps_cities`.
-This is a two column tibble containing five city names and the results of using Google's [geocoding API](https://developers.google.com/maps/documentation/geocoding) to determine their location:
+Concluiremos estes estudos de casos com uma *list-column* que é profundamente aninhada e requer repetidas rodadas de `unnest_wider()` e `unnest_longer()` para ser desvendada: `gmaps_cities`.
+Este é um *tibble* de duas colunas contendo cinco nomes de cidades e o resultado da [API de geolocalização](https://developers.google.com/maps/documentation/geocoding) do *Google* para determinar suas localizações:
 
 ```{r}
 gmaps_cities
 ```
 
-`json` is a list-column with internal names, so we start with an `unnest_wider()`:
+`json` é uma *list-column* nomeada, portanto iremos começar com `unnest_wider()`:
 
 ```{r}
 gmaps_cities |> 
   unnest_wider(json)
 ```
 
-This gives us the `status` and the `results`.
-We'll drop the status column since they're all `OK`; in a real analysis, you'd also want to capture all the rows where `status != "OK"` and figure out what went wrong.
-`results` is an unnamed list, with either one or two elements (we'll see why shortly) so we'll unnest it into rows:
+Isto nos retorna `status` e `results`.
+Iremos remover a coluna status já que são todos `OK`; em uma análise real, você também iria capturar todas as linhas onde `status != "OK"` e entender o que deu errado.
+`results` é uma lista não nomeada, com um ou dois elementos (veremos porque em breve), portanto iremos desaninhá-la em linhas:
 
 ```{r}
 gmaps_cities |> 
@@ -497,7 +497,7 @@ gmaps_cities |>
   unnest_longer(results)
 ```
 
-Now `results` is a named list, so we'll use `unnest_wider()`:
+Agora `results` é uma lista nomeada, então usaremos `unnest_wider()`:
 
 ```{r}
 locations <- gmaps_cities |> 
@@ -508,10 +508,10 @@ locations <- gmaps_cities |>
 locations
 ```
 
-Now we can see why two cities got two results: Washington matched both Washington state and Washington, DC, and Arlington matched Arlington, Virginia and Arlington, Texas.
+Agora podemos ver porque duas cidades tinham dois resultados: Washington correspondeu ao estado Washington e Washington, DC e Arlington correspondeu a Arlington, Virginia e Arlington, Texas.
 
-There are a few different places we could go from here.
-We might want to determine the exact location of the match, which is stored in the `geometry` list-column:
+Há vários lugares que podemos ir a partir daqui.
+Poderíamos querer determinar a localização exata da localidade correspondente, a qual é armazenada na *list-column* `geometry`:
 
 ```{r}
 locations |> 
@@ -519,8 +519,8 @@ locations |>
   unnest_wider(geometry)
 ```
 
-That gives us new `bounds` (a rectangular region) and `location` (a point).
-We can unnest `location` to see the latitude (`lat`) and longitude (`lng`):
+Isto nos dá novos `bounds` (uma região retangular) e `location` (um ponto).
+Podemos desaninhar `location` para vermos a latitude (`lat`) e longitude (`lng`):
 
 ```{r}
 locations |> 
@@ -529,18 +529,18 @@ locations |>
   unnest_wider(location)
 ```
 
-Extracting the bounds requires a few more steps:
+Alguns passos adicionais são necessários para extrairmos os *bounds*:
 
 ```{r}
 locations |> 
   select(city, formatted_address, geometry) |> 
   unnest_wider(geometry) |> 
-  # focus on the variables of interest
+  # foco na variável de interesse
   select(!location:viewport) |>
   unnest_wider(bounds)
 ```
 
-We then rename `southwest` and `northeast` (the corners of the rectangle) so we can use `names_sep` to create short but evocative names:
+Então renomeamos `southwest` e `northeast` (os cantos do retângulo) para podermos usar `names_sep` para criar nomes curtos porém com algum significado:
 
 ```{r}
 locations |> 
@@ -552,9 +552,9 @@ locations |>
   unnest_wider(c(ne, sw), names_sep = "_") 
 ```
 
-Note how we unnest two columns simultaneously by supplying a vector of variable names to `unnest_wider()`.
+Veja como desaninhamos duas colunas simultaneamente fornecendo um vetor com os nomes das variáveis para `unnest_wider()`.
 
-Once you've discovered the path to get to the components you're interested in, you can extract them directly using another tidyr function, `hoist()`:
+Uma vez que você descobriu o caminho para os elementos de interesse, você pode extraí-los diretamente usando outra função tidyr, `hoist()`:
 
 ```{r}
 #| results: false
@@ -569,22 +569,22 @@ locations |>
   )
 ```
 
-If these case studies have whetted your appetite for more real-life rectangling, you can see a few more examples in `vignette("rectangling", package = "tidyr")`.
+Se esses estudos de caso aguçaram seu apetite para mais representações retangulares na vida real, você pode ver alguns outros exemplos na `vignette("rectangling", package = "tidyr")`.
 
-### Exercises
+### Exercícios
 
-1.  Roughly estimate when `gh_repos` was created.
-    Why can you only roughly estimate the date?
+1.  Estime aproximadamente quando o `gh_repos` foi criado.
+    Porque você só pode estimar aproximadamente esta data?
 
-2.  The `owner` column of `gh_repo` contains a lot of duplicated information because each owner can have many repos.
-    Can you construct an `owners` data frame that contains one row for each owner?
-    (Hint: does `distinct()` work with `list-cols`?)
+2.  A coluna `owner` do `gh_repo` contém muitas informações duplicadas pois cada pessoa priprietária pode ter vários repositórios.
+    Você consegue contruir um *data frame* `owners` que contém uma linha para cada pessoa proprietária?
+    (Dica: A `distinct()` funciona com `list-cols`?)
 
-3.  Follow the steps used for `titles` to create similar tables for the aliases, allegiances, books, and TV series for the Game of Thrones characters.
+3.  Siga os passos usados em `titles` para criar tabelas similares para *aliases*, *allegiances*, *books* e *TV Series* para os personagens de *Game of Thrones*.
 
-4.  Explain the following code line-by-line.
-    Why is it interesting?
-    Why does it work for `got_chars` but might not work in general?
+4.  Explique o seguinte código linha a linha.
+    Por que este código é interessante?
+    Por que ele funciona para `got_chars` mas pode não funcionar em geral?
 
     ```{r}
     #| results: false
@@ -599,64 +599,64 @@ If these case studies have whetted your appetite for more real-life rectangling,
       unnest_longer(value)
     ```
 
-5.  In `gmaps_cities`, what does `address_components` contain?
-    Why does the length vary between rows?
-    Unnest it appropriately to figure it out.
-    (Hint: `types` always appears to contain two elements. Does `unnest_wider()` make it easier to work with than `unnest_longer()`?)
+5.  No `gmaps_cities`, o que `address_components` contém?
+    Por que o tamanho varia entre as linhas?
+    Desaninhe-o devidamente para entender.
+    (Dica: `types` parece ter sempre dois elementos. O `unnest_wider()` funcionaria mais fácil que o `unnest_longer()`?)
     .
 
 ## JSON
 
-All of the case studies in the previous section were sourced from wild-caught JSON.
-JSON is short for **j**ava**s**cript **o**bject **n**otation and is the way that most web APIs return data.
-It's important to understand it because while JSON and R's data types are pretty similar, there isn't a perfect 1-to-1 mapping, so it's good to understand a bit about JSON if things go wrong.
+Todos os estudos de caso na seção anterior foram originados de JSONs obtidos por aí.
+JSON é abreviação de **j***ava***s***cript* **o***bject* **n***otation* e é a forma que a maioria das APIs da web retornam dados.
+É importante saber que apesar dos tipos de dados JSON e R serem muito similares, não há uma correspondência de mapeamento 1-para-1, portanto é bom entender um pouco sobre JSON caso algo dê errado.
 
-### Data types
+### Tipos de dados
 
-JSON is a simple format designed to be easily read and written by machines, not humans.
-It has six key data types.
-Four of them are scalars:
+JSON é um formato simples projetado para ser lido e escrito por máquinas, não humanos.
+Ele tem seis tipos de dados chaves.
+Quatro deles são escalares:
 
--   The simplest type is a null (`null`) which plays the same role as `NA` in R. It represents the absence of data.
--   A **string** is much like a string in R, but must always use double quotes.
--   A **number** is similar to R's numbers: they can use integer (e.g., 123), decimal (e.g., 123.45), or scientific (e.g., 1.23e3) notation. JSON doesn't support `Inf`, `-Inf`, or `NaN`.
--   A **boolean** is similar to R's `TRUE` and `FALSE`, but uses lowercase `true` and `false`.
+-   O tipo mais simples é o nulo (`null`) que tem o mesmo papel do `NA` no R. Representa ausência de dados.
+-   **string** é muito parecido com *string* no R, porém deve ter sempre aspas duplas.
+-   **number** é similar o *number* do R: podem ser inteiro (e.x., 123), decimal (e.x., 123.45), or notação científica (e.x., 1.23e3). JSON não suporta `Inf`, `-Inf`, ou `NaN`.
+-   **boolean** é similar a `TRUE` e `FALSE` do R, mas usa letras minúsculas `true` e `false`.
 
-JSON's strings, numbers, and booleans are pretty similar to R's character, numeric, and logical vectors.
-The main difference is that JSON's scalars can only represent a single value.
-To represent multiple values you need to use one of the two remaining types: arrays and objects.
+*Strings*, números e booleanos do JSON são muito similares aos vetores de caracteres, numéricos e lógicos do R.
+A principal diferença é que os escalares do JSON podem representar apenas um único valor.
+Para representar valores múltiplos você precisa usar algum dos outros dois tipos: *arrays* e *objects*.
 
-Both arrays and objects are similar to lists in R; the difference is whether or not they're named.
-An **array** is like an unnamed list, and is written with `[]`.
-For example `[1, 2, 3]` is an array containing 3 numbers, and `[null, 1, "string", false]` is an array that contains a null, a number, a string, and a boolean.
-An **object** is like a named list, and is written with `{}`.
-The names (keys in JSON terminology) are strings, so must be surrounded by quotes.
-For example, `{"x": 1, "y": 2}` is an object that maps `x` to 1 and `y` to 2.
+Tanto *arrays* quanto *objects* são similares às listas no R; a diferença é se são nomeados ou não nomeados.
+Um **array** é como uma lista não nomeada e é escrito com `[]`.
+Por exemplo, `[1, 2, 3]` é um *array* contendo 3 números e `[null, 1, "string", false]` é um *array* que contém um nulo, um número, uma *string* e um booleano.
+Um **object** é como uma lista nomeada e é escrito com `{}`.
+Os nomes (chaves na terminologia JSON) são *strings*, portanto devem ter aspas.
+Por exemplo, `{"x": 1, "y": 2}` é um objeto que mapeia 1 para `x` e 2 para `y`.
 
-Note that JSON doesn't have any native way to represent dates or date-times, so they're often stored as strings, and you'll need to use `readr::parse_date()` or `readr::parse_datetime()` to turn them into the correct data structure.
-Similarly, JSON's rules for representing floating point numbers in JSON are a little imprecise, so you'll also sometimes find numbers stored in strings.
-Apply `readr::parse_double()` as needed to get the correct variable type.
+Note que JSON não possui um jeito nativo para representar datas e data_hora (*datetime*), então estes são geralmente armazenados como *strings* e você deverá usar `readr::parse_date()` ou `readr::parse_datetime()` para transformá-los na estrutura de dados correta.
+Da mesma forma, a regras do JSON para representar número com ponto flutuante (*floating points*), são um pouco imprecisas, portanto você também encontrará algumas vezes números armazenados como *strings*.
+Aplique `readr::parse_double()` conforme necessário para obter os tipo correto.
 
 ### jsonlite
 
-To convert JSON into R data structures, we recommend the jsonlite package, by Jeroen Ooms.
-We'll use only two jsonlite functions: `read_json()` and `parse_json()`.
-In real life, you'll use `read_json()` to read a JSON file from disk.
-For example, the repurrsive package also provides the source for `gh_user` as a JSON file and you can read it with `read_json()`:
+Para converter JSON em estruturas de dados do R, recomendamos o pacote jsonlite, de Jeroen Ooms.
+Usaremos apenas duas funções do jsonlite: `read_json()` e `parse_json()`.
+Na vida real, você usará `read_json()` para importar arquivos JSON do disco.
+Por exemplo, o pacote repurrsive também é a fonte do `gh_user` como um arquivo JSON e você pode importá-la com `read_json()`:
 
 ```{r}
-# A path to a json file inside the package:
+# Um caminho para o arquivo JSON dentro do pacote:
 gh_users_json()
 
-# Read it with read_json()
+# Importe com read_json()
 gh_users2 <- read_json(gh_users_json())
 
-# Check it's the same as the data we were using previously
+# Verifique se é o mesmo dado que usamos anteriormente
 identical(gh_users, gh_users2)
 ```
 
-In this book, we'll also use `parse_json()`, since it takes a string containing JSON, which makes it good for generating simple examples.
-To get started, here are three simple JSON datasets, starting with a number, then putting a few numbers in an array, then putting that array in an object:
+Neste livro, usaremos também `parse_json()`, que recebe uma *string* representando um JSON, o que a torna boa para gerar exemplos simples.
+Para começar, aqui estão três simples conjuntos de dados JSON, começando com um número, e então adicionando alguns números em *array* e em seguida adicionando esse *array* em um *object*:
 
 ```{r}
 str(parse_json('1'))
@@ -664,19 +664,19 @@ str(parse_json('[1, 2, 3]'))
 str(parse_json('{"x": [1, 2, 3]}'))
 ```
 
-jsonlite has another important function called `fromJSON()`.
-We don't use it here because it performs automatic simplification (`simplifyVector = TRUE`).
-This often works well, particularly in simple cases, but we think you're better off doing the rectangling yourself so you know exactly what's happening and can more easily handle the most complicated nested structures.
+jsonlite tem uma outra função importante chamada `fromJSON()`.
+Não a usamos aqui, pois efetua uma simplificação automática (`simplifyVector = TRUE`).
+Isto geralmente funciona bem, particularmente em casos simples, mas achamos que é mais vantajoso se fizer você mesmo a representação retangular para que saiba exatamente o que está acontecendo e possa lidar mais facilmente com estruturas aninhadas mais complexas.
 
-### Starting the rectangling process
+### Iniciando o processo de representação retangular
 
-In most cases, JSON files contain a single top-level array, because they're designed to provide data about multiple "things", e.g., multiple pages, or multiple records, or multiple results.
-In this case, you'll start your rectangling with `tibble(json)` so that each element becomes a row:
+Na maioria dos casos, arquivos JSON contém um único *array* de nível mais alto (*top-level*), pois são projetados para prover dados sobre várias "coisas", e.x. várias páginas, ou vários registros, ou vários resultados.
+Neste caso, você comecará sua representação retangular com `tibble(json)` para que cada elemento se torne uma linha:
 
 ```{r}
 json <- '[
-  {"name": "John", "age": 34},
-  {"name": "Susan", "age": 27}
+  {"nome": "John", "idade": 34},
+  {"nome": "Susan", "idade": 27}
 ]'
 df <- tibble(json = parse_json(json))
 df
@@ -685,15 +685,15 @@ df |>
   unnest_wider(json)
 ```
 
-In rarer cases, the JSON file consists of a single top-level JSON object, representing one "thing".
-In this case, you'll need to kick off the rectangling process by wrapping it in a list, before you put it in a tibble.
+Em alguns casos raros, arquivos JSON são constituídos por um único *object* no nível mais alto, representando uma "coisa".
+Neste caso, você precisará iniciar o processo de representação retangular colocando-o em uma lista antes de colocá-lo em um *tibble*.
 
 ```{r}
 json <- '{
   "status": "OK", 
   "results": [
-    {"name": "John", "age": 34},
-    {"name": "Susan", "age": 27}
+    {"nome": "John", "idade": 34},
+    {"nome": "Susan", "idade": 27}
  ]
 }
 '
@@ -706,7 +706,7 @@ df |>
   unnest_wider(results)
 ```
 
-Alternatively, you can reach inside the parsed JSON and start with the bit that you actually care about:
+Alternativamente, você pode acessar o JSON analisado e começar com a parte que realmente lhe interessa:
 
 ```{r}
 df <- tibble(results = parse_json(json)$results)
@@ -714,10 +714,10 @@ df |>
   unnest_wider(results)
 ```
 
-### Exercises
+### Exercícios
 
-1.  Rectangle the `df_col` and `df_row` below.
-    They represent the two ways of encoding a data frame in JSON.
+1.  Represente retangularmente o `df_col` e `df_linha` abaixo.
+    Eles representam duas formas de codificar um *data frame* em JSON.
 
     ```{r}
     json_col <- parse_json('
@@ -726,7 +726,7 @@ df |>
         "y": [10, null, 3]
       }
     ')
-    json_row <- parse_json('
+    json_linha <- parse_json('
       [
         {"x": "a", "y": 10},
         {"x": "x", "y": null},
@@ -735,15 +735,15 @@ df |>
     ')
 
     df_col <- tibble(json = list(json_col)) 
-    df_row <- tibble(json = json_row)
+    df_linha <- tibble(json = json_linha)
     ```
 
-## Summary
+## Resumo
 
-In this chapter, you learned what lists are, how you can generate them from JSON files, and how to turn them into rectangular data frames.
-Surprisingly we only need two new functions: `unnest_longer()` to put list elements into rows and `unnest_wider()` to put list elements into columns.
-It doesn't matter how deeply nested the list-column is; all you need to do is repeatedly call these two functions.
+Neste capítulo, você aprendeu o que são listas, como você pode gerá-las a partir de arquivos JSON e como transformá-las em *data frames* retangulares.
+Surpreendentemente, precisamos de apenas duas funções: `unnest_longer()` para colocar elementos da lista em linhas e `unnest_wider()` para colocar os elementos da lista em colunas.
+Não importa quão profundamente aninhada esteja a *list-column*; tudo que você precisa fazer é chamar repetidamente essas duas funções.
 
-JSON is the most common data format returned by web APIs.
-What happens if the website doesn't have an API, but you can see data you want on the website?
-That's the topic of the next chapter: web scraping, extracting data from HTML webpages.
+JSON é o formato de dados mais comum retornados por APIs web.
+E se o *website* não possuir uma API, mas você puder ver os dados desejados no *website*?
+Este é o tópico do próximo capítulo: Raspagem de dados (*web scraping*), extraindo dados de páginas web HTML.
