@@ -8,289 +8,291 @@ source("_common.R")
 mensagem_capitulo_sem_traducao()
 ```
 
-## Introduction
+## Introdução
 
-So far, you've used a bunch of strings without learning much about the details.
-Now it's time to dive into them, learn what makes strings tick, and master some of the powerful string manipulation tools you have at your disposal.
+Até agora, você utilizou várias cadeias de caracteres (*strings*) sem compreender os detalhes por trás delas.
+Contudo, chegou o momento de explorar as *strings*, compreender o seu funcionamento e dominar algumas das poderosas ferramentas de manipulação de *strings* que estão à sua disposição.
 
-We'll begin with the details of creating strings and character vectors.
-You'll then dive into creating strings from data, then the opposite: extracting strings from data.
-We'll then discuss tools that work with individual letters.
-The chapter finishes with functions that work with individual letters and a brief discussion of where your expectations from English might steer you wrong when working with other languages.
+Vamos iniciar abordando os aspectos envolvidos na criação de *strings* e vetores de caracteres.
+Você aprenderá a gerar *strings* a partir de dados e, em seguida, o inverso: extrair *strings* dos dados.
+Em seguida, discutiremos sobre ferramentas que funcionam com letras individuais.
+Por fim, o capítulo explora funções que lidam com letras individuais e apresenta uma breve discussão sobre como as premissas do inglês podem induzir ao erro ao trabalhar com outros idiomas.
 
-We'll keep working with strings in the next chapter, where you'll learn more about the power of regular expressions.
+No próximo capítulo, continuaremos trabalhando com *strings*, mas você aprenderá mais sobre o poder das expressões regulares.
 
-### Prerequisites
+### Pré-requisitos
 
-In this chapter, we'll use functions from the stringr package, which is part of the core tidyverse.
-We'll also use the babynames data since it provides some fun strings to manipulate.
+Neste capítulo, vamos utilizar funções do pacote stringr, que faz parte do ecossistema do tidyverse.
+Também utilizaremos a base de dados *bebes* do pacote *dados*, pois ela oferece algumas *strings* divertidas para a manipulação.
 
 ```{r}
 #| label: setup
 #| message: false
 
 library(tidyverse)
-library(babynames)
+library(dados)
 ```
 
-You can quickly tell when you're using a stringr function because all stringr functions start with `str_`.
-This is particularly useful if you use RStudio because typing `str_` will trigger autocomplete, allowing you to jog your memory of the available functions.
+Você facilmente reconhecerá quando estiver utilizando uma função do stringr, pois todas as funções do pacote iniciam com `str_`.
+Essa característica é particularmente útil se você estiver utilizando o RStudio, pois a funcionalidade de autocompletar permitirá que você se lembre das funções disponíveis ao digitar str\_.
 
 ```{r}
 #| echo: false
 #| fig-alt: |
-#|   str_c typed into the RStudio console with the autocomplete tooltip shown 
-#|   on top, which lists functions beginning with str_c. The funtion signature 
-#|   and beginning of the man page for the highlighted function from the 
-#|   autocomplete list are shown in a panel to its right.
+#|   Função str_c  digitada no console do RStudio com a ferramenta de preenchimento automático sendo exibida
+#|   ao topo, que lista funções que começam com str_c. O nome 
+#|   e o início da página de manual da função, destacados na lista do preenchimento automático, 
+#|   são exibidos em um painel à sua direita.
 
 knitr::include_graphics("screenshots/stringr-autocomplete.png")
 ```
 
-## Creating a string
+## Criando uma string
 
-We've created strings in passing earlier in the book but didn't discuss the details.
-Firstly, you can create a string using either single quotes (`'`) or double quotes (`"`).
-There's no difference in behavior between the two, so in the interests of consistency, the [tidyverse style guide](https://style.tidyverse.org/syntax.html#character-vectors) recommends using `"`, unless the string contains multiple `"`.
+Em outras seções do livro, nós criamos *strings* de forma rápida, porém não abordamos os detalhes.
+Em primeiro lugar, você pode criar uma *string* utilizando tanto aspas simples (`'`) quanto aspas duplas (`"`).
+Não há qualquer distinção entre as duas formas.
+Entretanto, para uma maior consistência, o [guia de estilo do tidyverse](https://style.tidyverse.org/syntax.html#character-vectors) sugere o uso de `"`, a menos que a *string* contenha múltiplas `"`.
 
 ```{r}
-string1 <- "This is a string"
-string2 <- 'If I want to include a "quote" inside a string, I use single quotes'
+string1 <- "Esta é uma string"
+string2 <- 'Se eu quiser incluir "aspas" em uma string, uso aspas simpes'
 ```
 
-If you forget to close a quote, you'll see `+`, the continuation prompt:
+Caso esqueça de fechar aspas, você verá `+`, o qual indica à continuação do prompt:
 
 ```         
-> "This is a string without a closing quote
+> "Esta é uma string sem fechar aspas
 + 
 + 
-+ HELP I'M STUCK IN A STRING
++ SOCORRO, ESTOU PRESO EM UMA STRING
 ```
 
-If this happens to you and you can't figure out which quote to close, press Escape to cancel and try again.
+Se isso acontecer com você e não conseguir descobrir qual aspas fechar, pressione a tecla *Escape* (*Esc*) para cancelar e tente novamente.
 
-### Escapes
+### Caracteres de escape
 
-To include a literal single or double quote in a string, you can use `\` to "escape" it:
+Para incluir literalmente uma aspas simples ou duplas em uma *string*, você pode utilizar `\` para "escapar" do significado reservado e inserir o caractere de modo literal:
 
 ```{r}
-double_quote <- "\"" # or '"'
-single_quote <- '\'' # or "'"
+aspas_duplas <- "\"" # ou '"'
+aspas_simples <- '\'' # ou "'"
 ```
 
-So if you want to include a literal backslash in your string, you'll need to escape it: `"\\"`:
+Assim, se você desejar incluir uma barra invertida literal em sua *string*, será necessário escapar do significado reservado: `"\\"`:
 
 ```{r}
-backslash <- "\\"
+barra_invertida <- "\\"
 ```
 
-Beware that the printed representation of a string is not the same as the string itself because the printed representation shows the escapes (in other words, when you print a string, you can copy and paste the output to recreate that string).
-To see the raw contents of the string, use `str_view()`[^strings-1]:
+Observe que a representação impressa de uma *string* não é o mesmo que a própria *string*, pois a representação impressa mostra os escapes (em outras palavras, quando você imprime uma *string*, pode copiar e colar a saída para recriar essa *string*).
+Para visualizar o conteúdo bruto da *string*, use `str_view()`[^strings-1]:
 
-[^strings-1]: Or use the base R function `writeLines()`.
+[^strings-1]: Ou use a função base do R `writeLines()`.
 
 ```{r}
-x <- c(single_quote, double_quote, backslash)
+x <- c(aspas_simples, aspas_duplas, barra_invertida)
 x
 
 str_view(x)
 ```
 
-### Raw strings {#sec-raw-strings}
+### Strings brutas {#sec-raw-strings}
 
-Creating a string with multiple quotes or backslashes gets confusing quickly.
-To illustrate the problem, let's create a string that contains the contents of the code block where we define the `double_quote` and `single_quote` variables:
+Criar uma *string* com várias aspas ou barras invertidas pode se torna uma tarefa complexa rapidamente.
+Para ilustrar o problema, vamos criar uma *string* que contenha o conteúdo do bloco de código que definimos as variáveis `aspas_duplas` e `aspas_simples`.
 
 ```{r}
-tricky <- "double_quote <- \"\\\"\" # or '\"'
-single_quote <- '\\'' # or \"'\""
-str_view(tricky)
+string_complexa <- "aspas_duplas <- \"\\\"\" # ou '\"'
+aspas_simples <- '\\'' # ou \"'\""
+str_view(string_complexa)
 ```
 
-That's a lot of backslashes!
-(This is sometimes called [leaning toothpick syndrome](https://en.wikipedia.org/wiki/Leaning_toothpick_syndrome).) To eliminate the escaping, you can instead use a **raw string**[^strings-2]:
+Realmente, são muitas barras invertidas!
+(Isso é comumente chamado de [*leaning toothpick syndrome*](https://en.wikipedia.org/wiki/Leaning_toothpick_syndrome).) Para eliminar a necessidade de escapar de caracteres com significado reservado, você pode utilizar uma *string bruta*[^strings-2]:
 
-[^strings-2]: Available in R 4.0.0 and above.
+[^strings-2]: Disponível no R 4.0.0 e versões posteriores.
 
 ```{r}
-tricky <- r"(double_quote <- "\"" # or '"'
-single_quote <- '\'' # or "'")"
-str_view(tricky)
+string_complexa <- r"(aspas_duplas <- "\"" # ou '"'
+aspas_simples <- '\'' # ou "'")"
+str_view(string_complexa)
 ```
 
-A raw string usually starts with `r"(` and finishes with `)"`.
-But if your string contains `)"` you can instead use `r"[]"` or `r"{}"`, and if that's still not enough, you can insert any number of dashes to make the opening and closing pairs unique, e.g., `r"--()--"`, `r"---()---"`, etc. Raw strings are flexible enough to handle any text.
+Uma *string* bruta geralmente começa com `r"(` e termina com `)"`.
+Mas, se a sua *string* contém `)"`, você pode usar `r"[]"` ou `r"{}"`. Se isso ainda não for suficiente, você pode inserir hífens adicionais para tornar os pares de abertura e fechamento únicos, por exemplo, `r"--()--"`, `r"---()---"`, etc. As *strings* brutas são flexíveis o suficiente para lidar com qualquer texto.
 
-### Other special characters
+### Outros caracteres especiais
 
-As well as `\"`, `\'`, and `\\`, there are a handful of other special characters that may come in handy. The most common are `\n`, a new line, and `\t`, tab. You'll also sometimes see strings containing Unicode escapes that start with `\u` or `\U`. This is a way of writing non-English characters that work on all systems. You can see the complete list of other special characters in `?Quotes`.
+Além de `\"`, `\'` e `\\`, existem alguns outros caracteres especiais que podem ser úteis. Os mais comuns são `\n`, que representa uma nova linha, e `\t`, que representa uma tabulação. Às vezes, você também verá *strings* contendo escapes Unicode que começam com `\u` ou `\U`. Essa é uma forma de escrever caracteres não ingleses, mas que funcionam em todos os sistemas. Você pode ver a lista completa de outros caracteres especiais em `?Quotes`.
 
 ```{r}
-x <- c("one\ntwo", "one\ttwo", "\u00b5", "\U0001f604")
+x <- c("um\ndois", "um\tdois", "\u00b5", "\U0001f604")
 x
 str_view(x)
 ```
 
-Note that `str_view()` uses curly braces for tabs to make them easier to spot[^strings-3].
-One of the challenges of working with text is that there's a variety of ways that white space can end up in the text, so this background helps you recognize that something strange is going on.
+Observe que `str_view()` utiliza chaves para tabulações, facilitando a identificação delas[^strings-3].
+Um dos desafios ao trabalhar com texto é a variedade de formas pelas quais espaços em branco podem surgir.
+Portanto, esse comportamento da função pode ajudar você a reconhecer quando algo incomum está ocorrendo.
 
-[^strings-3]: `str_view()` also uses color to bring tabs, spaces, matches, etc. to your attention.
-    The colors don't currently show up in the book, but you'll notice them when running code interactively.
+[^strings-3]: `str_view()` também utiliza cores para chamar a sua atenção para tabulações, espaços, correspondências, etc.
+    As cores atualmente não são exibidas no livro, mas você as notará ao executar o código de forma interativa.
 
-### Exercises
+### Exercícios
 
-1.  Create strings that contain the following values:
+1.  Crie *strings* que contenham os seguintes valores:
 
-    1.  `He said "That's amazing!"`
+    1.  `Ele disse: "Isso é incrível!"`
 
     2.  `\a\b\c\d`
 
     3.  `\\\\\\`
 
-2.  Create the string in your R session and print it.
-    What happens to the special "\\u00a0"?
-    How does `str_view()` display it?
-    Can you do a little googling to figure out what this special character is?
+2.  Crie a *string* na sua sessão do R e imprima-a.
+    O que acontece com o caractere especial "\\u00a0"?
+    Como a função `str_view()` o exibe?
+    Você poderia fazer uma busca rápida no *Google* para descobrir o que é esse caractere especial?
 
     ```{r}
-    x <- "This\u00a0is\u00a0tricky"
+    x <- "Isso\u00a0é\u00a0complexo"
     ```
 
-## Creating many strings from data
+## Criando várias strings a partir de dados
 
-Now that you've learned the basics of creating a string or two by "hand", we'll go into the details of creating strings from other strings.
-This will help you solve the common problem where you have some text you wrote that you want to combine with strings from a data frame.
-For example, you might combine "Hello" with a `name` variable to create a greeting.
-We'll show you how to do this with `str_c()` and `str_glue()` and how you can use them with `mutate()`.
-That naturally raises the question of what stringr functions you might use with `summarize()`, so we'll finish this section with a discussion of `str_flatten()`, which is a summary function for strings.
+Agora que você já sabe o básico sobre como criar uma ou duas *strings* "manualmente", vamos conhecer os detalhes de como criar *strings* a partir de outras *strings*.
+Isso ajudará você a resolver o problema comum de ter algum texto escrito que deseja combinar com *strings* de um *data frame*.
+Por exemplo, você pode combinar "Olá" com uma variável `nome` para criar uma saudação.
+Mostraremos como fazer isso com as funções `str_c()` e `str_glue()` e como você pode usá-las com a função `mutate()`.
+Isso naturalmente levanta a questão de quais funções do pacote stringr você poderia utilizar com `summarize()`, então finalizaremos esta seção com uma discussão sobre `str_flatten()`, uma função de sumarização para *strings*.
 
 ### `str_c()`
 
-`str_c()` takes any number of vectors as arguments and returns a character vector:
+A função `str_c()` recebe qualquer número de vetores como argumentos e retorna um vetor de caracteres:
 
 ```{r}
 str_c("x", "y")
 str_c("x", "y", "z")
-str_c("Hello ", c("John", "Susan"))
+str_c("Olá ", c("John", "Susan"))
 ```
 
-`str_c()` is very similar to the base `paste0()`, but is designed to be used with `mutate()` by obeying the usual tidyverse rules for recycling and propagating missing values:
+`str_c()` é muito similar à função base `paste0()`, mas foi implementada para ser utilizada com `mutate()`, seguindo as regras usuais do tidyverse para reciclagem e propagação de valores faltantes (*missing values*):
 
 ```{r}
-df <- tibble(name = c("Flora", "David", "Terra", NA))
-df |> mutate(greeting = str_c("Hi ", name, "!"))
+df <- tibble(nome = c("Flora", "David", "Terra", NA))
+df |> mutate(saudacao = str_c("Oi ", nome, "!"))
 ```
 
-If you want missing values to display in another way, use `coalesce()` to replace them.
-Depending on what you want, you might use it either inside or outside of `str_c()`:
+Se você deseja que os valores faltantes (*missing values*) sejam exibidos de outra forma, use `coalesce()` para substituí-los.
+Neste caso, você pode usar a função dentro ou fora da função `str_c()`:
 
 ```{r}
 df |> 
   mutate(
-    greeting1 = str_c("Hi ", coalesce(name, "you"), "!"),
-    greeting2 = coalesce(str_c("Hi ", name, "!"), "Hi!")
+    saudacao1 = str_c("Oi ", coalesce(nome, "para você"), "!"),
+    saudacao2 = coalesce(str_c("Oi ", nome, "!"), "Oi!")
   )
 ```
 
 ### `str_glue()` {#sec-glue}
 
-If you are mixing many fixed and variable strings with `str_c()`, you'll notice that you type a lot of `"`s, making it hard to see the overall goal of the code. An alternative approach is provided by the [glue package](https://glue.tidyverse.org) via `str_glue()`[^strings-4]. You give it a single string that has a special feature: anything inside `{}` will be evaluated like it's outside of the quotes:
+Se você estiver combinando muitas *strings* fixas e variáveis com `str_c()`, vai perceber que digitar muitas `"`s torna difícil visualizar o objetivo geral do código. Uma abordagem alternativa é fornecida pela função `str_glue()`[^strings-4] do [pacote glue](https://glue.tidyverse.org). Você fornece a função uma única *string* que possui uma característica especial: tudo dentro de `{}` será avaliado como se estivesse fora das aspas:
 
-[^strings-4]: If you're not using stringr, you can also access it directly with `glue::glue()`.
+[^strings-4]: Se não estiver usando o pacote stringr, você também pode acessá-la diretamente com `glue::glue()`.
 
 ```{r}
-df |> mutate(greeting = str_glue("Hi {name}!"))
+df |> mutate(saudacao = str_glue("Oi {nome}!"))
 ```
 
-As you can see, `str_glue()` currently converts missing values to the string `"NA"`, unfortunately making it inconsistent with `str_c()`.
+Como você pode ver, a função `str_glue()` atualmente converte valores faltantes (*missing values*) na *string* `"NA"`, o que, infelizmente, torna-a inconsistente com a função `str_c()`.
 
-You also might wonder what happens if you need to include a regular `{` or `}` in your string.
-You're on the right track if you guess you'll need to escape it somehow.
-The trick is that glue uses a slightly different escaping technique: instead of prefixing with special character like `\`, you double up the special characters:
+Você também pode estar se perguntando o que acontece se precisar incluir `{` ou `}` em sua *string*.
+Se você supôs que precisará escapar, de alguma forma, do significado reservado, você está no caminho certo.
+O truque é que o pacote glue utiliza uma técnica de escape ligeiramente diferente: em vez de prefixar com um caractere especial como `\`, você deve duplicar os caracteres especiais:
 
 ```{r}
-df |> mutate(greeting = str_glue("{{Hi {name}!}}"))
+df |> mutate(saudacao = str_glue("{{Oi {nome}!}}"))
 ```
 
 ### `str_flatten()`
 
-`str_c()` and `str_glue()` work well with `mutate()` because their output is the same length as their inputs.
-What if you want a function that works well with `summarize()`, i.e. something that always returns a single string?
-That's the job of `str_flatten()`[^strings-5]: it takes a character vector and combines each element of the vector into a single string:
+As funções `str_c()` e `str_glue()` funcionam bem com `mutate()` porque suas saídas têm o mesmo comprimento que suas entradas.
+Mas, se você quisesse uma função que funcionasse bem com `summarize()`, isto é, que sempre retornasse uma única string?
+Neste caso, `str_flatten()`[^strings-5] é a função adequada para essa tarefa: ela recebe um vetor de caracteres e concatena cada elemento do vetor em uma única *string*:
 
-[^strings-5]: The base R equivalent is `paste()` used with the `collapse` argument.
+[^strings-5]: O equivalente no R base é a função `paste()` utilizada com o argumento `collapse`.
 
 ```{r}
 str_flatten(c("x", "y", "z"))
 str_flatten(c("x", "y", "z"), ", ")
-str_flatten(c("x", "y", "z"), ", ", last = ", and ")
+str_flatten(c("x", "y", "z"), ", ", last = " e ")
 ```
 
-This makes it work well with `summarize()`:
+Essa função funciona bem com `summarize()`:
 
 ```{r}
 df <- tribble(
-  ~ name, ~ fruit,
+  ~ nome, ~ fruta,
   "Carmen", "banana",
-  "Carmen", "apple",
-  "Marvin", "nectarine",
-  "Terence", "cantaloupe",
-  "Terence", "papaya",
-  "Terence", "mandarin"
+  "Carmen", "maça",
+  "Marvin", "nectarina",
+  "Terence", "melão",
+  "Terence", "mamão",
+  "Terence", "tangerina"
 )
 df |>
-  group_by(name) |> 
-  summarize(fruits = str_flatten(fruit, ", "))
+  group_by(nome) |> 
+  summarize(frutas = str_flatten(fruta, ", "))
 ```
 
-### Exercises
+### Exercícios
 
-1.  Compare and contrast the results of `paste0()` with `str_c()` for the following inputs:
+1.  Compare e contraste os resultados de `paste0()` com `str_c()` para as seguintes entradas:
 
     ```{r}
     #| eval: false
 
-    str_c("hi ", NA)
+    str_c("oi ", NA)
     str_c(letters[1:2], letters[1:3])
     ```
 
-2.  What's the difference between `paste()` and `paste0()`?
-    How can you recreate the equivalent of `paste()` with `str_c()`?
+2.  Qual é a diferença entre `paste()` e `paste0()`?
+    Como você pode criar o equivalente da função `paste()` com `str_c()`?
 
-3.  Convert the following expressions from `str_c()` to `str_glue()` or vice versa:
+3.  Converta as seguintes expressões de `str_c()` para `str_glue()` ou vice-versa:
 
-    a.  `str_c("The price of ", food, " is ", price)`
+    a.  `str_c("O preço do(a) ", alimento, " é ", preco)`
 
-    b.  `str_glue("I'm {age} years old and live in {country}")`
+    b.  `str_glue("Eu tenho {idade} anos e moro no(a) {pais}")`
 
-    c.  `str_c("\\section{", title, "}")`
+    c.  `str_c("\\seção{", titulo, "}")`
 
-## Extracting data from strings
+## Extraindo dados de strings
 
-It's very common for multiple variables to be crammed together into a single string.
-In this section, you'll learn how to use four tidyr functions to extract them:
+É muito comum que múltiplas variáveis sejam agrupadas em uma única *string*.
+Nesta seção, você aprenderá a como usar quatro funções do tidyr para extrair múltiplas variáveis:
 
 -   `df |> separate_longer_delim(col, delim)`
 -   `df |> separate_longer_position(col, width)`
 -   `df |> separate_wider_delim(col, delim, names)`
 -   `df |> separate_wider_position(col, widths)`
 
-If you look closely, you can see there's a common pattern here: `separate_`, then `longer` or `wider`, then `_`, then by `delim` or `position`.
-That's because these four functions are composed of two simpler primitives:
+Se você observar atentamente, poderá perceber que há um padrão comum entre os nomes das funções: `separate_`, seguido por `longer` ou `wider`, depois `_`, e, por fim, `delim` ou `position`.
+Isso se deve ao fato de que essas quatro funções são baseadas em duas primitivas mais simples:
 
--   Just like with `pivot_longer()` and `pivot_wider()`, `_longer` functions make the input data frame longer by creating new rows and `_wider` functions make the input data frame wider by generating new columns.
--   `delim` splits up a string with a delimiter like `", "` or `" "`; `position` splits at specified widths, like `c(3, 5, 2)`.
+-   Assim como com `pivot_longer()` e `pivot_wider()`, as funções com terminação `_longer` tornam o *data frame* de entrada mais longo, criando novas linhas, enquanto as funções com terminação `_wider` tornam o *data frame* de entrada mais largo, gerando novas colunas.
+-   `delim` divide uma *string* por um delimitador, como `", "` ou `" "`; `position` divide em larguras específicas, como `c(3, 5, 2)`.
 
-We'll return to the last member of this family, `separate_wider_regex()`, in @sec-regular-expressions.
-It's the most flexible of the `wider` functions, but you need to know something about regular expressions before you can use it.
+Falaremos sobre o último membro dessa família, `separate_wider_regex()`, no @sec-regular-expressions.
+Essa é a mais flexível das funções `wider`, mas você precisa saber um pouco sobre expressões regulares antes para poder usá-la.
 
-The following two sections will give you the basic idea behind these separate functions, first separating into rows (which is a little simpler) and then separating into columns.
-We'll finish off by discussing the tools that the `wider` functions give you to diagnose problems.
+As duas seções a seguir fornecerão a ideia básica por trás dessas funções para separação, primeiro separando em linhas (o que é um pouco mais simples) e, depois, separando em colunas.
+Finalizaremos discutindo as ferramentas que as funções `wider` fornecem para diagnosticar problemas.
 
-### Separating into rows
+### Separando em linhas
 
-Separating a string into rows tends to be most useful when the number of components varies from row to row.
-The most common case is requiring `separate_longer_delim()` to split based on a delimiter:
+Separar uma *string* em linhas geralmente é mais útil quando o número de componentes varia de linha para linha.
+O caso mais comum é utilizar `separate_longer_delim()` para dividir com base em um delimitador:
 
 ```{r}
 df1 <- tibble(x = c("a,b,c", "d,e", "f"))
@@ -298,7 +300,7 @@ df1 |>
   separate_longer_delim(x, delim = ",")
 ```
 
-It's rarer to see `separate_longer_position()` in the wild, but some older datasets do use a very compact format where each character is used to record a value:
+É mais raro empregar `separate_longer_position()` na prática, mas alguns conjuntos de dados mais antigos utilizam um formato bastante compacto, no qual cada caractere é empregado para registrar um valor:
 
 ```{r}
 df2 <- tibble(x = c("1211", "131", "21"))
@@ -306,12 +308,12 @@ df2 |>
   separate_longer_position(x, width = 1)
 ```
 
-### Separating into columns {#sec-string-columns}
+### Separando em colunas {#sec-string-columns}
 
-Separating a string into columns tends to be most useful when there are a fixed number of components in each string, and you want to spread them into columns.
-They are slightly more complicated than their `longer` equivalents because you need to name the columns.
-For example, in this following dataset, `x` is made up of a code, an edition number, and a year, separated by `"."`.
-To use `separate_wider_delim()`, we supply the delimiter and the names in two arguments:
+Separar uma *string* em colunas tende a ser mais útil quando há um número fixo de componentes em cada *string* e você deseja distribuí-los em colunas.
+No entanto, as funções empregadas nesse caso são ligeiramente mais complicadas do que suas equivalentes `longer` porque você precisa nomear as colunas.
+Por exemplo, no conjunto de dados a seguir, `x` é composto por um código, um número de edição e um ano, estando separados por `"."`.
+Para utilizar a função `separate_wider_delim()`, fornecemos o delimitador e os nomes em dois argumentos distintos:
 
 ```{r}
 df3 <- tibble(x = c("a10.1.2022", "b10.2.2011", "e15.1.2015"))
@@ -319,41 +321,41 @@ df3 |>
   separate_wider_delim(
     x,
     delim = ".",
-    names = c("code", "edition", "year")
+    names = c("código", "edição", "ano")
   )
 ```
 
-If a specific piece is not useful you can use an `NA` name to omit it from the results:
+Se uma variável em particular não for útil, você pode utilizar `NA`, no lugar do nome, para omiti-la dos resultados:
 
 ```{r}
 df3 |> 
   separate_wider_delim(
     x,
     delim = ".",
-    names = c("code", NA, "year")
+    names = c("código", NA, "ano")
   )
 ```
 
-`separate_wider_position()` works a little differently because you typically want to specify the width of each column.
-So you give it a named integer vector, where the name gives the name of the new column, and the value is the number of characters it occupies.
-You can omit values from the output by not naming them:
+A função `separate_wider_position()` funciona de forma um pouco diferente, pois normalmente você deseja especificar a largura de cada coluna.
+Então, você deve fornecer à função um vetor de inteiros nomeado, em que o nome corresponde ao nome da nova coluna e o valor é a quantidade de caracteres que constitui a *string* correspondente.
+Você pode omitir valores da saída ao não nomeá-los:
 
 ```{r}
 df4 <- tibble(x = c("202215TX", "202122LA", "202325CA")) 
 df4 |> 
   separate_wider_position(
     x,
-    widths = c(year = 4, age = 2, state = 2)
+    widths = c(ano = 4, idade = 2, estado = 2)
   )
 ```
 
-### Diagnosing widening problems
+### Diagnosticando problemas de alargamento
 
-`separate_wider_delim()`[^strings-6] requires a fixed and known set of columns.
-What happens if some of the rows don't have the expected number of pieces?
-There are two possible problems, too few or too many pieces, so `separate_wider_delim()` provides two arguments to help: `too_few` and `too_many`. Let's first look at the `too_few` case with the following sample dataset:
+A função `separate_wider_delim()`[^strings-6] requer um conjunto fixo e conhecido de colunas.
+Mas, o que acontece se algumas das linhas não tiverem o número esperado de caracteres?
+Nesse caso, existem dois problemas possíveis, poucos ou muitos caracteres, e a função `separate_wider_delim()` fornece dois argumentos para ajudar: `too_few` e `too_many`. Primeiramente, vamos olhar para o caso de `too_few` com o seguinte conjunto de dados de exemplo:
 
-[^strings-6]: The same principles apply to `separate_wider_position()` and `separate_wider_regex()`.
+[^strings-6]: Os mesmos princípios se aplicam às funções `separate_wider_position()` e `separate_wider_regex()`.
 
 ```{r}
 #| error: true
@@ -367,8 +369,8 @@ df |>
   )
 ```
 
-You'll notice that we get an error, but the error gives us some suggestions on how you might proceed.
-Let's start by debugging the problem:
+Você notará que obtemos um erro, mas o erro nos dá algumas sugestões sobre como podemos proceder.
+Vamos começar depurando o problema:
 
 ```{r}
 debug <- df |> 
@@ -381,21 +383,21 @@ debug <- df |>
 debug
 ```
 
-When you use the debug mode, you get three extra columns added to the output: `x_ok`, `x_pieces`, and `x_remainder` (if you separate a variable with a different name, you'll get a different prefix).
-Here, `x_ok` lets you quickly find the inputs that failed:
+Ao usa o modo de depuração, você observará que a saída contém três colunas extras: `x_ok`, `x_pieces` e `x_remainder` (se você separar uma variável com um nome diferente, obterá um prefixo diferente).
+Aqui, `x_ok` permite que você encontre rapidamente as entradas que falharam:
 
 ```{r}
 debug |> filter(!x_ok)
 ```
 
-`x_pieces` tells us how many pieces were found, compared to the expected 3 (the length of `names`).
-`x_remainder` isn't useful when there are too few pieces, but we'll see it again shortly.
+A coluna `x_pieces` nos informa quantas partes foram encontradas, comparadas com o número esperado de 3 (o comprimento de `names`).
+Já a coluna `x_remainder` não é útil quando há poucas partes, mas a veremos novamente em breve.
 
-Sometimes looking at this debugging information will reveal a problem with your delimiter strategy or suggest that you need to do more preprocessing before separating.
-In that case, fix the problem upstream and make sure to remove `too_few = "debug"` to ensure that new problems become errors.
+Às vezes, analisar essas informações de depuração revelará a você problemas com sua escolha de delimitador ou mostrará que é ainda necessário fazer algum pré-processamento antes de separar.
+Nesse caso, corrija o problema raiz e certifique-se de remover `too_few = "debug"` para garantir que novos problemas se tornem erros quando a função for executada.
 
-In other cases, you may want to fill in the missing pieces with `NA`s and move on.
-That's the job of `too_few = "align_start"` and `too_few = "align_end"` which allow you to control where the `NA`s should go:
+Em outros casos, você pode querer preencher as partes ausentes com `NA`s e seguir em frente.
+Nesse caso, isso pode ser feito por `too_few = "align_start"` e `too_few = "align_end"`, que permitem controlar onde os `NA`s devem ser inseridos:
 
 ```{r}
 df |> 
@@ -407,7 +409,7 @@ df |>
   )
 ```
 
-The same principles apply if you have too many pieces:
+O mesmo é válido se você tiver um número excessivo de caracteres:
 
 ```{r}
 #| error: true
@@ -421,7 +423,7 @@ df |>
   )
 ```
 
-But now, when we debug the result, you can see the purpose of `x_remainder`:
+Agora, ao fazer a depuração, você perceberá a importância de `x_remainder`:
 
 ```{r}
 debug <- df |> 
@@ -434,7 +436,7 @@ debug <- df |>
 debug |> filter(!x_ok)
 ```
 
-You have a slightly different set of options for handling too many pieces: you can either silently "drop" any additional pieces or "merge" them all into the final column:
+Você tem um conjunto ligeiramente diferente de opções para lidar com um número excessivo de partes: você pode simplesmente "descartar" silenciosamente os caracteres adicionais ou "unir" todos eles na última coluna:
 
 ```{r}
 df |> 
@@ -455,157 +457,157 @@ df |>
   )
 ```
 
-## Letters
+## Letras
 
-In this section, we'll introduce you to functions that allow you to work with the individual letters within a string.
-You'll learn how to find the length of a string, extract substrings, and handle long strings in plots and tables.
+Nesta seção, vamos apresentar funções que permitem trabalhar com letras individuais em uma *string.* Você aprenderá como encontrar o comprimento de uma *string*, extrair *substrings* e lidar com *strings* longas em gráficos e tabelas.
 
-### Length
+### Comprimento
 
-`str_length()` tells you the number of letters in the string:
+A função `str_length()` informa o número de letras presentes na *string*:
 
 ```{r}
-str_length(c("a", "R for data science", NA))
+str_length(c("a", "R para ciência de dados", NA))
 ```
 
-You could use this with `count()` to find the distribution of lengths of US babynames and then with `filter()` to look at the longest names, which happen to have 15 letters[^strings-7]:
+Você poderia usar essa função em conjunto com `count()` para encontrar a distribuição dos comprimentos dos nomes de bebês dos EUA e, em seguida, usar `filter()` para ver os nomes mais longos, que têm 15 letras[^strings-7]:
 
-[^strings-7]: Looking at these entries, we'd guess that the babynames data drops spaces or hyphens and truncates after 15 letters.
+[^strings-7]: Olhando para essas entradas, nós deduziríamos que a base de dados referentes aos nomes de bebês eliminam espaços ou hífens e truncam após 15 letras.
 
 ```{r}
-babynames |>
-  count(length = str_length(name), wt = n)
+bebes |>
+  count(n_letras = str_length(nome), wt = n)
 
-babynames |> 
-  filter(str_length(name) == 15) |> 
-  count(name, wt = n, sort = TRUE)
+bebes |> 
+  filter(str_length(nome) == 15) |> 
+  count(nome, wt = n, sort = TRUE)
 ```
 
-### Subsetting
+### Subconjunto
 
-You can extract parts of a string using `str_sub(string, start, end)`, where `start` and `end` are the positions where the substring should start and end.
-The `start` and `end` arguments are inclusive, so the length of the returned string will be `end - start + 1`:
+Você pode extrair partes de uma *string* utilizando `str_sub(string, start, end)`, em que `start` e `end` são as posições onde a *substring* deve começar e terminar.
+Os argumentos `start` e `end` são inclusivos, então o comprimento da *string* resultante será `end - start + 1`:
 
 ```{r}
-x <- c("Apple", "Banana", "Pear")
+x <- c("Maça", "Banana", "Pera")
 str_sub(x, 1, 3)
 ```
 
-You can use negative values to count back from the end of the string: -1 is the last character, -2 is the second to last character, etc.
+Você pode usar valores negativos para contar a partir do final da *string*: -1 é o último caractere, -2 é o penúltimo caractere e assim por diante.
 
 ```{r}
 str_sub(x, -3, -1)
 ```
 
-Note that `str_sub()` won't fail if the string is too short: it will just return as much as possible:
+Note que `str_sub()` não falhará se a *string* for muito curta: a função simplesmente retornará a quantidade máxima de letras possível:
 
 ```{r}
 str_sub("a", 1, 5)
 ```
 
-We could use `str_sub()` with `mutate()` to find the first and last letter of each name:
+Poderíamos utilizar a função `str_sub()` com `mutate()` para encontrar a primeira e a última letra de cada nome:
 
 ```{r}
-babynames |> 
+bebes |> 
   mutate(
-    first = str_sub(name, 1, 1),
-    last = str_sub(name, -1, -1)
+    primeira = str_sub(nome, 1, 1),
+    ultima = str_sub(nome, -1, -1)
   )
 ```
 
-### Exercises
+### Exercícios
 
-1.  When computing the distribution of the length of babynames, why did we use `wt = n`?
-2.  Use `str_length()` and `str_sub()` to extract the middle letter from each baby name. What will you do if the string has an even number of characters?
-3.  Are there any major trends in the length of babynames over time? What about the popularity of first and last letters?
+1.  Ao calcular a distribuição do comprimento dos nomes de bebês, por que usamos `wt = n`?
+2.  Utilize `str_length()` e `str_sub()` para extrair a letra do meio de cada nome de bebê. O que você pode fazer se a *string* tiver um número par de caracteres?
+3.  Existem tendências significativas no comprimento dos nomes de bebês ao longo do tempo? E quanto à popularidade das primeiras e últimas letras?
 
-## Non-English text {#sec-other-languages}
+## Texto em outro idioma {#sec-other-languages}
 
-So far, we've focused on English language text which is particularly easy to work with for two reasons.
-Firstly, the English alphabet is relatively simple: there are just 26 letters.
-Secondly (and maybe more importantly), the computing infrastructure we use today was predominantly designed by English speakers.
-Unfortunately, we don't have room for a full treatment of non-English languages.
-Still, we wanted to draw your attention to some of the biggest challenges you might encounter: encoding, letter variations, and locale-dependent functions.
+Até agora, focamos em características de textos em inglês, os quais são particularmente fáceis de trabalhar por duas razões.
+Em primeiro lugar, o alfabeto em inglês é relativamente simples: há apenas 26 letras.
+Em segundo lugar (e talvez o mais importante), a infraestrutura computacional que usamos atualmente foi predominantemente projetada por falantes de inglês.
+Infelizmente, não conseguiremos abordar com profundidade outros idiomas que não sejam o inglês.
+Mesmo assim, gostaríamos de chamar sua atenção para alguns dos maiores desafios que você pode encontrar: codificação de caracteres, variações de letras e funções dependentes de localidade.
 
-### Encoding
+### Codificação de caracteres
 
-When working with non-English text, the first challenge is often the **encoding**.
-To understand what's going on, we need to dive into how computers represent strings.
-In R, we can get at the underlying representation of a string using `charToRaw()`:
+Ao trabalhar com textos que não sejam em inglês, o primeiro desafio geralmente é a **codificação de caracteres** (*encoding*).
+Para entender o que está acontecendo, precisamos compreender primeiro como os computadores representam as *strings*.
+No R, podemos acessar a representação implícita de uma *string* usando `charToRaw()`:
 
 ```{r}
 charToRaw("Hadley")
 ```
 
-Each of these six hexadecimal numbers represents one letter: `48` is H, `61` is a, and so on.
-The mapping from hexadecimal number to character is called the encoding, and in this case, the encoding is called ASCII.
-ASCII does a great job of representing English characters because it's the **American** Standard Code for Information Interchange.
+Cada um desses seis números hexadecimais representa uma letra: `48` é H, `61` é a, e assim por diante.
+A correspondência do número hexadecimal com o caractere é chamada de codificação de caracteres (*encoding*) e, neste caso, a codificação é chamada de ASCII.
+ASCII faz um excelente trabalho ao representar caracteres em inglês porque é o Código Padrão **Americano** para o Intercâmbio de Informações (***American** Standard Code for Information Interchange*).
 
-Things aren't so easy for languages other than English.
-In the early days of computing, there were many competing standards for encoding non-English characters.
-For example, there were two different encodings for Europe: Latin1 (aka ISO-8859-1) was used for Western European languages, and Latin2 (aka ISO-8859-2) was used for Central European languages.
-In Latin1, the byte `b1` is "±", but in Latin2, it's "ą"!
-Fortunately, today there is one standard that is supported almost everywhere: UTF-8.
-UTF-8 can encode just about every character used by humans today and many extra symbols like emojis.
+Mas, não é tão simples para idiomas diferentes do inglês.
+Nos primórdios da computação, existiam muitos padrões concorrentes para a codificação de caracteres não ingleses.
+Por exemplo, havia duas codificações diferentes para a Europa: o Latin1 (também conhecido como ISO-8859-1) era utilizado para idiomas da Europa Ocidental e o Latin2 (também conhecido como ISO-8859-2) era utilizado para idiomas da Europa Central.
+No Latin1, o byte `b1` representa "±", mas, no Latin2, representa "ą"!
+Felizmente, hoje existe um padrão que é suportado praticamente em todos os lugares: UTF-8.
+O padrão UTF-8 pode codificar praticamente todos os caracteres usados atualmente e muitos símbolos extras, como emojis.
 
-readr uses UTF-8 everywhere.
-This is a good default but will fail for data produced by older systems that don't use UTF-8.
-If this happens, your strings will look weird when you print them.
-Sometimes just one or two characters might be messed up; other times, you'll get complete gibberish.
-For example here are two inline CSVs with unusual encodings[^strings-8]:
+O pacote readr utiliza o padrão UTF-8.
+Essa é uma configuração padrão boa, mas pode falhar para dados produzidos por sistemas mais antigos que não utilizam o UTF-8.
+Se isso acontecer, suas *strings* serão exibidas de forma estranha ao imprimi-las.
+Às vezes, apenas um ou dois caracteres podem estar incorretos.
+Em outras situações, você pode obter um conjunto de caracteres completamente sem sentido.
+Por exemplo, aqui estão dois CSVs com codificações incomuns[^strings-8]:
 
-[^strings-8]: Here I'm using the special `\x` to encode binary data directly into a string.
+[^strings-8]: Aqui, o caractere especial `\x` é utilizado para codificar dados binários diretamente em uma *string*.
 
 ```{r}
 #| eval: false
 
-x1 <- "text\nEl Ni\xf1o was particularly bad this year"
+x1 <- "text\nEl Ni\xf1o foi particularmente severo este ano"
 read_csv(x1)$text
-#> [1] "El Ni\xf1o was particularly bad this year"
+#> [1] "El Ni\xf1o foi particularmente severo este ano"
 
 x2 <- "text\n\x82\xb1\x82\xf1\x82\xc9\x82\xbf\x82\xcd"
 read_csv(x2)$text
 #> [1] "\x82\xb1\x82\xf1\x82ɂ\xbf\x82\xcd"
 ```
 
-To read these correctly, you specify the encoding via the `locale` argument:
+Para lê-los corretamente, você deve especificar a codificação por meio do argumento `locale`:
 
 ```{r}
 #| eval: false
 read_csv(x1, locale = locale(encoding = "Latin1"))$text
-#> [1] "El Niño was particularly bad this year"
+#> [1] "El Niño foi particularmente severo este ano"
 
 read_csv(x2, locale = locale(encoding = "Shift-JIS"))$text
 #> [1] "こんにちは"
 ```
 
-How do you find the correct encoding?
-If you're lucky, it'll be included somewhere in the data documentation.
-Unfortunately, that's rarely the case, so readr provides `guess_encoding()` to help you figure it out.
-It's not foolproof and works better when you have lots of text (unlike here), but it's a reasonable place to start.
-Expect to try a few different encodings before you find the right one.
+Como encontrar a codificação correta?
+Se tiver sorte, ela estará incluída em algum lugar na documentação dos dados.
+Infelizmente, isso raramente é o caso, então o pacote readr fornece a função `guess_encoding()` para ajudar você a descobrir.
+Ela não é infalível e tem melhor desempenho quando o texto é mais extenso (diferente do caso atual), porém é um bom ponto de partida.
+É provável que você precise experimentar várias codificações diferentes antes de encontrar a correta.
 
-Encodings are a rich and complex topic; we've only scratched the surface here.
-If you'd like to learn more, we recommend reading the detailed explanation at <http://kunststube.net/encoding/>.
+As codificações são um tema rico e complexo; apenas começamos a explorá-la aqui.
+Se você deseja aprender mais, recomendamos ler a explicação detalhada em <http://kunststube.net/encoding/>.
 
-### Letter variations
+### Variações de letras
 
-Working in languages with accents poses a significant challenge when determining the position of letters (e.g., with `str_length()` and `str_sub()`) as accented letters might be encoded as a single individual character (e.g., ü) or as two characters by combining an unaccented letter (e.g., u) with a diacritic mark (e.g., ¨).
-For example, this code shows two ways of representing ü that look identical:
+Trabalhar com idiomas que possuem acentos representa um desafio significativo ao determinar a posição das letras (por exemplo, com `str_length()` e `str_sub()`), pois as letras acentuadas podem ser codificadas de duas formas: como um único caractere individual (por exemplo, ü) ou como dois caracteres, combinando uma letra sem acento (por exemplo, u) com um diacrítico (por exemplo, ¨).
+Por exemplo, este código mostra duas maneiras de representar ü que aparentam ser idênticas:
 
 ```{r}
 u <- c("\u00fc", "u\u0308")
 str_view(u)
 ```
 
-But both strings differ in length, and their first characters are different:
+No entanto, as *strings* diferem em comprimento e seus caracteres iniciais são diferentes:
 
 ```{r}
 str_length(u)
 str_sub(u, 1, 1)
 ```
 
-Finally, note that a comparison of these strings with `==` interprets these strings as different, while the handy `str_equal()` function in stringr recognizes that both have the same appearance:
+Por fim, observe que uma comparação dessas *strings* com `==` as interpreta como diferentes, enquanto a função `str_equal()` do pacote stringr reconhece que ambas têm a mesma aparência:
 
 ```{r}
 u[[1]] == u[[2]]
@@ -613,42 +615,42 @@ u[[1]] == u[[2]]
 str_equal(u[[1]], u[[2]])
 ```
 
-### Locale-dependent functions
+### Funções dependentes de localidade
 
-Finally, there are a handful of stringr functions whose behavior depends on your **locale**.
-A locale is similar to a language but includes an optional region specifier to handle regional variations within a language.
-A locale is specified by a lower-case language abbreviation, optionally followed by a `_` and an upper-case region identifier.
-For example, "en" is English, "en_GB" is British English, and "en_US" is American English.
-If you don't already know the code for your language, [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) has a good list, and you can see which are supported in stringr by looking at `stringi::stri_locale_list()`.
+Por fim, existem algumas funções do pacote stringr cujo comportamento depende da sua **localidade**.
+Uma localidade é semelhante a um idioma, mas inclui um especificador opcional de região para lidar com variações regionais dentro de um idioma.
+Uma localidade é especificada por uma abreviação do idioma em minúsculo, seguida opcionalmente por um `_` e um identificador da região em maiúsculo.
+Por exemplo, "en" corresponde ao inglês, "en_GB" ao inglês britânico e "en_US" ao inglês americano.
+Se você ainda não conhece o código para o seu idioma, o [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) possui uma boa lista e você pode verificar quais são suportados pelo pacote stringr empregando a função `stringi::stri_locale_list()`.
 
-Base R string functions automatically use the locale set by your operating system.
-This means that base R string functions do what you expect for your language, but your code might work differently if you share it with someone who lives in a different country.
-To avoid this problem, stringr defaults to English rules by using the "en" locale and requires you to specify the `locale` argument to override it.
-Fortunately, there are two sets of functions where the locale really matters: changing case and sorting.
+As funções de *string* do R base usam automaticamente a localidade definida pelo seu sistema operacional.
+Isso significa que as funções de *string* do R base fazem o que você espera para o seu idioma, mas seu código pode funcionar de maneira diferente se for compartilhado com alguém que vive em um país diferente.
+Para evitar esse problema, o stringr utiliza, por padrão, as regras do inglês, usando a localidade como "en", e exige que você especifique o argumento `locale` para substituir a localidade.
+Felizmente, há dois conjuntos de funções onde a localidade realmente importa: a função para modificar a caixa das letras e a função para ordenar as letras.
 
-The rules for changing cases differ among languages.
-For example, Turkish has two i's: with and without a dot.
-Since they're two distinct letters, they're capitalized differently:
+As regras para alterar maiúsculas e minúsculas diferem entre os idiomas.
+Por exemplo, o turco possui dois i's: com e sem um ponto.
+Como são duas letras distintas, elas são capitalizadas de forma diferente:
 
 ```{r}
 str_to_upper(c("i", "ı"))
 str_to_upper(c("i", "ı"), locale = "tr")
 ```
 
-Sorting strings depends on the order of the alphabet, and the order of the alphabet is not the same in every language[^strings-9]!
-Here's an example: in Czech, "ch" is a compound letter that appears after `h` in the alphabet.
+Ordenar *strings* depende da ordem alfabética, mas essa ordem não é a mesma em todos os idiomas[^strings-9]!
+Aqui, está um exemplo: em tcheco, "ch" é uma letra composta que aparece após o `h` no alfabeto.
 
-[^strings-9]: Sorting in languages that don't have an alphabet, like Chinese, is more complicated still.
+[^strings-9]: Ordenar em idiomas que não possuem um alfabeto, como o chinês, é ainda mais complicado.
 
 ```{r}
 str_sort(c("a", "c", "ch", "h", "z"))
 str_sort(c("a", "c", "ch", "h", "z"), locale = "cs")
 ```
 
-This also comes up when sorting strings with `dplyr::arrange()`, which is why it also has a `locale` argument.
+Isso também é relevante ao ordenar *strings* com `dplyr::arrange()`, o que justifica o fato dessa função também possuir um argumento `locale`.
 
-## Summary
+## Resumo
 
-In this chapter, you've learned about some of the power of the stringr package: how to create, combine, and extract strings, and about some of the challenges you might face with non-English strings.
-Now it's time to learn one of the most important and powerful tools for working with strings: regular expressions.
-Regular expressions are a very concise but very expressive language for describing patterns within strings and are the topic of the next chapter.
+Neste capítulo, você aprendeu sobre o poder do pacote stringr: como criar, combinar e extrair *strings*, além de entender alguns dos desafios que podem surgir com *strings* em idiomas diferentes do inglês.
+Agora, é hora de aprender uma das ferramentas mais importantes e poderosas para trabalhar com *strings*: as expressões regulares.
+Expressões regulares são uma linguagem concisa, porém expressiva, para descrever padrões em *strings* e são o tema do próximo capítulo.
