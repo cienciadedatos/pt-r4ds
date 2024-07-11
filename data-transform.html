@@ -915,7 +915,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="relocate" class="level3" data-number="3.3.4"><h3 data-number="3.3.4" class="anchored" data-anchor-id="relocate">
 <span class="header-section-number">3.3.4</span> <code>relocate()</code>
 </h3>
-<p>Utilize <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code> para mover as variáveis de lugar. Talvez você queira deixar variáveis relacionadas juntas ou mover variáveis importantes para a frente do data frame. Por padrão <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code> já move as variáveis para a frente:</p>
+<p>Utilize <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code> para mover as variáveis de lugar. Talvez você queira deixar variáveis relacionadas juntas ou mover variáveis importantes para o início do data frame. Por padrão <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code> já move as variáveis para o início:</p>
 <div class="cell">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">voos</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">data_hora</span>, <span class="va">tempo_voo</span><span class="op">)</span></span>
