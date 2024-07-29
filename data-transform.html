@@ -443,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exerc%C3%ADcios-2" id="toc-exercícios-2" class="nav-link" data-scroll-target="#exerc%C3%ADcios-2"><span class="header-section-number">3.5.7</span> Exercícios</a></li>
   </ul>
 </li>
-  <li><a href="#sec-sample-size" id="toc-sec-sample-size" class="nav-link" data-scroll-target="#sec-sample-size"><span class="header-section-number">3.6</span> Caso de estudo: agregados e tamanho de amostra</a></li>
+  <li><a href="#sec-sample-size" id="toc-sec-sample-size" class="nav-link" data-scroll-target="#sec-sample-size"><span class="header-section-number">3.6</span> Estudo de caso: agregados e tamanho de amostra</a></li>
   <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">3.7</span> Resumo</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/cienciadedatos/pt-r4ds/edit/main/data-transform.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/cienciadedatos/pt-r4ds/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
@@ -466,7 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header><section id="introdução" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="introdução">
 <span class="header-section-number">3.1</span> Introdução</h2>
 <p>Visualização de dados é uma ferramenta importante para gerar insights, mas é raro que você pegue os dados exatamente na forma que você precisa para fazer o gráfico que você quer. Geralmente você precisará criar algumas variáveis novas ou agregações para responder às perguntas com seus dados, ou talvez você precise apenas renomear as variáveis ou reordenar as observações para facilitar o trabalho com os dados. Você vai aprender a fazer tudo isso (e mais um pouco!) nesse capítulo, em que nós iremos lhe apresentar as possibilidades de transformações de dados utilizando o pacote <strong>dplyr</strong> e um novo conjunto de dados sobre vôos que partiram de Nova York em 2013.</p>
-<p>O objetivo desse capítulo é te dar uma visão geral de todas as principais ferramentas para transformar um data frame. Começaremos com as funções que operam sobre as linhas e colunas de um data frame, em seguida voltaremos para falar mais um pouco sobre o <em>pipe</em>, que é uma importante ferramenta que você utilizará para combinar os verbos das transformações. Depois, iremos introduzir a habilidade de trabalhar com grupos. Finalizaremos o capítulo com um caso de estudo que demonstra todas essas funções em ação, e, mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, quando começaremos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas).</p>
+<p>O objetivo desse capítulo é te dar uma visão geral de todas as principais ferramentas para transformar um data frame. Começaremos com as funções que operam sobre as linhas e colunas de um data frame, em seguida voltaremos para falar mais um pouco sobre o <em>pipe</em>, que é uma importante ferramenta que você utilizará para combinar os verbos das transformações. Depois, iremos introduzir a habilidade de trabalhar com grupos. Finalizaremos o capítulo com um estudo de caso que demonstra todas essas funções em ação, e, mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, quando começaremos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas).</p>
 <section id="pré-requisitos" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="pré-requisitos">
 <span class="header-section-number">3.1.1</span> Pré-requisitos</h3>
 <p>Nesse capítulo focaremos no pacote dplyr, outro membro central do tidyverse. Ilustraremos as ideias principais utilizando dados do pacote dados, e visualizaremos com o ggplot2 para nos ajudar a entender os dados.</p>
@@ -1264,7 +1264,7 @@ magrittr
 </section><section id="exercícios-2" class="level3" data-number="3.5.7"><h3 data-number="3.5.7" class="anchored" data-anchor-id="exercícios-2">
 <span class="header-section-number">3.5.7</span> Exercícios</h3>
 <ol type="1">
-<li><p>Qual companhia aérea (<em>companhia_aerea</em>) possui a pior média de atrasos? Desafio: você consegue desenrolar os efeitos de aeroportos ruins vs.&nbsp;companhias ruins? Por que/por que não? (Dica: experimente usar <code>voos |&gt; group_by(companhia_aerea, destino) |&gt; summarize(n())</code>)</p></li>
+<li><p>Qual companhia aérea (<em>companhia_aerea</em>) possui a pior média de atrasos? Desafio: você consegue desvendar os efeitos de aeroportos ruins versus companhias aéreas ruins? Por que sim ou por que não? (Dica: experimente usar <code>voos |&gt; group_by(companhia_aerea, destino) |&gt; summarize(n())</code>)</p></li>
 <li><p>Ache os vôos que estão mais atrasados no momento da decolagem, a partir de cada destino.</p></li>
 <li><p>Como os atrasaso variam ao longo do dia. Ilustre sua resposta com um gráfico.</p></li>
 <li><p>O que acontece se você passar um <code>n</code> negativo para <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code> e funções similares?</p></li>
@@ -1332,7 +1332,7 @@ magrittr
 </ol>
 </li>
 </ol></section></section><section id="sec-sample-size" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="sec-sample-size">
-<span class="header-section-number">3.6</span> Caso de estudo: agregados e tamanho de amostra</h2>
+<span class="header-section-number">3.6</span> Estudo de caso: agregados e tamanho de amostra</h2>
 <p>Sempre que você fizer alguma agregação, é sempre uma boa ideia incluir a contagem (<code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>). Dessa foma, você pode se certificar que não está tirando conclusões baseadas em pequenas quantidades de dados. Vamos demonstrar isso com alguns dados de baseball do pacote dados. Especificamente, iremos comparar qual a proporção de vezes um jogador acertou a bola (<em>“hit”</em>) (<code>rebatidas_simples</code>) vs.&nbsp;o número de vezes que ele tentou colocar a bola em jogo (<code>vez_bastao</code>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rebatedores</span> <span class="op">&lt;-</span> <span class="fu">dados</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/dados/man/rebatedores.html">rebatedores</a></span> <span class="op">|&gt;</span> </span>
