@@ -424,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </li>
   <li>
-<a href="#transformando-os-dados-para-o-formato-largo-widening-data" id="toc-transformando-os-dados-para-o-formato-largo-widening-data" class="nav-link" data-scroll-target="#transformando-os-dados-para-o-formato-largo-widening-data"><span class="header-section-number">5.4</span> Transformando os dados para o formato largo (<em>Widening data</em>)</a>
+<a href="#transformando-os-dados-para-o-formato-largo" id="toc-transformando-os-dados-para-o-formato-largo" class="nav-link" data-scroll-target="#transformando-os-dados-para-o-formato-largo"><span class="header-section-number">5.4</span> Transformando os dados para o formato largo</a>
   <ul class="collapse">
 <li><a href="#como-funciona-a-fun%C3%A7%C3%A3o-pivot_wider" id="toc-como-funciona-a-função-pivot_wider" class="nav-link" data-scroll-target="#como-funciona-a-fun%C3%A7%C3%A3o-pivot_wider"><span class="header-section-number">5.4.1</span> Como funciona a função <code>pivot_wider()</code>?</a></li>
   </ul>
@@ -600,7 +600,7 @@ Figura&nbsp;5.1: As seguintes três regras tornam um conjunto de dados tidy: var
 <li><p>Geralmente os dados estão organizados para facilitar algum outro objetivo além da análise. Por exemplo, é comum os dados estarem estruturados para facilitar a entrada de novos dados e não a análise dos mesmos.</p></li>
 <li><p>A maioria das pessoas não está familiarizada com os princípios do formato <em>tidy</em> e é difícil derivá-lo espontaneamente a menos que já se tenha trabalhado com dados por muito tempo.</p></li>
 </ol>
-<p>Isso significa que a maioria das análises reais vai demandar pelo menos alguma adaptação para o formato <em>tidy</em>. Você vai começar descobrindo quais são as variáveis e observações presentes. Algumas vezes isso é fácil, em outras você precisará consultar as pessoas que geraram os dados originalmente. Em seguida, você irá *pivotar** seus dados para o formato <em>tidy</em>, com as variáveis nas colunas e as observações nas linhas.</p>
+<p>Isso significa que a maioria das análises reais vai demandar pelo menos alguma adaptação para o formato <em>tidy</em>. Você vai começar descobrindo quais são as variáveis e observações presentes. Algumas vezes isso é fácil, em outras você precisará consultar as pessoas que geraram os dados originalmente. Em seguida, você irá <strong>pivotar</strong> seus dados para o formato <em>tidy</em>, com as variáveis nas colunas e as observações nas linhas.</p>
 <p><code>tidyr</code> disponibiliza duas funções para pivotar os dados: <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> e <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>. Começaremos com <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> pois é o caso mais comum. Vamos nos aprofundar em alguns exemplos.</p>
 <section id="sec-billboard" class="level3" data-number="5.3.1"><h3 data-number="5.3.1" class="anchored" data-anchor-id="sec-billboard">
 <span class="header-section-number">5.3.1</span> Dados nos nomes das colunas</h3>
@@ -898,7 +898,7 @@ Figura&nbsp;5.6: Pivotar colunas com múltiplas partes de informação nos nomes
 # ℹ 1 more variable: nome_crianca2 &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>Nesse conjunto temos dados de cinco famílias, com nomes e datas de nascimento de até duas crianças. O novo desafio é que nesses dados os nomes das colunas contêm os nomes de duas variáveis (<code>data_nascimento</code>, <code>nome)</code> e os valores de outra (criança - <code>crianca,</code> com valores 1 ou 2). Para resolver esse problema, novamente precisamods passar um vetor para <code>names_to</code>, mas dessa vamos vamos passar um parâmetro especial <code>".value"</code> (chamado de <em>sentinel</em>); esse parâmetro não é o nome de uma variável, mas um valor único que diz ao <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> para fazer algo diferente com ele. Isso sobrepõe o argumento <code>values_to</code> normal em favor do primeiro componente do nome da coluna pivotada, utilizado como nome da variável na saída da função.</p>
+<p>Nesse conjunto temos dados de cinco famílias, com nomes e datas de nascimento de até duas crianças. O novo desafio é que nesses dados os nomes das colunas contêm os nomes de duas variáveis (<code>data_nascimento</code>, <code>nome)</code> e os valores de outra (criança - <code>crianca,</code> com valores 1 ou 2). Para resolver esse problema, novamente precisamos passar um vetor para <code>names_to</code>, mas dessa vamos vamos passar um parâmetro especial <code>".value"</code> (chamado de <em>sentinel</em>); esse parâmetro não é o nome de uma variável, mas um valor único que diz ao <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> para fazer algo diferente com ele. Isso sobrepõe o argumento <code>values_to</code> normal em favor do primeiro componente do nome da coluna pivotada, utilizado como nome da variável na saída da função.</p>
 <div class="cell">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nucleo_familiar</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
@@ -936,8 +936,8 @@ Figura&nbsp;5.7: Pivotar com <code>names_to = c(".value", "num")</code> divide o
 </div>
 </div>
 </div>
-</section></section><section id="transformando-os-dados-para-o-formato-largo-widening-data" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="transformando-os-dados-para-o-formato-largo-widening-data">
-<span class="header-section-number">5.4</span> Transformando os dados para o formato largo (<em>Widening data</em>)</h2>
+</section></section><section id="transformando-os-dados-para-o-formato-largo" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="transformando-os-dados-para-o-formato-largo">
+<span class="header-section-number">5.4</span> Transformando os dados para o formato largo</h2>
 <p>Até então, utilizamos <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> para resolver um tipo comum de problemas no qual os valores foram movidos para os nomes de colunas. Agora vamos pivotar (HA HA) para <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>, que vai tornar o conjunto de dados mais <strong>largo</strong> (<em>wider</em>) ao aumentar o número de colunas e diminuir o número de linhas, auxiliando quando uma informação está espalhada em múltiplas linhas. Isso tende a aparecer menos na vida real, mas parece ser comum quando estamos lidando com dados governamentais.</p>
 <p>Começaremos dando uma olhada em <code>cms_paciente_experiencia</code>, um conjunto de dados de serviços do <em>Centers of Medicare and Medicaid</em> que coleta dados sobre as experiências dos pacientes:</p>
 <div class="cell">
