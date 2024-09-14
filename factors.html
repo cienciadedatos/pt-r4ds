@@ -237,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./communication.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">✅ Comunicação</span></span></a>
   </div>
 </li>
       </ul>
@@ -551,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt;     ano estado_civil  idade raca   renda             partido                 </span></span>
 <span><span class="co">#&gt;   &lt;int&gt; &lt;fct&gt;         &lt;int&gt; &lt;fct&gt;  &lt;fct&gt;             &lt;fct&gt;                   </span></span>
 <span><span class="co">#&gt; 1  2000 Nunca casou      26 Branca US$ 8000 - 9999   Independente, inclinaçã…</span></span>
-<span><span class="co">#&gt; 2  2000 Divorciado(a)    48 Branca US$ 8000 - 9999   Não fortemente repubica…</span></span>
+<span><span class="co">#&gt; 2  2000 Divorciado(a)    48 Branca US$ 8000 - 9999   Não fortemente republic…</span></span>
 <span><span class="co">#&gt; 3  2000 Viúvo(a)         67 Branca Não se aplica     Independente            </span></span>
 <span><span class="co">#&gt; 4  2000 Nunca casou      39 Branca Não se aplica     Independente, inclinaçã…</span></span>
 <span><span class="co">#&gt; 5  2000 Divorciado(a)    25 Branca Não se aplica     Não fortemente democrata</span></span>
@@ -715,7 +715,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 2 Não sabe                                 1</span></span>
 <span><span class="co">#&gt; 3 Outro partido                          393</span></span>
 <span><span class="co">#&gt; 4 Fortemente republicano                2314</span></span>
-<span><span class="co">#&gt; 5 Não fortemente repubicano             3032</span></span>
+<span><span class="co">#&gt; 5 Não fortemente republicano            3032</span></span>
 <span><span class="co">#&gt; 6 Independente, inclinação republicana  1791</span></span>
 <span><span class="co">#&gt; # ℹ 4 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -733,10 +733,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">partido</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
-<span><span class="co">#&gt; ℹ In argument: `partido = fct_recode(...)`.</span></span>
-<span><span class="co">#&gt; Caused by warning:</span></span>
-<span><span class="co">#&gt; ! Unknown levels in `f`: Não fortemente republicano</span></span>
 <span><span class="co">#&gt; # A tibble: 10 × 2</span></span>
 <span><span class="co">#&gt;   partido                                               n</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;                                             &lt;int&gt;</span></span>
@@ -744,7 +740,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 2 Não sabe                                              1</span></span>
 <span><span class="co">#&gt; 3 Outro partido                                       393</span></span>
 <span><span class="co">#&gt; 4 Indivíduo fortemente republicano                   2314</span></span>
-<span><span class="co">#&gt; 5 Não fortemente repubicano                          3032</span></span>
+<span><span class="co">#&gt; 5 Indivíduo não fortemente republicano               3032</span></span>
 <span><span class="co">#&gt; 6 Indivíduo independente com inclinação republicana  1791</span></span>
 <span><span class="co">#&gt; # ℹ 4 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -764,11 +760,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>      <span class="st">"Outro"</span>                 <span class="op">=</span> <span class="st">"Não sabe"</span>,</span>
 <span>      <span class="st">"Outro"</span>                 <span class="op">=</span> <span class="st">"Outro partido"</span></span>
 <span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
-<span><span class="co">#&gt; ℹ In argument: `partido = fct_recode(...)`.</span></span>
-<span><span class="co">#&gt; Caused by warning:</span></span>
-<span><span class="co">#&gt; ! Unknown levels in `f`: Não fortemente republicano</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use esta técnica com cuidado: se você agrupar categorias que são realmente diferentes, você acabará com resultados enganosos.</p>
 <p>Se você deseja recolher vários níveis, <code><a href="https://forcats.tidyverse.org/reference/fct_collapse.html">fct_collapse()</a></code> é uma variante útil de <code><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode()</a></code>. Para cada nova variável, você pode fornecer um vetor de níveis antigos:</p>
@@ -783,18 +775,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">partido</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
-<span><span class="co">#&gt; ℹ In argument: `partido = fct_collapse(...)`.</span></span>
-<span><span class="co">#&gt; Caused by warning:</span></span>
-<span><span class="co">#&gt; ! Unknown levels in `f`: Não fortemente republicano</span></span>
-<span><span class="co">#&gt; # A tibble: 5 × 2</span></span>
-<span><span class="co">#&gt;   partido                       n</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt;                     &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 other                       548</span></span>
-<span><span class="co">#&gt; 2 rep                        2314</span></span>
-<span><span class="co">#&gt; 3 Não fortemente repubicano  3032</span></span>
-<span><span class="co">#&gt; 4 ind                        8409</span></span>
-<span><span class="co">#&gt; 5 dem                        7180</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 4 × 2</span></span>
+<span><span class="co">#&gt;   partido     n</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 other     548</span></span>
+<span><span class="co">#&gt; 2 rep      5346</span></span>
+<span><span class="co">#&gt; 3 ind      8409</span></span>
+<span><span class="co">#&gt; 4 dem      7180</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Às vezes, você só quer juntar em pequenos grupos para simplificar um gráfico ou uma tabela. Esse é o trabalho da família de funções <code>fct_lump_*()</code>. <code><a href="https://forcats.tidyverse.org/reference/fct_lump.html">fct_lump_lowfreq()</a></code> é um ponto de partida simples que agrupa progressivamente as categorias dos menores grupos em “Outros”, sempre mantendo “Outros” como a menor categoria.</p>
 <div class="cell">
