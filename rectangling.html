@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund">
-<title>R para Ciência de Dados (2ª edição) - 23&nbsp; Hierarchical data</title>
+<title>R para Ciência de Dados (2ª edição) - 23&nbsp; Dados hierárquicos (rectangling)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./import.html">Importar</a></li><li class="breadcrumb-item"><a href="./rectangling.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hierarchical data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./import.html">Importar</a></li><li class="breadcrumb-item"><a href="./rectangling.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dados hierárquicos (<em>rectangling</em>)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -331,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rectangling.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dados hierárquicos (<em>rectangling</em>)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -403,52 +403,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">23.1</span> Introduction</a>
+<a href="#introdu%C3%A7%C3%A3o" id="toc-introdução" class="nav-link active" data-scroll-target="#introdu%C3%A7%C3%A3o"><span class="header-section-number">23.1</span> Introdução</a>
   <ul class="collapse">
-<li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">23.1.1</span> Prerequisites</a></li>
+<li><a href="#pr%C3%A9-requisitos" id="toc-pré-requisitos" class="nav-link" data-scroll-target="#pr%C3%A9-requisitos"><span class="header-section-number">23.1.1</span> Pré-requisitos</a></li>
   </ul>
 </li>
   <li>
-<a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">23.2</span> Lists</a>
+<a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">23.2</span> Listas</a>
   <ul class="collapse">
-<li><a href="#hierarchy" id="toc-hierarchy" class="nav-link" data-scroll-target="#hierarchy"><span class="header-section-number">23.2.1</span> Hierarchy</a></li>
+<li><a href="#hierarquia" id="toc-hierarquia" class="nav-link" data-scroll-target="#hierarquia"><span class="header-section-number">23.2.1</span> Hierarquia</a></li>
   <li><a href="#list-columns" id="toc-list-columns" class="nav-link" data-scroll-target="#list-columns"><span class="header-section-number">23.2.2</span> List-columns</a></li>
   </ul>
 </li>
   <li>
-<a href="#unnesting" id="toc-unnesting" class="nav-link" data-scroll-target="#unnesting"><span class="header-section-number">23.3</span> Unnesting</a>
+<a href="#desaninhando-unnesting" id="toc-desaninhando-unnesting" class="nav-link" data-scroll-target="#desaninhando-unnesting"><span class="header-section-number">23.3</span> Desaninhando (<em>unnesting</em>)</a>
   <ul class="collapse">
 <li><a href="#unnest_wider" id="toc-unnest_wider" class="nav-link" data-scroll-target="#unnest_wider"><span class="header-section-number">23.3.1</span> <code>unnest_wider()</code></a></li>
   <li><a href="#unnest_longer" id="toc-unnest_longer" class="nav-link" data-scroll-target="#unnest_longer"><span class="header-section-number">23.3.2</span> <code>unnest_longer()</code></a></li>
-  <li><a href="#inconsistent-types" id="toc-inconsistent-types" class="nav-link" data-scroll-target="#inconsistent-types"><span class="header-section-number">23.3.3</span> Inconsistent types</a></li>
-  <li><a href="#other-functions" id="toc-other-functions" class="nav-link" data-scroll-target="#other-functions"><span class="header-section-number">23.3.4</span> Other functions</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">23.3.5</span> Exercises</a></li>
+  <li><a href="#tipos-inconsistentes" id="toc-tipos-inconsistentes" class="nav-link" data-scroll-target="#tipos-inconsistentes"><span class="header-section-number">23.3.3</span> Tipos inconsistentes</a></li>
+  <li><a href="#outras-fun%C3%A7%C3%B5es" id="toc-outras-funções" class="nav-link" data-scroll-target="#outras-fun%C3%A7%C3%B5es"><span class="header-section-number">23.3.4</span> Outras funções</a></li>
+  <li><a href="#exerc%C3%ADcios" id="toc-exercícios" class="nav-link" data-scroll-target="#exerc%C3%ADcios"><span class="header-section-number">23.3.5</span> Exercícios</a></li>
   </ul>
 </li>
   <li>
-<a href="#case-studies" id="toc-case-studies" class="nav-link" data-scroll-target="#case-studies"><span class="header-section-number">23.4</span> Case studies</a>
+<a href="#estudos-de-casos" id="toc-estudos-de-casos" class="nav-link" data-scroll-target="#estudos-de-casos"><span class="header-section-number">23.4</span> Estudos de casos</a>
   <ul class="collapse">
-<li><a href="#very-wide-data" id="toc-very-wide-data" class="nav-link" data-scroll-target="#very-wide-data"><span class="header-section-number">23.4.1</span> Very wide data</a></li>
-  <li><a href="#relational-data" id="toc-relational-data" class="nav-link" data-scroll-target="#relational-data"><span class="header-section-number">23.4.2</span> Relational data</a></li>
-  <li><a href="#deeply-nested" id="toc-deeply-nested" class="nav-link" data-scroll-target="#deeply-nested"><span class="header-section-number">23.4.3</span> Deeply nested</a></li>
-  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1"><span class="header-section-number">23.4.4</span> Exercises</a></li>
+<li><a href="#dados-bem-largos-wide-data" id="toc-dados-bem-largos-wide-data" class="nav-link" data-scroll-target="#dados-bem-largos-wide-data"><span class="header-section-number">23.4.1</span> Dados bem largos (<em>wide data</em>)</a></li>
+  <li><a href="#dados-relacionais" id="toc-dados-relacionais" class="nav-link" data-scroll-target="#dados-relacionais"><span class="header-section-number">23.4.2</span> Dados relacionais</a></li>
+  <li><a href="#profundamente-aninhados-deeply-nested" id="toc-profundamente-aninhados-deeply-nested" class="nav-link" data-scroll-target="#profundamente-aninhados-deeply-nested"><span class="header-section-number">23.4.3</span> Profundamente aninhados (<em>deeply nested</em>)</a></li>
+  <li><a href="#exerc%C3%ADcios-1" id="toc-exercícios-1" class="nav-link" data-scroll-target="#exerc%C3%ADcios-1"><span class="header-section-number">23.4.4</span> Exercícios</a></li>
   </ul>
 </li>
   <li>
 <a href="#json" id="toc-json" class="nav-link" data-scroll-target="#json"><span class="header-section-number">23.5</span> JSON</a>
   <ul class="collapse">
-<li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="header-section-number">23.5.1</span> Data types</a></li>
+<li><a href="#tipos-de-dados" id="toc-tipos-de-dados" class="nav-link" data-scroll-target="#tipos-de-dados"><span class="header-section-number">23.5.1</span> Tipos de dados</a></li>
   <li><a href="#jsonlite" id="toc-jsonlite" class="nav-link" data-scroll-target="#jsonlite"><span class="header-section-number">23.5.2</span> jsonlite</a></li>
-  <li><a href="#starting-the-rectangling-process" id="toc-starting-the-rectangling-process" class="nav-link" data-scroll-target="#starting-the-rectangling-process"><span class="header-section-number">23.5.3</span> Starting the rectangling process</a></li>
-  <li><a href="#exercises-2" id="toc-exercises-2" class="nav-link" data-scroll-target="#exercises-2"><span class="header-section-number">23.5.4</span> Exercises</a></li>
+  <li><a href="#iniciando-o-processo-de-representa%C3%A7%C3%A3o-retangular" id="toc-iniciando-o-processo-de-representação-retangular" class="nav-link" data-scroll-target="#iniciando-o-processo-de-representa%C3%A7%C3%A3o-retangular"><span class="header-section-number">23.5.3</span> Iniciando o processo de representação retangular</a></li>
+  <li><a href="#exerc%C3%ADcios-2" id="toc-exercícios-2" class="nav-link" data-scroll-target="#exerc%C3%ADcios-2"><span class="header-section-number">23.5.4</span> Exercícios</a></li>
   </ul>
 </li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">23.6</span> Summary</a></li>
+  <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">23.6</span> Resumo</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/cienciadedatos/pt-r4ds/edit/main/rectangling.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/cienciadedatos/pt-r4ds/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./import.html">Importar</a></li><li class="breadcrumb-item"><a href="./rectangling.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hierarchical data</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-rectangling" class="quarto-section-identifier"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hierarchical data</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./import.html">Importar</a></li><li class="breadcrumb-item"><a href="./rectangling.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dados hierárquicos (<em>rectangling</em>)</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-rectangling" class="quarto-section-identifier"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dados hierárquicos (<em>rectangling</em>)</span></span></h1>
 </div>
 
 
@@ -462,31 +462,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><div class="callout callout-style-simple callout-warning">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Olá! Este capítulo do livro ainda <strong>não está traduzido</strong> para a versão Português-BR. <br> Caso você queira contribuir com o projeto de tradução, leia as instruções em: <a href="https://github.com/cienciadedatos/pt-r4ds/wiki" class="uri">https://github.com/cienciadedatos/pt-r4ds/wiki</a> <br> A versão original (em inglês) do livro R for Data Science está disponível em: <a href="https://r4ds.hadley.nz/" class="uri">https://r4ds.hadley.nz/</a></p>
-</div>
-</div>
-</div>
-<section id="introduction" class="level2" data-number="23.1"><h2 data-number="23.1" class="anchored" data-anchor-id="introduction">
-<span class="header-section-number">23.1</span> Introduction</h2>
-<p>In this chapter, you’ll learn the art of data <strong>rectangling</strong>: taking data that is fundamentally hierarchical, or tree-like, and converting it into a rectangular data frame made up of rows and columns. This is important because hierarchical data is surprisingly common, especially when working with data that comes from the web.</p>
-<p>To learn about rectangling, you’ll need to first learn about lists, the data structure that makes hierarchical data possible. Then you’ll learn about two crucial tidyr functions: <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">tidyr::unnest_longer()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">tidyr::unnest_wider()</a></code>. We’ll then show you a few case studies, applying these simple functions again and again to solve real problems. We’ll finish off by talking about JSON, the most frequent source of hierarchical datasets and a common format for data exchange on the web.</p>
-<section id="prerequisites" class="level3" data-number="23.1.1"><h3 data-number="23.1.1" class="anchored" data-anchor-id="prerequisites">
-<span class="header-section-number">23.1.1</span> Prerequisites</h3>
-<p>In this chapter, we’ll use many functions from tidyr, a core member of the tidyverse. We’ll also use repurrrsive to provide some interesting datasets for rectangling practice, and we’ll finish by using jsonlite to read JSON files into R lists.</p>
+</header><section id="introdução" class="level2" data-number="23.1"><h2 data-number="23.1" class="anchored" data-anchor-id="introdução">
+<span class="header-section-number">23.1</span> Introdução</h2>
+<p>Neste capítulo, você aprenderá a arte da <strong>representação retangular</strong> dos dados (<em>rectangling</em>): pegar um dado que é fundamentalmente hierárquico ou baseado em uma estrutura de árvore (<em>tree-like</em>) e convertê-lo em um <em>data frame</em> retangular, composto por linhas e colunas. Isto é importante porque dados hierárquicos são surpreendentemente comuns, especialmente quando se trabalha com dados vindos da web.</p>
+<p>Para aprender sobre representação retangular, você precisa aprender primeiro sobre listas, que são estruturas de dados que tornam os dados hierárquicos possíveis. Depois, você aprenderá sobre duas funções críticas do tidyr: <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">tidyr::unnest_longer()</a></code> e <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">tidyr::unnest_wider()</a></code>. Iremos então mostrar alguns estudos de caso, aplicando estas funções simples diversas vezes para resolver problemas reais. Concluiremos falando sobre JSON, a fonte mais frequente de conjuntos de dados hierárquicos e um formato comum para intercambio de dados na web.</p>
+<section id="pré-requisitos" class="level3" data-number="23.1.1"><h3 data-number="23.1.1" class="anchored" data-anchor-id="pré-requisitos">
+<span class="header-section-number">23.1.1</span> Pré-requisitos</h3>
+<p>Neste capítulo, usaremos várias funções do tidyr, um pacote central do tidyverse. Usaremos também o pacote repurrrsive para nos fornecer alguns conjuntos de dados interessantes para praticar a representação retangular e concluiremos usando o pacote jsonlite para importar arquivos JSON para o R como listas.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jennybc.github.io/repurrrsive/">repurrrsive</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jeroen.r-universe.dev/jsonlite">jsonlite</a></span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="lists" class="level2" data-number="23.2"><h2 data-number="23.2" class="anchored" data-anchor-id="lists">
-<span class="header-section-number">23.2</span> Lists</h2>
-<p>So far you’ve worked with data frames that contain simple vectors like integers, numbers, characters, date-times, and factors. These vectors are simple because they’re homogeneous: every element is of the same data type. If you want to store elements of different types in the same vector, you’ll need a <strong>list</strong>, which you create with <code><a href="https://rdrr.io/r/base/list.html">list()</a></code>:</p>
+</section></section><section id="listas" class="level2" data-number="23.2"><h2 data-number="23.2" class="anchored" data-anchor-id="listas">
+<span class="header-section-number">23.2</span> Listas</h2>
+<p>Até agora você trabalhou com <em>data frames</em> que continham vetores simples como inteiros, números, caracteres, data_hora e fatores. Estes vetores são simples pois são homogêneos: cada elemento tem o mesmo tipo de dado. Se você quiser armazenar elementos de diferentes tipos no mesmo vetor, você precisará de uma <strong>lista</strong>, que pode ser criada com a função <code><a href="https://rdrr.io/r/base/list.html">list()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="st">"a"</span>, <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">x1</span></span>
@@ -499,7 +489,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [[3]]</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>It’s often convenient to name the components, or <strong>children</strong>, of a list, which you can do in the same way as naming the columns of a tibble:</p>
+<p>Em geral, é conveniente nomear os componentes ou <strong>elementos</strong> de uma lista, o que pode ser feito da mesma forma que nomeamos colunas de um <em>tibble</em>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, b <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, c <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">x2</span></span>
@@ -512,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; $c</span></span>
 <span><span class="co">#&gt; [1] 1 2 3 4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Even for these very simple lists, printing takes up quite a lot of space. A useful alternative is <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>, which generates a compact display of the <strong>str</strong>ucture, de-emphasizing the contents:</p>
+<p>Até para estas listas simples, é necessário um espaço razoável para exibi-las no Console. Uma alternativa é usar <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>, que gera uma visualização compacta da e<strong>str</strong>utura, tirando o foco de seu contéudo:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">x1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 3</span></span>
@@ -525,10 +515,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt;  $ b: int [1:3] 1 2 3</span></span>
 <span><span class="co">#&gt;  $ c: int [1:4] 1 2 3 4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As you can see, <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> displays each child of the list on its own line. It displays the name, if present, then an abbreviation of the type, then the first few values.</p>
-<section id="hierarchy" class="level3" data-number="23.2.1"><h3 data-number="23.2.1" class="anchored" data-anchor-id="hierarchy">
-<span class="header-section-number">23.2.1</span> Hierarchy</h3>
-<p>Lists can contain any type of object, including other lists. This makes them suitable for representing hierarchical (tree-like) structures:</p>
+<p>Como você pode ver, <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> mostra cada elemento da lista em uma linha própria. Esta função mostra o nome, quando presente, seguido de uma abreviação do tipo e então os primeiros valores.</p>
+<section id="hierarquia" class="level3" data-number="23.2.1"><h3 data-number="23.2.1" class="anchored" data-anchor-id="hierarquia">
+<span class="header-section-number">23.2.1</span> Hierarquia</h3>
+<p>Listas podem conter qualquer tipo de objeto, incluindo outras listas. Isto as tornam adequadas para representar estruturas hierárquicas (<em>tree-like</em>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">x3</span><span class="op">)</span></span>
@@ -540,7 +530,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt;   ..$ : num 3</span></span>
 <span><span class="co">#&gt;   ..$ : num 4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This is notably different to <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>, which generates a flat vector:</p>
+<p>Isto é notoriamente diferente de <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>, que gera um vetor achatado (<em>flat</em>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1 2 3 4</span></span>
@@ -553,7 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt;  $ : num 3</span></span>
 <span><span class="co">#&gt;  $ : num 4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As lists get more complex, <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> gets more useful, as it lets you see the hierarchy at a glance:</p>
+<p>Conforme as listas se tornam mais complexas, <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> se torna mais útil, pois permite que você veja a hierarquia rapidamente:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">x5</span><span class="op">)</span></span>
@@ -568,47 +558,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt;   .. .. ..$ :List of 1</span></span>
 <span><span class="co">#&gt;   .. .. .. ..$ : num 5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As lists get even larger and more complex, <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> eventually starts to fail, and you’ll need to switch to <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. <a href="#fig-view-collapsed" class="quarto-xref">Figura&nbsp;<span>23.1</span></a> shows the result of calling <code>View(x5)</code>. The viewer starts by showing just the top level of the list, but you can interactively expand any of the components to see more, as in <a href="#fig-view-expand-1" class="quarto-xref">Figura&nbsp;<span>23.2</span></a>. RStudio will also show you the code you need to access that element, as in <a href="#fig-view-expand-2" class="quarto-xref">Figura&nbsp;<span>23.3</span></a>. We’ll come back to how this code works in <a href="base-R.html#sec-subset-one" class="quarto-xref"><span>Seção 27.3</span></a>.</p>
+<p>Conforme as listas aumentam ainda mais e se tornam ainda mais complexas, <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> pode começar a deixar de ser útil e você precisará mudar para a <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. A <a href="#fig-view-collapsed" class="quarto-xref">Figura&nbsp;<span>23.1</span></a> mostra o resultado da chamada de <code>View(x5)</code>. O visualizador começa mostrando o nível mais alto da lista, mas você pode expandir interativamente qualquer componente para ver mais, como na <a href="#fig-view-expand-1" class="quarto-xref">Figura&nbsp;<span>23.2</span></a>. O RStudio também lhe mostra o código que você precisaria para acessar aquele elemento, como na <a href="#fig-view-expand-2" class="quarto-xref">Figura&nbsp;<span>23.3</span></a>. Retornaremos a como este código funciona na <a href="base-R.html#sec-subset-one" class="quarto-xref"><span>Seção 27.3</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-view-collapsed" class="quarto-figure quarto-figure-center quarto-float anchored" alt="A screenshot of RStudio showing the list-viewer. It shows the two children of x5: the first child is a double vector and the second child is a list. A rightward facing triable indicates that the second child itself has children but you can't see them. ">
+<div id="fig-view-collapsed" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Uma captura de tela do RStudio mostrando o visualizador de listas. Mostra os dois componentes filhos de x5: o primeiro elemento é um vetor *double* e o segundo é uma lista. Um triangulo apontando para a direita indica que o segundo elemento possue em si elementos filhos mas que você não consegue ver. ">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-view-collapsed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="screenshots/View-1.png" class="img-fluid figure-img" alt="A screenshot of RStudio showing the list-viewer. It shows the two children of x5: the first child is a double vector and the second child is a list. A rightward facing triable indicates that the second child itself has children but you can't see them. " width="641">
+<img src="screenshots/View-1.png" class="img-fluid figure-img" alt="Uma captura de tela do RStudio mostrando o visualizador de listas. Mostra os dois componentes filhos de x5: o primeiro elemento é um vetor *double* e o segundo é uma lista. Um triangulo apontando para a direita indica que o segundo elemento possue em si elementos filhos mas que você não consegue ver. " width="641">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-view-collapsed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;23.1: The RStudio view lets you interactively explore a complex list. The viewer opens showing only the top level of the list.
+Figura&nbsp;23.1: A visualização do RStudio permite que você explore interativamente listas complexas. O visualizador inicia mostrando apenas os primeiros níveis da lista.
 </figcaption></figure>
 </div>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-view-expand-1" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Another screenshot of the list-viewer having expand the second child of x5. It also has two children, a double vector and another list. ">
+<div id="fig-view-expand-1" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Outra captura de tela do visualizador de listas com os elements do segundo elemento de x5. Ele também tem dois elementos filhos, um vetor *double* e outra lista. ">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-view-expand-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="screenshots/View-2.png" class="img-fluid figure-img" alt="Another screenshot of the list-viewer having expand the second child of x5. It also has two children, a double vector and another list. " width="641">
+<img src="screenshots/View-2.png" class="img-fluid figure-img" alt="Outra captura de tela do visualizador de listas com os elements do segundo elemento de x5. Ele também tem dois elementos filhos, um vetor *double* e outra lista. " width="641">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-view-expand-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;23.2: Clicking on the rightward facing triangle expands that component of the list so that you can also see its children.
+Figura&nbsp;23.2: Clicando no triangulo apontado para a direita, o elemento de lista se expande e então você pode ver seus elementos filhos.
 </figcaption></figure>
 </div>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-view-expand-2" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Another screenshot, having expanded the grandchild of x5 to see its two children, again a double vector and a list. ">
+<div id="fig-view-expand-2" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Outra captura de tela com o elemento neto de x5 expandido para ver seus dois filhos, novamente um vetor *double* e uma lista. ">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-view-expand-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="screenshots/View-3.png" class="img-fluid figure-img" alt="Another screenshot, having expanded the grandchild of x5 to see its two children, again a double vector and a list. " width="641">
+<img src="screenshots/View-3.png" class="img-fluid figure-img" alt="Outra captura de tela com o elemento neto de x5 expandido para ver seus dois filhos, novamente um vetor *double* e uma lista. " width="641">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-view-expand-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;23.3: You can repeat this operation as many times as needed to get to the data you’re interested in. Note the bottom-left corner: if you click an element of the list, RStudio will give you the subsetting code needed to access it, in this case <code>x5[[2]][[2]][[2]]</code>.
+Figura&nbsp;23.3: Você pode repetir esta operação quantas vezes quiser até chegar aos dados desejados. Note no canto inferior esquerdo: se você clicar em um elemento da lista, o RStudio lhe fornece o código necessário para acessar tal elemento neste caso <code>x5[[2]][[2]][[2]]</code>.
 </figcaption></figure>
 </div>
 </div>
 </div>
 </section><section id="list-columns" class="level3" data-number="23.2.2"><h3 data-number="23.2.2" class="anchored" data-anchor-id="list-columns">
 <span class="header-section-number">23.2.2</span> List-columns</h3>
-<p>Lists can also live inside a tibble, where we call them list-columns. List-columns are useful because they allow you to place objects in a tibble that wouldn’t usually belong in there. In particular, list-columns are used a lot in the <a href="https://www.tidymodels.org">tidymodels</a> ecosystem, because they allow you to store things like model outputs or resamples in a data frame.</p>
-<p>Here’s a simple example of a list-column:</p>
+<p>Listas também podem estar presentes em um <em>tibble</em>, quando isto acontece as chamamos de colunas-lista (<em>list-columns</em>). <em>List-columns</em> são úteis porque elas permitem que você coloque objetos em um <em>tibble</em> que normalmente não pertenceriam a ele. Em particular, <em>list-columns</em> são muito usadas no ecosistema <a href="https://www.tidymodels.org">tidymodels</a>, pois permitem que você armazene coisas como saída de modelos ou amostras (<em>resamples</em>) em um <em>data frame</em>.</p>
+<p>Aqui está um simples exemplo de uma <em>list-column</em>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, </span>
@@ -622,7 +612,7 @@ Figura&nbsp;23.3: You can repeat this operation as many times as needed to get t
 <span><span class="co">#&gt; 1     1 a     &lt;list [2]&gt;</span></span>
 <span><span class="co">#&gt; 2     2 b     &lt;list [3]&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>There’s nothing special about lists in a tibble; they behave like any other column:</p>
+<p>Não há nada de especial nesta lista dentro de um <em>tibble</em>; se comportando como qualquer outra coluna:</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -631,19 +621,19 @@ Figura&nbsp;23.3: You can repeat this operation as many times as needed to get t
 <span><span class="co">#&gt;   &lt;int&gt; &lt;chr&gt; &lt;list&gt;    </span></span>
 <span><span class="co">#&gt; 1     1 a     &lt;list [2]&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Computing with list-columns is harder, but that’s because computing with lists is harder in general; we’ll come back to that in <a href="iteration.html" class="quarto-xref"><span>Capítulo 26</span></a>. In this chapter, we’ll focus on unnesting list-columns out into regular variables so you can use your existing tools on them.</p>
-<p>The default print method just displays a rough summary of the contents. The list column could be arbitrarily complex, so there’s no good way to print it. If you want to see it, you’ll need to pull out just the one list-column and apply one of the techniques that you’ve learned above, like <code>df |&gt; pull(z) |&gt; str()</code> or <code>df |&gt; pull(z) |&gt; View()</code>.</p>
+<p>Trabalhar com <em>list-column</em> é mais difícil, mas isto se dá porque trabalhar com listas é difícil de modo geral; voltaremos a este assunto no <a href="iteration.html" class="quarto-xref"><span>Capítulo 26</span></a>. Neste capítulo, nos concetraremos em desaninhar (<em>unnest</em>) as colunas-lista em variáveis regulares para que você possa usar tuas ferramentas já existentes nelas.</p>
+<p>O método de exibição padrão é um resumo grosseiro de seus conteúdos. A <em>list-column</em> poderia ser arbitrariamente complexa, portanto não há um jeito fácil de exibi-las (“printa-las”). Se quiser visualizá-la, você precisará extrair apenas a <em>list-column</em> em questão e aplicar uma das técnicas que aprendeu acima, como <code>df |&gt; pull(z) |&gt; str()</code> ou <code>df |&gt; pull(z) |&gt; View()</code>.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Base R
+R base
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It’s possible to put a list in a column of a <code>data.frame</code>, but it’s a lot fiddlier because <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> treats a list as a list of columns:</p>
+<p>É possível colocar uma lista em uma coluna de um <em>data frame</em>, mas é muito mais complicado, porque <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> trata uma lista como uma <em>list-column</em>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   x.1.3 x.3.5</span></span>
@@ -651,7 +641,7 @@ Base R
 <span><span class="co">#&gt; 2     2     4</span></span>
 <span><span class="co">#&gt; 3     3     5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can force <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> to treat a list as a list of rows by wrapping it in list <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code>, but the result doesn’t print particularly well:</p>
+<p>Você pode forçar <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> a tratar uma lista como uma lista de linhas envolvendo-a com a função <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code>, mas o resultado não gera uma exibição muito boa:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span>, </span>
@@ -661,13 +651,13 @@ Base R
 <span><span class="co">#&gt; 1    1, 2    1, 2</span></span>
 <span><span class="co">#&gt; 2 3, 4, 5 3, 4, 5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>It’s easier to use list-columns with tibbles because <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> treats lists like vectors and the print method has been designed with lists in mind.</p>
+<p>É mais fácil usar <em>list-columns</em> com <em>tibbles</em>, pois a função <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> trata listas como vetores e o método de exibição foi projetado tendo listas em mente.</p>
 </div>
 </div>
-</section></section><section id="unnesting" class="level2" data-number="23.3"><h2 data-number="23.3" class="anchored" data-anchor-id="unnesting">
-<span class="header-section-number">23.3</span> Unnesting</h2>
-<p>Now that you’ve learned the basics of lists and list-columns, let’s explore how you can turn them back into regular rows and columns. Here we’ll use very simple sample data so you can get the basic idea; in the next section we’ll switch to real data.</p>
-<p>List-columns tend to come in two basic forms: named and unnamed. When the children are <strong>named</strong>, they tend to have the same names in every row. For example, in <code>df1</code>, every element of list-column <code>y</code> has two elements named <code>a</code> and <code>b</code>. Named list-columns naturally unnest into columns: each named element becomes a new named column.</p>
+</section></section><section id="desaninhando-unnesting" class="level2" data-number="23.3"><h2 data-number="23.3" class="anchored" data-anchor-id="desaninhando-unnesting">
+<span class="header-section-number">23.3</span> Desaninhando (<em>unnesting</em>)</h2>
+<p>Agora que você aprendeu o básico sobre listas e <em>list-columns</em>, vamos explorar como você pode transformá-las novamente em linhas e colunas regulares. Aqui usaremos uma amostra de dados simples para que você entenda a ideia básica; na próxima seção mudaremos para dados reais.</p>
+<p><em>List-columns</em> tendem a aparecer em duas formas básicas: nomeadas (<em>named</em>) e não nomeadas (<em>unnamed</em>). Quando os elementos filhos são <strong>nomeados</strong>, eles tendem a ter o mesmo nome em todas as linhas. Por exemplo, em <code>df1</code>, cada elemento da <em>list-column</em> <code>y</code> tem dois elementos nomeados <code>a</code> e <code>b</code>. <em>List-columns</em> nomeadas naturalmente se desaninham em colunas: cada elemento nomeado se torna uma nova coluna nomeada.</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>,</span>
@@ -676,7 +666,7 @@ Base R
 <span>  <span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">31</span>, b <span class="op">=</span> <span class="fl">32</span><span class="op">)</span>,</span>
 <span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>When the children are <strong>unnamed</strong>, the number of elements tends to vary from row-to-row. For example, in <code>df2</code>, the elements of list-column <code>y</code> are unnamed and vary in length from one to three. Unnamed list-columns naturally unnest into rows: you’ll get one row for each child.</p>
+<p>Quando os elementos filhos são <strong>não nomeados</strong>, o número de elementos tendem a variar de linha para linha. Por exemplo, em <code>df2</code>, os elementos da <em>list-column</em> <code>y</code> são não nomeados e variam em tamanhos de um até três. <em>List-columns</em> não nomeadas se desaninham naturalmente em linhas: você terá uma linha para cada elemento filho.</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
@@ -686,11 +676,11 @@ Base R
 <span>  <span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">31</span>, <span class="fl">32</span><span class="op">)</span>,</span>
 <span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>tidyr provides two functions for these two cases: <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code>. The following sections explain how they work.</p>
+<p>tidyr fornece duas funções para estes dois casos: <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> e <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code>. As seções seguintes explicam como elas funcionam.</p>
 <section id="unnest_wider" class="level3" data-number="23.3.1"><h3 data-number="23.3.1" class="anchored" data-anchor-id="unnest_wider">
 <span class="header-section-number">23.3.1</span> <code>unnest_wider()</code>
 </h3>
-<p>When each row has the same number of elements with the same names, like <code>df1</code>, it’s natural to put each component into its own column with <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code>:</p>
+<p>Quado cada linha tem o mesmo número de elementos com o mesmo nome, como em <code>df1</code>, é natural colocar cada elemento em sua própria coluna com <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df1</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
@@ -701,7 +691,7 @@ Base R
 <span><span class="co">#&gt; 2     2    21    22</span></span>
 <span><span class="co">#&gt; 3     3    31    32</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>By default, the names of the new columns come exclusively from the names of the list elements, but you can use the <code>names_sep</code> argument to request that they combine the column name and the element name. This is useful for disambiguating repeated names.</p>
+<p>Por padrão, os nomes das novas colunas vem exclusivamente dos nomes dos elementos da lista, mas você pode usar o argumento <code>names_sep</code> para solicitar que o nome da coluna seja combinado com o nome do elemento. Isto é útil para remover ambiguidades de nomes repetidos.</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df1</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">y</span>, names_sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span></span>
@@ -715,7 +705,7 @@ Base R
 </section><section id="unnest_longer" class="level3" data-number="23.3.2"><h3 data-number="23.3.2" class="anchored" data-anchor-id="unnest_longer">
 <span class="header-section-number">23.3.2</span> <code>unnest_longer()</code>
 </h3>
-<p>When each row contains an unnamed list, it’s most natural to put each element into its own row with <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code>:</p>
+<p>Quando cada linha contiver uma lista não nomeada, é mais natural colocar cada elemento em sua própria linha com <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df2</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
@@ -729,7 +719,7 @@ Base R
 <span><span class="co">#&gt; 5     3    31</span></span>
 <span><span class="co">#&gt; 6     3    32</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note how <code>x</code> is duplicated for each element inside of <code>y</code>: we get one row of output for each element inside the list-column. But what happens if one of the elements is empty, as in the following example?</p>
+<p>Note como <code>x</code> está duplicado para cada elemento dentro de <code>y</code>: temos uma linha de saída para cada elemento dentro da <em>list-column</em>. Mas o que acontece se algum dos elementos estiver vazio, como no exemplo a seguir?</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>,</span>
@@ -745,10 +735,10 @@ Base R
 <span><span class="co">#&gt; 2 a         2</span></span>
 <span><span class="co">#&gt; 3 b         3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We get zero rows in the output, so the row effectively disappears. If you want to preserve that row, adding <code>NA</code> in <code>y</code>, set <code>keep_empty = TRUE</code>.</p>
-</section><section id="inconsistent-types" class="level3" data-number="23.3.3"><h3 data-number="23.3.3" class="anchored" data-anchor-id="inconsistent-types">
-<span class="header-section-number">23.3.3</span> Inconsistent types</h3>
-<p>What happens if you unnest a list-column that contains different types of vector? For example, take the following dataset where the list-column <code>y</code> contains two numbers, a character, and a logical, which can’t normally be mixed in a single column.</p>
+<p>Temos zero linhas na saída, portanto a linha efetivamente desaparece. Se quiser preservar esta linha, adicionando <code>NA</code> em <code>y</code>, defina <code>keep_empty = TRUE</code>.</p>
+</section><section id="tipos-inconsistentes" class="level3" data-number="23.3.3"><h3 data-number="23.3.3" class="anchored" data-anchor-id="tipos-inconsistentes">
+<span class="header-section-number">23.3.3</span> Tipos inconsistentes</h3>
+<p>O que acontece se você desaninhar uma <em>list-column</em> que contém diferentes tipos de vetores? Por exemplo, veja o seguinte conjunto de dados onde a <em>list-column</em> <code>y</code> contém dois números, um caractere e um lógico, a qual você normalmente não pode juntar em uma única coluna.</p>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>,</span>
@@ -756,7 +746,7 @@ Base R
 <span>  <span class="st">"b"</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="cn">TRUE</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> always keeps the set of columns unchanged, while changing the number of rows. So what happens? How does <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> produce five rows while keeping everything in <code>y</code>?</p>
+<p><code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> sempre mantém o conjunto de colunas imutável, enquanto muda o número de linhas. Então, o que acontece? Como que <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> produz cinco linhas e ao mesmo tempo mantém tudo em <code>y</code>?</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df4</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
@@ -768,25 +758,25 @@ Base R
 <span><span class="co">#&gt; 3 b     &lt;lgl [1]&gt;</span></span>
 <span><span class="co">#&gt; 4 b     &lt;dbl [1]&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As you can see, the output contains a list-column, but every element of the list-column contains a single element. Because <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> can’t find a common type of vector, it keeps the original types in a list-column. You might wonder if this breaks the commandment that every element of a column must be the same type. It doesn’t: every element is a list, even though the contents are of different types.</p>
-<p>Dealing with inconsistent types is challenging and the details depend on the precise nature of the problem and your goals, but you’ll most likely need tools from <a href="iteration.html" class="quarto-xref"><span>Capítulo 26</span></a>.</p>
-</section><section id="other-functions" class="level3" data-number="23.3.4"><h3 data-number="23.3.4" class="anchored" data-anchor-id="other-functions">
-<span class="header-section-number">23.3.4</span> Other functions</h3>
-<p>tidyr has a few other useful rectangling functions that we’re not going to cover in this book:</p>
+<p>Como você pode ver, a saída contém uma <em>list-column</em>, mas cada elemento da <em>list-column</em> contém um único elemento. Como <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> não pode encontrar um tipo de vetor comum, ela mantém os tipos originais em uma <em>list-column</em>. Você pode estar se perguntando se isso viola o mandamento de que cada elemento de uma coluna deve ser do mesmo tipo. Não: cada elemento é uma lista, mesmo que os conteúdos sejam de tipos diferentes.</p>
+<p>Lidar com tipos inconsistentes é desafiador e os detalhes dependem da natureza precisa do problema e dos seus objetivos, mas você provavelmente precisará de ferramentas do <a href="iteration.html" class="quarto-xref"><span>Capítulo 26</span></a>.</p>
+</section><section id="outras-funções" class="level3" data-number="23.3.4"><h3 data-number="23.3.4" class="anchored" data-anchor-id="outras-funções">
+<span class="header-section-number">23.3.4</span> Outras funções</h3>
+<p>O tidyr tem algumas outras funções de representação retangular que não iremos cobrir neste livro:</p>
 <ul>
 <li>
-<code><a href="https://tidyr.tidyverse.org/reference/unnest_auto.html">unnest_auto()</a></code> automatically picks between <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> based on the structure of the list-column. It’s great for rapid exploration, but ultimately it’s a bad idea because it doesn’t force you to understand how your data is structured, and makes your code harder to understand.</li>
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_auto.html">unnest_auto()</a></code> automaticamente escolhe entre <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> e <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> baseado na estrutura da <em>list-column</em>. Esta função é ótima para uma exploração rápida, mas no fim das contas é uma má ideia pois não força você a entender como seus dados estão estruturados e torna teu código mais difícil de entender.</li>
 <li>
-<code><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest()</a></code> expands both rows and columns. It’s useful when you have a list-column that contains a 2d structure like a data frame, which you don’t see in this book, but you might encounter if you use the <a href="https://www.tmwr.org/base-r.html#combining-base-r-models-and-the-tidyverse">tidymodels</a> ecosystem.</li>
+<code><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest()</a></code> expande tanto linhas quanto colunas. É muito poderosa quando você tem uma <em>list-column</em> que contém uma estrutura 2d como um <em>data frame</em>, algo que você não verá neste livro, mas você deve encontrar se usar o ecosistema <a href="https://www.tmwr.org/base-r.html#combining-base-r-models-and-the-tidyverse">tidymodels</a>.</li>
 </ul>
-<p>These functions are good to know about as you might encounter them when reading other people’s code or tackling rarer rectangling challenges yourself.</p>
-</section><section id="exercises" class="level3" data-number="23.3.5"><h3 data-number="23.3.5" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">23.3.5</span> Exercises</h3>
+<p>É bom conhecer estas funções pois você pode encontrá-las em códigos de outras pessoas ou enfrentar você mesmo desafios mais raros de representação retangular.</p>
+</section><section id="exercícios" class="level3" data-number="23.3.5"><h3 data-number="23.3.5" class="anchored" data-anchor-id="exercícios">
+<span class="header-section-number">23.3.5</span> Exercícios</h3>
 <ol type="1">
-<li><p>What happens when you use <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> with unnamed list-columns like <code>df2</code>? What argument is now necessary? What happens to missing values?</p></li>
-<li><p>What happens when you use <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> with named list-columns like <code>df1</code>? What additional information do you get in the output? How can you suppress that extra detail?</p></li>
+<li><p>O que acontece quando você utiliza <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> com <em>list-columns</em> não nomeadas como em <code>df2</code>? Qual argumento é necessário agora? O que acontece com valores faltantes (<em>missing</em>)?</p></li>
+<li><p>O que acontece quando você utiliza <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> com <em>list-columns</em> nomeadas como em <code>df1</code>? Qual informação adicional você recebe na saída? Como você pode suprimir estes detalhes extras?</p></li>
 <li>
-<p>From time-to-time you encounter data frames with multiple list-columns with aligned values. For example, in the following data frame, the values of <code>y</code> and <code>z</code> are aligned (i.e.&nbsp;<code>y</code> and <code>z</code> will always have the same length within a row, and the first value of <code>y</code> corresponds to the first value of <code>z</code>). What happens if you apply two <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> calls to this data frame? How can you preserve the relationship between <code>x</code> and <code>y</code>? (Hint: carefully read the docs).</p>
+<p>De tempos em tempos, você encontra <em>data frames</em> com várias <em>list-columns</em> com valores alinhados. Por exemplo, no <em>data frame</em> seguinte, os valores de <code>y</code>e <code>z</code> estão alinhados (ex: <code>y</code> e <code>z</code> sempre terão o mesmo tamanho dentro de uma linha e o primeiro valor de <code>y</code> corresponde ao primeiro valor de <code>z</code>). O que acontece quando você executa a função <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> duas vezes neste <em>data frame</em>? Como você pode preservar a relação entre <code>x</code> e <code>y</code>? (Dica: leia atentamente a documentação).</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">z</span>,</span>
@@ -795,13 +785,13 @@ Base R
 <span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </li>
-</ol></section></section><section id="case-studies" class="level2" data-number="23.4"><h2 data-number="23.4" class="anchored" data-anchor-id="case-studies">
-<span class="header-section-number">23.4</span> Case studies</h2>
-<p>The main difference between the simple examples we used above and real data is that real data typically contains multiple levels of nesting that require multiple calls to <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> and/or <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code>. To show that in action, this section works through three real rectangling challenges using datasets from the repurrrsive package.</p>
-<section id="very-wide-data" class="level3" data-number="23.4.1"><h3 data-number="23.4.1" class="anchored" data-anchor-id="very-wide-data">
-<span class="header-section-number">23.4.1</span> Very wide data</h3>
-<p>We’ll start with <code>gh_repos</code>. This is a list that contains data about a collection of GitHub repositories retrieved using the GitHub API. It’s a very deeply nested list so it’s difficult to show the structure in this book; we recommend exploring a little on your own with <code>View(gh_repos)</code> before we continue.</p>
-<p><code>gh_repos</code> is a list, but our tools work with list-columns, so we’ll begin by putting it into a tibble. We call this column <code>json</code> for reasons we’ll get to later.</p>
+</ol></section></section><section id="estudos-de-casos" class="level2" data-number="23.4"><h2 data-number="23.4" class="anchored" data-anchor-id="estudos-de-casos">
+<span class="header-section-number">23.4</span> Estudos de casos</h2>
+<p>A principal diferença entre os exemplos simples que usamos acima e o de dados reais, é que os dados reais tipicamente contém vários níveis de aninhamento (<em>nesting</em>) que requerem o uso consecutivo de <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> e/ou <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code>. Para mostrar isto em ação, esta seção faz uso de três desafios de representação retangular, usando conjunto de dados do pacote repurrrsive.</p>
+<section id="dados-bem-largos-wide-data" class="level3" data-number="23.4.1"><h3 data-number="23.4.1" class="anchored" data-anchor-id="dados-bem-largos-wide-data">
+<span class="header-section-number">23.4.1</span> Dados bem largos (<em>wide data</em>)</h3>
+<p>Começaremos com <code>gh_repos</code>. Esta é uma lista que contém dados sobre uma coleção de repositórios do GitHub obtidos usando a API do GitHub. É uma lista aninhada em vários níveis, por isso é difícil de mostrar sua estrutura neste livro; nós recomendamos que você a explore por conta própria usando <code>View(gh_repos)</code> antes de continuar.</p>
+<p><code>gh_repos</code> é uma lista, mas nossas ferramentas trabalham com <em>list-columns</em>, então iremos começar colocando-a em um <em>tibble</em>. Chamaremos esta coluna de <code>json</code> por razões que veremos mais tarde.</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>json <span class="op">=</span> <span class="va">gh_repos</span><span class="op">)</span></span>
 <span><span class="va">repos</span></span>
@@ -815,7 +805,7 @@ Base R
 <span><span class="co">#&gt; 5 &lt;list [30]&gt;</span></span>
 <span><span class="co">#&gt; 6 &lt;list [30]&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This tibble contains 6 rows, one row for each child of <code>gh_repos</code>. Each row contains a unnamed list with either 26 or 30 rows. Since these are unnamed, we’ll start with <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> to put each child in its own row:</p>
+<p>Este <em>tibble</em> contém 6 linhas, uma linha para cada elemento filho de <code>gh_repos</code>. Cada linha contém uma lista não nomeada com 26 ou 30 linhas. Como elas são não nomeadas, começaremos com <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> para colocar cada filho em sua própria linha:</p>
 <div class="cell">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repos</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span></span>
@@ -830,7 +820,7 @@ Base R
 <span><span class="co">#&gt; 6 &lt;named list [68]&gt;</span></span>
 <span><span class="co">#&gt; # ℹ 170 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>At first glance, it might seem like we haven’t improved the situation: while we have more rows (176 instead of 6) each element of <code>json</code> is still a list. However, there’s an important difference: now each element is a <strong>named</strong> list so we can use <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> to put each element into its own column:</p>
+<p>À primeira vista, pode parecer que não melhoramos a situação: apesar de termos mais linhas (176 ao invés de 6), cada elemento de <code>json</code> ainda é uma lista. Entretando, há uma importante diferença: agora, cada elemento é uma lista <strong>nomeada</strong>, então podemos usar <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> para colocar cada elemento em sua própria coluna:</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repos</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -847,7 +837,7 @@ Base R
 <span><span class="co">#&gt; # ℹ 170 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 62 more variables: description &lt;chr&gt;, fork &lt;lgl&gt;, url &lt;chr&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This has worked but the result is a little overwhelming: there are so many columns that tibble doesn’t even print all of them! We can see them all with <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>; and here we look at the first 10:</p>
+<p>Isto fucionou, mas o resultado ficou um pouco estranho: Existem tantas colunas que o <em>tibble</em> nem exibe todas elas! Podemos ver todas as colunas com <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>; e aqui vemos as primeiras 10:</p>
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repos</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -857,7 +847,7 @@ Base R
 <span><span class="co">#&gt;  [1] "id"          "name"        "full_name"   "owner"       "private"    </span></span>
 <span><span class="co">#&gt;  [6] "html_url"    "description" "fork"        "url"         "forks_url"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Let’s pull out a few that look interesting:</p>
+<p>Vamos extrair algumas que parecem interessantes:</p>
 <div class="cell">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repos</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -874,8 +864,8 @@ Base R
 <span><span class="co">#&gt; 6 33907457 gaborcsardi/clisymbols  &lt;named list [17]&gt; Unicode symbols for CLI…</span></span>
 <span><span class="co">#&gt; # ℹ 170 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can use this to work back to understand how <code>gh_repos</code> was structured: each child was a GitHub user containing a list of up to 30 GitHub repositories that they created.</p>
-<p><code>owner</code> is another list-column, and since it contains a named list, we can use <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> to get at the values:</p>
+<p>Você pode usar isso para entender como o <code>gh_repos</code> foi estruturado: cada elemento filho era um usuário do GitHub contendo uma lista de até 30 repositórios do GitHub que eles criaram.</p>
+<p><code>owner</code> é uma outra <em>list-column</em>, e uma vez que contém uma lista nomeada, podemos usar <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> para obter seus valores:</p>
 <div class="cell">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repos</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -890,7 +880,7 @@ Base R
 <span><span class="co">#&gt; ℹ Use `names_sep` to disambiguate using the column name.</span></span>
 <span><span class="co">#&gt; ℹ Or use `names_repair` to specify a repair strategy.</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Uh oh, this list column also contains an <code>id</code> column and we can’t have two <code>id</code> columns in the same data frame. As suggested, lets use <code>names_sep</code> to resolve the problem:</p>
+<p>Uh uh, esta <em>list-column</em> também contém uma coluna <code>id</code> e não podemos ter duas colunas <code>id</code> no mesmo <em>data frame</em>. Conforme sugerido, vamos usar <code>names_sep</code> para resolver este problema:</p>
 <div class="cell">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repos</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -909,10 +899,10 @@ Base R
 <span><span class="co">#&gt; # ℹ 170 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 15 more variables: owner_gravatar_id &lt;chr&gt;, owner_url &lt;chr&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This gives another wide dataset, but you can get the sense that <code>owner</code> appears to contain a lot of additional data about the person who “owns” the repository.</p>
-</section><section id="relational-data" class="level3" data-number="23.4.2"><h3 data-number="23.4.2" class="anchored" data-anchor-id="relational-data">
-<span class="header-section-number">23.4.2</span> Relational data</h3>
-<p>Nested data is sometimes used to represent data that we’d usually spread across multiple data frames. For example, take <code>got_chars</code> which contains data about characters that appear in the Game of Thrones books and TV series. Like <code>gh_repos</code> it’s a list, so we start by turning it into a list-column of a tibble:</p>
+<p>Isto nos dá um outro conjunto de dados largo (<em>wide</em>), mas você pode perceber que <code>owner</code> (pessoa proprietária) parece conter muitos dados adicionais sobre a pessoa “proprietária” do repositório.</p>
+</section><section id="dados-relacionais" class="level3" data-number="23.4.2"><h3 data-number="23.4.2" class="anchored" data-anchor-id="dados-relacionais">
+<span class="header-section-number">23.4.2</span> Dados relacionais</h3>
+<p>Dados aninhados (<em>nested</em>) muitas vezes são usados para representar dados que normalmente estariam espalhados por vários <em>data frames</em>. Por exemplo, veja <code>got_chars</code> que contém dados sobre os personagens (<em>characters</em>) que aparecem nos livros e série de TV <em>Game of Thrones</em>. Assim como <code>gh_repos</code>, ela também é uma lista, então começamos transformado-a em uma <em>list-column</em> de um <em>tibble</em>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>json <span class="op">=</span> <span class="va">got_chars</span><span class="op">)</span></span>
 <span><span class="va">chars</span></span>
@@ -927,7 +917,7 @@ Base R
 <span><span class="co">#&gt; 6 &lt;named list [18]&gt;</span></span>
 <span><span class="co">#&gt; # ℹ 24 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>json</code> column contains named elements, so we’ll start by widening it:</p>
+<p>A coluna <code>json</code> contém elementos nomeados, estão vamos começar alargando-os (<em>widening</em>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chars</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span></span>
@@ -943,7 +933,7 @@ Base R
 <span><span class="co">#&gt; # ℹ 24 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 12 more variables: died &lt;chr&gt;, alive &lt;lgl&gt;, titles &lt;list&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>And selecting a few columns to make it easier to read:</p>
+<p>E selecionando algumas colunas para lermos mais facilmente:</p>
 <div class="cell">
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">characters</span> <span class="op">&lt;-</span> <span class="va">chars</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -961,7 +951,7 @@ Base R
 <span><span class="co">#&gt; # ℹ 24 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: alive &lt;lgl&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This dataset contains also many list-columns:</p>
+<p>Este conjunto de dados também contém várias <em>list-columns</em>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chars</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -977,7 +967,7 @@ Base R
 <span><span class="co">#&gt; 6  1267 &lt;chr [1]&gt; &lt;chr [1]&gt;  &lt;NULL&gt;      &lt;chr [2]&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   </span></span>
 <span><span class="co">#&gt; # ℹ 24 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Let’s explore the <code>titles</code> column. It’s an unnamed list-column, so we’ll unnest it into rows:</p>
+<p>Vamos explorar a coluna <code>titles</code> (títulos). É uma <em>list-column</em> não nomeada, então desaninharemos em linhas:</p>
 <div class="cell">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chars</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -994,7 +984,7 @@ Base R
 <span><span class="co">#&gt; 6  1074 Master of the Iron Victory                          </span></span>
 <span><span class="co">#&gt; # ℹ 53 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You might expect to see this data in its own table because it would be easy to join to the characters data as needed. Let’s do that, which requires little cleaning: removing the rows containing empty strings and renaming <code>titles</code> to <code>title</code> since each row now only contains a single title.</p>
+<p>Você esperaria ver estes dados em um tabela própria, pois seria mais fácil uní-los com os dados dos personagens conforme necessário. Vamos fazer isso, o que requer um pouco de limpeza: removendo as linhas que contém <em>strings</em> vazias e renomeando <code>titles</code> para <code>title</code> já que cada linha agora contém um único título.</p>
 <div class="cell">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">titles</span> <span class="op">&lt;-</span> <span class="va">chars</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1014,10 +1004,10 @@ Base R
 <span><span class="co">#&gt; 6  1074 Master of the Iron Victory                          </span></span>
 <span><span class="co">#&gt; # ℹ 46 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You could imagine creating a table like this for each of the list-columns, then using joins to combine them with the character data as you need it.</p>
-</section><section id="deeply-nested" class="level3" data-number="23.4.3"><h3 data-number="23.4.3" class="anchored" data-anchor-id="deeply-nested">
-<span class="header-section-number">23.4.3</span> Deeply nested</h3>
-<p>We’ll finish off these case studies with a list-column that’s very deeply nested and requires repeated rounds of <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> to unravel: <code>gmaps_cities</code>. This is a two column tibble containing five city names and the results of using Google’s <a href="https://developers.google.com/maps/documentation/geocoding">geocoding API</a> to determine their location:</p>
+<p>Você poderia imaginar criar uma tabela como esta para cada <em>list-column</em> e então usar uniões (<em>joins</em>) para combiná-las com os dados dos personagens conforme você achar necessário.</p>
+</section><section id="profundamente-aninhados-deeply-nested" class="level3" data-number="23.4.3"><h3 data-number="23.4.3" class="anchored" data-anchor-id="profundamente-aninhados-deeply-nested">
+<span class="header-section-number">23.4.3</span> Profundamente aninhados (<em>deeply nested</em>)</h3>
+<p>Concluiremos estes estudos de casos com uma <em>list-column</em> que é profundamente aninhada e requer repetidas rodadas de <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> e <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> para ser desvendada: <code>gmaps_cities</code>. Este é um <em>tibble</em> de duas colunas contendo cinco nomes de cidades e o resultado da <a href="https://developers.google.com/maps/documentation/geocoding">API de geolocalização</a> do <em>Google</em> para determinar suas localizações:</p>
 <div class="cell">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gmaps_cities</span></span>
 <span><span class="co">#&gt; # A tibble: 5 × 2</span></span>
@@ -1029,7 +1019,7 @@ Base R
 <span><span class="co">#&gt; 4 Chicago    &lt;named list [2]&gt;</span></span>
 <span><span class="co">#&gt; 5 Arlington  &lt;named list [2]&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>json</code> is a list-column with internal names, so we start with an <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code>:</p>
+<p><code>json</code> é uma <em>list-column</em> nomeada, portanto iremos começar com <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gmaps_cities</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span></span>
@@ -1042,7 +1032,7 @@ Base R
 <span><span class="co">#&gt; 4 Chicago    &lt;list [1]&gt; OK    </span></span>
 <span><span class="co">#&gt; 5 Arlington  &lt;list [2]&gt; OK</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This gives us the <code>status</code> and the <code>results</code>. We’ll drop the status column since they’re all <code>OK</code>; in a real analysis, you’d also want to capture all the rows where <code>status != "OK"</code> and figure out what went wrong. <code>results</code> is an unnamed list, with either one or two elements (we’ll see why shortly) so we’ll unnest it into rows:</p>
+<p>Isto nos retorna <code>status</code> e <code>results</code>. Iremos remover a coluna status já que são todos <code>OK</code>; em uma análise real, você também iria capturar todas as linhas onde <code>status != "OK"</code> e entender o que deu errado. <code>results</code> é uma lista não nomeada, com um ou dois elementos (veremos porque em breve), portanto iremos desaninhá-la em linhas:</p>
 <div class="cell">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gmaps_cities</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1059,7 +1049,7 @@ Base R
 <span><span class="co">#&gt; 6 Arlington  &lt;named list [5]&gt;</span></span>
 <span><span class="co">#&gt; # ℹ 1 more row</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now <code>results</code> is a named list, so we’ll use <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code>:</p>
+<p>Agora <code>results</code> é uma lista nomeada, então usaremos <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">locations</span> <span class="op">&lt;-</span> <span class="va">gmaps_cities</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1079,8 +1069,8 @@ Base R
 <span><span class="co">#&gt; # ℹ 1 more row</span></span>
 <span><span class="co">#&gt; # ℹ 2 more variables: place_id &lt;chr&gt;, types &lt;list&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now we can see why two cities got two results: Washington matched both Washington state and Washington, DC, and Arlington matched Arlington, Virginia and Arlington, Texas.</p>
-<p>There are a few different places we could go from here. We might want to determine the exact location of the match, which is stored in the <code>geometry</code> list-column:</p>
+<p>Agora podemos ver porque duas cidades tinham dois resultados: Washington correspondeu ao estado Washington e Washington, DC e Arlington correspondeu a Arlington, Virginia e Arlington, Texas.</p>
+<p>Há vários lugares que podemos ir a partir daqui. Poderíamos querer determinar a localização exata da localidade correspondente, a qual é armazenada na <em>list-column</em> <code>geometry</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">locations</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">city</span>, <span class="va">formatted_address</span>, <span class="va">geometry</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1097,7 +1087,7 @@ Base R
 <span><span class="co">#&gt; # ℹ 1 more row</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: viewport &lt;list&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>That gives us new <code>bounds</code> (a rectangular region) and <code>location</code> (a point). We can unnest <code>location</code> to see the latitude (<code>lat</code>) and longitude (<code>lng</code>):</p>
+<p>Isto nos dá novos <code>bounds</code> (uma região retangular) e <code>location</code> (um ponto). Podemos desaninhar <code>location</code> para vermos a latitude (<code>lat</code>) e longitude (<code>lng</code>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">locations</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">city</span>, <span class="va">formatted_address</span>, <span class="va">geometry</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1115,12 +1105,12 @@ Base R
 <span><span class="co">#&gt; # ℹ 1 more row</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: viewport &lt;list&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Extracting the bounds requires a few more steps:</p>
+<p>Alguns passos adicionais são necessários para extrairmos os <em>bounds</em>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">locations</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">city</span>, <span class="va">formatted_address</span>, <span class="va">geometry</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">geometry</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># focus on the variables of interest</span></span>
+<span>  <span class="co"># foco na variável de interesse</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="va">location</span><span class="op">:</span><span class="va">viewport</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">bounds</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 7 × 4</span></span>
@@ -1134,7 +1124,7 @@ Base R
 <span><span class="co">#&gt; 6 Arlington  Arlington, TX, USA  &lt;named list [2]&gt; &lt;named list [2]&gt;</span></span>
 <span><span class="co">#&gt; # ℹ 1 more row</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We then rename <code>southwest</code> and <code>northeast</code> (the corners of the rectangle) so we can use <code>names_sep</code> to create short but evocative names:</p>
+<p>Então renomeamos <code>southwest</code> e <code>northeast</code> (os cantos do retângulo) para podermos usar <code>names_sep</code> para criar nomes curtos porém com algum significado:</p>
 <div class="cell">
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">locations</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">city</span>, <span class="va">formatted_address</span>, <span class="va">geometry</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1154,8 +1144,8 @@ Base R
 <span><span class="co">#&gt; 6 Arlington  Arlington, TX, USA    32.8  -97.0   32.6  -97.2</span></span>
 <span><span class="co">#&gt; # ℹ 1 more row</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note how we unnest two columns simultaneously by supplying a vector of variable names to <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code>.</p>
-<p>Once you’ve discovered the path to get to the components you’re interested in, you can extract them directly using another tidyr function, <code><a href="https://tidyr.tidyverse.org/reference/hoist.html">hoist()</a></code>:</p>
+<p>Veja como desaninhamos duas colunas simultaneamente fornecendo um vetor com os nomes das variáveis para <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code>.</p>
+<p>Uma vez que você descobriu o caminho para os elementos de interesse, você pode extraí-los diretamente usando outra função tidyr, <code><a href="https://tidyr.tidyverse.org/reference/hoist.html">hoist()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">locations</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">city</span>, <span class="va">formatted_address</span>, <span class="va">geometry</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1167,15 +1157,15 @@ Base R
 <span>    sw_lng <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bounds"</span>, <span class="st">"southwest"</span>, <span class="st">"lng"</span><span class="op">)</span>,</span>
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If these case studies have whetted your appetite for more real-life rectangling, you can see a few more examples in <code>vignette("rectangling", package = "tidyr")</code>.</p>
-</section><section id="exercises-1" class="level3" data-number="23.4.4"><h3 data-number="23.4.4" class="anchored" data-anchor-id="exercises-1">
-<span class="header-section-number">23.4.4</span> Exercises</h3>
+<p>Se esses estudos de caso aguçaram seu apetite para mais representações retangulares na vida real, você pode ver alguns outros exemplos na <code>vignette("rectangling", package = "tidyr")</code>.</p>
+</section><section id="exercícios-1" class="level3" data-number="23.4.4"><h3 data-number="23.4.4" class="anchored" data-anchor-id="exercícios-1">
+<span class="header-section-number">23.4.4</span> Exercícios</h3>
 <ol type="1">
-<li><p>Roughly estimate when <code>gh_repos</code> was created. Why can you only roughly estimate the date?</p></li>
-<li><p>The <code>owner</code> column of <code>gh_repo</code> contains a lot of duplicated information because each owner can have many repos. Can you construct an <code>owners</code> data frame that contains one row for each owner? (Hint: does <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> work with <code>list-cols</code>?)</p></li>
-<li><p>Follow the steps used for <code>titles</code> to create similar tables for the aliases, allegiances, books, and TV series for the Game of Thrones characters.</p></li>
+<li><p>Estime aproximadamente quando o <code>gh_repos</code> foi criado. Porque você só pode estimar aproximadamente esta data?</p></li>
+<li><p>A coluna <code>owner</code> do <code>gh_repo</code> contém muitas informações duplicadas pois cada pessoa proprietária pode ter vários repositórios. Você consegue contruir um <em>data frame</em> <code>owners</code> que contém uma linha para cada pessoa proprietária? (Dica: A <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> funciona com <code>list-cols</code>?)</p></li>
+<li><p>Siga os passos usados em <code>titles</code> para criar tabelas similares para <em>aliases</em>, <em>allegiances</em>, <em>books</em> e <em>TV Series</em> para os personagens de <em>Game of Thrones</em>.</p></li>
 <li>
-<p>Explain the following code line-by-line. Why is it interesting? Why does it work for <code>got_chars</code> but might not work in general?</p>
+<p>Explique o seguinte código linha a linha. Por que este código é interessante? Por que ele funciona para <code>got_chars</code> mas pode não funcionar em geral?</p>
 <div class="cell">
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>json <span class="op">=</span> <span class="va">got_chars</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1188,38 +1178,41 @@ Base R
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </li>
-<li><p>In <code>gmaps_cities</code>, what does <code>address_components</code> contain? Why does the length vary between rows? Unnest it appropriately to figure it out. (Hint: <code>types</code> always appears to contain two elements. Does <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> make it easier to work with than <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code>?) .</p></li>
+<li><p>No <code>gmaps_cities</code>, o que <code>address_components</code> contém? Por que o tamanho varia entre as linhas? Desaninhe-o devidamente para entender. (Dica: <code>types</code> parece ter sempre dois elementos. O <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> funcionaria mais fácil que o <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code>?) .</p></li>
 </ol></section></section><section id="json" class="level2" data-number="23.5"><h2 data-number="23.5" class="anchored" data-anchor-id="json">
 <span class="header-section-number">23.5</span> JSON</h2>
-<p>All of the case studies in the previous section were sourced from wild-caught JSON. JSON is short for <strong>j</strong>ava<strong>s</strong>cript <strong>o</strong>bject <strong>n</strong>otation and is the way that most web APIs return data. It’s important to understand it because while JSON and R’s data types are pretty similar, there isn’t a perfect 1-to-1 mapping, so it’s good to understand a bit about JSON if things go wrong.</p>
-<section id="data-types" class="level3" data-number="23.5.1"><h3 data-number="23.5.1" class="anchored" data-anchor-id="data-types">
-<span class="header-section-number">23.5.1</span> Data types</h3>
-<p>JSON is a simple format designed to be easily read and written by machines, not humans. It has six key data types. Four of them are scalars:</p>
+<p>Todos os estudos de caso na seção anterior foram originados de JSONs bruto/proveniente de fontes diretas. JSON é abreviação de <strong>j</strong><em>ava</em><strong>s</strong><em>cript</em> <strong>o</strong><em>bject</em> <strong>n</strong><em>otation</em> e é a forma que a maioria das APIs da web retornam dados. É importante saber que apesar dos tipos de dados JSON e R serem muito similares, não há uma correspondência de mapeamento 1-para-1, portanto é bom entender um pouco sobre JSON caso algo dê errado.</p>
+<section id="tipos-de-dados" class="level3" data-number="23.5.1"><h3 data-number="23.5.1" class="anchored" data-anchor-id="tipos-de-dados">
+<span class="header-section-number">23.5.1</span> Tipos de dados</h3>
+<p>JSON é um formato simples projetado para ser lido e escrito por máquinas, não humanos. Ele tem seis tipos de dados chaves. Quatro deles são escalares:</p>
 <ul>
-<li>The simplest type is a null (<code>null</code>) which plays the same role as <code>NA</code> in R. It represents the absence of data.</li>
-<li>A <strong>string</strong> is much like a string in R, but must always use double quotes.</li>
-<li>A <strong>number</strong> is similar to R’s numbers: they can use integer (e.g., 123), decimal (e.g., 123.45), or scientific (e.g., 1.23e3) notation. JSON doesn’t support <code>Inf</code>, <code>-Inf</code>, or <code>NaN</code>.</li>
-<li>A <strong>boolean</strong> is similar to R’s <code>TRUE</code> and <code>FALSE</code>, but uses lowercase <code>true</code> and <code>false</code>.</li>
+<li>O tipo mais simples é o nulo (<code>null</code>) que tem o mesmo papel do <code>NA</code> no R. Representa ausência de dados.</li>
+<li>
+<strong>string</strong> é muito parecido com <em>string</em> no R, porém deve ter sempre aspas duplas.</li>
+<li>
+<strong>number</strong> é similar o <em>number</em> do R: podem ser inteiro (e.x., 123), decimal (e.x., 123.45), or notação científica (e.x., 1.23e3). JSON não suporta <code>Inf</code>, <code>-Inf</code>, ou <code>NaN</code>.</li>
+<li>
+<strong>boolean</strong> é similar a <code>TRUE</code> e <code>FALSE</code> do R, mas usa letras minúsculas <code>true</code> e <code>false</code>.</li>
 </ul>
-<p>JSON’s strings, numbers, and booleans are pretty similar to R’s character, numeric, and logical vectors. The main difference is that JSON’s scalars can only represent a single value. To represent multiple values you need to use one of the two remaining types: arrays and objects.</p>
-<p>Both arrays and objects are similar to lists in R; the difference is whether or not they’re named. An <strong>array</strong> is like an unnamed list, and is written with <code>[]</code>. For example <code>[1, 2, 3]</code> is an array containing 3 numbers, and <code>[null, 1, "string", false]</code> is an array that contains a null, a number, a string, and a boolean. An <strong>object</strong> is like a named list, and is written with <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>. The names (keys in JSON terminology) are strings, so must be surrounded by quotes. For example, <code>{"x": 1, "y": 2}</code> is an object that maps <code>x</code> to 1 and <code>y</code> to 2.</p>
-<p>Note that JSON doesn’t have any native way to represent dates or date-times, so they’re often stored as strings, and you’ll need to use <code><a href="https://readr.tidyverse.org/reference/parse_datetime.html">readr::parse_date()</a></code> or <code><a href="https://readr.tidyverse.org/reference/parse_datetime.html">readr::parse_datetime()</a></code> to turn them into the correct data structure. Similarly, JSON’s rules for representing floating point numbers in JSON are a little imprecise, so you’ll also sometimes find numbers stored in strings. Apply <code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">readr::parse_double()</a></code> as needed to get the correct variable type.</p>
+<p><em>Strings</em>, números e booleanos do JSON são muito similares aos vetores de caracteres, numéricos e lógicos do R. A principal diferença é que os escalares do JSON podem representar apenas um único valor. Para representar valores múltiplos você precisa usar algum dos outros dois tipos: <em>arrays</em> e <em>objects</em>.</p>
+<p>Tanto <em>arrays</em> quanto <em>objects</em> são similares às listas no R; a diferença é se são nomeados ou não nomeados. Um <strong>array</strong> é como uma lista não nomeada e é escrito com <code>[]</code>. Por exemplo, <code>[1, 2, 3]</code> é um <em>array</em> contendo 3 números e <code>[null, 1, "string", false]</code> é um <em>array</em> que contém um nulo, um número, uma <em>string</em> e um booleano. Um <strong>object</strong> é como uma lista nomeada e é escrito com <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>. Os nomes (chaves na terminologia JSON) são <em>strings</em>, portanto devem ter aspas. Por exemplo, <code>{"x": 1, "y": 2}</code> é um objeto que mapeia 1 para <code>x</code> e 2 para <code>y</code>.</p>
+<p>Note que JSON não possui um jeito nativo para representar datas e data_hora (<em>datetime</em>), então estes são geralmente armazenados como <em>strings</em> e você deverá usar <code><a href="https://readr.tidyverse.org/reference/parse_datetime.html">readr::parse_date()</a></code> ou <code><a href="https://readr.tidyverse.org/reference/parse_datetime.html">readr::parse_datetime()</a></code> para transformá-los na estrutura de dados correta. Da mesma forma, a regras do JSON para representar número com ponto flutuante (<em>floating points</em>), são um pouco imprecisas, portanto você também encontrará algumas vezes números armazenados como <em>strings</em>. Aplique <code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">readr::parse_double()</a></code> conforme necessário para obter os tipo correto.</p>
 </section><section id="jsonlite" class="level3" data-number="23.5.2"><h3 data-number="23.5.2" class="anchored" data-anchor-id="jsonlite">
 <span class="header-section-number">23.5.2</span> jsonlite</h3>
-<p>To convert JSON into R data structures, we recommend the jsonlite package, by Jeroen Ooms. We’ll use only two jsonlite functions: <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json()</a></code> and <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json()</a></code>. In real life, you’ll use <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json()</a></code> to read a JSON file from disk. For example, the repurrsive package also provides the source for <code>gh_user</code> as a JSON file and you can read it with <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json()</a></code>:</p>
+<p>Para converter JSON em estruturas de dados do R, recomendamos o pacote jsonlite, de Jeroen Ooms. Usaremos apenas duas funções do jsonlite: <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json()</a></code> e <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json()</a></code>. Na vida real, você usará <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json()</a></code> para importar arquivos JSON do disco. Por exemplo, o pacote repurrsive também é a fonte do <code>gh_user</code> como um arquivo JSON e você pode importá-la com <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json()</a></code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># A path to a json file inside the package:</span></span>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Um caminho para o arquivo JSON dentro do pacote:</span></span>
 <span><span class="fu"><a href="https://jennybc.github.io/repurrrsive/reference/gh_users_json.html">gh_users_json</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/repurrrsive/extdata/gh_users.json"</span></span>
 <span></span>
-<span><span class="co"># Read it with read_json()</span></span>
+<span><span class="co"># Importe com read_json()</span></span>
 <span><span class="va">gh_users2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://jennybc.github.io/repurrrsive/reference/gh_users_json.html">gh_users_json</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Check it's the same as the data we were using previously</span></span>
+<span><span class="co"># Verifique se é o mesmo dado que usamos anteriormente</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="va">gh_users</span>, <span class="va">gh_users2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In this book, we’ll also use <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json()</a></code>, since it takes a string containing JSON, which makes it good for generating simple examples. To get started, here are three simple JSON datasets, starting with a number, then putting a few numbers in an array, then putting that array in an object:</p>
+<p>Neste livro, usaremos também <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json()</a></code>, que recebe uma <em>string</em> representando um JSON, o que a torna boa para gerar exemplos simples. Para começar, aqui estão três simples conjuntos de dados JSON, começando com um número, e então adicionando alguns números em <em>array</em> e em seguida adicionando esse <em>array</em> em um <em>object</em>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'1'</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  int 1</span></span>
@@ -1235,14 +1228,14 @@ Base R
 <span><span class="co">#&gt;   ..$ : int 2</span></span>
 <span><span class="co">#&gt;   ..$ : int 3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>jsonlite has another important function called <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON()</a></code>. We don’t use it here because it performs automatic simplification (<code>simplifyVector = TRUE</code>). This often works well, particularly in simple cases, but we think you’re better off doing the rectangling yourself so you know exactly what’s happening and can more easily handle the most complicated nested structures.</p>
-</section><section id="starting-the-rectangling-process" class="level3" data-number="23.5.3"><h3 data-number="23.5.3" class="anchored" data-anchor-id="starting-the-rectangling-process">
-<span class="header-section-number">23.5.3</span> Starting the rectangling process</h3>
-<p>In most cases, JSON files contain a single top-level array, because they’re designed to provide data about multiple “things”, e.g., multiple pages, or multiple records, or multiple results. In this case, you’ll start your rectangling with <code>tibble(json)</code> so that each element becomes a row:</p>
+<p>jsonlite tem uma outra função importante chamada <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON()</a></code>. Não a usamos aqui, pois efetua uma simplificação automática (<code>simplifyVector = TRUE</code>). Isto geralmente funciona bem, particularmente em casos simples, mas achamos que é mais vantajoso se fizer você mesmo a representação retangular para que saiba exatamente o que está acontecendo e possa lidar mais facilmente com estruturas aninhadas mais complexas.</p>
+</section><section id="iniciando-o-processo-de-representação-retangular" class="level3" data-number="23.5.3"><h3 data-number="23.5.3" class="anchored" data-anchor-id="iniciando-o-processo-de-representação-retangular">
+<span class="header-section-number">23.5.3</span> Iniciando o processo de representação retangular</h3>
+<p>Na maioria dos casos, arquivos JSON contém um único <em>array</em> de nível mais alto (<em>top-level</em>), pois são projetados para prover dados sobre várias “coisas”, e.x. várias páginas, ou vários registros, ou vários resultados. Neste caso, você comecará sua representação retangular com <code>tibble(json)</code> para que cada elemento se torne uma linha:</p>
 <div class="cell">
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="st">'[</span></span>
-<span><span class="st">  {"name": "John", "age": 34},</span></span>
-<span><span class="st">  {"name": "Susan", "age": 27}</span></span>
+<span><span class="st">  {"nome": "John", "idade": 34},</span></span>
+<span><span class="st">  {"nome": "Susan", "idade": 27}</span></span>
 <span><span class="st">]'</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>json <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">df</span></span>
@@ -1255,18 +1248,18 @@ Base R
 <span><span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
-<span><span class="co">#&gt;   name    age</span></span>
+<span><span class="co">#&gt;   nome  idade</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt; &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1 John     34</span></span>
 <span><span class="co">#&gt; 2 Susan    27</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In rarer cases, the JSON file consists of a single top-level JSON object, representing one “thing”. In this case, you’ll need to kick off the rectangling process by wrapping it in a list, before you put it in a tibble.</p>
+<p>Em alguns casos raros, arquivos JSON são constituídos por um único <em>object</em> no nível mais alto, representando uma “coisa”. Neste caso, você precisará iniciar o processo de representação retangular colocando-o em uma lista antes de colocá-lo em um <em>tibble</em>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="st">'{</span></span>
 <span><span class="st">  "status": "OK", </span></span>
 <span><span class="st">  "results": [</span></span>
-<span><span class="st">    {"name": "John", "age": 34},</span></span>
-<span><span class="st">    {"name": "Susan", "age": 27}</span></span>
+<span><span class="st">    {"nome": "John", "idade": 34},</span></span>
+<span><span class="st">    {"nome": "Susan", "idade": 27}</span></span>
 <span><span class="st"> ]</span></span>
 <span><span class="st">}</span></span>
 <span><span class="st">'</span></span>
@@ -1282,27 +1275,27 @@ Base R
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 3</span></span>
-<span><span class="co">#&gt;   status name    age</span></span>
+<span><span class="co">#&gt;   status nome  idade</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1 OK     John     34</span></span>
 <span><span class="co">#&gt; 2 OK     Susan    27</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Alternatively, you can reach inside the parsed JSON and start with the bit that you actually care about:</p>
+<p>Alternativamente, você pode acessar o JSON analisado e começar com a parte que realmente lhe interessa:</p>
 <div class="cell">
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>results <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span><span class="op">$</span><span class="va">results</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
-<span><span class="co">#&gt;   name    age</span></span>
+<span><span class="co">#&gt;   nome  idade</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt; &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1 John     34</span></span>
 <span><span class="co">#&gt; 2 Susan    27</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="exercises-2" class="level3" data-number="23.5.4"><h3 data-number="23.5.4" class="anchored" data-anchor-id="exercises-2">
-<span class="header-section-number">23.5.4</span> Exercises</h3>
+</section><section id="exercícios-2" class="level3" data-number="23.5.4"><h3 data-number="23.5.4" class="anchored" data-anchor-id="exercícios-2">
+<span class="header-section-number">23.5.4</span> Exercícios</h3>
 <ol type="1">
 <li>
-<p>Rectangle the <code>df_col</code> and <code>df_row</code> below. They represent the two ways of encoding a data frame in JSON.</p>
+<p>Represente retangularmente o <code>df_col</code> e <code>df_linha</code> abaixo. Eles representam duas formas de codificar um <em>data frame</em> em JSON.</p>
 <div class="cell">
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">json_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'</span></span>
 <span><span class="st">  {</span></span>
@@ -1310,7 +1303,7 @@ Base R
 <span><span class="st">    "y": [10, null, 3]</span></span>
 <span><span class="st">  }</span></span>
 <span><span class="st">'</span><span class="op">)</span></span>
-<span><span class="va">json_row</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'</span></span>
+<span><span class="va">json_linha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'</span></span>
 <span><span class="st">  [</span></span>
 <span><span class="st">    {"x": "a", "y": 10},</span></span>
 <span><span class="st">    {"x": "x", "y": null},</span></span>
@@ -1319,18 +1312,18 @@ Base R
 <span><span class="st">'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>json <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">json_col</span><span class="op">)</span><span class="op">)</span> </span>
-<span><span class="va">df_row</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>json <span class="op">=</span> <span class="va">json_row</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">df_linha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>json <span class="op">=</span> <span class="va">json_linha</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </li>
-</ol></section></section><section id="summary" class="level2" data-number="23.6"><h2 data-number="23.6" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">23.6</span> Summary</h2>
-<p>In this chapter, you learned what lists are, how you can generate them from JSON files, and how to turn them into rectangular data frames. Surprisingly we only need two new functions: <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> to put list elements into rows and <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> to put list elements into columns. It doesn’t matter how deeply nested the list-column is; all you need to do is repeatedly call these two functions.</p>
-<p>JSON is the most common data format returned by web APIs. What happens if the website doesn’t have an API, but you can see data you want on the website? That’s the topic of the next chapter: web scraping, extracting data from HTML webpages.</p>
+</ol></section></section><section id="resumo" class="level2" data-number="23.6"><h2 data-number="23.6" class="anchored" data-anchor-id="resumo">
+<span class="header-section-number">23.6</span> Resumo</h2>
+<p>Neste capítulo, você aprendeu o que são listas, como você pode gerá-las a partir de arquivos JSON e como transformá-las em <em>data frames</em> retangulares. Surpreendentemente, precisamos de apenas duas funções: <code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html">unnest_longer()</a></code> para colocar elementos da lista em linhas e <code><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider()</a></code> para colocar os elementos da lista em colunas. Não importa quão profundamente aninhada esteja a <em>list-column</em>; tudo que você precisa fazer é chamar repetidamente essas duas funções.</p>
+<p>JSON é o formato de dados mais comum retornados por APIs web. E se o <em>website</em> não possuir uma API, mas você puder ver os dados desejados no <em>website</em>? Este é o tópico do próximo capítulo: Raspagem de dados (<em>web scraping</em>), extraindo dados de páginas web HTML.</p>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>This is an RStudio feature.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Esta é uma funcionalidade do RStudio.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
