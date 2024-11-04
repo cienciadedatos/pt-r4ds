@@ -2,79 +2,79 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/index.html</loc>
-    <lastmod>2024-04-02T10:47:47.166Z</lastmod>
+    <lastmod>2024-11-04T17:48:42.756Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/preface-2e.html</loc>
-    <lastmod>2024-04-02T10:48:36.154Z</lastmod>
+    <lastmod>2024-11-04T17:50:14.001Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/intro.html</loc>
-    <lastmod>2024-04-02T10:48:44.349Z</lastmod>
+    <lastmod>2024-11-04T17:48:46.045Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/whole-game.html</loc>
-    <lastmod>2024-04-02T11:22:36.501Z</lastmod>
+    <lastmod>2024-11-04T17:51:03.305Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/data-visualize.html</loc>
-    <lastmod>2024-04-03T01:21:32.436Z</lastmod>
+    <lastmod>2024-11-04T17:47:31.235Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/workflow-basics.html</loc>
-    <lastmod>2024-04-02T10:58:19.066Z</lastmod>
+    <lastmod>2024-11-04T17:51:08.025Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/data-transform.html</loc>
-    <lastmod>2024-07-29T23:37:59.061Z</lastmod>
+    <lastmod>2024-11-04T18:07:46.815Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/workflow-style.html</loc>
-    <lastmod>2024-04-02T11:22:55.038Z</lastmod>
+    <lastmod>2024-11-04T17:54:20.039Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/data-tidy.html</loc>
-    <lastmod>2024-08-06T23:12:08.038Z</lastmod>
+    <lastmod>2024-11-04T17:47:24.553Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/workflow-scripts.html</loc>
-    <lastmod>2024-04-02T10:58:54.322Z</lastmod>
+    <lastmod>2024-11-04T17:51:17.244Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/data-import.html</loc>
-    <lastmod>2024-06-21T17:54:47.273Z</lastmod>
+    <lastmod>2024-11-04T17:47:21.496Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/workflow-help.html</loc>
-    <lastmod>2024-08-09T14:27:06.539Z</lastmod>
+    <lastmod>2024-11-04T17:51:12.852Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/visualize.html</loc>
-    <lastmod>2024-04-02T11:03:13.847Z</lastmod>
+    <lastmod>2024-11-04T17:50:53.153Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/layers.html</loc>
-    <lastmod>2024-04-02T10:49:45.910Z</lastmod>
+    <lastmod>2024-11-04T18:09:26.919Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/EDA.html</loc>
-    <lastmod>2024-09-14T10:09:01.199Z</lastmod>
+    <lastmod>2024-11-04T17:46:47.854Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/communication.html</loc>
-    <lastmod>2024-09-14T09:11:55.639Z</lastmod>
+    <lastmod>2024-11-04T17:47:17.588Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/transform.html</loc>
-    <lastmod>2024-04-02T10:49:57.916Z</lastmod>
+    <lastmod>2024-11-04T17:50:48.732Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/logicals.html</loc>
-    <lastmod>2024-08-09T14:23:00.626Z</lastmod>
+    <lastmod>2024-11-04T17:48:59.740Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/numbers.html</loc>
-    <lastmod>2024-08-09T14:23:40.823Z</lastmod>
+    <lastmod>2024-11-04T17:49:10.801Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/strings.html</loc>
@@ -82,11 +82,11 @@
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/regexps.html</loc>
-    <lastmod>2024-08-06T12:53:45.237Z</lastmod>
+    <lastmod>2024-11-04T17:50:36.579Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/factors.html</loc>
-    <lastmod>2024-04-02T10:50:36.652Z</lastmod>
+    <lastmod>2024-11-04T17:48:28.771Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/datetimes.html</loc>
@@ -94,27 +94,27 @@
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/missing-values.html</loc>
-    <lastmod>2024-04-22T15:29:03.072Z</lastmod>
+    <lastmod>2024-11-04T17:57:15.474Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/joins.html</loc>
-    <lastmod>2024-08-03T15:03:59.829Z</lastmod>
+    <lastmod>2024-11-04T17:48:48.934Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/import.html</loc>
-    <lastmod>2024-04-02T10:50:47.620Z</lastmod>
+    <lastmod>2024-11-04T17:48:39.070Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/spreadsheets.html</loc>
-    <lastmod>2024-06-11T19:53:35.863Z</lastmod>
+    <lastmod>2024-11-04T17:50:45.485Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/databases.html</loc>
-    <lastmod>2024-04-22T15:57:45.368Z</lastmod>
+    <lastmod>2024-11-04T17:47:33.968Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/arrow.html</loc>
-    <lastmod>2024-04-02T10:53:28.574Z</lastmod>
+    <lastmod>2024-11-04T17:46:33.262Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/rectangling.html</loc>
@@ -122,34 +122,34 @@
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/webscraping.html</loc>
-    <lastmod>2024-04-27T21:49:14.275Z</lastmod>
+    <lastmod>2024-11-04T17:50:57.326Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/program.html</loc>
-    <lastmod>2024-04-02T10:51:08.806Z</lastmod>
+    <lastmod>2024-11-04T17:50:17.847Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/functions.html</loc>
-    <lastmod>2024-04-22T15:34:10.142Z</lastmod>
+    <lastmod>2024-11-04T17:58:27.394Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/iteration.html</loc>
-    <lastmod>2024-02-10T03:54:48.166Z</lastmod>
+    <lastmod>2024-11-04T18:19:32.251Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/base-R.html</loc>
-    <lastmod>2024-04-02T11:00:02.431Z</lastmod>
+    <lastmod>2024-11-04T18:02:33.952Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/communicate.html</loc>
-    <lastmod>2024-04-02T10:51:23.552Z</lastmod>
+    <lastmod>2024-11-04T17:47:14.315Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/quarto.html</loc>
-    <lastmod>2024-05-12T08:41:23.127Z</lastmod>
+    <lastmod>2024-11-04T17:50:30.706Z</lastmod>
   </url>
   <url>
     <loc>https://cienciadedatos.github.io/pt-r4ds/quarto-formats.html</loc>
-    <lastmod>2024-04-22T14:57:03.880Z</lastmod>
+    <lastmod>2024-11-04T17:50:21.474Z</lastmod>
   </url>
 </urlset>
