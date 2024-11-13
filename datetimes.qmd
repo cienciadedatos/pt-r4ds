@@ -159,7 +159,7 @@ dmy("31-Jan-2017")
 ```
 
 `ymd()` e funções similares criam datas.
-Para criar uma data-hora, adicione um sublinhado e uma ou mais de "h", "m" e "s" ao nome da função de análise:
+Para criar uma data-hora, adicione um *underscore* (`_`) e uma ou mais de "h", "m" e "s" ao nome da função de análise (*parsing*):
 
 ```{r}
 ymd_hms("2017-01-31 20:11:59")
