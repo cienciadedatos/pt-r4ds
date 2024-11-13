@@ -39,7 +39,7 @@ Para praticar, também precisaremos do conjunto de dados voos do pacote dados.
 ```{r}
 #| message: false
 library(tidyverse)
-library(nycflights13)
+library(dados)
 ```
 
 ## Criando datas/horários {#sec-creating-datetimes}
@@ -47,14 +47,14 @@ library(nycflights13)
 Existem três tipos de dados de data/horário que se referem a um instante no tempo:
 
 -   Uma **data**.
-  Tibbles imprimem isso como `<date>`.
+    Tibbles imprimem isso como `<date>`.
 
 -   Um **horário** dentro de um dia.
-  Tibbles imprimem isso como `<time>`.
+    Tibbles imprimem isso como `<time>`.
 
 -   Uma **data-horário** é uma data mais um horário: identifica exclusivamente um instante no tempo (tipicamente até o segundo mais próximo).
-  Tibbles imprimem isso como `<dttm>`.
-  O R base chama isso de POSIXct, mas não é exatamente fácil de pronunciar.
+    Tibbles imprimem isso como `<dttm>`.
+    O R base chama isso de POSIXct, mas não é exatamente fácil de pronunciar.
 
 Neste capítulo iremos nos concentrar nas classes data (*date*) e data-horário (*date-time*), já que o R não possui uma classe nativa para lidar apenas com horário (*time*).
 Se você precisar de uma, pode usar o pacote **hms**.
@@ -101,24 +101,24 @@ Por exemplo, `%Y-%m-%d` especifica uma data que é um ano, `-`, mês (como núme
 A tabela @tbl-date-formats lista todas as opções.
 
 | Tipo    | Código | Significado                        | Exemplo         |
-|---------|-------|------------------------------------|-----------------|
-| Ano     | `%Y`  | Ano com 4 digitos                  | 2021            |
-|         | `%y`  | Ano com 2 digitos                  | 21              |
-| Mês     | `%m`  | Número                             | 2               |
-|         | `%b`  | Nome abreviado                     | Feb             |
-|         | `%B`  | Nome completo                      | February        |
-| Dia     | `%d`  | Um ou dois digitos                 | 2               |
-|         | `%e`  | Dois digitos                       | 02              |
-| Horário | `%H`  | Horas em 24-horas                  | 13              |
-|         | `%I`  | Horas em 12-horas                  | 1               |
-|         | `%p`  | AM/PM                              | pm              |
-|         | `%M`  | Minutos                            | 35              |
-|         | `%S`  | Segundos                           | 45              |
-|         | `%OS` | Seconds com decimal                | 45.35           |
-|         | `%Z`  | Nome fuso horário                  | America/Chicago |
-|         | `%z`  | Ajuste (*offset*) de UTC           | +0800           |
-| Outras  | `%.`  | Pula um não digito                 | :               |
-|         | `%*`  | Pula qualquer número de não digito |                 |
+|---------|--------|------------------------------------|-----------------|
+| Ano     | `%Y`   | Ano com 4 digitos                  | 2021            |
+|         | `%y`   | Ano com 2 digitos                  | 21              |
+| Mês     | `%m`   | Número                             | 2               |
+|         | `%b`   | Nome abreviado                     | Feb             |
+|         | `%B`   | Nome completo                      | February        |
+| Dia     | `%d`   | Um ou dois digitos                 | 2               |
+|         | `%e`   | Dois digitos                       | 02              |
+| Horário | `%H`   | Horas em 24-horas                  | 13              |
+|         | `%I`   | Horas em 12-horas                  | 1               |
+|         | `%p`   | AM/PM                              | pm              |
+|         | `%M`   | Minutos                            | 35              |
+|         | `%S`   | Segundos                           | 45              |
+|         | `%OS`  | Seconds com decimal                | 45.35           |
+|         | `%Z`   | Nome fuso horário                  | America/Chicago |
+|         | `%z`   | Ajuste (*offset*) de UTC           | +0800           |
+| Outras  | `%.`   | Pula um não digito                 | :               |
+|         | `%*`   | Pula qualquer número de não digito |                 |
 
 : Todos os formatos de datas compreendidos pelo readr {#tbl-date-formats}
 
@@ -177,27 +177,26 @@ Aqui eu uso o fuso horário UTC[^datetimes-3] que você também pode conhecer co
 .
 
 [^datetimes-3]: Você pode se perguntar o que significa UTC.
-  É um compromisso entre o inglês "Coordinated Universal Time" e o francês "Temps Universel Coordonné".
+    É um compromisso entre o inglês "Coordinated Universal Time" e o francês "Temps Universel Coordonné".
 
 [^datetimes-4]: Sem prêmios para quem adivinhar qual país criou o sistema de longitude.
 
 ### A partir de componentes individuais
 
 Em vez de uma única string, às vezes você terá os componentes individuais da data-hora espalhados por várias colunas.
-Isso é o que temos nos dados `flights`:
-
+Isso é o que temos nos dados `voos`:
 
 ```{r}
-flights |> 
-  select(year, month, day, hour, minute)
+voos |> 
+  select(ano, mes, dia, hora, minuto)
 ```
 
 Para criar uma data/horário a partir deste tipo de entrada, use a função `make_date()` para datas, ou `make_datetime()` para data-horário:
 
 ```{r}
-flights |> 
-  select(year, month, day, hour, minute) |> 
-  mutate(departure = make_datetime(year, month, day, hour, minute))
+voos |> 
+  select(ano, mes, dia, hora, minuto) |> 
+  mutate(saida = make_datetime(ano, mes, dia, hora, minuto))
 ```
 
 Vamos fazer a mesma coisa para cada uma das quatro colunas de tempo em `voos`.
@@ -205,21 +204,22 @@ Os horários são representados em um formato particular, por isso usamos a arit
 Depois de criarmos as variáveis de data e horário, nos concentraremos nas variáveis que exploraremos no restante do capítulo.
 
 ```{r}
-make_datetime_100 <- function(year, month, day, time) {
-  make_datetime(year, month, day, time %/% 100, time %% 100)
+make_datetime_100 <- function(ano, mes, dia, horario) {
+  make_datetime(ano, mes, dia, horario %/% 100, horario %% 100)
 }
 
-flights_dt <- flights |> 
-  filter(!is.na(dep_time), !is.na(arr_time)) |> 
+voos_dt <- voos |> 
+  filter(!is.na(horario_saida), !is.na(horario_chegada)) |> 
   mutate(
-    dep_time = make_datetime_100(year, month, day, dep_time),
-    arr_time = make_datetime_100(year, month, day, arr_time),
-    sched_dep_time = make_datetime_100(year, month, day, sched_dep_time),
-    sched_arr_time = make_datetime_100(year, month, day, sched_arr_time)
+    horario_saida = make_datetime_100(ano, mes, dia, horario_saida),
+    horario_chegada = make_datetime_100(ano, mes, dia, horario_chegada),
+    saida_programada = make_datetime_100(ano, mes, dia, saida_programada),
+    chegada_prevista = make_datetime_100(ano, mes, dia, chegada_prevista)
   ) |> 
-  select(origin, dest, ends_with("delay"), ends_with("time"))
-
-flights_dt
+  select(origem, destino, starts_with("atraso"), 
+         horario_saida, saida_programada,
+         horario_chegada, chegada_prevista,
+         tempo_voo)
 ```
 
 Com esses dados, podemos visualizar a distribuição dos horários de partida ao longo do ano:
@@ -230,7 +230,7 @@ Com esses dados, podemos visualizar a distribuição dos horários de partida ao
 #|   e número de voos no eixo-y (0-1000). O polígono de frequência
 #|   é agrupado por dia para que você veja uma série temporal de voos por dia. O
 #|   o padrão é dominado por um padrão semanal; há menos voos 
-#|   nos fins de semana. São poucos os dias que se destacam por terem tido surpreendentemente
+#|   nos fins de semana. São poucos os dias que se destinoacam por terem tido surpreendentemente
 #|   poucos voos no início de fevereiro, início de julho, final de novembro e final de
 #|   dezembro.
 voos_dt |> 
@@ -239,7 +239,6 @@ voos_dt |>
 ```
 
 Ou dentro de um único dia:
-
 
 ```{r}
 #| fig.alt: >
@@ -279,26 +278,26 @@ as_date(365 * 10 + 2)
 
 1.  O que acontece se você analisar uma string que contém datas inválidas?
 
-  ```{r}
-  #| eval: false
+```{r}
+#| eval: false
 
-  ymd(c("2010-10-10", "bananas"))
-  ```
+ymd(c("2010-10-10", "bananas"))
+```
 
 2.  O que o argumento `tzone` para a função `today()` faz?
-  Por que ele é importante?
+    Por que ele é importante?
 
 3.  Para cada uma das seguintes datas/horários, mostre como você os analisaria usando uma especificação de coluna do readr e uma função do lubridate.
 
-  ```{r}
-  d1 <- "January 1, 2010"
-  d2 <- "2015-Mar-07"
-  d3 <- "06-Jun-2017"
-  d4 <- c("August 19 (2015)", "July 1 (2015)")
-  d5 <- "12/30/14" # Dec 30, 2014
-  t1 <- "1705"
-  t2 <- "11:15:10.12 PM"
-  ```
+```{r}
+d1 <- "January 1, 2010"
+d2 <- "2015-Mar-07"
+d3 <- "06-Jun-2017"
+d4 <- c("August 19 (2015)", "July 1 (2015)")
+d5 <- "12/30/14" # Dec 30, 2014
+t1 <- "1705"
+t2 <- "11:15:10.12 PM"
+```
 
 ## Componentes de data-hora
 
@@ -340,8 +339,8 @@ Podemos usar `wday()` para ver que mais voos partem durante a semana do que no f
 #|   voos, ~48.0000, diminuindo ligeiramente ao longo da semana.
 #|   Domingo é um pouco menor (~45.000) e sábado é muito menor 
 #|   (~38,000).
-flights_dt |> 
-  mutate(wday = wday(dep_time, label = TRUE)) |> 
+voos_dt |> 
+  mutate(wday = wday(horario_saida, label = TRUE)) |> 
   ggplot(aes(x = wday)) +
   geom_bar()
 ```
@@ -361,10 +360,10 @@ voos_dt |>
   mutate(minuto = minute(horario_saida)) |> 
   group_by(minuto) |> 
   summarize(
-    avg_delay = mean(dep_delay, na.rm = TRUE),
+    media_atraso = mean(atraso_saida, na.rm = TRUE),
     n = n()
   ) |> 
-  ggplot(aes(x = minute, y = avg_delay)) +
+  ggplot(aes(x = minuto, y = media_atraso)) +
   geom_line()
 ```
 
@@ -376,15 +375,15 @@ Curiosamente, se olharmos para o horário de saída *programado*, não veremos u
 #|   and average delay (4-16). There is relatively little pattern, just a
 #|   small suggestion that the average delay decreases from maybe 10 minutes
 #|   to 8 minutes over the course of the hour.
-sched_dep <- flights_dt |> 
-  mutate(minute = minute(sched_dep_time)) |> 
-  group_by(minute) |> 
+chegada_prevista <- voos_dt |> 
+  mutate(minuto = minute(saida_programada)) |> 
+  group_by(minuto) |> 
   summarize(
-    avg_delay = mean(arr_delay, na.rm = TRUE),
+    media_atraso = mean(atraso_chegada, na.rm = TRUE),
     n = n()
   )
 
-ggplot(sched_dep, aes(x = minute, y = avg_delay)) +
+ggplot(chegada_prevista, aes(x = minuto, y = media_atraso)) +
   geom_line()
 ```
 
@@ -405,7 +404,7 @@ Esteja sempre atento a esse tipo de padrão sempre que trabalhar com dados que e
 #|   all most all flights are scheduled to depart on multiples of five, 
 #|   with a few extra at 15, 45, and 55 minutes.
 #| echo: false
-ggplot(sched_dep, aes(x = minute, y = n)) +
+ggplot(chegada_prevista, aes(x = minuto, y = n)) +
   geom_line()
 ```
 
@@ -493,26 +492,25 @@ update(ymd("2023-02-01"), hour = 400)
 1.  Como a distribuição dos horários de voo ao longo do dia muda ao longo do ano?
 
 2.  Compare `horario_saida`, `saida_programada` e `atraso_saida`.
-  Eles são consistentes?
-  Explique suas descobertas.
+    Eles são consistentes?
+    Explique suas descobertas.
 
 3.  Compare `air_time` com a duração entre a partida e a chegada.
-  Explique suas descobertas.
-  (Dica: considere a localização do aeroporto.)
+    Explique suas descobertas.
+    (Dica: considere a localização do aeroporto.)
 
 4.  Como o tempo médio de atraso muda ao longo do dia?
-  Você deve usar `dep_time` ou `sched_dep_time`?
-  Por quê?
+    Você deve usar `horario_saida` ou `saida_programada`?
+    Por quê?
 
 5.  Em que dia da semana você deve partir se quiser minimizar a chance de um atraso?
 
 6.  O que torna a distribuição de `diamante$quilates` e `voos$saida_programada` semelhante?
 
 7.  Confirme a nossa hipótese de que as saídas antecipadas dos voos nos minutos 20-30 e 50-60 são causadas por voos regulares que partem mais cedo.
-  Dica: crie uma variável binária que informe se um voo atrasou ou não
+    Dica: crie uma variável binária que informe se um voo atrasou ou não
 
 ## Intervalos de tempo
-
 
 A seguir, você aprenderá como funciona a aritmética com datas, incluindo subtração, adição e divisão.
 Ao longo do caminho, você aprenderá sobre três classes importantes que representam intervalos de tempo:
@@ -544,7 +542,6 @@ as.duration(h_age)
 
 Durações vêm com um monte de construtores convenientes:
 
-
 ```{r}
 dseconds(15)
 dminutes(10)
@@ -569,19 +566,20 @@ dyears(1) + dweeks(12) + dhours(15)
 
 Você pode adicionar e subtrair durações de dias:
 
-
 ```{r}
 tomorrow <- today() + ddays(1)
 last_year <- today() - dyears(1)
 ```
+
 No entanto, como as durações representam um número exato de segundos, às vezes você pode obter um resultado inesperado:
 
 ```{r}
-one_am <- ymd_hms("2026-03-08 01:00:00", tz = "America/New_York")
+uma_da_manha <- ymd_hms("2026-03-08 01:00:00", tz = "America/New_York")
 
-one_am
-one_am + ddays(1)
+uma_da_manha
+uma_da_manha + ddays(1)
 ```
+
 Por que um dia após 1h de 8 de março é 2h de 9 de março?
 Se você olhar atentamente para a data, também poderá notar que os fusos horários mudaram.
 O dia 8 de março tem apenas 23 horas porque é quando o horário de verão (DST) começa, então se adicionarmos um dia inteiro em segundos, acabamos com um horário diferente.
@@ -593,9 +591,10 @@ Os períodos são intervalos de tempo, mas não têm uma duração fixa em segun
 Isso permite que funcionem de forma mais intuitiva:
 
 ```{r}
-one_am
-one_am + days(1)
+uma_da_manha
+uma_da_manha + days(1)
 ```
+
 Como durações, períodos podem ser criados com várias funções construtoras amigáveis.
 
 ```{r}
@@ -616,20 +615,20 @@ Comparado às durações, os períodos são mais fáceis de fazer o que você es
 
 ```{r}
 # Um ano bissexto
-ymd("2024-01-01"U) + dyears(1)
+ymd("2024-01-01") + dyears(1)
 ymd("2024-01-01") + years(1)
 
 # Horário de verão
-onae_am + ddays(1)
-onen_am + days(1)
+uma_da_manha + ddays(1)
+uma_da_manha + days(1)
 ```
 
 Vamos usar períodos para corrigir uma peculiaridade relacionada às datas dos nossos voos.
-Alguns aviões parecem ter chegado ao seu destino *antes* de partirem da cidade de Nova York.
+Alguns aviões parecem ter chegado ao seu destinoino *antes* de partirem da cidade de Nova York.
 
 ```{r}
-flights_dt |> 
-  filter(arr_time < dep_time) 
+voos_dt |> 
+  filter(horario_chegada < horario_saida) 
 ```
 
 Estes são voos noturnos.
@@ -637,19 +636,19 @@ Usamos as mesmas informações de data para os horários de partida e chegada, m
 Podemos corrigir isso adicionando `days(1)` ao horário de chegada de cada voo noturno.
 
 ```{r}
-flights_dt <- flights_dt |> 
+voos_dt <- voos_dt |> 
   mutate(
-    overnight = arr_time < dep_time,
-    arr_time = arr_time + days(overnight),
-    sched_arr_time = sched_arr_time + days(overnight)
+    overnight = horario_chegada < horario_saida,
+    horario_chegada = horario_chegada + days(overnight),
+    chegada_prevista = chegada_prevista + days(overnight)
   )
 ```
 
 Agora todos os nossos voos obedecem às leis da física.
 
 ```{r}
-flights_dt |> 
-  filter(arr_time < dep_time) 
+voos_dt |> 
+  filter(horario_chegada < horario_saida) 
 ```
 
 ### Intervalos {#sec-intervals}
@@ -689,10 +688,10 @@ y2024 / days(1)
 ### Exercícios
 
 1.  Explique `days(!overnight)` e `days(overnight)` para alguém que acabou de começar a aprender R.
-  Qual é o fato chave que você precisa saber?
+    Qual é o fato chave que você precisa saber?
 
 2.  Crie um vetor de datas dando o primeiro dia de cada mês em 2015.
-  Crie um vetor de datas dando o primeiro dia de cada mês no *ano atual*.
+    Crie um vetor de datas dando o primeiro dia de cada mês no *ano atual*.
 
 3.  Escreva uma função que, dada a sua data de nascimento (como um objeto *date*), retorne quantos anos você tem em anos.
 
@@ -726,8 +725,7 @@ Você pode descobrir qual fuso horário o R pensa que é o seu atual usando a fu
 Sys.timezone()
 ```
 
-(Se o R não souber, você receberá um `NA`.)
-E veja a lista completa de todos os nomes de fusos horários com `OlsonNames()`:
+(Se o R não souber, você receberá um `NA`.) E veja a lista completa de todos os nomes de fusos horários com `OlsonNames()`:
 
 ```{r}
 length(OlsonNames())
@@ -754,6 +752,7 @@ You can verify that they're the same time using subtraction:
 x1 - x2
 x1 - x3
 ```
+
 A menos que especificado de outra forma, o lubridate sempre usa UTC.
 UTC (Tempo Universal Coordenado) é o fuso horário padrão usado pela comunidade científica e é aproximadamente equivalente ao GMT (Horário de Greenwich).
 Ele não possui horário de verão (DST), o que o torna uma representação conveniente para cálculos.
@@ -768,7 +767,7 @@ x4
 Você pode alterar o fuso horário de duas maneiras:
 
 -   Manter o instante no tempo o mesmo e alterar como ele é exibido.
-  Use isso quando o instante estiver correto, mas você quiser uma exibição mais natural.
+    Use isso quando o instante estiver correto, mas você quiser uma exibição mais natural.
 
     ```{r}
     x4a <- with_tz(x4, tzone = "Australia/Lord_Howe")
@@ -778,9 +777,7 @@ Você pode alterar o fuso horário de duas maneiras:
 
     (Isso também ilustra outro desafio dos fusos horários: nem todos são deslocamentos de horas inteiras!)
 
-    -   Alterar o instante subjacente no tempo.
-      Use isso quando você tiver um instante que foi rotulado com o fuso horário incorreto e precisar corrigi-lo.
-
+    -   Alterar o instante subjacente no tempo. Use isso quando você tiver um instante que foi rotulado com o fuso horário incorreto e precisar corrigi-lo.
 
     ```{r}
     x4b <- force_tz(x4, tzone = "Australia/Lord_Howe")
