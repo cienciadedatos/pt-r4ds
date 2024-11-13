@@ -306,10 +306,10 @@ Agora que você sabe como inserir dados de data e horário (*date time*) nas est
 Esta seção se concentrará nas funções que permitem obter e definir componentes individuais.
 A próxima seção abordará como a aritmética funciona com datas e horários.
 
-### Getting components
+### Obtendo componentes
 
-You can pull out individual parts of the date with the accessor functions `year()`, `month()`, `mday()` (day of the month), `yday()` (day of the year), `wday()` (day of the week), `hour()`, `minute()`, and `second()`.
-These are effectively the opposites of `make_datetime()`.
+Você pode extrair partes individuais da data com as funções de acesso `year()`, `month()`, `mday()` (dia do mês), `yday()` (dia do ano), `wday()` (dia da semana), `hour()`, `minute()` e `second()`.
+Essas são efetivamente o oposto de `make_datetime()`.
 
 ```{r}
 datetime <- ymd_hms("2026-07-08 12:34:56")
@@ -322,15 +322,15 @@ yday(datetime)
 wday(datetime)
 ```
 
-For `month()` and `wday()` you can set `label = TRUE` to return the abbreviated name of the month or day of the week.
-Set `abbr = FALSE` to return the full name.
+Para `month()` e `wday()` você pode definir `label = TRUE` para retornar o nome abreviado do mês ou dia da semana.
+Defina `abbr = FALSE` para retornar o nome completo.
 
 ```{r}
 month(datetime, label = TRUE)
 wday(datetime, label = TRUE, abbr = FALSE)
 ```
 
-We can use `wday()` to see that more flights depart during the week than on the weekend:
+Podemos usar `wday()` para ver que mais voos partem durante a semana do que no fim de semana:
 
 ```{r}
 #| fig-alt: |
@@ -346,8 +346,8 @@ flights_dt |>
   geom_bar()
 ```
 
-We can also look at the average departure delay by minute within the hour.
-There's an interesting pattern: flights leaving in minutes 20-30 and 50-60 have much lower delays than the rest of the hour!
+Podemos também observar o atraso médio de partida por minuto dentro da hora.
+Há um padrão interessante: voos que partem nos minutos 20-30 e 50-60 têm atrasos muito menores do que o resto da hora!
 
 ```{r}
 #| fig-alt: | 
@@ -388,9 +388,9 @@ ggplot(sched_dep, aes(x = minute, y = avg_delay)) +
   geom_line()
 ```
 
-So why do we see that pattern with the actual departure times?
-Well, like much data collected by humans, there's a strong bias towards flights leaving at "nice" departure times, as @fig-human-rounding shows.
-Always be alert for this sort of pattern whenever you work with data that involves human judgement!
+Então, por que vemos esse padrão com os horários reais de partida?
+Bem, como muitos dados coletados por humanos, há um forte viés em relação aos voos que partem em horários de partida "agradáveis", como mostra @fig-human-rounding.
+Esteja sempre atento a esse tipo de padrão sempre que trabalhar com dados que envolvem julgamento humano!
 
 ```{r}
 #| label: fig-human-rounding
