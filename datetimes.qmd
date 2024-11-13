@@ -333,7 +333,6 @@ Podemos usar `wday()` para ver que mais voos partem durante a semana do que no f
 
 ```{r}
 #| fig-alt: |
-
 #|   Um gráfico de barras com os dias da semana no eixo x e o número de 
 #|   vôos no eixo y. De segunda a sexta-feira têm aproximadamente o mesmo número de
 #|   voos, ~48.0000, diminuindo ligeiramente ao longo da semana.
@@ -371,10 +370,10 @@ Curiosamente, se olharmos para o horário de saída *programado*, não veremos u
 
 ```{r}
 #| fig-alt: | 
-#|   A line chart with minute of scheduled departure (0-60) on the x-axis
-#|   and average delay (4-16). There is relatively little pattern, just a
-#|   small suggestion that the average delay decreases from maybe 10 minutes
-#|   to 8 minutes over the course of the hour.
+#|   Um gráfico de linhas com o minuto da partida programada (0-60) no eixo x
+#|   e atraso médio (4-16). Há relativamente pouco padrão, apenas uma
+#|   pequena sugestão de que o atraso médio diminui de talvez 10 minutos
+#|   para 8 minutos ao longo da hora.
 chegada_prevista <- voos_dt |> 
   mutate(minuto = minute(saida_programada)) |> 
   group_by(minuto) |> 
@@ -394,15 +393,15 @@ Esteja sempre atento a esse tipo de padrão sempre que trabalhar com dados que e
 ```{r}
 #| label: fig-human-rounding
 #| fig-cap: |
-#|   A frequency polygon showing the number of flights scheduled to 
-#|   depart each hour. You can see a strong preference for round numbers
-#|   like 0 and 30 and generally for numbers that are a multiple of five.
+#|   Um polígono de frequência mostrando o número de voos programados para 
+#|   partir a cada hora. Você pode ver uma forte preferência por números redondos
+#|   como 0 e 30 e geralmente por números que são múltiplos de cinco.
 #| fig-alt: |
-#|   A line plot with departure minute (0-60) on the x-axis and number of
-#|   flights (0-60000) on the y-axis. Most flights are scheduled to depart
-#|   on either the hour (~60,000) or the half hour (~35,000). Otherwise,
-#|   all most all flights are scheduled to depart on multiples of five, 
-#|   with a few extra at 15, 45, and 55 minutes.
+#|   Um gráfico de linhas com o minuto de partida (0-60) no eixo x e o número de
+#|   voos (0-60000) no eixo y. A maioria dos voos está programada para partir
+#|   na hora (~60.000) ou na meia hora (~35.000). Caso contrário,
+#|   quase todos os voos estão programados para partir em múltiplos de cinco, 
+#|   com alguns extras nos minutos 15, 45 e 55.
 #| echo: false
 ggplot(chegada_prevista, aes(x = minuto, y = n)) +
   geom_line()
