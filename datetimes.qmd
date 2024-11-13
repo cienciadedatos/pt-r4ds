@@ -52,18 +52,18 @@ Existem três tipos de dados de data/horário que se referem a um instante no te
 -   Um **horário** dentro de um dia.
     Tibbles imprimem isso como `<time>`.
 
--   Uma **data-horário** é uma data mais um horário: identifica exclusivamente um instante no tempo (tipicamente até o segundo mais próximo).
+-   Uma **data-hora** é uma data mais um horário: identifica exclusivamente um instante no tempo (tipicamente até o segundo mais próximo).
     Tibbles imprimem isso como `<dttm>`.
     O R base chama isso de POSIXct, mas não é exatamente fácil de pronunciar.
 
-Neste capítulo iremos nos concentrar nas classes data (*date*) e data-horário (*date-time*), já que o R não possui uma classe nativa para lidar apenas com horário (*time*).
+Neste capítulo iremos nos concentrar nas classes data (*date*) e data-hora (*date-time*), já que o R não possui uma classe nativa para lidar apenas com horário (*time*).
 Se você precisar de uma, pode usar o pacote **hms**.
 
 Você deve sempre usar o tipo de dado mais simples possível que funcione para suas necessidades.
 Isso significa que, se você puder usar uma data em vez de uma data-horário, você deve.
-Datas-horário são substancialmente mais complicadas devido à necessidade de lidar com fusos horários, o que abordaremos no final do capítulo.
+Datas-hora são substancialmente mais complicadas devido à necessidade de lidar com fusos horários, o que abordaremos no final do capítulo.
 
-Para obter a data ou data-horário atual, você pode usar `today()` ou `now()`:
+Para obter a data ou data-hora atual, você pode usar `today()` ou `now()`:
 
 ```{r}
 today()
@@ -72,8 +72,8 @@ now()
 
 Caso contrário, as seções a seguir descrevem as quatro maneiras mais prováveis de criar uma data/hora:
 
--   Durante a leitura de um arquivo com readr.
--   A partir de uma string.
+-   Durante a leitura de um arquivo com o pacote readr.
+-   A partir de um texto (*string*).
 -   A partir de componentes individuais de data/hora.
 -   A partir de um objeto de data/hora existente.
 
@@ -158,23 +158,22 @@ mdy("January 31st, 2017")
 dmy("31-Jan-2017")
 ```
 
-`ymd()` e amigos criam datas.
-Para criar uma data-horário, adicione um sublinhado e uma ou mais de "h", "m" e "s" ao nome da função de análise:
+`ymd()` e funções similares criam datas.
+Para criar uma data-hora, adicione um sublinhado e uma ou mais de "h", "m" e "s" ao nome da função de análise:
 
 ```{r}
 ymd_hms("2017-01-31 20:11:59")
 mdy_hm("01/31/2017 08:01")
 ```
 
-Você também pode forçar a criação de uma data-horário a partir de uma data fornecendo um fuso horário:
+Você também pode forçar a criação de uma data-hora a partir de uma data fornecendo um fuso horário:
 
 ```{r}
 ymd("2017-01-31", tz = "UTC")
 ```
 
-Aqui eu uso o fuso horário UTC[^datetimes-3] que você também pode conhecer como GMT, ou Greenwich Mean Time, o horário em 0° de longitude[^datetimes-4]
-. Ele não usa o horário de verão, o que torna os cálculos um pouco mais simples
-.
+Aqui eu uso o fuso horário UTC[^datetimes-3] que você também pode conhecer como GMT, ou Greenwich Mean Time, o horário em 0° de longitude[^datetimes-4].
+Ele não usa o horário de verão, o que torna os cálculos um pouco mais simples.
 
 [^datetimes-3]: Você pode se perguntar o que significa UTC.
     É um compromisso entre o inglês "Coordinated Universal Time" e o francês "Temps Universel Coordonné".
@@ -191,7 +190,7 @@ voos |>
   select(ano, mes, dia, hora, minuto)
 ```
 
-Para criar uma data/horário a partir deste tipo de entrada, use a função `make_date()` para datas, ou `make_datetime()` para data-horário:
+Para criar uma data/horário a partir deste tipo de entrada, use a função `make_date()` para datas, ou `make_datetime()` para data-hora:
 
 ```{r}
 voos |> 
@@ -230,7 +229,7 @@ Com esses dados, podemos visualizar a distribuição dos horários de partida ao
 #|   e número de voos no eixo-y (0-1000). O polígono de frequência
 #|   é agrupado por dia para que você veja uma série temporal de voos por dia. O
 #|   o padrão é dominado por um padrão semanal; há menos voos 
-#|   nos fins de semana. São poucos os dias que se destinoacam por terem tido surpreendentemente
+#|   nos fins de semana. São poucos os dias que se destacam por terem tido surpreendentemente
 #|   poucos voos no início de fevereiro, início de julho, final de novembro e final de
 #|   dezembro.
 voos_dt |> 
@@ -253,7 +252,7 @@ voos_dt |>
   geom_freqpoly(binwidth = 600) # 600 s = 10 minutos
 ```
 
-Observe que quando você usa datas-horários em um contexto numérico (como em um histograma), 1 significa 1 segundo, então uma largura de bin de 86400 significa um dia.
+Observe que quando você usa datas-hora em um contexto numérico (como em um histograma), 1 significa 1 segundo, então uma largura de bin de 86400 significa um dia.
 Para datas, 1 significa 1 dia.
 
 ### A partir de outros tipos
@@ -472,7 +471,7 @@ hour(datetime) <- hour(datetime) + 1
 datetime
 ```
 
-Alternativamente, em vez de modificar uma variável existente, você pode criar uma nova data-horário com `update()`.
+Alternativamente, em vez de modificar uma variável existente, você pode criar uma nova data-hora com `update()`.
 Isso também permite definir vários valores em uma etapa:
 
 ```{r}
@@ -527,7 +526,7 @@ Se você se preocupa apenas com o tempo físico, use uma duração; se você pre
 No R, ao subtrair duas datas, você obtém um objeto de intervalo de tempo da classe *difftime*:
 
 ```{r}
-# Quantos anos tem Hadley?
+# Quantos anos o Hadley tem?
 h_age <- today() - ymd("1979-10-14")
 h_age
 ```
@@ -724,7 +723,9 @@ Você pode descobrir qual fuso horário o R pensa que é o seu atual usando a fu
 Sys.timezone()
 ```
 
-(Se o R não souber, você receberá um `NA`.) E veja a lista completa de todos os nomes de fusos horários com `OlsonNames()`:
+(Se o R não souber, você receberá um `NA`.)
+
+Você também pode ver a lista completa de todos os nomes de fusos horários com `OlsonNames()`:
 
 ```{r}
 length(OlsonNames())
@@ -786,9 +787,9 @@ Você pode alterar o fuso horário de duas maneiras:
 
 ## Resumo
 
-Este capítulo apresentou as ferramentas que o lubridate fornece para ajudá-lo a trabalhar com dados de data e hora.
-Trabalhar com datas e horários pode parecer mais difícil do que o necessário, mas espero que este capítulo tenha ajudado você a entender o porquê --- datas e horários são mais complexos do que parecem à primeira vista, e lidar com todas as situações possíveis adiciona complexidade.
+Este capítulo apresentou as ferramentas que o lubridate fornece para te ajudar a trabalhar com dados de data e hora.
+Trabalhar com datas e horários pode parecer mais difícil do que o necessário, mas espero que este capítulo tenha ajudado você a entender o porquê --- datas e horários são mais complexas do que parecem à primeira vista, e lidar com todas as situações possíveis adiciona complexidade.
 Mesmo que seus dados nunca cruzem um limite de horário de verão ou envolvam um ano bissexto, as funções precisam ser capazes de lidar com isso.
 
-O próximo capítulo faz um resumo dos valores ausentes.
+O próximo capítulo faz um resumo dos valores ausentes (`NA`).
 Você os viu em alguns lugares e sem dúvida os encontrou em sua própria análise, e agora é hora de fornecer um conjunto de técnicas úteis para lidar com eles.
