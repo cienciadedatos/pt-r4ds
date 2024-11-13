@@ -12,7 +12,6 @@ options(warnPartialMatchArgs = FALSE)
 
 ## Introduction
 
-
 Este capítulo mostrará como trabalhar com datas e horários (*dates and times*) no R.
 À primeira vista, datas e horários parecem simples.
 Você os utiliza o tempo todo em sua vida e eles não parecem causar muita confusão.
@@ -59,7 +58,6 @@ There are three types of date/time data that refer to an instant in time:
     Tibbles print this as `<dttm>`.
     Base R calls these POSIXct, but doesn't exactly trip off the tongue.
 
-
 Neste capítulo iremos nos concentrar nas classes data (*date*) e data-horário (*date-time*), já que o R não possui uma classe nativa para lidar apenas com horário (*time*).
 Se você precisar de uma, pode usar o pacote **hms**.
 
@@ -99,36 +97,34 @@ For example, you could write 4:26pm on May 3 2022 as either `2022-05-03 16:26` o
 
 [^datetimes-2]: <https://xkcd.com/1179/>
 
-
 Para outros formatos de data e horário, você precisará usar `col_types` com `col_date()` ou `col_datetime()` junto com um formato de data e horário.
 O formato de data e horário usado pelo pacote readr é um padrão usado em muitas linguagens de programação, descrevendo um componente de data com um `%` seguido por um único caractere.
 Por exemplo, `%Y-%m-%d` especifica uma data que é um ano, `-`, mês (como número) `-`, dia.
 A tabela @tbl-date-formats lista todas as opções.
 
-| Type    | Code  | Meaning                             | Example         |
-|---------|-------|-------------------------------------|-----------------|
-| Ano     | `%Y`  | Ano com 4 digitos                    | 2021            |
-|         | `%y`  | Ano com 2 digitos                    | 21              |
-| Mês     | `%m`  | Número                              | 2               |
-|         | `%b`  | Nome abreviado                      | Feb             |
-|         | `%B`  | Nome completo                       | February        |
-| Dia     | `%d`  | Um ou dois digitos                  | 2               |
-|         | `%e`  | Dois digitos                        | 02              |
-| Horário | `%H`  | Horas em 24-horas                   | 13              |
-|         | `%I`  | Horas em 12-horas                   | 1               |
-|         | `%p`  | AM/PM                               | pm              |
-|         | `%M`  | Minutos                             | 35              |
-|         | `%S`  | Segundos                            | 45              |
-|         | `%OS` | Seconds com decimal                 | 45.35           |
-|         | `%Z`  | Nome fuso horário                   | America/Chicago |
-|         | `%z`  | Ajuste (*offset*) de UTC            | +0800           |
-| Outras  | `%.`  | Pula um não digito                  | :               |
-|         | `%*`  | Pula qualquer número de não digito  |                 |
+| Type    | Code  | Meaning                            | Example         |
+|---------|-------|------------------------------------|-----------------|
+| Ano     | `%Y`  | Ano com 4 digitos                  | 2021            |
+|         | `%y`  | Ano com 2 digitos                  | 21              |
+| Mês     | `%m`  | Número                             | 2               |
+|         | `%b`  | Nome abreviado                     | Feb             |
+|         | `%B`  | Nome completo                      | February        |
+| Dia     | `%d`  | Um ou dois digitos                 | 2               |
+|         | `%e`  | Dois digitos                       | 02              |
+| Horário | `%H`  | Horas em 24-horas                  | 13              |
+|         | `%I`  | Horas em 12-horas                  | 1               |
+|         | `%p`  | AM/PM                              | pm              |
+|         | `%M`  | Minutos                            | 35              |
+|         | `%S`  | Segundos                           | 45              |
+|         | `%OS` | Seconds com decimal                | 45.35           |
+|         | `%Z`  | Nome fuso horário                  | America/Chicago |
+|         | `%z`  | Ajuste (*offset*) de UTC           | +0800           |
+| Outras  | `%.`  | Pula um não digito                 | :               |
+|         | `%*`  | Pula qualquer número de não digito |                 |
 
 : Todos os formatos de datas compreendidos pelo readr {#tbl-date-formats}
 
 E este código mostra algumas opções aplicadas a uma data muito ambígua:
-
 
 ```{r}
 #| messages: false
@@ -145,9 +141,7 @@ read_csv(csv, col_types = cols(date = col_date("%d/%m/%y")))
 read_csv(csv, col_types = cols(date = col_date("%y/%m/%d")))
 ```
 
-
 Observe que não importa como você especifica o formato da data, ela sempre será exibida da mesma maneira quando você o inserir no R.
-
 
 If you're using `%b` or `%B` and working with non-English dates, you'll also need to provide a `locale()`.
 See the list of built-in languages in `date_names_langs()`, or create your own with `date_names()`,
@@ -181,8 +175,8 @@ ymd("2017-01-31", tz = "UTC")
 ```
 
 Aqui eu uso o fuso horário UTC[^datetimes-3] que você também pode conhecer como GMT, ou Greenwich Mean Time, o horário em 0° de longitude[^datetimes-4]
-. Ele não usa o horário de verão, o que torna os cálculos um pouco mais simples.
-
+. Ele não usa o horário de verão, o que torna os cálculos um pouco mais simples
+.
 
 [^datetimes-3]: You might wonder what UTC stands for.
     It's a compromise between the English "Coordinated Universal Time" and French "Temps Universel Coordonné".
@@ -201,18 +195,15 @@ flights |>
 
 Para criar uma data/horário a partir deste tipo de entrada, use a função `make_date()` para datas, ou `make_datetime()` para data-horário:
 
-
 ```{r}
 flights |> 
   select(year, month, day, hour, minute) |> 
   mutate(departure = make_datetime(year, month, day, hour, minute))
 ```
 
-
 Vamos fazer a mesma coisa para cada uma das quatro colunas de tempo em `voos`.
 Os horários são representados em um formato particular, por isso usamos a aritmética de módulo para extrair os componentes de hora e minuto.
 Depois de criarmos as variáveis de data e horário, nos concentraremos nas variáveis que exploraremos no restante do capítulo.
-
 
 ```{r}
 make_datetime_100 <- function(year, month, day, time) {
@@ -271,7 +262,6 @@ For dates, 1 means 1 day.
 Você pode querer alternar entre uma data e horário (*date-times*) e uma data (*date*).
 Esse é o trabalho ds funções `as_datetime()` e `as_date()`:
 
-
 ```{r}
 as_datetime(today())
 as_date(now())
@@ -279,7 +269,6 @@ as_date(now())
 
 Às vezes, você obterá datas/horários como deslocamentos (*offsets*) numéricos a partir da "Era Unix" (*Unix Epoch*), 01/01/1970.
 Se o deslocamento (*offset*) estiver em segundos, use `as_datetime()`; se for em dias, use `as_date()`.
-
 
 ```{r}
 as_datetime(60 * 60 * 10)
@@ -295,7 +284,6 @@ as_date(365 * 10 + 2)
 
     ymd(c("2010-10-10", "bananas"))
     ```
-
 
 2.  O que o argumento `tzone` para a função `today()` faz?
     Por que ele é importante?
@@ -317,7 +305,6 @@ as_date(365 * 10 + 2)
 Agora que você sabe como inserir dados de data e horário (*date time*) nas estruturas de dados de data e horário do R, vamos explorar o que você pode fazer com eles.
 Esta seção se concentrará nas funções que permitem obter e definir componentes individuais.
 A próxima seção abordará como a aritmética funciona com datas e horários.
-
 
 ### Getting components
 
@@ -381,9 +368,7 @@ voos_dt |>
   geom_line()
 ```
 
-
 Curiosamente, se olharmos para o horário de saída *programado*, não veremos um padrão tão forte:
-
 
 ```{r}
 #| fig-alt: | 
@@ -528,7 +513,6 @@ update(ymd("2023-02-01"), hour = 400)
 
 ## Time spans
 
-
 A seguir, você aprenderá como funciona a aritmética com datas, incluindo subtração, adição e divisão.
 Ao longo do caminho, você aprenderá sobre três classes importantes que representam intervalos de tempo:
 
@@ -542,9 +526,7 @@ Se você se preocupa apenas com o tempo físico, use uma duração; se você pre
 
 ### Durations
 
-
 No R, ao subtrair duas datas, você obtém um objeto de intervalo de tempo da classe *difftime*:
-
 
 ```{r}
 # How old is Hadley?
@@ -552,10 +534,8 @@ h_age <- today() - ymd("1979-10-14")
 h_age
 ```
 
-
 Um objeto de classe `difftime` registra um intervalo de tempo de segundos, minutos, horas, dias ou semanas.
 Essa ambiguidade pode tornar os *difftimes* um pouco complicados de lidar, então o pacote lubridate fornece uma alternativa que sempre usa segundos: a **duração** (*duration*).
-
 
 ```{r}
 as.duration(h_age)
@@ -611,7 +591,6 @@ Para resolver esse problema, a lubridate fornece **períodos** (*periods*).
 Os períodos são intervalos de tempo, mas não têm uma duração fixa em segundos; em vez disso, funcionam com tempos "humanos", como dias e meses.
 Isso permite que funcionem de forma mais intuitiva:
 
-
 ```{r}
 one_am
 one_am + days(1)
@@ -645,10 +624,8 @@ one_am + ddays(1)
 one_am + days(1)
 ```
 
-
 Vamos usar períodos para corrigir uma peculiaridade relacionada às datas dos nossos voos.
 Alguns aviões parecem ter chegado ao seu destino *antes* de partirem da cidade de Nova York.
-
 
 ```{r}
 flights_dt |> 
@@ -677,7 +654,6 @@ flights_dt |>
 
 ### Intervals {#sec-intervals}
 
-
 O que `dyears(1) / ddays(365)` retorna?
 Não é exatamente 1, porque `dyears()` é definido como o número de segundos por ano de duração média, que é 365,25 dias.
 
@@ -685,7 +661,6 @@ O que `anos(1)/dias(1)` retorna?
 Bom, se o ano fosse 2015 deveria retornar 365, mas se fosse 2016 deveria retornar 366!
 Não há informações suficientes para o lubridate dar uma resposta única e clara.
 Em vez disso, o que ele faz é fornecer uma estimativa:
-
 
 ```{r}
 years(1) / days(1)
@@ -719,21 +694,16 @@ y2024 / days(1)
 2.  Create a vector of dates giving the first day of every month in 2015.
     Create a vector of dates giving the first day of every month in the *current* year.
 
-
 3.  Escreva uma função que, dada a sua data de nascimento (como um objeto *date*), retorne quantos anos você tem em anos.
-
 
 4.  Why can't `(today() %--% (today() + years(1))) / months(1)` work?
 
-
 ## Fusos horários
-
 
 Time zones are an enormously complicated topic because of their interaction with geopolitical entities.
 Fortunately we don't need to dig into all the details as they're not all important for data analysis, but there are a few challenges we'll need to tackle head on.
 
 <!--# https://www.ietf.org/timezones/tzdb-2018a/theory.html -->
-
 
 O primeiro desafio é que os nomes cotidianos dos fusos horários tendem a ser ambíguos.
 Por exemplo, se você é americano, provavelmente conhece EST, ou Eastern Standard Time.
@@ -756,9 +726,7 @@ Você pode descobrir qual fuso horário o R pensa que é o seu atual usando a fu
 Sys.timezone()
 ```
 
-
 (Se o R não souber, você receberá um `NA`.)
-
 
 And see the complete list of all time zone names with `OlsonNames()`:
 
@@ -810,9 +778,7 @@ You can change the time zone in two ways:
     x4a - x4
     ```
 
-
     (Isso também ilustra outro desafio dos fusos horários: nem todos são deslocamentos de horas inteiras!)
-
 
 -   Change the underlying instant in time.
     Use this when you have an instant that has been labelled with the incorrect time zone, and you need to fix it.
