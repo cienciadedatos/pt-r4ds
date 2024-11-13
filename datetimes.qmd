@@ -1,38 +1,36 @@
-# Dates and times {#sec-dates-and-times}
+# Datas e horários {#sec-dates-and-times}
 
 ```{r}
 #| echo: false
 #| results: asis
 source("_common.R")
-mensagem_capitulo_sem_traducao()
-
 # https://github.com/tidyverse/lubridate/issues/1058
 options(warnPartialMatchArgs = FALSE)
 ```
 
-## Introduction
+## Introdução
 
 Este capítulo mostrará como trabalhar com datas e horários (*dates and times*) no R.
 À primeira vista, datas e horários parecem simples.
 Você os utiliza o tempo todo em sua vida e eles não parecem causar muita confusão.
 Porém, quanto mais você aprende sobre datas e horários, mais complicados eles parecem ficar!
 
-To warm up think about how many days there are in a year, and how many hours there are in a day.
-You probably remembered that most years have 365 days, but leap years have 366.
-Do you know the full rule for determining if a year is a leap year[^datetimes-1]?
-The number of hours in a day is a little less obvious: most days have 24 hours, but in places that use daylight saving time (DST), one day each year has 23 hours and another has 25.
+Para aquecer, pense em quantos dias há em um ano e quantas horas há em um dia.
+Você provavelmente se lembrou que a maioria dos anos tem 365 dias, mas os anos bissextos têm 366.
+Você sabe a regra completa para determinar se um ano é bissexto[^datetimes-1]?
+O número de horas em um dia é um pouco menos óbvio: a maioria dos dias tem 24 horas, mas em lugares que usam horário de verão (DST), um dia a cada ano tem 23 horas e outro tem 25.
 
-[^datetimes-1]: A year is a leap year if it's divisible by 4, unless it's also divisible by 100, except if it's also divisible by 400.
-    In other words, in every set of 400 years, there's 97 leap years.
+[^datetimes-1]: Um ano é bissexto se for divisível por 4, a menos que também seja divisível por 100, exceto se também for divisível por 400.
+    Em outras palavras, em cada conjunto de 400 anos, há 97 anos bissextos.
 
 Datas e horários são difíceis porque têm de conciliar dois fenômenos físicos (a rotação da Terra e a sua órbita em torno do Sol) com uma série de fenômenos geopolíticos, incluindo meses, fusos horários e horário de verão.
 Este capítulo não ensinará todos os detalhes sobre datas e horários, mas fornecerá uma base sólida de habilidades práticas que te ajudarão com desafios comuns de análise de dados.
 
-We'll begin by showing you how to create date-times from various inputs, and then once you've got a date-time, how you can extract components like year, month, and day.
-We'll then dive into the tricky topic of working with time spans, which come in a variety of flavors depending on what you're trying to do.
-We'll conclude with a brief discussion of the additional challenges posed by time zones.
+Começaremos mostrando como criar datas e horários a partir de várias entradas e, depois que você tiver uma data e hora, como extrair componentes como ano, mês e dia.
+Em seguida, mergulharemos no tópico complicado de trabalhar com intervalos de tempo, que vêm em uma variedade de formas, dependendo do que você está tentando fazer.
+Concluiremos com uma breve discussão sobre os desafios adicionais impostos pelos fusos horários.
 
-### Prerequisites
+### Pré-requisitos
 
 Este capítulo se concentrará no pacote **lubridate**, que facilita o trabalho com datas e horários no R.
 Na versão mais recente do tidyverse, o lubridate passou a ser um pacote principal do tidyverse.
@@ -44,44 +42,44 @@ library(tidyverse)
 library(nycflights13)
 ```
 
-## Creating date/times {#sec-creating-datetimes}
+## Criando datas/horários {#sec-creating-datetimes}
 
-There are three types of date/time data that refer to an instant in time:
+Existem três tipos de dados de data/horário que se referem a um instante no tempo:
 
--   A **date**.
-    Tibbles print this as `<date>`.
+-   Uma **data**.
+  Tibbles imprimem isso como `<date>`.
 
--   A **time** within a day.
-    Tibbles print this as `<time>`.
+-   Um **horário** dentro de um dia.
+  Tibbles imprimem isso como `<time>`.
 
--   A **date-time** is a date plus a time: it uniquely identifies an instant in time (typically to the nearest second).
-    Tibbles print this as `<dttm>`.
-    Base R calls these POSIXct, but doesn't exactly trip off the tongue.
+-   Uma **data-horário** é uma data mais um horário: identifica exclusivamente um instante no tempo (tipicamente até o segundo mais próximo).
+  Tibbles imprimem isso como `<dttm>`.
+  O R base chama isso de POSIXct, mas não é exatamente fácil de pronunciar.
 
 Neste capítulo iremos nos concentrar nas classes data (*date*) e data-horário (*date-time*), já que o R não possui uma classe nativa para lidar apenas com horário (*time*).
 Se você precisar de uma, pode usar o pacote **hms**.
 
-You should always use the simplest possible data type that works for your needs.
-That means if you can use a date instead of a date-time, you should.
-Date-times are substantially more complicated because of the need to handle time zones, which we'll come back to at the end of the chapter.
+Você deve sempre usar o tipo de dado mais simples possível que funcione para suas necessidades.
+Isso significa que, se você puder usar uma data em vez de uma data-horário, você deve.
+Datas-horário são substancialmente mais complicadas devido à necessidade de lidar com fusos horários, o que abordaremos no final do capítulo.
 
-To get the current date or date-time you can use `today()` or `now()`:
+Para obter a data ou data-horário atual, você pode usar `today()` ou `now()`:
 
 ```{r}
 today()
 now()
 ```
 
-Otherwise, the following sections describe the four ways you're likely to create a date/time:
+Caso contrário, as seções a seguir descrevem as quatro maneiras mais prováveis de criar uma data/hora:
 
--   While reading a file with readr.
--   From a string.
--   From individual date-time components.
--   From an existing date/time object.
+-   Durante a leitura de um arquivo com readr.
+-   A partir de uma string.
+-   A partir de componentes individuais de data/hora.
+-   A partir de um objeto de data/hora existente.
 
-### During import
+### Durante a importação
 
-If your CSV contains an ISO8601 date or date-time, you don't need to do anything; readr will automatically recognize it:
+Se o seu CSV contiver uma data ou data/hora no formato ISO8601, você não precisa fazer nada; o readr reconhecerá automaticamente:
 
 ```{r}
 #| message: false
@@ -92,8 +90,8 @@ csv <- "
 read_csv(csv)
 ```
 
-If you haven't heard of **ISO8601** before, it's an international standard[^datetimes-2] for writing dates where the components of a date are organized from biggest to smallest separated by `-`. For example, in ISO8601 May 3 2022 is `2022-05-03`. ISO8601 dates can also include times, where hour, minute, and second are separated by `:`, and the date and time components are separated by either a `T` or a space.
-For example, you could write 4:26pm on May 3 2022 as either `2022-05-03 16:26` or `2022-05-03T16:26`.
+Se você nunca ouviu falar do **ISO8601** antes, é um padrão internacional[^datetimes-2] para escrever datas onde os componentes de uma data são organizados do maior para o menor, separados por `-`. Por exemplo, no ISO8601, 3 de maio de 2022 é `2022-05-03`. As datas ISO8601 também podem incluir horários, onde hora, minuto e segundo são separados por `:`, e os componentes de data e hora são separados por um `T` ou um espaço.
+Por exemplo, você poderia escrever 16:26 do dia 3 de maio de 2022 como `2022-05-03 16:26` ou `2022-05-03T16:26`.
 
 [^datetimes-2]: <https://xkcd.com/1179/>
 
@@ -102,7 +100,7 @@ O formato de data e horário usado pelo pacote readr é um padrão usado em muit
 Por exemplo, `%Y-%m-%d` especifica uma data que é um ano, `-`, mês (como número) `-`, dia.
 A tabela @tbl-date-formats lista todas as opções.
 
-| Type    | Code  | Meaning                            | Example         |
+| Tipo    | Código | Significado                        | Exemplo         |
 |---------|-------|------------------------------------|-----------------|
 | Ano     | `%Y`  | Ano com 4 digitos                  | 2021            |
 |         | `%y`  | Ano com 2 digitos                  | 21              |
@@ -143,10 +141,10 @@ read_csv(csv, col_types = cols(date = col_date("%y/%m/%d")))
 
 Observe que não importa como você especifica o formato da data, ela sempre será exibida da mesma maneira quando você o inserir no R.
 
-If you're using `%b` or `%B` and working with non-English dates, you'll also need to provide a `locale()`.
-See the list of built-in languages in `date_names_langs()`, or create your own with `date_names()`,
+Se você estiver usando `%b` ou `%B` e trabalhando com datas em idiomas diferentes do inglês, também precisará fornecer um `locale()`.
+Veja a lista de idiomas integrados em `date_names_langs()`, ou crie o seu próprio com `date_names()`,
 
-### From strings
+### A partir de strings
 
 A linguagem de especificação de data e horário é poderosa, mas requer uma análise cuidadosa do formato da data.
 Uma abordagem alternativa é usar os auxiliares do pacote lubridate que tentam determinar automaticamente o formato assim que você especifica a ordem do componente.
@@ -160,15 +158,15 @@ mdy("January 31st, 2017")
 dmy("31-Jan-2017")
 ```
 
-`ymd()` and friends create dates.
-To create a date-time, add an underscore and one or more of "h", "m", and "s" to the name of the parsing function:
+`ymd()` e amigos criam datas.
+Para criar uma data-horário, adicione um sublinhado e uma ou mais de "h", "m" e "s" ao nome da função de análise:
 
 ```{r}
 ymd_hms("2017-01-31 20:11:59")
 mdy_hm("01/31/2017 08:01")
 ```
 
-You can also force the creation of a date-time from a date by supplying a timezone:
+Você também pode forçar a criação de uma data-horário a partir de uma data fornecendo um fuso horário:
 
 ```{r}
 ymd("2017-01-31", tz = "UTC")
@@ -178,15 +176,16 @@ Aqui eu uso o fuso horário UTC[^datetimes-3] que você também pode conhecer co
 . Ele não usa o horário de verão, o que torna os cálculos um pouco mais simples
 .
 
-[^datetimes-3]: You might wonder what UTC stands for.
-    It's a compromise between the English "Coordinated Universal Time" and French "Temps Universel Coordonné".
+[^datetimes-3]: Você pode se perguntar o que significa UTC.
+  É um compromisso entre o inglês "Coordinated Universal Time" e o francês "Temps Universel Coordonné".
 
-[^datetimes-4]: No prizes for guessing which country came up with the longitude system.
+[^datetimes-4]: Sem prêmios para quem adivinhar qual país criou o sistema de longitude.
 
-### From individual components
+### A partir de componentes individuais
 
-Instead of a single string, sometimes you'll have the individual components of the date-time spread across multiple columns.
-This is what we have in the `flights` data:
+Em vez de uma única string, às vezes você terá os componentes individuais da data-hora espalhados por várias colunas.
+Isso é o que temos nos dados `flights`:
+
 
 ```{r}
 flights |> 
@@ -223,7 +222,7 @@ flights_dt <- flights |>
 flights_dt
 ```
 
-With this data, we can visualize the distribution of departure times across the year:
+Com esses dados, podemos visualizar a distribuição dos horários de partida ao longo do ano:
 
 ```{r}
 #| fig.alt: >
@@ -239,7 +238,8 @@ voos_dt |>
   geom_freqpoly(binwidth = 86400) # 86400 segundos = 1 dia
 ```
 
-Or within a single day:
+Ou dentro de um único dia:
+
 
 ```{r}
 #| fig.alt: >
@@ -254,10 +254,10 @@ voos_dt |>
   geom_freqpoly(binwidth = 600) # 600 s = 10 minutos
 ```
 
-Note that when you use date-times in a numeric context (like in a histogram), 1 means 1 second, so a binwidth of 86400 means one day.
-For dates, 1 means 1 day.
+Observe que quando você usa datas-horários em um contexto numérico (como em um histograma), 1 significa 1 segundo, então uma largura de bin de 86400 significa um dia.
+Para datas, 1 significa 1 dia.
 
-### From other types
+### A partir de outros tipos
 
 Você pode querer alternar entre uma data e horário (*date-times*) e uma data (*date*).
 Esse é o trabalho ds funções `as_datetime()` e `as_date()`:
@@ -275,32 +275,32 @@ as_datetime(60 * 60 * 10)
 as_date(365 * 10 + 2)
 ```
 
-### Exercises
+### Exercícios
 
-1.  What happens if you parse a string that contains invalid dates?
+1.  O que acontece se você analisar uma string que contém datas inválidas?
 
-    ```{r}
-    #| eval: false
+  ```{r}
+  #| eval: false
 
-    ymd(c("2010-10-10", "bananas"))
-    ```
+  ymd(c("2010-10-10", "bananas"))
+  ```
 
 2.  O que o argumento `tzone` para a função `today()` faz?
-    Por que ele é importante?
+  Por que ele é importante?
 
-3.  For each of the following date-times, show how you'd parse it using a readr column specification and a lubridate function.
+3.  Para cada uma das seguintes datas/horários, mostre como você os analisaria usando uma especificação de coluna do readr e uma função do lubridate.
 
-    ```{r}
-    d1 <- "January 1, 2010"
-    d2 <- "2015-Mar-07"
-    d3 <- "06-Jun-2017"
-    d4 <- c("August 19 (2015)", "July 1 (2015)")
-    d5 <- "12/30/14" # Dec 30, 2014
-    t1 <- "1705"
-    t2 <- "11:15:10.12 PM"
-    ```
+  ```{r}
+  d1 <- "January 1, 2010"
+  d2 <- "2015-Mar-07"
+  d3 <- "06-Jun-2017"
+  d4 <- c("August 19 (2015)", "July 1 (2015)")
+  d5 <- "12/30/14" # Dec 30, 2014
+  t1 <- "1705"
+  t2 <- "11:15:10.12 PM"
+  ```
 
-## Date-time components
+## Componentes de data-hora
 
 Agora que você sabe como inserir dados de data e horário (*date time*) nas estruturas de dados de data e horário do R, vamos explorar o que você pode fazer com eles.
 Esta seção se concentrará nas funções que permitem obter e definir componentes individuais.
