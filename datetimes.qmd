@@ -370,7 +370,7 @@ Curiosamente, se olharmos para o horário de saída *programado*, não veremos u
 ```{r}
 #| fig-alt: | 
 #|   Um gráfico de linhas com o minuto da partida programada (0-60) no eixo x
-#|   e atraso médio (4-16). Há relativamente pouco padrão, apenas uma
+#|   e atraso médio (4-16). Há pouca tendência evidente, apenas uma
 #|   pequena sugestão de que o atraso médio diminui de talvez 10 minutos
 #|   para 8 minutos ao longo da hora.
 chegada_prevista <- voos_dt |> 
