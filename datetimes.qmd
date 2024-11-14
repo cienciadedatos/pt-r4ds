@@ -176,7 +176,7 @@ Aqui eu uso o fuso horário UTC[^datetimes-3] que você também pode conhecer co
 Ele não usa o horário de verão, o que torna os cálculos um pouco mais simples.
 
 [^datetimes-3]: Você pode se perguntar o que significa UTC.
-    É um compromisso entre o inglês "Coordinated Universal Time" e o francês "Temps Universel Coordonné".
+    É um meio-termo entre o inglês "Coordinated Universal Time" e o francês "Temps Universel Coordonné".
 
 [^datetimes-4]: Sem prêmios para quem adivinhar qual país criou o sistema de longitude.
 
