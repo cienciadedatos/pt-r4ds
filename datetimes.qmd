@@ -252,7 +252,7 @@ voos_dt |>
   geom_freqpoly(binwidth = 600) # 600 s = 10 minutos
 ```
 
-Observe que quando você usa datas-hora em um contexto numérico (como em um histograma), 1 significa 1 segundo, então uma largura de bin de 86400 significa um dia.
+Observe que quando você usa datas-hora em um contexto numérico (como em um histograma), 1 significa 1 segundo, então uma largura de intervalo de classe (*bin*) de 86400 significa um dia.
 Para datas, 1 significa 1 dia.
 
 ### A partir de outros tipos
