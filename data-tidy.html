@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.6.33">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund">
-<title>R para Ciência de Dados (2ª edição) - 5&nbsp; Organização de dados (data tidying)</title>
+<title>5&nbsp; Organização de dados (data tidying) – R para Ciência de Dados (2ª edição)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-ace4a817dfa5350d319573e67433944f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -104,13 +104,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./whole-game.html">Visão geral</a></li><li class="breadcrumb-item"><a href="./data-tidy.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Organização de dados (<em>data tidying</em>)</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -158,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./whole-game.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visão geral</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -217,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./visualize.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualizar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -246,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./transform.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Transformar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./import.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Importar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -346,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./program.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./communicate.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Comunicar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -525,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="#fig-tidy-structure" class="quarto-xref">Figura&nbsp;<span>5.1</span></a> mostra essas regras visualmente.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-tidy-structure" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Três painéis, cada um representando um _data frame_ em formato tidy. O primeiro painel mostra que cada variável é uma coluna. O segundo painel mostra que cada observação é uma linha. O terceiro painel mostra que cada valor é uma célula.">
+<div id="fig-tidy-structure" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Três painéis, cada um representando um _data frame_ em formato tidy. O primeiro painel mostra que cada variável é uma coluna. O segundo painel mostra que cada observação é uma linha. O terceiro painel mostra que cada valor é uma célula.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-tidy-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/pt/tidy-1.png" class="img-fluid figure-img" alt="Três painéis, cada um representando um _data frame_ em formato tidy. O primeiro painel mostra que cada variável é uma coluna. O segundo painel mostra que cada observação é uma linha. O terceiro painel mostra que cada valor é uma célula." width="683">
 </div>
@@ -731,7 +731,7 @@ Figura&nbsp;5.1: As seguintes três regras tornam um conjunto de dados tidy: var
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-billboard-ranks" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Um gráfico de linhas com semana no eixo-x e posição no eixo-y, onde cada linha representa uma música. A maioria das músicas parece começar em uma posição alta, acelerar rapidamente para uma posição mais baixa e depois cair novamente. Existem notavelmente poucas faixas na região em que a semana é >20 e a posição é >50.">
+<div id="fig-billboard-ranks" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Um gráfico de linhas com semana no eixo-x e posição no eixo-y, onde cada linha representa uma música. A maioria das músicas parece começar em uma posição alta, acelerar rapidamente para uma posição mais baixa e depois cair novamente. Existem notavelmente poucas faixas na região em que a semana é >20 e a posição é >50.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-billboard-ranks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-tidy_files/figure-html/fig-billboard-ranks-1.png" class="img-fluid figure-img" alt="Um gráfico de linhas com semana no eixo-x e posição no eixo-y, onde cada linha representa uma música. A maioria das músicas parece começar em uma posição alta, acelerar rapidamente para uma posição mais baixa e depois cair novamente. Existem notavelmente poucas faixas na região em que a semana é >20 e a posição é >50." width="672">
 </div>
@@ -776,7 +776,7 @@ Figura&nbsp;5.2: Um gráfico de linhas mostrando como as posições de uma músi
 <p>Como funciona essa mudança de formato? É mais fácil de ver se pensarmos coluna por coluna. Como mostrado em <a href="#fig-pivot-variables" class="quarto-xref">Figura&nbsp;<span>5.3</span></a>, os valores de uma coluna que já eram uma variável nos dados originais (<code>id</code>) precisam ser repetidos uma vez para cada coluna que foi pivotada.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pivot-variables" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Um diagrama mostrando como `pivot_longer()` transforma um simples conjunto de dados, utilizando cores para destacar como cada um dos valores da coluna `id` (&quot;A&quot;, &quot;B&quot;, &quot;C&quot;) são repetidos duas vezes na saída por que há duas colunas sendo pivotadas (&quot;ps1&quot; e &quot;ps2&quot;).">
+<div id="fig-pivot-variables" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Um diagrama mostrando como `pivot_longer()` transforma um simples conjunto de dados, utilizando cores para destacar como cada um dos valores da coluna `id` (&quot;A&quot;, &quot;B&quot;, &quot;C&quot;) são repetidos duas vezes na saída por que há duas colunas sendo pivotadas (&quot;ps1&quot; e &quot;ps2&quot;).">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pivot-variables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="diagrams/tidy-data/variables.png" class="img-fluid figure-img" alt="Um diagrama mostrando como `pivot_longer()` transforma um simples conjunto de dados, utilizando cores para destacar como cada um dos valores da coluna `id` (&quot;A&quot;, &quot;B&quot;, &quot;C&quot;) são repetidos duas vezes na saída por que há duas colunas sendo pivotadas (&quot;ps1&quot; e &quot;ps2&quot;)." width="515">
 </div>
@@ -789,7 +789,7 @@ Figura&nbsp;5.3: Colunas que já são variáveis precisam ser repetidas uma vez 
 <p>Os nomes das colunas se tornam valores em uma nova variável, cujo nome foi definido pelo parâmetro <code>names_to</code>, conforme mostrado em <a href="#fig-pivot-names" class="quarto-xref">Figura&nbsp;<span>5.4</span></a>. Eles precisam ser repetidos uma vez para cada linha dos dados originais.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pivot-names" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Um diagrama mostrando como `pivot_longer()` transforma um simples conjunto de dados, utilizando cores para destacar como os nomes das colunas (&quot;ps1&quot; e &quot;ps2&quot;) se tornam valores em uma nova coluna `medicao`. Eles são repetidos três vezes porque havia três linhas na entrada.">
+<div id="fig-pivot-names" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Um diagrama mostrando como `pivot_longer()` transforma um simples conjunto de dados, utilizando cores para destacar como os nomes das colunas (&quot;ps1&quot; e &quot;ps2&quot;) se tornam valores em uma nova coluna `medicao`. Eles são repetidos três vezes porque havia três linhas na entrada.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pivot-names-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="diagrams/tidy-data/column-names.png" class="img-fluid figure-img" alt="Um diagrama mostrando como `pivot_longer()` transforma um simples conjunto de dados, utilizando cores para destacar como os nomes das colunas (&quot;ps1&quot; e &quot;ps2&quot;) se tornam valores em uma nova coluna `medicao`. Eles são repetidos três vezes porque havia três linhas na entrada." width="515">
 </div>
@@ -802,7 +802,7 @@ Figura&nbsp;5.4: Os nomes das colunas pivotadas se tornam valores em uma nova co
 <p>Os valores das células também se tornam valores em uma nova variável, com o nome definido por <code>values_to</code>. Eles são “desenrolados” linha a linha. <a href="#fig-pivot-values" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> ilustra o processo.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pivot-values" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Um diagrama mostrando como `pivot_longer()` transforma os dados, utilizando cores para destacar como os valores das células (medidas de pressão sanguínea) se tornam valores em uma nova coluna `valor`. Eles são &quot;desenrolados&quot; linha-a-linha, então as linhas originais (100,120), depois (140,115) e depois (120,125), se tornam uma coluna que vai de 100 a 125.">
+<div id="fig-pivot-values" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Um diagrama mostrando como `pivot_longer()` transforma os dados, utilizando cores para destacar como os valores das células (medidas de pressão sanguínea) se tornam valores em uma nova coluna `valor`. Eles são &quot;desenrolados&quot; linha-a-linha, então as linhas originais (100,120), depois (140,115) e depois (120,125), se tornam uma coluna que vai de 100 a 125.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pivot-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="diagrams/tidy-data/cell-values.png" class="img-fluid figure-img" alt="Um diagrama mostrando como `pivot_longer()` transforma os dados, utilizando cores para destacar como os valores das células (medidas de pressão sanguínea) se tornam valores em uma nova coluna `valor`. Eles são &quot;desenrolados&quot; linha-a-linha, então as linhas originais (100,120), depois (140,115) e depois (120,125), se tornam uma coluna que vai de 100 a 125." width="515">
 </div>
@@ -871,7 +871,7 @@ Figura&nbsp;5.5: O número de valores é preservado (não repetidos), mas “des
 <p>Conceitualmente, essa seria só uma pequena variação desse caso mais simples que você acabou de ver. <a href="#fig-pivot-multiple-names" class="quarto-xref">Figura&nbsp;<span>5.6</span></a> mostra a ideia básica: agora, em vez da coluna de nomes pivotar para uma única coluna, ela pivota para múltiplas colunas. Você pode imaginar isso acontecendo em dois passos (primeiro pivotando e depois separando) mas no fundo, tudo ocorre em um único passo porque é mais rápido.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pivot-multiple-names" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Um diagrama que utiliza cores para ilustrar como passar `names_sep` e múltiplos `names_to` cria múltiplas variáveis como saída. A entrada tem nomes de variáveis tipo &quot;x_1&quot; e &quot;y_2&quot; que serão separadas por por &quot;_&quot; para criar as colunas de nome e número na saída. Isso é parecido com o caso com um único `names_to`, mas o que seria apenas uma única variável de saída agora está separada em múltipals variáveis.">
+<div id="fig-pivot-multiple-names" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Um diagrama que utiliza cores para ilustrar como passar `names_sep` e múltiplos `names_to` cria múltiplas variáveis como saída. A entrada tem nomes de variáveis tipo &quot;x_1&quot; e &quot;y_2&quot; que serão separadas por por &quot;_&quot; para criar as colunas de nome e número na saída. Isso é parecido com o caso com um único `names_to`, mas o que seria apenas uma única variável de saída agora está separada em múltipals variáveis.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pivot-multiple-names-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="diagrams/tidy-data/multiple-names.png" class="img-fluid figure-img" alt="Um diagrama que utiliza cores para ilustrar como passar `names_sep` e múltiplos `names_to` cria múltiplas variáveis como saída. A entrada tem nomes de variáveis tipo &quot;x_1&quot; e &quot;y_2&quot; que serão separadas por por &quot;_&quot; para criar as colunas de nome e número na saída. Isso é parecido com o caso com um único `names_to`, mas o que seria apenas uma única variável de saída agora está separada em múltipals variáveis." width="524">
 </div>
@@ -926,7 +926,7 @@ Figura&nbsp;5.6: Pivotar colunas com múltiplas partes de informação nos nomes
 <p><a href="#fig-pivot-names-and-values" class="quarto-xref">Figura&nbsp;<span>5.7</span></a> ilustra a ideia básica em um exemplo mais simples. Quando você utiliza <code>".value"</code> em <code>names_to</code>, a coluna de nomes dos dados de entrada contribui tanto para os valores quanto para os nomes das variáveis na saída.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pivot-names-and-values" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Um diagrama que utiliza cores para ilustrar como o parâmetro &quot;.value&quot; funciona. A entrada tem nomes &quot;x_1&quot;, &quot;x_2&quot;, &quot;y_1&quot;, &quot;y_2&quot; e queremos usar o primeiro componente (&quot;x&quot;, &quot;y&quot;) como nome das variáveis e o segundo (&quot;1&quot;, &quot;2&quot;) como valor para a nova coluna &quot;num&quot;.">
+<div id="fig-pivot-names-and-values" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Um diagrama que utiliza cores para ilustrar como o parâmetro &quot;.value&quot; funciona. A entrada tem nomes &quot;x_1&quot;, &quot;x_2&quot;, &quot;y_1&quot;, &quot;y_2&quot; e queremos usar o primeiro componente (&quot;x&quot;, &quot;y&quot;) como nome das variáveis e o segundo (&quot;1&quot;, &quot;2&quot;) como valor para a nova coluna &quot;num&quot;.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pivot-names-and-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="diagrams/tidy-data/names-and-values.png" class="img-fluid figure-img" alt="Um diagrama que utiliza cores para ilustrar como o parâmetro &quot;.value&quot; funciona. A entrada tem nomes &quot;x_1&quot;, &quot;x_2&quot;, &quot;y_1&quot;, &quot;y_2&quot; e queremos usar o primeiro componente (&quot;x&quot;, &quot;y&quot;) como nome das variáveis e o segundo (&quot;1&quot;, &quot;2&quot;) como valor para a nova coluna &quot;num&quot;." width="474">
 </div>
@@ -1191,18 +1191,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1234,7 +1223,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cienciadedatos\.github\.io\/pt-r4ds\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1269,7 +1298,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1543,12 +1576,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./workflow-style.html" class="pagination-link  aria-label=" de="" trabalho:="" estilo="" c="">
+      <a href="./workflow-style.html" class="pagination-link" aria-label="Fluxo de trabalho: estilo de código">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fluxo de trabalho: estilo de código</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workflow-scripts.html" class="pagination-link" aria-label="<span class='chapter-number'>6</span>&nbsp; <span class='chapter-title'>Fluxo de trabalho: scripts e projetos</span>">
+      <a href="./workflow-scripts.html" class="pagination-link" aria-label="Fluxo de trabalho: scripts e projetos">
         <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fluxo de trabalho: scripts e projetos</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

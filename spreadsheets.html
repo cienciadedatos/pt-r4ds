@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.6.33">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund">
-<title>R para Ciência de Dados (2ª edição) - 20&nbsp; Planilhas</title>
+<title>20&nbsp; Planilhas – R para Ciência de Dados (2ª edição)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-ace4a817dfa5350d319573e67433944f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -104,13 +104,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./import.html">Importar</a></li><li class="breadcrumb-item"><a href="./spreadsheets.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Planilhas</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -158,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./whole-game.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visão geral</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -217,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./visualize.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualizar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -246,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./transform.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Transformar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./import.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Importar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -346,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./program.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./communicate.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Comunicar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -479,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A <a href="#fig-students-excel" class="quarto-xref">Figura&nbsp;<span>20.1</span></a> mostra como é a planilha do Excel que iremos importar para o R. Esta planilha pode ser baixada em <a href="https://github.com/cienciadedatos/pt-r4ds/raw/traducao-pt-2ed/data/estudantes.xlsx" class="uri">https://github.com/cienciadedatos/pt-r4ds/raw/traducao-pt-2ed/data/estudantes.xlsx</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-students-excel" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Uma visão da planilha de estudantes no Excel. A planilha possui informações de 6 estudantes, seus IDs, nomes completos, comida favorita, plano alimentar e idade.">
+<div id="fig-students-excel" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Uma visão da planilha de estudantes no Excel. A planilha possui informações de 6 estudantes, seus IDs, nomes completos, comida favorita, plano alimentar e idade.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-students-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="screenshots/import-spreadsheets-students.png" class="img-fluid figure-img" alt="Uma visão da planilha de estudantes no Excel. A planilha possui informações de 6 estudantes, seus IDs, nomes completos, comida favorita, plano alimentar e idade." width="1200">
 </div>
@@ -621,7 +621,7 @@ Figura&nbsp;20.1: Planilha do Excel chamada estudantes.xlsx.
 <p>Uma característica importante que distingue arquivos do Excel de arquivos texto, é a noção de várias planilhas (ou abas) dentro do mesmo arquivo. A <a href="#fig-penguins-islands" class="quarto-xref">Figura&nbsp;<span>20.2</span></a> mostra um arquivo Excel com várias planilhas. Os dados são do pacote <strong>palmerpenguins</strong>, e você pode fazer o download como um arquivo Excel em <a href="https://github.com/cienciadedatos/pt-r4ds/raw/traducao-pt-2ed/data/pinguins.xlsx" class="uri">https://github.com/cienciadedatos/pt-r4ds/raw/traducao-pt-2ed/data/pinguins.xlsx</a>. Cada planilha (ou aba) contém informações de pinguins de diferentes ilhas onde os dados foram coletados.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-penguins-islands" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Uma visão do arquivo de pinguins no Excel. O arquivo possui três planilhas: Ilha Torgersen, Ilha Biscoe e Ilha Dream.">
+<div id="fig-penguins-islands" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Uma visão do arquivo de pinguins no Excel. O arquivo possui três planilhas: Ilha Torgersen, Ilha Biscoe e Ilha Dream.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-islands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="screenshots/import-spreadsheets-penguins-islands.png" class="img-fluid figure-img" alt="Uma visão do arquivo de pinguins no Excel. O arquivo possui três planilhas: Ilha Torgersen, Ilha Biscoe e Ilha Dream." width="1514">
 </div>
@@ -712,7 +712,7 @@ Figura&nbsp;20.2: Arquivo Excel chamado pinguins.xlsx contendo três planilhas (
 <p>Uma vez que muitas pessoas usam arquivos do Excel tanto pra apresentação quanto para armazenamento dos dados, é muito comum encontrarmos células em uma planilha que não fazem parte dos dados que você quer importar para o R. A <a href="#fig-deaths-excel" class="quarto-xref">Figura&nbsp;<span>20.3</span></a> mostra um exemplo: no centro da planilha temos algo que se parece com um <em>data frame</em>, mas existem estranhos textos acima e abaixo dos dados.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-deaths-excel" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Uma visão da planilha 'deaths' no Excel. A planilha possui quatro linhas no topo contém informações extras aos dados; o texto 'Por razôes de consistência no *layout* dos dados, algo que é realmente belo, continuarei a fazer notas por aqui.' está espalhado pelas quatro linhas. Então, há um *data frame* que inclui informações sobre os óbitos de 10 pessoas famosas, incluindo seus nomes, profissões, idades, se tinham filhos ou não, data de nascimento e óbito. Na parte de baixo, existem outras 4 linhas extras aos dados; no texto 'Isto tem sido realmente divertido, mas estamos nos desconectando agora!' está espalhado por estas quatro linhas finais.">
+<div id="fig-deaths-excel" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Uma visão da planilha 'deaths' no Excel. A planilha possui quatro linhas no topo contém informações extras aos dados; o texto 'Por razôes de consistência no *layout* dos dados, algo que é realmente belo, continuarei a fazer notas por aqui.' está espalhado pelas quatro linhas. Então, há um *data frame* que inclui informações sobre os óbitos de 10 pessoas famosas, incluindo seus nomes, profissões, idades, se tinham filhos ou não, data de nascimento e óbito. Na parte de baixo, existem outras 4 linhas extras aos dados; no texto 'Isto tem sido realmente divertido, mas estamos nos desconectando agora!' está espalhado por estas quatro linhas finais.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-deaths-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="screenshots/import-spreadsheets-deaths.png" class="img-fluid figure-img" alt="Uma visão da planilha 'deaths' no Excel. A planilha possui quatro linhas no topo contém informações extras aos dados; o texto 'Por razôes de consistência no *layout* dos dados, algo que é realmente belo, continuarei a fazer notas por aqui.' está espalhado pelas quatro linhas. Então, há um *data frame* que inclui informações sobre os óbitos de 10 pessoas famosas, incluindo seus nomes, profissões, idades, se tinham filhos ou não, data de nascimento e óbito. Na parte de baixo, existem outras 4 linhas extras aos dados; no texto 'Isto tem sido realmente divertido, mas estamos nos desconectando agora!' está espalhado por estas quatro linhas finais." width="1614">
 </div>
@@ -807,7 +807,7 @@ Figura&nbsp;20.3: Arquivo do Excel chamado deaths.xlsx
 <p>A <a href="#fig-bake-sale-excel" class="quarto-xref">Figura&nbsp;<span>20.4</span></a> mostra como os dados aparecem no Excel. Note que os nomes das colunas também aparecem em negrito. Isto pode ser modificado definindo como <code>FALSE</code> os argumentos <code>col_names</code> e <code>format_headers</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bake-sale-excel" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Conjunto de dados doces_vendas criado anteriormente mostrados no Excel.">
+<div id="fig-bake-sale-excel" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Conjunto de dados doces_vendas criado anteriormente mostrados no Excel.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-bake-sale-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="screenshots/import-spreadsheets-bake-sale.png" class="img-fluid figure-img" alt="Conjunto de dados doces_vendas criado anteriormente mostrados no Excel." width="917">
 </div>
@@ -949,7 +949,7 @@ Figura&nbsp;20.4: Arquivo Excel chamado doces-vendas.xlsx.
 <p>A <a href="#fig-students-googlesheets" class="quarto-xref">Figura&nbsp;<span>20.5</span></a> mostra como é a planilha do Google que iremos importar para o R. Este é o mesmo conjunto de dados da <a href="#fig-students-excel" class="quarto-xref">Figura&nbsp;<span>20.1</span></a>, exceto que está armazenado no Planilhas Google ao invés do Excel.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-students-googlesheets" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Uma visão da planilha estudantes no Planilhas Google. A planilha contém informações de 6 estudantes, seus IDs, nomes completos, comida favorita, plano alimentar e idade.">
+<div id="fig-students-googlesheets" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Uma visão da planilha estudantes no Planilhas Google. A planilha contém informações de 6 estudantes, seus IDs, nomes completos, comida favorita, plano alimentar e idade.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-students-googlesheets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="screenshots/import-googlesheets-students.png" class="img-fluid figure-img" alt="Uma visão da planilha estudantes no Planilhas Google. A planilha contém informações de 6 estudantes, seus IDs, nomes completos, comida favorita, plano alimentar e idade." width="986">
 </div>
@@ -1126,18 +1126,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1169,7 +1158,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cienciadedatos\.github\.io\/pt-r4ds\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1204,7 +1233,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1478,12 +1511,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./import.html" class="pagination-link  aria-label=" importar="">
+      <a href="./import.html" class="pagination-link" aria-label="Importar">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Importar</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./databases.html" class="pagination-link" aria-label="<span class='chapter-number'>21</span>&nbsp; <span class='chapter-title'>Bancos de dados</span>">
+      <a href="./databases.html" class="pagination-link" aria-label="Bancos de dados">
         <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Bancos de dados</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

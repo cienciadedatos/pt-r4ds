@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.6.33">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund">
-<title>R para Ciência de Dados (2ª edição) - 6&nbsp; Fluxo de trabalho: scripts e projetos</title>
+<title>6&nbsp; Fluxo de trabalho: scripts e projetos – R para Ciência de Dados (2ª edição)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-ace4a817dfa5350d319573e67433944f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -104,13 +104,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./whole-game.html">Visão geral</a></li><li class="breadcrumb-item"><a href="./workflow-scripts.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fluxo de trabalho: scripts e projetos</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -158,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./whole-game.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visão geral</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -217,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./visualize.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualizar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -246,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./transform.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Transformar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./import.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Importar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -346,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./program.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./communicate.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Comunicar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -445,7 +445,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Até agora você usou o console para executar códigos. O console é um ótimo lugar para começar, mas com o tempo você perceberá que ele vai ficando apertado à medida que criamos gráficos mais complexos com ggplot2 e pipelines mais longas com dplyr. Para ter mais espaço para trabalhar, use o editor de scripts. Abra-o clicando no menu Arquivo, selecionando Novo Arquivo e depois R script, ou usando o atalho de teclado Cmd/Ctrl + Shift + N. Agora você verá quatro painéis, como na <a href="#fig-rstudio-script" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>. O editor de scripts é um ótimo lugar para experimentar com seu código. Quando você quiser mudar algo, não precisa reescrever tudo, pode apenas editar o script e executá-lo novamente. E uma vez que você tenha escrito um código que funcione e faça o que você quer, pode salvá-lo como um arquivo de script para retornar a ele facilmente mais tarde.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-rstudio-script" class="quarto-figure quarto-figure-center quarto-float anchored" alt="RStudio IDE com o Editor, Console e Output destacados.">
+<div id="fig-rstudio-script" class="quarto-float quarto-figure quarto-figure-center anchored" alt="RStudio IDE com o Editor, Console e Output destacados.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rstudio-script-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="diagrams/rstudio/script.png" class="img-fluid figure-img" alt="RStudio IDE com o Editor, Console e Output destacados." width="521">
 </div>
@@ -547,7 +547,7 @@ notas-rascunho-relatorio.txt</code></pre>
 <p>Para ajudar a manter seus scripts R como a fonte da verdade para sua análise, recomendamos fortemente que você instrua o RStudio a não preservar seu espaço de trabalho (<code>workspace</code>) entre as sessões. Você pode fazer isso executando <code><a href="https://usethis.r-lib.org/reference/use_blank_slate.html">usethis::use_blank_slate()</a></code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> ou imitando as opções mostradas na <a href="#fig-blank-slate" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>. Isso causará alguma dor a curto prazo, porque agora, quando você reiniciar o RStudio, ele não se lembrará do código que você executou na última vez, nem os objetos que você criou ou os conjuntos de dados que você leu estarão disponíveis para uso. Mas essa dor a curto prazo poupa-lhe agonia a longo prazo, pois força você a capturar todos os procedimentos importantes em seu código. Não há nada pior do que descobrir três meses depois que você só armazenou os resultados de um cálculo importante em seu ambiente, não o próprio cálculo em seu código.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-blank-slate" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Janela de Opções Globais do RStudio onde a opção Restaurar .RData no espaço de trabalho (*workspace*) na inicialização não está marcada. Além disso, a opção Salvar espaço de trabalho (*workspace*) no arquivo .RData na saída está configurada para Nunca. ">
+<div id="fig-blank-slate" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Janela de Opções Globais do RStudio onde a opção Restaurar .RData no espaço de trabalho (*workspace*) na inicialização não está marcada. Além disso, a opção Salvar espaço de trabalho (*workspace*) no arquivo .RData na saída está configurada para Nunca. ">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-blank-slate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="diagrams/rstudio/clean-slate.png" class="img-fluid figure-img" alt="Janela de Opções Globais do RStudio onde a opção Restaurar .RData no espaço de trabalho (*workspace*) na inicialização não está marcada. Além disso, a opção Salvar espaço de trabalho (*workspace*) no arquivo .RData na saída está configurada para Nunca. " width="523">
 </div>
@@ -605,7 +605,7 @@ RStudio server
 <p>Manter todos os arquivos associados a um determinado projeto (dados de entrada, scripts R, resultados analíticos e figuras) juntos em um diretório é uma prática tão sábia e comum que o RStudio tem suporte integrado para isso através de <strong>projetos</strong>. Vamos criar um projeto para você usar enquanto trabalha no restante deste livro. Clique em Arquivo &gt; Novo Projeto, e então siga os passos mostrados em <a href="#fig-new-project" class="quarto-xref">Figura&nbsp;<span>6.3</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-new-project" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Três capturas de tela do menu Novo Projeto. Na primeira captura de tela, a janela Criar Projeto é mostrada e Novo Diretório é selecionado. Na segunda captura de tela, a janela Tipo de Projeto é mostrada e Projeto Vazio é selecionado. Na terceira captura de tela, a janela Criar Novo Projeto é mostrada e o nome do diretório é dado como r4ds e o projeto está sendo criado como subdiretório da Área de Trabalho. ">
+<div id="fig-new-project" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Três capturas de tela do menu Novo Projeto. Na primeira captura de tela, a janela Criar Projeto é mostrada e Novo Diretório é selecionado. Na segunda captura de tela, a janela Tipo de Projeto é mostrada e Projeto Vazio é selecionado. Na terceira captura de tela, a janela Criar Novo Projeto é mostrada e o nome do diretório é dado como r4ds e o projeto está sendo criado como subdiretório da Área de Trabalho. ">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-new-project-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="diagrams/new-project.png" class="img-fluid figure-img" alt="Três capturas de tela do menu Novo Projeto. Na primeira captura de tela, a janela Criar Projeto é mostrada e Novo Diretório é selecionado. Na segunda captura de tela, a janela Tipo de Projeto é mostrada e Projeto Vazio é selecionado. Na terceira captura de tela, a janela Criar Novo Projeto é mostrada e o nome do diretório é dado como r4ds e o projeto está sendo criado como subdiretório da Área de Trabalho. " width="1172">
 </div>
@@ -695,18 +695,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -738,7 +727,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cienciadedatos\.github\.io\/pt-r4ds\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -773,7 +802,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1047,12 +1080,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./data-tidy.html" class="pagination-link  aria-label=" de="" dados="" tidying="">
+      <a href="./data-tidy.html" class="pagination-link" aria-label="Organização de dados (*data tidying*)">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Organização de dados (<em>data tidying</em>)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data-import.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>Importação de dados</span>">
+      <a href="./data-import.html" class="pagination-link" aria-label="Importação de dados">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Importação de dados</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
