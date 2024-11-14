@@ -1,11 +1,5 @@
 # Boas-vindas {.unnumbered}
 
-::: callout-important
-Este website contém a tradução **em andamento** para Português da [2ª edição do livro **"R for Data Science"**](https://r4ds.hadley.nz/).
-
-Caso queira contribuir com a tradução deste livro, leia o [Guia de contribuição com a tradução do livro](https://github.com/cienciadedatos/pt-r4ds/wiki).
-:::
-
 Este é o website para a tradução em Português da [2ª edição do livro **"R for Data Science"**](https://r4ds.hadley.nz/).
 Este livro vai te ensinar como fazer ciência de dados com R: você irá aprender como importar os seus dados para o R, arrumá-los em uma estrutura mais útil, transformá-los e visualizá-los.
 
