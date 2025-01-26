@@ -1,1 +1,1 @@
-Sitemap: https://cienciadedatos.github.io/pt-r4ds/sitemap.xml
+Sitemap: https://pt.r4ds.hadley.nz/sitemap.xml

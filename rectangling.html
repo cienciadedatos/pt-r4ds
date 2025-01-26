@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.33">
+<meta name="generator" content="quarto-1.6.40">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund">
 <title>23&nbsp; Dados hierárquicos (rectangling) – R para Ciência de Dados (2ª edição)</title>
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ace4a817dfa5350d319573e67433944f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-798c4516b9ab8ed98081c35906ca8579.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -1199,36 +1199,36 @@ R base
 <p>Note que JSON não possui um jeito nativo para representar datas e data_hora (<em>datetime</em>), então estes são geralmente armazenados como <em>strings</em> e você deverá usar <code><a href="https://readr.tidyverse.org/reference/parse_datetime.html">readr::parse_date()</a></code> ou <code><a href="https://readr.tidyverse.org/reference/parse_datetime.html">readr::parse_datetime()</a></code> para transformá-los na estrutura de dados correta. Da mesma forma, a regras do JSON para representar número com ponto flutuante (<em>floating points</em>), são um pouco imprecisas, portanto você também encontrará algumas vezes números armazenados como <em>strings</em>. Aplique <code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">readr::parse_double()</a></code> conforme necessário para obter os tipo correto.</p>
 </section><section id="jsonlite" class="level3" data-number="23.5.2"><h3 data-number="23.5.2" class="anchored" data-anchor-id="jsonlite">
 <span class="header-section-number">23.5.2</span> jsonlite</h3>
-<p>Para converter JSON em estruturas de dados do R, recomendamos o pacote jsonlite, de Jeroen Ooms. Usaremos apenas duas funções do jsonlite: <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json()</a></code> e <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json()</a></code>. Na vida real, você usará <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json()</a></code> para importar arquivos JSON do disco. Por exemplo, o pacote repurrsive também é a fonte do <code>gh_user</code> como um arquivo JSON e você pode importá-la com <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json()</a></code>:</p>
+<p>Para converter JSON em estruturas de dados do R, recomendamos o pacote jsonlite, de Jeroen Ooms. Usaremos apenas duas funções do jsonlite: <code><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">read_json()</a></code> e <code><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">parse_json()</a></code>. Na vida real, você usará <code><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">read_json()</a></code> para importar arquivos JSON do disco. Por exemplo, o pacote repurrsive também é a fonte do <code>gh_user</code> como um arquivo JSON e você pode importá-la com <code><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">read_json()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Um caminho para o arquivo JSON dentro do pacote:</span></span>
 <span><span class="fu"><a href="https://jennybc.github.io/repurrrsive/reference/gh_users_json.html">gh_users_json</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/repurrrsive/extdata/gh_users.json"</span></span>
 <span></span>
 <span><span class="co"># Importe com read_json()</span></span>
-<span><span class="va">gh_users2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://jennybc.github.io/repurrrsive/reference/gh_users_json.html">gh_users_json</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">gh_users2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://jennybc.github.io/repurrrsive/reference/gh_users_json.html">gh_users_json</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Verifique se é o mesmo dado que usamos anteriormente</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="va">gh_users</span>, <span class="va">gh_users2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Neste livro, usaremos também <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json()</a></code>, que recebe uma <em>string</em> representando um JSON, o que a torna boa para gerar exemplos simples. Para começar, aqui estão três simples conjuntos de dados JSON, começando com um número, e então adicionando alguns números em <em>array</em> e em seguida adicionando esse <em>array</em> em um <em>object</em>:</p>
+<p>Neste livro, usaremos também <code><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">parse_json()</a></code>, que recebe uma <em>string</em> representando um JSON, o que a torna boa para gerar exemplos simples. Para começar, aqui estão três simples conjuntos de dados JSON, começando com um número, e então adicionando alguns números em <em>array</em> e em seguida adicionando esse <em>array</em> em um <em>object</em>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'1'</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'1'</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  int 1</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'[1, 2, 3]'</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'[1, 2, 3]'</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 3</span></span>
 <span><span class="co">#&gt;  $ : int 1</span></span>
 <span><span class="co">#&gt;  $ : int 2</span></span>
 <span><span class="co">#&gt;  $ : int 3</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'{"x": [1, 2, 3]}'</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'{"x": [1, 2, 3]}'</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 1</span></span>
 <span><span class="co">#&gt;  $ x:List of 3</span></span>
 <span><span class="co">#&gt;   ..$ : int 1</span></span>
 <span><span class="co">#&gt;   ..$ : int 2</span></span>
 <span><span class="co">#&gt;   ..$ : int 3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>jsonlite tem uma outra função importante chamada <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON()</a></code>. Não a usamos aqui, pois efetua uma simplificação automática (<code>simplifyVector = TRUE</code>). Isto geralmente funciona bem, particularmente em casos simples, mas achamos que é mais vantajoso se fizer você mesmo a representação retangular para que saiba exatamente o que está acontecendo e possa lidar mais facilmente com estruturas aninhadas mais complexas.</p>
+<p>jsonlite tem uma outra função importante chamada <code><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html">fromJSON()</a></code>. Não a usamos aqui, pois efetua uma simplificação automática (<code>simplifyVector = TRUE</code>). Isto geralmente funciona bem, particularmente em casos simples, mas achamos que é mais vantajoso se fizer você mesmo a representação retangular para que saiba exatamente o que está acontecendo e possa lidar mais facilmente com estruturas aninhadas mais complexas.</p>
 </section><section id="iniciando-o-processo-de-representação-retangular" class="level3" data-number="23.5.3"><h3 data-number="23.5.3" class="anchored" data-anchor-id="iniciando-o-processo-de-representação-retangular">
 <span class="header-section-number">23.5.3</span> Iniciando o processo de representação retangular</h3>
 <p>Na maioria dos casos, arquivos JSON contém um único <em>array</em> de nível mais alto (<em>top-level</em>), pois são projetados para prover dados sobre várias “coisas”, e.x. várias páginas, ou vários registros, ou vários resultados. Neste caso, você comecará sua representação retangular com <code>tibble(json)</code> para que cada elemento se torne uma linha:</p>
@@ -1237,7 +1237,7 @@ R base
 <span><span class="st">  {"nome": "John", "idade": 34},</span></span>
 <span><span class="st">  {"nome": "Susan", "idade": 27}</span></span>
 <span><span class="st">]'</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>json <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>json <span class="op">=</span> <span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">parse_json</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">df</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 1</span></span>
 <span><span class="co">#&gt;   json            </span></span>
@@ -1263,7 +1263,7 @@ R base
 <span><span class="st"> ]</span></span>
 <span><span class="st">}</span></span>
 <span><span class="st">'</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>json <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>json <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">parse_json</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">df</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 1</span></span>
 <span><span class="co">#&gt;   json            </span></span>
@@ -1282,7 +1282,7 @@ R base
 </div>
 <p>Alternativamente, você pode acessar o JSON analisado e começar com a parte que realmente lhe interessa:</p>
 <div class="cell">
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>results <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span><span class="op">$</span><span class="va">results</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>results <span class="op">=</span> <span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">parse_json</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span><span class="op">$</span><span class="va">results</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
@@ -1297,13 +1297,13 @@ R base
 <li>
 <p>Represente retangularmente o <code>df_col</code> e <code>df_linha</code> abaixo. Eles representam duas formas de codificar um <em>data frame</em> em JSON.</p>
 <div class="cell">
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">json_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'</span></span>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">json_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'</span></span>
 <span><span class="st">  {</span></span>
 <span><span class="st">    "x": ["a", "x", "z"],</span></span>
 <span><span class="st">    "y": [10, null, 3]</span></span>
 <span><span class="st">  }</span></span>
 <span><span class="st">'</span><span class="op">)</span></span>
-<span><span class="va">json_linha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'</span></span>
+<span><span class="va">json_linha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/read_json.html">parse_json</a></span><span class="op">(</span><span class="st">'</span></span>
 <span><span class="st">  [</span></span>
 <span><span class="st">    {"x": "a", "y": 10},</span></span>
 <span><span class="st">    {"x": "x", "y": null},</span></span>
@@ -1406,8 +1406,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1416,7 +1414,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/cienciadedatos\.github\.io\/pt-r4ds\/");
+      var filterRegex = new RegExp("https:\/\/pt\.r4ds\.hadley\.nz\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1518,7 +1516,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

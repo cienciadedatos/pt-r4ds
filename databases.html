@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.33">
+<meta name="generator" content="quarto-1.6.40">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund">
 <title>21&nbsp; Bancos de dados – R para Ciência de Dados (2ª edição)</title>
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ace4a817dfa5350d319573e67433944f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-798c4516b9ab8ed98081c35906ca8579.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -570,7 +570,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamantes_bd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"diamante"</span><span class="op">)</span></span>
 <span><span class="va">diamantes_bd</span></span>
 <span><span class="co">#&gt; # Source:   table&lt;diamante&gt; [?? x 10]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB v1.1.0 [root@Darwin 24.0.0:R 4.4.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB v1.1.3 [root@Darwin 24.2.0:R 4.4.1/:memory:]</span></span>
 <span><span class="co">#&gt;   preco quilate corte     cor   transparencia profundidade tabela     x     y</span></span>
 <span><span class="co">#&gt;   &lt;int&gt;   &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt; &lt;fct&gt;                &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1   326    0.23 Ideal     E     SI2                   61.5     55  3.95  3.98</span></span>
@@ -608,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="va">grandes_diamantes_bd</span></span>
 <span><span class="co">#&gt; # Source:   SQL [?? x 5]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB v1.1.0 [root@Darwin 24.0.0:R 4.4.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB v1.1.3 [root@Darwin 24.2.0:R 4.4.1/:memory:]</span></span>
 <span><span class="co">#&gt;   quilate corte     cor   transparencia preco</span></span>
 <span><span class="co">#&gt;     &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt; &lt;fct&gt;         &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1    1.54 Premium   E     VS2           15002</span></span>
@@ -835,15 +835,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; Use `na.rm = TRUE` to silence this warning</span></span>
 <span><span class="co">#&gt; This warning is displayed once every 8 hours.</span></span>
 <span><span class="co">#&gt; # Source:   SQL [?? x 2]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB v1.1.0 [root@Darwin 24.0.0:R 4.4.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB v1.1.3 [root@Darwin 24.2.0:R 4.4.1/:memory:]</span></span>
 <span><span class="co">#&gt;   destino atraso</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 SFO       2.67</span></span>
-<span><span class="co">#&gt; 2 GSP      15.9 </span></span>
-<span><span class="co">#&gt; 3 SJU       2.52</span></span>
-<span><span class="co">#&gt; 4 GSO      14.1 </span></span>
-<span><span class="co">#&gt; 5 STT      -3.84</span></span>
-<span><span class="co">#&gt; 6 SAN       3.14</span></span>
+<span><span class="co">#&gt; 1 ATL      11.3 </span></span>
+<span><span class="co">#&gt; 2 MCO       5.45</span></span>
+<span><span class="co">#&gt; 3 MSY       6.49</span></span>
+<span><span class="co">#&gt; 4 XNA       7.47</span></span>
+<span><span class="co">#&gt; 5 BNA      11.8 </span></span>
+<span><span class="co">#&gt; 6 ALB      14.4 </span></span>
 <span><span class="co">#&gt; # ℹ more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Se você quiser saber mais em como o <code>NULL</code> funciona, você irá gostar do artigo “<a href="https://modern-sql.com/concept/three-valued-logic"><em>Three valued logic</em></a>” de Markus Winand.</p>
@@ -1189,8 +1189,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1199,7 +1197,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/cienciadedatos\.github\.io\/pt-r4ds\/");
+      var filterRegex = new RegExp("https:\/\/pt\.r4ds\.hadley\.nz\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1301,7 +1299,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
