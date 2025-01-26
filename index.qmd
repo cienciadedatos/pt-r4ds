@@ -42,6 +42,7 @@ Participaram das etapas de tradução e revisão do livro as seguintes pessoas (
 Agradecemos pelo trabalho!
 
 Agradecemos a todas as pessoas que ajudaram revisando as traduções e fazendo sugestões de melhoria.
+Também agradecemos os autores do livro original, [por permitirem a tradução e a disponibilização do conteúdo de forma gratuita](https://github.com/hadley/r4ds/issues/955).
 
 A coordenação geral da tradução foi feita por <a href='https://github.com/beatrizmilz' target='_blank'>Beatriz Milz</a>.
 Riva Quiroga, a coordenadora da [tradução da versão em espanhol](http://es.r4ds.hadley.nz/), atuou como consultora do projeto.
