@@ -3,6 +3,57 @@
 Este é o website para a tradução em Português da [2ª edição do livro **"R for Data Science"**](https://r4ds.hadley.nz/).
 Este livro vai te ensinar como fazer ciência de dados com R: você irá aprender como importar os seus dados para o R, arrumá-los em uma estrutura mais útil, transformá-los e visualizá-los.
 
+## Sobre a tradução em Português
+
+A tradução da 2ª edição do livro **"R for Data Science"** para o Português é um projeto colaborativo da comunidade de R no Brasil, que tem como objetivo tornar o R mais acessível na região.
+
+```{r}
+#| echo: false
+#| warning: false
+equipe <- readr::read_csv(
+  "https://raw.githubusercontent.com/cienciadedatos/guia-traducao-ptbr/refs/heads/main/traducao-r4ds.csv"
+)
+
+dados_equipe <- readr::read_csv(
+  "https://raw.githubusercontent.com/cienciadedatos/guia-traducao-ptbr/refs/heads/main/contributors.csv"
+)
+
+
+texto_equipe <- equipe |>
+  tidyr::pivot_longer(
+    cols = c(traducao, tidyselect::starts_with("revisao")),
+    names_to = "atuacao",
+    values_to = "github"
+  ) |>
+  dplyr::distinct(github) |>
+  tidyr::drop_na(github) |>
+  dplyr::left_join(dados_equipe, by = "github") |>
+  dplyr::mutate(
+    nome_link = glue::glue(
+      "<a href='https://github.com/{github}' target='_blank'>{nome}</a>"
+    )
+  ) |>
+  dplyr::arrange(nome) |>
+  dplyr::summarise(nome_link = knitr::combine_words(nome_link, and = " e ", oxford_comma = FALSE))
+```
+
+A tradução foi feita por um grupo de pessoas voluntárias.
+Participaram das etapas de tradução e revisão do livro as seguintes pessoas (em ordem alfabética): `r texto_equipe`.
+Agradecemos pelo trabalho!
+
+Agradecemos a todas as pessoas que ajudaram revisando as traduções e fazendo sugestões de melhoria.
+
+A coordenação geral da tradução foi feita por <a href='https://github.com/beatrizmilz' target='_blank'>Beatriz Milz</a>.
+Riva Quiroga, a coordenadora da [tradução da versão em espanhol](http://es.r4ds.hadley.nz/), atuou como consultora do projeto.
+
+<a href='https://cienciadedatos.github.io/dados' target="_blank"><img src="https://cienciadedatos.github.io/dados/reference/figures/dados-hex.png" style="margin-left: 30px;" align="right" width="120px"/></a> Este projeto não envolve apenas a tradução do texto, mas também dos conjuntos de dados usados ao longo dele.
+Para isso, foi criado o pacote [`dados`](https://cienciadedatos.github.io/dados) (disponível no CRAN), que contém as versões traduzidas desses conjuntos.
+O pacote foi baseado em seu "pacote irmão" em espanhol: [`datos`](https://cienciadedatos.github.io/datos).
+
+## Sobre a versão original
+
+<!-- <img src="https://raw.githubusercontent.com/cienciadedatos/pt-r4ds/184b1010272779d7413148f531a81fb3738e10cb/cover-original.jpg" alt="Capa do livro original" class="quarto-cover-image img-fluid"/> -->
+
 Neste livro, você vai encontrar um conjunto de habilidades para a ciência de dados.
 Assim como estudantes de química aprendem a limpar tubos de ensaio e montar um laboratório, você vai aprender a limpar dados e fazer gráficos -- além de muitas outras coisas.
 Essas são as habilidades que fazem a ciência de dados acontecer, e aqui você vai encontrar as melhores práticas para fazer cada uma dessas coisas com o R.
