@@ -227,7 +227,7 @@ Existem quatro tipos de uniões de mutação, mas há uma que você usará quase
 O principal uso de `left_join()` é adicionar metadados adicionais.
 Por exemplo, podemos usar `left_join()` para adicionar o nome completo da companhia aérea aos dados `voos2`:
 
-[^joins-3]: That's not 100% true, but you'll get a warning whenever it isn't.
+[^joins-3]: Isso não é 100% verdade, mas você receberá um *warning* sempre que não for.
 
 ```{r}
 voos2 |>
