@@ -109,7 +109,7 @@ Estes relacionamentos estão resumidos visualmente na @fig-flights-relationships
 #|   voos$origem. companhias_aereas$companhia_aerea está conectado a voos$companhi_aerea.
 #|   Não existem ligações directas os data frames aeroportos, aviões, companhias aéreas, 
 #|   e clima.
-knitr::include_graphics("diagrams/relational.png", dpi = 270)
+knitr::include_graphics("diagrams/relational-pt.png", dpi = 270)
 ```
 
 Você notará um recurso interessante no design dessas chaves: as chaves primária (*primary key*) e estrangeira (*foreign key*) quase sempre têm os mesmos nomes, o que, como você verá em breve, tornará sua vida para as uniões (*joins*) muito mais fácil.
