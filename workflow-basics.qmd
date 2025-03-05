@@ -46,7 +46,7 @@ primos * 2
 primos - 1
 ```
 
-Todos os comandos em R onde que você cria objetos, **comandos de atribuição**, têm a mesma forma:
+Todos os comandos em R onde você cria objetos, **comandos de atribuição**, têm a mesma forma:
 
 ```{r}
 #| eval: false
@@ -146,7 +146,7 @@ R_rocks
 #> Error: object 'R_rocks' not found
 ```
 
-Isso ilustra o contrato implícito entre você e o R: o R fará os cálculos chatos para você, mas em troca, você deve ser escrever suas instruções de forma precisa.
+Isso ilustra o contrato implícito entre você e o R: o R fará os cálculos chatos para você, mas em troca, você deve escrever suas instruções de forma precisa.
 Se não, você provavelmente receberá um erro que diz que o objeto que você está procurando não foi encontrado.
 Erros de digitação importam; o R não pode ler sua mente e dizer: "ah, você provavelmente quis dizer `r_rocks` quando digitou `r_rock`".
 A caixa alta (letras maiúsculas) importa; da mesma forma, o R não pode ler sua mente e dizer: "ah, você provavelmente quis dizer `r_rocks` quando digitou `R_rocks`".
@@ -161,7 +161,7 @@ O R tem uma grande coleção de funções embutidas que são chamadas assim:
 nome_da_funcao(argumento1 = valor1, argumento2 = valor2, ...)
 ```
 
-Vamos tentar usar `seq()`, que faz **seq**uências regulares de números, e enquanto fazemos nisso, vamos aprender mais sobre os recursos do RStudio.
+Vamos tentar usar `seq()`, que faz **seq**uências regulares de números, e enquanto fazemos isso, vamos aprender mais sobre os recursos do RStudio.
 Digite `se` e pressione TAB.
 Uma janela pop-up mostra as possíveis formas de completar o código.
 Especifique `seq()` digitando mais (um `q`) para especificar ou usando as setas ↑/↓ para selecionar.
