@@ -14,9 +14,12 @@ Geralmente você precisará criar algumas variáveis novas ou agregações para 
 Você vai aprender a fazer tudo isso (e mais um pouco!) nesse capítulo, em que nós iremos lhe apresentar as possibilidades de transformações de dados utilizando o pacote **dplyr** e um novo conjunto de dados sobre vôos que partiram de Nova York em 2013.
 
 O objetivo desse capítulo é te dar uma visão geral de todas as principais ferramentas para transformar um data frame.
-Começaremos com as funções que operam sobre as linhas e colunas de um data frame, em seguida voltaremos para falar mais um pouco sobre o *pipe*, que é uma importante ferramenta que você utilizará para combinar os verbos das transformações.
+Começaremos com as funções que operam sobre as linhas e colunas de um data frame, em seguida voltaremos para falar mais um pouco sobre o *pipe*, que é uma importante ferramenta que você utilizará para combinar os verbos[^data-transform-1] das transformações.
 Depois, iremos introduzir a habilidade de trabalhar com grupos.
 Finalizaremos o capítulo com um estudo de caso que demonstra todas essas funções em ação, e, mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, quando começaremos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas).
+
+[^data-transform-1]: **Nota de tradução**: No pacote dplyr, chamamos as principais funções de "verbos" para enfatizar que elas fazem uma ação.
+    Os principais verbos do dplyr são: `filter()` (filtrar), `arrange()` (ordenar), `select()` (selecionar), `mutate()` (alterar), `summarize()` (sumarizar), e `group_by()` (agrupar).
 
 ### Pré-requisitos
 
@@ -57,10 +60,10 @@ Caso não esteja, você pode utilizar `print(voos, width = Inf)` para mostrar to
 glimpse(voos)
 ```
 
-Em ambas as visualizações, o nome das variáveis estão seguidos por abreviaturas que te indicam o tipo de cada variável: `<int>` para inteiros, `<dbl>` double[^data-transform-1] (números reais), `<chr>` para caracteres (strings) e `<dttm>` para date-time (data e hora).
+Em ambas as visualizações, o nome das variáveis estão seguidos por abreviaturas que te indicam o tipo de cada variável: `<int>` para inteiros, `<dbl>` double[^data-transform-2] (números reais), `<chr>` para caracteres (strings) e `<dttm>` para date-time (data e hora).
 Isso é importante pois as operações possíveis sobre uma coluna depende muito do seu "tipo".
 
-[^data-transform-1]: de *double precision floating number* - remete à forma como números reais são representados nos computadores, utilizando 64 bits em vez dos tradicionais 32 bits de um inteiro comum, por isso "double" (dobro).
+[^data-transform-2]: de *double precision floating number* - remete à forma como números reais são representados nos computadores, utilizando 64 bits em vez dos tradicionais 32 bits de um inteiro comum, por isso "double" (dobro).
 
 ### Básico do dplyr
 
@@ -103,12 +106,12 @@ Também vamos falar sobre `distinct()`, que acha as linhas com valores únicos, 
 
 ### `filter()`
 
-`filter()` lhe permite manter linhas com base nos valores das colunas[^data-transform-2].
+`filter()` lhe permite manter linhas com base nos valores das colunas[^data-transform-3].
 O primeiro argumento é o data frame.
 O segundo e demais argumentos são as condições que devem ser verdadeiras para manter a linha.
 Por exemplo, podemos achar todos os vôos que decolaram com mais de 120 minutos (duas horas) de atraso:
 
-[^data-transform-2]: Depos você irá aprender sobre a família de funções `slice_*()` que permite escolher linhas com base em suas posições.
+[^data-transform-3]: Depos você irá aprender sobre a família de funções `slice_*()` que permite escolher linhas com base em suas posições.
 
 ```{r}
 voos |> 
@@ -234,7 +237,7 @@ voos |>
     -   Teve um atraso na chegada de duas ou mais horas
     -   Voou para Houston (`IAH` ou `HOU`)
     -   Foi operado pela United, American ou Delta
-    -   Decolou no verão[^data-transform-3] (julho, agosto e setembro)
+    -   Decolou no verão[^data-transform-4] (julho, agosto e setembro)
     -   Chegou com mais de duas horas de atraso, mas não teve atraso na decolagem.
     -   Atrasou pelo menos uma hora, mas recuperou mais de 30 minutos em vôo.
 
@@ -253,7 +256,7 @@ voos |>
     Por que/por que não?
     Reflita sobre os resultados e quanto trabalho as funções teriam que executar.
 
-[^data-transform-3]: no hemisfério norte
+[^data-transform-4]: no hemisfério norte
 
 ## Colunas (columns)
 
@@ -274,9 +277,9 @@ voos |>
 ```
 
 Por padrão, `mutate()` adiciona novas colunas à direita do seu conjunto de dados, o que torna difícil ver o que está acontecendo aqui.
-Podemos usar o argumento `.before` para, em vez disso, adicionar as variáveis à esquerda[^data-transform-4]:
+Podemos usar o argumento `.before` para, em vez disso, adicionar as variáveis à esquerda[^data-transform-5]:
 
-[^data-transform-4]: Lembre-se que no RStudio, o jeito mais fácil de visualizar um conjunto de dados com muitas colunas é `View()`.
+[^data-transform-5]: Lembre-se que no RStudio, o jeito mais fácil de visualizar um conjunto de dados com muitas colunas é `View()`.
 
 ```{r}
 voos |> 
@@ -585,9 +588,9 @@ Isso significa que todas as operações subsequentes irão operar "por mês".
 
 A operação agrupada mais importante é a sumarização (*"summary"*), que caso esteja sendo utilizada para calcular uma única sumarização estatística, reduz o data frame para ter apenas uma única linha para cada grupo.
 
-No dplyr, essa operação é feita pela função `summarize()`[^data-transform-5], como mostrado pelo exemplo a seguir, que calcula o atraso médio das decolagens por mês:
+No dplyr, essa operação é feita pela função `summarize()`[^data-transform-6], como mostrado pelo exemplo a seguir, que calcula o atraso médio das decolagens por mês:
 
-[^data-transform-5]: Ou `summarise()`, se você preferir o inglês britânico.
+[^data-transform-6]: Ou `summarise()`, se você preferir o inglês britânico.
 
 ```{r}
 voos |> 
@@ -850,14 +853,14 @@ rebatedores <- dados::rebatedores |>
 rebatedores
 ```
 
-Quando montamos um gráfico da habilidade dos rebatedores (medidas pela média de acerto, `performance`) contra o número de oportunidades de acertar a bola (medidas pela númer de vezes ao bastão, `n`), é possível ver dois padrões:
+Quando montamos um gráfico da habilidade dos rebatedores (medidas pela média de acerto, `performance`) contra o número de oportunidades de acertar a bola (medidas pela número de vezes ao bastão, `n`), é possível ver dois padrões:
 
 1.  A variação em `performance` é maior entre os jogadores que foram menos vezes ao bastão.
-    A forma do gráfico é muito característica: sempre que você projetar no gráfico uma média (ou alguma outra sumarização estatística) vs. tamanho do grupo, você verá que a variação diminui à medida que o tamanho da amostra aumenta[^data-transform-6].
+    A forma do gráfico é muito característica: sempre que você projetar no gráfico uma média (ou alguma outra sumarização estatística) vs. tamanho do grupo, você verá que a variação diminui à medida que o tamanho da amostra aumenta[^data-transform-7].
 
 2.  Existe uma correlação positiva entre a habilidade (`performance`) e as oportunidades de acertar a bola (`n`), pois os times querem dar aos melhores jogadores o maior número de oportunidades de acertar a bola.
 
-[^data-transform-6]: \*cof-cof\* a lei dos grandes números \*cof-cof\*.
+[^data-transform-7]: \*cof-cof\* a lei dos grandes números \*cof-cof\*.
 
 ```{r}
 #| warning: false
