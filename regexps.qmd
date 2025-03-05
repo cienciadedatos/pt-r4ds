@@ -184,9 +184,10 @@ bebes |>
 ```
 
 Se você observar bem, verá que há algo estranho em nossa contagem: "Aaban" contém três "a"s, mas nosso relatório sumarizado mostra apenas 2 vogais.
-Isto acontece porque as expressões regulares consideram a diferença entre letras maiúsculas e minúsculas (*case sensitive*)\[\^regexps-nt-1\].
-\[\^regexps-nt-1\]: **NT**: Dizemos que a linguagem de programação é *case sensitive* quando existe a diferença entre letras maiúsculas (*upper case*) e minúsculas (*lower case*).
-Existem três formas de arrumar isto:
+Isto acontece porque as expressões regulares consideram a diferença entre letras maiúsculas e minúsculas (*case sensitive*)[^regexps-5].
+
+[^regexps-5]: **Nota de tradução**: Dizemos que a linguagem de programação é *case sensitive* quando existe a diferença entre letras maiúsculas (*upper case*) e minúsculas (*lower case*).
+    Existem três formas de arrumar isto:
 
 -   Adicionar as vogais maiúsculas nas classes de caracteres: `str_count(nome, "[aeiouAEIOU]")`.
 -   Informar a expressão regular para ignorar esta diferença: `str_count(nome, regex("[aeiou]", ignore_case = TRUE))`. Falaremos mais sobre isto na @sec-flags.
@@ -233,9 +234,9 @@ A última função que discutiremos utiliza expressões regulares para extrair d
 Estas funções estão no pacote tidyr porque operam em (colunas de) *data frames*, em vez de vetores individuais.
 
 Vamos criar um conjunto simples de dados para mostrar como ela funciona.
-Aqui temos alguns dados derivados de `dados::bebes` onde temos nome, sexo biológico e idade de várias pessoas em um formato meio estranho[^regexps-5]:
+Aqui temos alguns dados derivados de `dados::bebes` onde temos nome, sexo biológico e idade de várias pessoas em um formato meio estranho[^regexps-6]:
 
-[^regexps-5]: Gostaríamos de poder garantir que você nunca veria algo tão estranho na vida real, mas infelizmente, ao longo de sua carreira, é provável que você veja coisas muito mais estranhas!
+[^regexps-6]: Gostaríamos de poder garantir que você nunca veria algo tão estranho na vida real, mas infelizmente, ao longo de sua carreira, é provável que você veja coisas muito mais estranhas!
 
 ```{r}
 df <- tribble(
@@ -299,12 +300,12 @@ Nem sempre são os mais sugestivos em relação ao seu propósito, mas é muito 
 
 ### Escapadas {#sec-regexp-escaping}
 
-Para identificar um `.` literal, você precisa **escapar**, o que informa a expressão regular para interpretar o metacaractere [^regexps-6] literalmente.
+Para identificar um `.` literal, você precisa **escapar**, o que informa a expressão regular para interpretar o metacaractere [^regexps-7] literalmente.
 Assim como as *strings*, regexp usa a barra invertida para escapadas (*escaping*).
 Portanto, para identificar um `.`, você precisa da regexp `\.`. Infelizmente isto cria um problema.
 Nós usamos strings para representar expressões regulares, e `\` é também usada como símbolo de escapadas nas *strings*. Portanto, para criar a expressão regular `\.` , precismos da *string* `"\\."`, como mostra os exemplos a seguir.
 
-[^regexps-6]: A lista completa de metacaracteres é `.^$\|*+?{}[]()`
+[^regexps-7]: A lista completa de metacaracteres é `.^$\|*+?{}[]()`
 
 ```{r}
 # Para criar a expressão regular \., precisamos usar \\.
@@ -409,9 +410,9 @@ str_view("a-b-c", "[a\\-c]")
 
 Algumas classes de caracteres são tão comuns que possuem atalhos próprios.
 Você já viu `.`, que corresponde a qualquer caractere exceto o de nova linha.
-Existem três outras classes que são particularmente úteis[^regexps-7]:
+Existem três outras classes que são particularmente úteis[^regexps-8]:
 
-[^regexps-7]: Lembre-se, para criar uma expressão regular contendo `\d` ou `\s`, você precisará escapar a `\` da *string*, então você digitará `"\\d"` ou `"\\s"`.
+[^regexps-8]: Lembre-se, para criar uma expressão regular contendo `\d` ou `\s`, você precisará escapar a `\` da *string*, então você digitará `"\\d"` ou `"\\s"`.
 
 -   `\d` corresponde a qualquer digito;\
     `\D` corresponde a qualquer coisa que não seja um digito.
@@ -484,9 +485,9 @@ sentences |>
 ```
 
 Se você deseja extrair as correspondências de cada grupo, você pode usar `str_match()`.
-Mas `str_match()` retorna uma matriz, então não é particularmente fácil trabalhar com ela[^regexps-8]:
+Mas `str_match()` retorna uma matriz, então não é particularmente fácil trabalhar com ela[^regexps-9]:
 
-[^regexps-8]: Principalmente porque nunca discutimos sobre matrizes neste livro!
+[^regexps-9]: Principalmente porque nunca discutimos sobre matrizes neste livro!
 
 ```{r}
 sentences |> 
@@ -588,9 +589,9 @@ Se você trabalha muito com *strings* multilinhas (ou seja, *strings* que contê
 
 Finalmente, se você estiver escrevendo uma expressão regular complicada e estiver preocupado em não entendê-la no futuro, você pode tentar `comments = TRUE`.
 Ele ajusta a linguagem padrão para ignorar espaços e novas linhas, bem como tudo depois de `#`.
-Isso permite que você use comentários e espaços em branco para tornar expressões regulares complexas mais compreensíveis[^regexps-9], como no exemplo a seguir:
+Isso permite que você use comentários e espaços em branco para tornar expressões regulares complexas mais compreensíveis[^regexps-10], como no exemplo a seguir:
 
-[^regexps-9]: `comments = TRUE` é particularmente eficaz quando usado com uma string bruta (*raw*), como usamos aqui.
+[^regexps-10]: `comments = TRUE` é particularmente eficaz quando usado com uma string bruta (*raw*), como usamos aqui.
 
 ```{r}
 telefone <- regex(
