@@ -638,7 +638,7 @@ Essas escalas estão disponíveis como paletas contínuas (`c`), discretas (`d`)
 #| messaage: false
 #| warning: false
 #| results: hide
-pacman::p_load("hexbin")
+library(hexbin)
 ```
 
 ```{r}

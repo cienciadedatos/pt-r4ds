@@ -574,7 +574,7 @@ Você precisará instalar o pacote hexbin para usar `geom_hex()`.
 #| messaage: false
 #| warning: false
 #| results: hide
-pacman::p_load("hexbin")
+library(hexbin)
 ```
 
 ```{r}
