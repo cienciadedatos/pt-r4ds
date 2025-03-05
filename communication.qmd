@@ -894,7 +894,7 @@ Você também pode criar seus próprios temas, se estiver tentando combinar com 
 #|   theme_gray() - Fundo cinza (tema padrão),
 #|   theme_void() - Tema vazio, apenas geoms são visíveis.
 
-knitr::include_graphics("images/visualization-themes.png")
+knitr::include_graphics("images/visualization-themes-pt.png")
 ```
 
 Também é possível controlar componentes individuais de cada tema, como o tamanho e a cor da fonte usada no eixo y.
