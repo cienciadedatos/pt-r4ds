@@ -570,6 +570,14 @@ Agora você irá aprender como usar `geom_bin2d()` e `geom_hex()` para criar cla
 Você precisará instalar o pacote hexbin para usar `geom_hex()`.
 
 ```{r}
+#| echo: false
+#| messaage: false
+#| warning: false
+#| results: hide
+pacman::p_load("hexbin")
+```
+
+```{r}
 #| layout-ncol: 2
 #| fig-width: 3
 #| fig-alt: |

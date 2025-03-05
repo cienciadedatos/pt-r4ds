@@ -634,6 +634,14 @@ Os designers, Nathaniel Smith e Stéfan van der Walt, adaptaram cuidadosamente e
 Essas escalas estão disponíveis como paletas contínuas (`c`), discretas (`d`) e agrupadas (`b`) no ggplot2.
 
 ```{r}
+#| echo: false
+#| messaage: false
+#| warning: false
+#| results: hide
+pacman::p_load("hexbin")
+```
+
+```{r}
 #| fig-align: default
 #| layout-ncol: 2
 #| fig-width: 3
