@@ -654,7 +654,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6 Aada          1      2          2</span></span>
 <span><span class="co">#&gt; # ℹ 97,304 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Se você observar bem, verá que há algo estranho em nossa contagem: “Aaban” contém três “a”s, mas nosso relatório sumarizado mostra apenas 2 vogais. Isto acontece porque as expressões regulares consideram a diferença entre letras maiúsculas e minúsculas (<em>case sensitive</em>)[^regexps-nt-1]. [^regexps-nt-1]: <strong>NT</strong>: Dizemos que a linguagem de programação é <em>case sensitive</em> quando existe a diferença entre letras maiúsculas (<em>upper case</em>) e minúsculas (<em>lower case</em>). Existem três formas de arrumar isto:</p>
+<p>Se você observar bem, verá que há algo estranho em nossa contagem: “Aaban” contém três “a”s, mas nosso relatório sumarizado mostra apenas 2 vogais. Isto acontece porque as expressões regulares consideram a diferença entre letras maiúsculas e minúsculas (<em>case sensitive</em>)<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
 <ul>
 <li>Adicionar as vogais maiúsculas nas classes de caracteres: <code>str_count(nome, "[aeiouAEIOU]")</code>.</li>
 <li>Informar a expressão regular para ignorar esta diferença: <code>str_count(nome, regex("[aeiou]", ignore_case = TRUE))</code>. Falaremos mais sobre isto na <a href="#sec-flags" class="quarto-xref"><span>Seção 15.5.1</span></a>.</li>
@@ -699,7 +699,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="sec-extract-variables" class="level3" data-number="15.3.4"><h3 data-number="15.3.4" class="anchored" data-anchor-id="sec-extract-variables">
 <span class="header-section-number">15.3.4</span> Extraindo variáveis</h3>
 <p>A última função que discutiremos utiliza expressões regulares para extrair dados de uma coluna e criar uma ou mais novas colunas: <code><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_regex()</a></code>. É uma função par da <code><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_position()</a></code> e <code><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_delim()</a></code> que você aprendeu na <a href="strings.html#sec-string-columns" class="quarto-xref"><span>Seção 14.4.2</span></a>. Estas funções estão no pacote tidyr porque operam em (colunas de) <em>data frames</em>, em vez de vetores individuais.</p>
-<p>Vamos criar um conjunto simples de dados para mostrar como ela funciona. Aqui temos alguns dados derivados de <code><a href="https://rdrr.io/pkg/dados/man/bebes.html">dados::bebes</a></code> onde temos nome, sexo biológico e idade de várias pessoas em um formato meio estranho<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>:</p>
+<p>Vamos criar um conjunto simples de dados para mostrar como ela funciona. Aqui temos alguns dados derivados de <code><a href="https://rdrr.io/pkg/dados/man/bebes.html">dados::bebes</a></code> onde temos nome, sexo biológico e idade de várias pessoas em um formato meio estranho<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">str</span>,</span>
@@ -751,7 +751,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Os termos que usamos aqui são os nomes técnicos de cada componente. Nem sempre são os mais sugestivos em relação ao seu propósito, mas é muito útil conhecer os termos corretos se você desejar pesquisar mais detalhes posteriormente no <em>Google</em>.</p>
 <section id="sec-regexp-escaping" class="level3" data-number="15.4.1"><h3 data-number="15.4.1" class="anchored" data-anchor-id="sec-regexp-escaping">
 <span class="header-section-number">15.4.1</span> Escapadas</h3>
-<p>Para identificar um <code>.</code> literal, você precisa <strong>escapar</strong>, o que informa a expressão regular para interpretar o metacaractere <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> literalmente. Assim como as <em>strings</em>, regexp usa a barra invertida para escapadas (<em>escaping</em>). Portanto, para identificar um <code>.</code>, você precisa da regexp <code>\.</code>. Infelizmente isto cria um problema. Nós usamos strings para representar expressões regulares, e <code>\</code> é também usada como símbolo de escapadas nas <em>strings</em>. Portanto, para criar a expressão regular <code>\.</code> , precismos da <em>string</em> <code>"\\."</code>, como mostra os exemplos a seguir.</p>
+<p>Para identificar um <code>.</code> literal, você precisa <strong>escapar</strong>, o que informa a expressão regular para interpretar o metacaractere <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> literalmente. Assim como as <em>strings</em>, regexp usa a barra invertida para escapadas (<em>escaping</em>). Portanto, para identificar um <code>.</code>, você precisa da regexp <code>\.</code>. Infelizmente isto cria um problema. Nós usamos strings para representar expressões regulares, e <code>\</code> é também usada como símbolo de escapadas nas <em>strings</em>. Portanto, para criar a expressão regular <code>\.</code> , precismos da <em>string</em> <code>"\\."</code>, como mostra os exemplos a seguir.</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Para criar a expressão regular \., precisamos usar \\.</span></span>
 <span><span class="va">ponto</span> <span class="op">&lt;-</span> <span class="st">"\\."</span></span>
@@ -858,7 +858,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="st">"a-b-c"</span>, <span class="st">"[a\\-c]"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] │ &lt;a&gt;&lt;-&gt;b&lt;-&gt;&lt;c&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Algumas classes de caracteres são tão comuns que possuem atalhos próprios. Você já viu <code>.</code>, que corresponde a qualquer caractere exceto o de nova linha. Existem três outras classes que são particularmente úteis<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>:</p>
+<p>Algumas classes de caracteres são tão comuns que possuem atalhos próprios. Você já viu <code>.</code>, que corresponde a qualquer caractere exceto o de nova linha. Existem três outras classes que são particularmente úteis<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>:</p>
 <ul>
 <li>
 <code>\d</code> corresponde a qualquer digito;<br><code>\D</code> corresponde a qualquer coisa que não seja um digito.</li>
@@ -933,7 +933,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [6] │ The of juice lemons makes fine punch.</span></span>
 <span><span class="co">#&gt; ... and 714 more</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Se você deseja extrair as correspondências de cada grupo, você pode usar <code><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match()</a></code>. Mas <code><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match()</a></code> retorna uma matriz, então não é particularmente fácil trabalhar com ela<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>:</p>
+<p>Se você deseja extrair as correspondências de cada grupo, você pode usar <code><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match()</a></code>. Mas <code><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match()</a></code> retorna uma matriz, então não é particularmente fácil trabalhar com ela<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sentences</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match</a></span><span class="op">(</span><span class="st">"the (\\w+) (\\w+)"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1052,7 +1052,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </li>
 </ul>
-<p>Finalmente, se você estiver escrevendo uma expressão regular complicada e estiver preocupado em não entendê-la no futuro, você pode tentar <code>comments = TRUE</code>. Ele ajusta a linguagem padrão para ignorar espaços e novas linhas, bem como tudo depois de <code>#</code>. Isso permite que você use comentários e espaços em branco para tornar expressões regulares complexas mais compreensíveis<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>, como no exemplo a seguir:</p>
+<p>Finalmente, se você estiver escrevendo uma expressão regular complicada e estiver preocupado em não entendê-la no futuro, você pode tentar <code>comments = TRUE</code>. Ele ajusta a linguagem padrão para ignorar espaços e novas linhas, bem como tudo depois de <code>#</code>. Isso permite que você use comentários e espaços em branco para tornar expressões regulares complexas mais compreensíveis<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>, como no exemplo a seguir:</p>
 <div class="cell">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">telefone</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span><span class="op">(</span></span>
 <span>  <span class="st">r"(</span></span>
@@ -1332,11 +1332,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li id="fn2"><p>Você aprenderá como escapar (<em>escape</em>) destes significados especiais na <a href="#sec-regexp-escaping" class="quarto-xref"><span>Seção 15.4.1</span></a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Bem, qualquer caractere exceto <code>\n</code> (nova linha).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Isto nos dá a proporção de <strong>nomes</strong> que contém um “x”; se você quiser a proporção de bebês com um nome contendo um x, você deve usar uma média ponderada.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Gostaríamos de poder garantir que você nunca veria algo tão estranho na vida real, mas infelizmente, ao longo de sua carreira, é provável que você veja coisas muito mais estranhas!<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>A lista completa de metacaracteres é <code>.^$\|*+?{}[]()</code><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>Lembre-se, para criar uma expressão regular contendo <code>\d</code> ou <code>\s</code>, você precisará escapar a <code>\</code> da <em>string</em>, então você digitará <code>"\\d"</code> ou <code>"\\s"</code>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>Principalmente porque nunca discutimos sobre matrizes neste livro!<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p><code>comments = TRUE</code> é particularmente eficaz quando usado com uma string bruta (<em>raw</em>), como usamos aqui.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><strong>Nota de tradução</strong>: Dizemos que a linguagem de programação é <em>case sensitive</em> quando existe a diferença entre letras maiúsculas (<em>upper case</em>) e minúsculas (<em>lower case</em>). Existem três formas de arrumar isto:<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Gostaríamos de poder garantir que você nunca veria algo tão estranho na vida real, mas infelizmente, ao longo de sua carreira, é provável que você veja coisas muito mais estranhas!<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>A lista completa de metacaracteres é <code>.^$\|*+?{}[]()</code><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Lembre-se, para criar uma expressão regular contendo <code>\d</code> ou <code>\s</code>, você precisará escapar a <code>\</code> da <em>string</em>, então você digitará <code>"\\d"</code> ou <code>"\\s"</code>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Principalmente porque nunca discutimos sobre matrizes neste livro!<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><code>comments = TRUE</code> é particularmente eficaz quando usado com uma string bruta (<em>raw</em>), como usamos aqui.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

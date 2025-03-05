@@ -466,7 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header><section id="introdução" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="introdução">
 <span class="header-section-number">3.1</span> Introdução</h2>
 <p>Visualização de dados é uma ferramenta importante para gerar insights, mas é raro que você pegue os dados exatamente na forma que você precisa para fazer o gráfico que você quer. Geralmente você precisará criar algumas variáveis novas ou agregações para responder às perguntas com seus dados, ou talvez você precise apenas renomear as variáveis ou reordenar as observações para facilitar o trabalho com os dados. Você vai aprender a fazer tudo isso (e mais um pouco!) nesse capítulo, em que nós iremos lhe apresentar as possibilidades de transformações de dados utilizando o pacote <strong>dplyr</strong> e um novo conjunto de dados sobre vôos que partiram de Nova York em 2013.</p>
-<p>O objetivo desse capítulo é te dar uma visão geral de todas as principais ferramentas para transformar um data frame. Começaremos com as funções que operam sobre as linhas e colunas de um data frame, em seguida voltaremos para falar mais um pouco sobre o <em>pipe</em>, que é uma importante ferramenta que você utilizará para combinar os verbos das transformações. Depois, iremos introduzir a habilidade de trabalhar com grupos. Finalizaremos o capítulo com um estudo de caso que demonstra todas essas funções em ação, e, mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, quando começaremos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas).</p>
+<p>O objetivo desse capítulo é te dar uma visão geral de todas as principais ferramentas para transformar um data frame. Começaremos com as funções que operam sobre as linhas e colunas de um data frame, em seguida voltaremos para falar mais um pouco sobre o <em>pipe</em>, que é uma importante ferramenta que você utilizará para combinar os verbos<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> das transformações. Depois, iremos introduzir a habilidade de trabalhar com grupos. Finalizaremos o capítulo com um estudo de caso que demonstra todas essas funções em ação, e, mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, quando começaremos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas).</p>
 <section id="pré-requisitos" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="pré-requisitos">
 <span class="header-section-number">3.1.1</span> Pré-requisitos</h3>
 <p>Nesse capítulo focaremos no pacote dplyr, outro membro central do tidyverse. Ilustraremos as ideias principais utilizando dados do pacote dados, e visualizaremos com o ggplot2 para nos ajudar a entender os dados.</p>
@@ -528,7 +528,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; $ minuto           &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</span></span>
 <span><span class="co">#&gt; $ data_hora        &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01…</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Em ambas as visualizações, o nome das variáveis estão seguidos por abreviaturas que te indicam o tipo de cada variável: <code>&lt;int&gt;</code> para inteiros, <code>&lt;dbl&gt;</code> double<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (números reais), <code>&lt;chr&gt;</code> para caracteres (strings) e <code>&lt;dttm&gt;</code> para date-time (data e hora). Isso é importante pois as operações possíveis sobre uma coluna depende muito do seu “tipo”.</p>
+<p>Em ambas as visualizações, o nome das variáveis estão seguidos por abreviaturas que te indicam o tipo de cada variável: <code>&lt;int&gt;</code> para inteiros, <code>&lt;dbl&gt;</code> double<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (números reais), <code>&lt;chr&gt;</code> para caracteres (strings) e <code>&lt;dttm&gt;</code> para date-time (data e hora). Isso é importante pois as operações possíveis sobre uma coluna depende muito do seu “tipo”.</p>
 </section><section id="básico-do-dplyr" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="básico-do-dplyr">
 <span class="header-section-number">3.1.3</span> Básico do dplyr</h3>
 <p>Você está prestes a aprender os verbos (funções) primários do dplyr que já vão lhe permitir resolver a vasta maioria dos desafios de manipulação de dados. Mas antes de discutirir suas diferenças individuais, é importante destacar o que eles têm em comum:</p>
@@ -554,7 +554,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="filter" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="filter">
 <span class="header-section-number">3.2.1</span> <code>filter()</code>
 </h3>
-<p><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> lhe permite manter linhas com base nos valores das colunas<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. O primeiro argumento é o data frame. O segundo e demais argumentos são as condições que devem ser verdadeiras para manter a linha. Por exemplo, podemos achar todos os vôos que decolaram com mais de 120 minutos (duas horas) de atraso:</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> lhe permite manter linhas com base nos valores das colunas<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. O primeiro argumento é o data frame. O segundo e demais argumentos são as condições que devem ser verdadeiras para manter a linha. Por exemplo, podemos achar todos os vôos que decolaram com mais de 120 minutos (duas horas) de atraso:</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">voos</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">atraso_saida</span> <span class="op">&gt;</span> <span class="fl">120</span><span class="op">)</span></span>
@@ -753,7 +753,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Teve um atraso na chegada de duas ou mais horas</li>
 <li>Voou para Houston (<code>IAH</code> ou <code>HOU</code>)</li>
 <li>Foi operado pela United, American ou Delta</li>
-<li>Decolou no verão<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> (julho, agosto e setembro)</li>
+<li>Decolou no verão<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> (julho, agosto e setembro)</li>
 <li>Chegou com mais de duas horas de atraso, mas não teve atraso na decolagem.</li>
 <li>Atrasou pelo menos uma hora, mas recuperou mais de 30 minutos em vôo.</li>
 </ul>
@@ -788,7 +788,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 15 more variables: horario_chegada &lt;int&gt;, chegada_prevista &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Por padrão, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> adiciona novas colunas à direita do seu conjunto de dados, o que torna difícil ver o que está acontecendo aqui. Podemos usar o argumento <code>.before</code> para, em vez disso, adicionar as variáveis à esquerda<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>:</p>
+<p>Por padrão, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> adiciona novas colunas à direita do seu conjunto de dados, o que torna difícil ver o que está acontecendo aqui. Podemos usar o argumento <code>.before</code> para, em vez disso, adicionar as variáveis à esquerda<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">voos</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
@@ -1077,7 +1077,7 @@ magrittr
 <span class="header-section-number">3.5.2</span> <code>summarize()</code>
 </h3>
 <p>A operação agrupada mais importante é a sumarização (<em>“summary”</em>), que caso esteja sendo utilizada para calcular uma única sumarização estatística, reduz o data frame para ter apenas uma única linha para cada grupo.</p>
-<p>No dplyr, essa operação é feita pela função <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, como mostrado pelo exemplo a seguir, que calcula o atraso médio das decolagens por mês:</p>
+<p>No dplyr, essa operação é feita pela função <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, como mostrado pelo exemplo a seguir, que calcula o atraso médio das decolagens por mês:</p>
 <div class="cell">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">voos</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">mes</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1353,9 +1353,9 @@ magrittr
 <span><span class="co">#&gt; 6 abadfe01        0.111      9</span></span>
 <span><span class="co">#&gt; # ℹ 20,724 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Quando montamos um gráfico da habilidade dos rebatedores (medidas pela média de acerto, <code>performance</code>) contra o número de oportunidades de acertar a bola (medidas pela númer de vezes ao bastão, <code>n</code>), é possível ver dois padrões:</p>
+<p>Quando montamos um gráfico da habilidade dos rebatedores (medidas pela média de acerto, <code>performance</code>) contra o número de oportunidades de acertar a bola (medidas pelo número de vezes ao bastão, <code>n</code>), é possível ver dois padrões:</p>
 <ol type="1">
-<li><p>A variação em <code>performance</code> é maior entre os jogadores que foram menos vezes ao bastão. A forma do gráfico é muito característica: sempre que você projetar no gráfico uma média (ou alguma outra sumarização estatística) vs.&nbsp;tamanho do grupo, você verá que a variação diminui à medida que o tamanho da amostra aumenta<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p></li>
+<li><p>A variação em <code>performance</code> é maior entre os jogadores que foram menos vezes ao bastão. A forma do gráfico é muito característica: sempre que você projetar no gráfico uma média (ou alguma outra sumarização estatística) vs.&nbsp;tamanho do grupo, você verá que a variação diminui à medida que o tamanho da amostra aumenta<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p></li>
 <li><p>Existe uma correlação positiva entre a habilidade (<code>performance</code>) e as oportunidades de acertar a bola (<code>n</code>), pois os times querem dar aos melhores jogadores o maior número de oportunidades de acertar a bola.</p></li>
 </ol>
 <div class="cell">
@@ -1397,12 +1397,13 @@ magrittr
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>de <em>double precision floating number</em> - remete à forma como números reais são representados nos computadores, utilizando 64 bits em vez dos tradicionais 32 bits de um inteiro comum, por isso “double” (dobro).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Depos você irá aprender sobre a família de funções <code>slice_*()</code> que permite escolher linhas com base em suas posições.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>no hemisfério norte<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Lembre-se que no RStudio, o jeito mais fácil de visualizar um conjunto de dados com muitas colunas é <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Ou <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, se você preferir o inglês britânico.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>*cof-cof* a lei dos grandes números *cof-cof*.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><strong>Nota de tradução</strong>: No pacote dplyr, chamamos as principais funções de “verbos” para enfatizar que elas fazem uma ação. Os principais verbos do dplyr são: <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> (filtrar), <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> (ordenar), <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> (selecionar), <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> (alterar), <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> (sumarizar), e <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> (agrupar).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>de <em>double precision floating number</em> - remete à forma como números reais são representados nos computadores, utilizando 64 bits em vez dos tradicionais 32 bits de um inteiro comum, por isso “double” (dobro).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Depos você irá aprender sobre a família de funções <code>slice_*()</code> que permite escolher linhas com base em suas posições.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>no hemisfério norte<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Lembre-se que no RStudio, o jeito mais fácil de visualizar um conjunto de dados com muitas colunas é <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Ou <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, se você preferir o inglês britânico.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>*cof-cof* a lei dos grandes números *cof-cof*.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
