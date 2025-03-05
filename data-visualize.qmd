@@ -649,7 +649,7 @@ Conforme mostrado em @fig-eda-boxplot, cada boxplot consiste em:
 #| fig-alt: |
 #|   Um diagrama exibindo como um boxplot é criado seguindo os passos acima.
 
-knitr::include_graphics("images/EDA-boxplot.png")
+knitr::include_graphics("images/EDA-boxplot-pt.png")
 ```
 
 Vamos dar uma olhada na distribuição da massa corporal por espécie usando `geom_boxplot()`:
