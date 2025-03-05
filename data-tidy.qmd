@@ -71,7 +71,7 @@ Existem três regras interrelacionadas que fazem com que um conjunto de dados se
 #|   observação é uma linha. O terceiro painel mostra que cada valor é
 #|   uma célula.
 
-knitr::include_graphics("images/pt/tidy-1.png", dpi = 270)
+knitr::include_graphics("images/tidy-1-pt.png", dpi = 270)
 ```
 
 Por que garantir que seus dados estão no formato *tidy*?
