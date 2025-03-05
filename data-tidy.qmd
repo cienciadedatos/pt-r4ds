@@ -577,7 +577,9 @@ Nesse capítulo você aprendeu sobre dados no formato *tidy*: dados que possuem 
 Dados nesse formato facilitam o trabalho no tidyverse, pois sua estrutura consistente é entendida pela maioria das funções.
 O principal desafio, então, é transformar dados provenientes de quaisquer estruturas que você receber para o formato *tidy*.
 Para esse fim, você aprendeu sobre `pivot_longer()` e `pivot_wider()` que permitem a organização de vários conjuntos de dados que ainda não estejam no formato *tidy*.
-Os exemplos apresentados aqui são uma seleção dos vários presentes em `vignette("pivot", package = "tidyr")`, então, se você encontrar algum problema com o qual esse capítulo ainda não é capaz de te ajudar, é uma boa ideia checar nessa *vignette*.
+Os exemplos apresentados aqui são uma seleção dos vários presentes em `vignette("pivot", package = "tidyr")`, então, se você encontrar algum problema com o qual esse capítulo ainda não é capaz de te ajudar, é uma boa ideia checar nessa *vignette*[^data-tidy-4].
+
+[^data-tidy-4]: **Nota de tradução:** As *vignettes* são documentos que acompanham os pacotes do R e fornecem documentações mais extensas sobre o pacote e suas funções.
 
 Um outro desafio é o fato de que para certos conjuntos de dados, pode ser impossível especificar se a versão longa (*long*) ou larga (*wide*) é a versão *tidy*.
 Isso é, em parte, um reflexo da nossa definição de dados *tidy*, em que dizemos que cada coluna deve conter uma variável, mas não definimos, de fato, **o que é** uma variável (e fazer isso é surpreendentemente difícil.) É totalmente aceitável dizer, de uma forma pragmática, que uma variável é qualquer coisa que facilite sua análise.
