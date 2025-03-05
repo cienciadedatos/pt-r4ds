@@ -11,7 +11,7 @@ book:
       R para Ciência de Dados (2ª edição) foi escrito por Hadley Wickham, Mine
       Çetinkaya-Rundel, e Garrett Grolemund.
     right: |
-      Este livro foi contruído com <a href="https://quarto.org/">Quarto</a>.
+      Este livro foi construído com <a href="https://quarto.org/">Quarto</a>.
   cover-image: cover.jpg
   favicon: cover.jpg
   site-url: https://pt.r4ds.hadley.nz/
