@@ -253,7 +253,7 @@ top100musicas_longo|>
 
 Agora que você já viu como usar a pivotagem para mudar a forma de nossos dados, vamos tomar um tempinho para ganhar alguma intuição sobre o que a pivotagem faz com os dados.
 Vamos começar com um conjunto de dados bem simples para enxergamos com mais facilidade o que está acontecendo.
-Suponha que temos três pacientes com `id`s A, B e C, e fazemos a medição da pressão sanguínea duas vezes para cadas paciente.
+Suponha que temos três pacientes com `id`s A, B e C, e fazemos a medição da pressão sanguínea (`ps`) duas vezes para cadas paciente.
 Vamos criar os dados com `tribble()`, uma função útil para construir pequenos conjuntos de dados (*tibbles*) manualmente:
 
 ```{r}
@@ -294,7 +294,7 @@ Como mostrado em @fig-pivot-variables, os valores de uma coluna que já eram uma
 #|   ("A", "B", "C") são repetidos duas vezes na saída por que há 
 #|   duas colunas sendo pivotadas ("ps1" e "ps2").
 
-knitr::include_graphics("diagrams/tidy-data/variables.png", dpi = 270)
+knitr::include_graphics("diagrams/tidy-data/variables-pt.png", dpi = 270)
 ```
 
 Os nomes das colunas se tornam valores em uma nova variável, cujo nome foi definido pelo parâmetro `names_to`, conforme mostrado em @fig-pivot-names.
@@ -312,7 +312,7 @@ Eles precisam ser repetidos uma vez para cada linha dos dados originais.
 #|   "ps2") se tornam valores em uma nova coluna `medicao`. Eles são repetidos
 #|   três vezes porque havia três linhas na entrada.
 
-knitr::include_graphics("diagrams/tidy-data/column-names.png", dpi = 270)
+knitr::include_graphics("diagrams/tidy-data/column-names-pt.png", dpi = 270)
 ```
 
 Os valores das células também se tornam valores em uma nova variável, com o nome definido por `values_to`.
@@ -332,7 +332,7 @@ Eles são "desenrolados" linha a linha.
 #|   então as linhas originais (100,120), depois (140,115) e depois (120,125), se tornam 
 #|   uma coluna que vai de 100 a 125.
 
-knitr::include_graphics("diagrams/tidy-data/cell-values.png", dpi = 270)
+knitr::include_graphics("diagrams/tidy-data/cell-values-pt.png", dpi = 270)
 ```
 
 ### Muitas variáveis nos nomes de colunas
@@ -383,7 +383,7 @@ Você pode imaginar isso acontecendo em dois passos (primeiro pivotando e depois
 #|   parecido com o caso com um único `names_to`, mas o que seria apenas uma
 #|   única variável de saída agora está separada em múltipals variáveis.
 
-knitr::include_graphics("diagrams/tidy-data/multiple-names.png", dpi = 270)
+knitr::include_graphics("diagrams/tidy-data/multiple-names-pt.png", dpi = 270)
 ```
 
 ### Dados e nomes de variáveis nos cabeçalhos das colunas
@@ -429,7 +429,7 @@ Quando você utiliza `".value"` em `names_to`, a coluna de nomes dos dados de en
 #|   e queremos usar o primeiro componente ("x", "y") como nome das variáveis
 #|   e o segundo ("1", "2") como valor para a nova coluna "num".
 
-knitr::include_graphics("diagrams/tidy-data/names-and-values.png", dpi = 270)
+knitr::include_graphics("diagrams/tidy-data/names-and-values-pt.png", dpi = 270)
 ```
 
 ## Transformando os dados para o formato largo
