@@ -20,7 +20,7 @@ Segue abaixo um breve resumo das maiores mudanças nesta edição:
     São novos capítulos que vão além da leitura de arquivos de texto simples para trabalhar com planilhas, importar dados de bancos de dados (*databases*), trabalhar com grandes conjuntos de dados (*big data*), converter dados hierárquicos em dados tabulares e extrair dados de sites da web (*web scraping*).
 
 -   A parte "Programar" permanece, mas foi reescrita do zero para se concentrar nas partes mais importantes da escrita de funções e iteração.
-    Agora, a escrita de funções inclui detalhes sobre como criar funções no estilo tidy (lidando com os desafios de avaliação tidy (*tidy evaluation*)), uma vez que isso se tornou muito mais fácil e importante nos últimos anos.
+    Agora, a escrita de funções inclui detalhes sobre como criar funções no estilo tidy (lidando com os desafios de avaliação tidy (*tidy evaluation*), uma vez que isso se tornou muito mais fácil e importante nos últimos anos.
     Adicionamos um novo capítulo sobre funções importantes do *R base* que você provavelmente encontrará em códigos em R por aí.
 
 -   A parte de modelagem foi removida.
