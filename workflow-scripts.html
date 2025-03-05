@@ -488,7 +488,7 @@ Figura&nbsp;6.1: Abrir o editor de script adiciona um novo painel no canto super
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="screenshots/rstudio-diagnostic-tip.png" class="img-fluid figure-img" alt="Editor de script com o script x y <- 10. Um X vermelho indica que há um erro de sintaxe. O erro de sintaxe também é destacado com uma linha ondulada vermelha. Passar o mouse sobre o X mostra uma caixa de texto com o texto &quot;unexpected token y&quot; e &quot;unexpected token <-&quot;." width="232"></p>
+<figure class="figure"><p><img src="screenshots/rstudio-diagnostic-tip.png" class="img-fluid figure-img" alt="Editor de script com o script x y <- 10. Um X vermelho indica que há  um erro de sintaxe. O erro de sintaxe também é destacado com uma linha  ondulada vermelha. Passar o mouse sobre o X mostra uma caixa de texto  com o texto &quot;unexpected token y&quot; e &quot;unexpected token <-&quot;." width="232"></p>
 </figure>
 </div>
 </div>
@@ -497,7 +497,7 @@ Figura&nbsp;6.1: Abrir o editor de script adiciona um novo painel no canto super
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="screenshots/rstudio-diagnostic-warn.png" class="img-fluid figure-img" alt="Editor de script com o script 3 == NA. Um ponto de exclamação amarelo indica que pode haver um problema em potencial. Ao passar o mouse sobre o ponto de exclamação, é exibida uma caixa de texto com o texto &quot;use is.na to check whether expression evaluates to NA&quot;." width="439"></p>
+<figure class="figure"><p><img src="screenshots/rstudio-diagnostic-warn.png" class="img-fluid figure-img" alt="Editor de script com o script 3 == NA. Um ponto de exclamação amarelo  indica que pode haver um problema em potencial. Ao passar o mouse sobre o  ponto de exclamação, é exibida uma caixa de texto com o texto &quot;use is.na to check  whether expression evaluates to NA&quot;." width="439"></p>
 </figure>
 </div>
 </div>
@@ -547,9 +547,9 @@ notas-rascunho-relatorio.txt</code></pre>
 <p>Para ajudar a manter seus scripts R como a fonte da verdade para sua análise, recomendamos fortemente que você instrua o RStudio a não preservar seu espaço de trabalho (<code>workspace</code>) entre as sessões. Você pode fazer isso executando <code><a href="https://usethis.r-lib.org/reference/use_blank_slate.html">usethis::use_blank_slate()</a></code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> ou imitando as opções mostradas na <a href="#fig-blank-slate" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>. Isso causará alguma dor a curto prazo, porque agora, quando você reiniciar o RStudio, ele não se lembrará do código que você executou na última vez, nem os objetos que você criou ou os conjuntos de dados que você leu estarão disponíveis para uso. Mas essa dor a curto prazo poupa-lhe agonia a longo prazo, pois força você a capturar todos os procedimentos importantes em seu código. Não há nada pior do que descobrir três meses depois que você só armazenou os resultados de um cálculo importante em seu ambiente, não o próprio cálculo em seu código.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-blank-slate" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Janela de Opções Globais do RStudio onde a opção Restaurar .RData no espaço de trabalho (*workspace*) na inicialização não está marcada. Além disso, a opção Salvar espaço de trabalho (*workspace*) no arquivo .RData na saída está configurada para Nunca. ">
+<div id="fig-blank-slate" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Janela de Opções Globais do RStudio onde a opção Restaurar .RData no espaço de trabalho (*workspace*) na inicialização não está marcada. Além disso, a opção Salvar espaço de trabalho (*workspace*) no arquivo .RData  na saída está configurada para Nunca. ">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-blank-slate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="diagrams/rstudio/clean-slate.png" class="img-fluid figure-img" alt="Janela de Opções Globais do RStudio onde a opção Restaurar .RData no espaço de trabalho (*workspace*) na inicialização não está marcada. Além disso, a opção Salvar espaço de trabalho (*workspace*) no arquivo .RData na saída está configurada para Nunca. " width="523">
+<img src="diagrams/rstudio/clean-slate.png" class="img-fluid figure-img" alt="Janela de Opções Globais do RStudio onde a opção Restaurar .RData no espaço de trabalho (*workspace*) na inicialização não está marcada. Além disso, a opção Salvar espaço de trabalho (*workspace*) no arquivo .RData  na saída está configurada para Nunca. " width="523">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blank-slate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;6.2: Copie estas opções nas suas opções do RStudio para sempre iniciar sua sessão do RStudio com um ambiente (<em>Environment</em>) limpo.
@@ -583,7 +583,7 @@ RStudio server
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="screenshots/rstudio-wd.png" class="img-fluid figure-img" alt="A aba Console mostra o diretório de trabalho atual como ~/Documents/r4ds. " width="321"></p>
+<figure class="figure"><p><img src="screenshots/rstudio-wd.png" class="img-fluid figure-img" alt="A aba Console mostra o diretório de trabalho atual como  ~/Documents/r4ds. " width="321"></p>
 </figure>
 </div>
 </div>
@@ -605,9 +605,9 @@ RStudio server
 <p>Manter todos os arquivos associados a um determinado projeto (dados de entrada, scripts R, resultados analíticos e figuras) juntos em um diretório é uma prática tão sábia e comum que o RStudio tem suporte integrado para isso através de <strong>projetos</strong>. Vamos criar um projeto para você usar enquanto trabalha no restante deste livro. Clique em Arquivo &gt; Novo Projeto, e então siga os passos mostrados em <a href="#fig-new-project" class="quarto-xref">Figura&nbsp;<span>6.3</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-new-project" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Três capturas de tela do menu Novo Projeto. Na primeira captura de tela, a janela Criar Projeto é mostrada e Novo Diretório é selecionado. Na segunda captura de tela, a janela Tipo de Projeto é mostrada e Projeto Vazio é selecionado. Na terceira captura de tela, a janela Criar Novo Projeto é mostrada e o nome do diretório é dado como r4ds e o projeto está sendo criado como subdiretório da Área de Trabalho. ">
+<div id="fig-new-project" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Três capturas de tela do menu Novo Projeto. Na primeira captura de tela,  a janela Criar Projeto é mostrada e Novo Diretório é selecionado.  Na segunda captura de tela, a janela Tipo de Projeto é mostrada e  Projeto Vazio é selecionado. Na terceira captura de tela, a janela Criar Novo Projeto é mostrada e o nome do diretório é dado como r4ds e o projeto está sendo criado como subdiretório da Área de Trabalho. ">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-new-project-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="diagrams/new-project.png" class="img-fluid figure-img" alt="Três capturas de tela do menu Novo Projeto. Na primeira captura de tela, a janela Criar Projeto é mostrada e Novo Diretório é selecionado. Na segunda captura de tela, a janela Tipo de Projeto é mostrada e Projeto Vazio é selecionado. Na terceira captura de tela, a janela Criar Novo Projeto é mostrada e o nome do diretório é dado como r4ds e o projeto está sendo criado como subdiretório da Área de Trabalho. " width="1172">
+<img src="diagrams/new-project.png" class="img-fluid figure-img" alt="Três capturas de tela do menu Novo Projeto. Na primeira captura de tela,  a janela Criar Projeto é mostrada e Novo Diretório é selecionado.  Na segunda captura de tela, a janela Tipo de Projeto é mostrada e  Projeto Vazio é selecionado. Na terceira captura de tela, a janela Criar Novo Projeto é mostrada e o nome do diretório é dado como r4ds e o projeto está sendo criado como subdiretório da Área de Trabalho. " width="1172">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-new-project-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;6.3: Para criar um novo projeto: (topo) primeiro clique em Novo Diretório, depois (meio) clique em Novo Projeto, então (abaixo) preencha o nome do diretório (projeto), escolha um bom subdiretório para ser o “lar” do seu projeto, e clique em Criar Projeto.
