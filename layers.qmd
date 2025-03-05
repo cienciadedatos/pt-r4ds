@@ -1082,7 +1082,7 @@ Em seguida, você selecionaria um sistema de coordenadas para posicionar as geom
 #|   Etapas para ir de dados brutos a uma tabela de frequências e então a um
 #|   gráfico de barras no qual a altura das barras representa as frequências.
 
-knitr::include_graphics("images/visualization-grammar.png")
+knitr::include_graphics("images/visualization-grammar-pt.png")
 ```
 
 A essa altura, você teria um gráfico completo, mas poderia ir além e ajustar as posições das geoms no sistema de coordenadas (com ajustes de posição) ou dividir o gráfico em subgráficos (criando facetas).
