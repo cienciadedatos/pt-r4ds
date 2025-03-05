@@ -574,8 +574,7 @@ Aqui está uma seleção que você pode achar útil.
 
 Até agora, na maioria da vezes, usamos a média com `mean()` para sumarizar o centro de um vetor de valores.
 Como vimos na @sec-sample-size, uma vez que a média é a soma dividida pela contagem, ela é sensível até mesmo por um pequeno número de valores muito altos ou muito baixos.
-Uma alternativa é usar a mediana, com `median()`, que encontra o valor que se encontra no "meio" do vetor, ex.
-50% dos valores estão acima e 50% estão abaixo.
+Uma alternativa é usar a mediana, com `median()`, que encontra o valor que se encontra no "meio" do vetor, por exemplo: 50% dos valores estão acima e 50% estão abaixo.
 Dependendo da forma da distribuição da variável de interesse, média ou mediana podem ser uma melhor medida de posição.
 Por exemplo, para distribuições simétricas, geralmente reportamos a média, enquanto para distribuições assimétricas (*skewed*), geralmente reportamos a mediana.
 
