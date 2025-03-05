@@ -24,7 +24,7 @@ As partes posteriores do livro abordarão cada um desses tópicos com mais profu
 #|   ciclo) -> Comunicar. Em torno de tudo isso está Programar. Importar, Organizar,
 #|   Transformar e Visualizar são destacados.
 
-knitr::include_graphics("diagrams/data-science/whole-game.png", dpi = 270)
+knitr::include_graphics("diagrams/data-science/whole-game-pt.png", dpi = 270)
 ```
 
 Quatro capítulos se concentram nas ferramentas da ciência de dados:

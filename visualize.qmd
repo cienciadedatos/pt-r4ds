@@ -19,7 +19,7 @@ Nesta parte do livro, você aprenderá a visualizar dados com mais detalhes.
 #|   O nosso modelo do processo de ciência de dados, com Visualizar destacado em azul.
 #| out.width: NULL
 
-knitr::include_graphics("diagrams/data-science/visualize.png", dpi = 270)
+knitr::include_graphics("diagrams/data-science/visualize-pt.png", dpi = 270)
 ```
 
 Cada capítulo aborda um ou mais aspectos da criação de uma visualização de dados.

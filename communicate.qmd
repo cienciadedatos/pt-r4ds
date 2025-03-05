@@ -22,7 +22,7 @@ Contudo, não importa o quão boa é sua análise se você não conseguir explic
 #|   com comunicação destacada em azul.
 #| out.width: NULL
 
-knitr::include_graphics("diagrams/data-science/communicate.png", dpi = 270)
+knitr::include_graphics("diagrams/data-science/communicate-pt.png", dpi = 270)
 ```
 
 Comunicação é o tema dos dois capítulos seguintes:

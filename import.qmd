@@ -20,7 +20,7 @@ Mas em casos mais complexos, será necessário tanto a organização e transform
 #|   Nosso modelo de processo de ciência de dados com Importar destacado em azul.
 #| out.width: NULL
 
-knitr::include_graphics("diagrams/data-science/import.png", dpi = 270)
+knitr::include_graphics("diagrams/data-science/import-pt.png", dpi = 270)
 ```
 
 Nesta parte do livro você aprenderá como acessar dados armazenados das seguintes maneiras:

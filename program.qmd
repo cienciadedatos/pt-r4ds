@@ -20,7 +20,7 @@ Programação é uma competência transversal para todo trabalho de ciência de 
 #|   organizar, transformar, visualizar, modelar e comunicar, ou seja, tudo)
 #|   destacada em azul.
 
-knitr::include_graphics("diagrams/data-science/program.png", dpi = 270)
+knitr::include_graphics("diagrams/data-science/program-pt.png", dpi = 270)
 ```
 
 Programação produz código, e código é uma ferramenta de comunicação.

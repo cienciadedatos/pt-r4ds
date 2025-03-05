@@ -30,7 +30,7 @@ Nosso modelo das etapas de um projeto típico de ciência de dados se parece com
 #|   Comunicar. Em torno de todas essas etapas está a etapa de Comunicar.
 #| out.width: NULL
 
-knitr::include_graphics("diagrams/data-science/base.png", dpi = 270)
+knitr::include_graphics("diagrams/data-science/base-pt.png", dpi = 270)
 ```
 
 Primeiro, você deve **importar** seus dados para o R.

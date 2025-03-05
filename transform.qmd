@@ -19,7 +19,7 @@ Nesta parte do livro, você aprenderá sobre os tipos mais importantes de variá
 #|   Nosso modelo do processo de ciência de dados com Transformar destacado em azul.
 #| out.width: NULL
 
-knitr::include_graphics("diagrams/data-science/transform.png", dpi = 270)
+knitr::include_graphics("diagrams/data-science/transform-pt.png", dpi = 270)
 ```
 
 Você pode ler esses capítulos de acordo com a sua necessidade; eles foram escritos para serem independentes, permitindo que sejam lidos sem uma ordem específica.
