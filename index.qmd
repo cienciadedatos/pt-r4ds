@@ -67,9 +67,6 @@ Se você aprecia ler o livro gratuitamente e gostaria de retribuir, por favor fa
 
 Você pode encontrar respostas sugeridas para exercícios no livro em <https://mine-cetinkaya-rundel.github.io/r4ds-solutions>.
 
-Por favor, note que o R4DS utiliza um [Código de Conduta de Contribuidores](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
-Ao contribuir para este livro, você concorda em seguir seus termos.
-
 Se você fala outra língua, pode se interessar pelas traduções gratuitas da primeira edição do livro:
 
 -   [Espanhol](http://es.r4ds.hadley.nz)
@@ -77,7 +74,7 @@ Se você fala outra língua, pode se interessar pelas traduções gratuitas da p
 -   [Turco](https://tr.r4ds.hadley.nz)
 
 Por favor, note que o R4DS usa um [Código de Conduta para Contribuidores](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
-Ao contribuir para este livro, você concorda em seguir estes termos.
+Ao contribuir com este livro, você concorda em seguir estes termos.
 
 ## Agradecimentos {.unnumbered}
 
