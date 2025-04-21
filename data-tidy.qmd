@@ -134,7 +134,7 @@ ggplot(tabela1, aes(x = ano, y = casos)) +
 
 ## Alongando os dados {#sec-pivoting}
 
-Os princípios do formato *tidy* parecem ser tão óbvios que você deve estar se perguntando se algum dia vai encontrar algum cojunto de dados que não esteja nesse formato.
+Os princípios do formato *tidy* parecem ser tão óbvios que você deve estar se perguntando se algum dia vai encontrar algum conjunto de dados que não esteja nesse formato.
 Infelizmente, porém, a maioria dos dados reais não estão nesse formato.
 Existem dois motivos principais:
 
@@ -244,7 +244,7 @@ Nós podemos ver que muito poucas músicas permanecem no top 100 por mais de 20 
 #|   >50.
 
 top100musicas_longo|> 
-  ggplot(aes(x = semana, y = posicao, group = posicao)) + 
+  ggplot(aes(x = semana, y = posicao, group = musica)) + 
   geom_line(alpha = 0.25) + 
   scale_y_reverse()
 ```
@@ -253,7 +253,7 @@ top100musicas_longo|>
 
 Agora que você já viu como usar a pivotagem para mudar a forma de nossos dados, vamos tomar um tempinho para ganhar alguma intuição sobre o que a pivotagem faz com os dados.
 Vamos começar com um conjunto de dados bem simples para enxergamos com mais facilidade o que está acontecendo.
-Suponha que temos três pacientes com `id`s A, B e C, e fazemos a medição da pressão sanguínea (`ps`) duas vezes para cadas paciente.
+Suponha que temos três pacientes com `id`s A, B e C, e fazemos a medição da pressão sanguínea (`ps`) duas vezes para cada paciente.
 Vamos criar os dados com `tribble()`, uma função útil para construir pequenos conjuntos de dados (*tibbles*) manualmente:
 
 ```{r}
