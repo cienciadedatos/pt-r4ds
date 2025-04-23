@@ -338,28 +338,28 @@ knitr::include_graphics("diagrams/tidy-data/cell-values-pt.png", dpi = 270)
 ### Muitas variáveis nos nomes de colunas
 
 Uma situação mais desafiadora ocorre quando tem-se muitas partes de informação aglomeradas nos nomes das colunas, e você gostaria de armazená-las em variáveis separadas.
-Por exemplo, pegue o conjunto de dados `who2`, que é a fonte da `tabela1` e outros amigos que você viu acima:
+Por exemplo, pegue o conjunto de dados `dados_oms2`, que é a fonte da `tabela1` e outras similares que você viu acima:
 
 ```{r}
-who2
+dados_oms2
 ```
 
 Esse conjunto de dados, coletado pela Organização Mundial da Saúde (OMS)[^data-tidy-3], armazena informações sobre diagnósticos de tuberculose.
-Existem duas colunas que já são variáveis e parecem fáceis de interpretar: `country` e `year`. Em seguida vêm outras 56 colunas tais como `sp_m_014`, `ep_m_4554` e `rel_m_3544`. Se você olhar com cuidado para essas colunas por tempo suficiente, verá que há um padrão.
-Cada nome de coluna é composto por três partes separadas por `_`. A primeira parte, `sp`/`rel`/`ep`, descreve o método utilizado para o diagnóstico, a segunda parte, `m`/`f` é o gênero - `gender` (codificado como uma variável binária nesse conjunto de dados), e a terceira parte, `014`/`1524`/`2534`/`3544`/`4554`/`5564`/`65` é o intervalo de idade - `age` (`014` representa 0-14, por exemplo).
+Existem duas colunas que já são variáveis e parecem fáceis de interpretar: `pais` e `ano`. Em seguida vêm outras 56 colunas tais como `fpp_m_014`, `fpn_m_4554` e `ep_m_3544`. Se você olhar com cuidado para essas colunas por tempo suficiente, verá que há um padrão.
+Cada nome de coluna é composto por três partes separadas por `_`. A primeira parte, `sp`/`rel`/`ep`, descreve o método utilizado para o diagnóstico, a segunda parte, `h`/`m` é o gênero - `genero` (codificado como uma variável binária nesse conjunto de dados), e a terceira parte, `014`/`1524`/`2534`/`3544`/`4554`/`5564`/`65` é o intervalo de idade - `idade` (`014` representa 0-14, por exemplo).
 
-[^data-tidy-3]: **Nota de tradução**: do inglês *World Health Organisation* - WHO que é nome do conjunto de dados.
+[^data-tidy-3]: **Nota de tradução**: do inglês *World Health Organisation* (WHO).
 
-Então, nesse caso temos seis partes de informação registrados em `who2`: o país (*country*) e o ano (*year*) (já nas colunas); o método diagnóstico, a categoria do gênero, e a categoria do intervalo de idade (contido nos outros nomes de colunas); e a contagem dos pacientes em naquela categoria (valores das células).
+Então, nesse caso temos seis partes de informação registrados em `dados_oms2`: o país e o ano (já nas colunas); o método diagnóstico, a categoria do gênero, e a categoria do intervalo de idade (contido nos outros nomes de colunas); e a contagem dos pacientes em naquela categoria (valores das células).
 Para organizar essas seis partes de informação em seis colunas separadas, utilizaremos `pivot_longer()` passando um vetor de nomes de colunas para o parâmetro `names_to`, instruções para separar, nas partes, os nomes originais das variáveis para o parâmetro `names_sep` e um nome de coluna para `values_to`:
 
 ```{r}
-who2 |> 
+dados_oms2 |> 
   pivot_longer(
-    cols = !(country:year),
-    names_to = c("diagnosis", "gender", "age"), 
+    cols = !(pais:ano),
+    names_to = c("diagnostico", "genero", "idade"), 
     names_sep = "_",
-    values_to = "count"
+    values_to = "contagem"
   )
 ```
 
