@@ -999,7 +999,7 @@ Tabela&nbsp;7.1: Dados do arquivo estudantes.csv como uma tabela.
 <p>Parquet tende a ser muito mais rápido que RDS e é utilizável fora do R, mas requer o pacote arrow.</p>
 </section><section id="entrada-de-dados" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="entrada-de-dados">
 <span class="header-section-number">7.6</span> Entrada de dados</h2>
-<p>Às vezes você precisará montar um tibble “à mão” fazendo um pouco de entrada de dados no seu script R. Existem duas funções úteis para ajudá-lo a fazer isso que diferem se você organiza o tibble por colunas ou por linhas. <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> funciona por coluna:</p>
+<p>Às vezes você precisará montar um tibble “à mão” fazendo um pouco de entrada de dados no seu script R. Existem duas funções úteis para ajudá-lo a fazer isso que diferem se você organiza o tibble por colunas ou por linhas. A função <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> funciona por coluna:</p>
 <div class="cell">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span>, </span>
@@ -1013,8 +1013,8 @@ Tabela&nbsp;7.1: Dados do arquivo estudantes.csv como uma tabela.
 <span><span class="co">#&gt; 2     2 m      0.83</span></span>
 <span><span class="co">#&gt; 3     5 g      0.6</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Laying out the data by column can make it hard to see how the rows are related, so an alternative is <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble()</a></code>, short for <strong>tr</strong>ansposed t<strong>ibble</strong>, which lets you lay out your data row by row. <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble()</a></code> é customizado para entrada de dados no código: os cabeçalhos das colunas começam com <code>~</code> e as entradas são separadas por vírgulas. Isso torna possível dispor pequenas quantidades de dados em uma forma fácil de ler:</p>
 <p>Inserir os dados por coluna pode dificultar a visualização de como as linhas estão relacionadas, então uma alternativa é <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble()</a></code>, abreviação de <em><strong>tr</strong>ansposed t<strong>ibble</strong></em> (tibble transposta), que permite organizar seus dados linha por linha.</p>
+<p>A função <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble()</a></code> é customizada para entrada de dados no código: os cabeçalhos das colunas começam com <code>~</code> e as entradas são separadas por vírgulas. Isso torna possível dispor pequenas quantidades de dados em uma forma fácil de ler:</p>
 <div class="cell">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">z</span>,</span>

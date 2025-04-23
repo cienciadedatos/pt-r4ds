@@ -816,56 +816,56 @@ Figura&nbsp;5.5: O número de valores é preservado (não repetidos), mas “des
 </div>
 </section><section id="muitas-variáveis-nos-nomes-de-colunas" class="level3" data-number="5.3.3"><h3 data-number="5.3.3" class="anchored" data-anchor-id="muitas-variáveis-nos-nomes-de-colunas">
 <span class="header-section-number">5.3.3</span> Muitas variáveis nos nomes de colunas</h3>
-<p>Uma situação mais desafiadora ocorre quando tem-se muitas partes de informação aglomeradas nos nomes das colunas, e você gostaria de armazená-las em variáveis separadas. Por exemplo, pegue o conjunto de dados <code>who2</code>, que é a fonte da <code>tabela1</code> e outros amigos que você viu acima:</p>
+<p>Uma situação mais desafiadora ocorre quando tem-se muitas partes de informação aglomeradas nos nomes das colunas, e você gostaria de armazená-las em variáveis separadas. Por exemplo, pegue o conjunto de dados <code>dados_oms2</code>, que é a fonte da <code>tabela1</code> e outras similares que você viu acima:</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">who2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_oms2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7,240 × 58
-   country      year sp_m_014 sp_m_1524 sp_m_2534 sp_m_3544 sp_m_4554 sp_m_5564
-   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
- 1 Afghanistan  1980       NA        NA        NA        NA        NA        NA
- 2 Afghanistan  1981       NA        NA        NA        NA        NA        NA
- 3 Afghanistan  1982       NA        NA        NA        NA        NA        NA
- 4 Afghanistan  1983       NA        NA        NA        NA        NA        NA
- 5 Afghanistan  1984       NA        NA        NA        NA        NA        NA
- 6 Afghanistan  1985       NA        NA        NA        NA        NA        NA
- 7 Afghanistan  1986       NA        NA        NA        NA        NA        NA
- 8 Afghanistan  1987       NA        NA        NA        NA        NA        NA
- 9 Afghanistan  1988       NA        NA        NA        NA        NA        NA
-10 Afghanistan  1989       NA        NA        NA        NA        NA        NA
+   pais     ano fpp_h_014 fpp_h_1524 fpp_h_2534 fpp_h_3544 fpp_h_4554 fpp_h_5564
+   &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+ 1 Afega…  1980        NA         NA         NA         NA         NA         NA
+ 2 Afega…  1981        NA         NA         NA         NA         NA         NA
+ 3 Afega…  1982        NA         NA         NA         NA         NA         NA
+ 4 Afega…  1983        NA         NA         NA         NA         NA         NA
+ 5 Afega…  1984        NA         NA         NA         NA         NA         NA
+ 6 Afega…  1985        NA         NA         NA         NA         NA         NA
+ 7 Afega…  1986        NA         NA         NA         NA         NA         NA
+ 8 Afega…  1987        NA         NA         NA         NA         NA         NA
+ 9 Afega…  1988        NA         NA         NA         NA         NA         NA
+10 Afega…  1989        NA         NA         NA         NA         NA         NA
 # ℹ 7,230 more rows
-# ℹ 50 more variables: sp_m_65 &lt;dbl&gt;, sp_f_014 &lt;dbl&gt;, sp_f_1524 &lt;dbl&gt;,
-#   sp_f_2534 &lt;dbl&gt;, sp_f_3544 &lt;dbl&gt;, sp_f_4554 &lt;dbl&gt;, sp_f_5564 &lt;dbl&gt;,
-#   sp_f_65 &lt;dbl&gt;, sn_m_014 &lt;dbl&gt;, sn_m_1524 &lt;dbl&gt;, sn_m_2534 &lt;dbl&gt;,
-#   sn_m_3544 &lt;dbl&gt;, sn_m_4554 &lt;dbl&gt;, sn_m_5564 &lt;dbl&gt;, sn_m_65 &lt;dbl&gt;,
-#   sn_f_014 &lt;dbl&gt;, sn_f_1524 &lt;dbl&gt;, sn_f_2534 &lt;dbl&gt;, sn_f_3544 &lt;dbl&gt;,
-#   sn_f_4554 &lt;dbl&gt;, sn_f_5564 &lt;dbl&gt;, sn_f_65 &lt;dbl&gt;, ep_m_014 &lt;dbl&gt;, …</code></pre>
+# ℹ 50 more variables: fpp_h_65 &lt;dbl&gt;, fpp_m_014 &lt;dbl&gt;, fpp_m_1524 &lt;dbl&gt;,
+#   fpp_m_2534 &lt;dbl&gt;, fpp_m_3544 &lt;dbl&gt;, fpp_m_4554 &lt;dbl&gt;, fpp_m_5564 &lt;dbl&gt;,
+#   fpp_m_65 &lt;dbl&gt;, fpn_h_014 &lt;dbl&gt;, fpn_h_1524 &lt;dbl&gt;, fpn_h_2534 &lt;dbl&gt;,
+#   fpn_h_3544 &lt;dbl&gt;, fpn_h_4554 &lt;dbl&gt;, fpn_h_5564 &lt;dbl&gt;, fpn_h_65 &lt;dbl&gt;,
+#   fpn_m_014 &lt;dbl&gt;, fpn_m_1524 &lt;dbl&gt;, fpn_m_2534 &lt;dbl&gt;, fpn_m_3544 &lt;dbl&gt;,
+#   fpn_m_4554 &lt;dbl&gt;, fpn_m_5564 &lt;dbl&gt;, fpn_m_65 &lt;dbl&gt;, ep_h_014 &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
-<p>Esse conjunto de dados, coletado pela Organização Mundial da Saúde (OMS)<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, armazena informações sobre diagnósticos de tuberculose. Existem duas colunas que já são variáveis e parecem fáceis de interpretar: <code>country</code> e <code>year</code>. Em seguida vêm outras 56 colunas tais como <code>sp_m_014</code>, <code>ep_m_4554</code> e <code>rel_m_3544</code>. Se você olhar com cuidado para essas colunas por tempo suficiente, verá que há um padrão. Cada nome de coluna é composto por três partes separadas por <code>_</code>. A primeira parte, <code>sp</code>/<code>rel</code>/<code>ep</code>, descreve o método utilizado para o diagnóstico, a segunda parte, <code>m</code>/<code>f</code> é o gênero - <code>gender</code> (codificado como uma variável binária nesse conjunto de dados), e a terceira parte, <code>014</code>/<code>1524</code>/<code>2534</code>/<code>3544</code>/<code>4554</code>/<code>5564</code>/<code>65</code> é o intervalo de idade - <code>age</code> (<code>014</code> representa 0-14, por exemplo).</p>
-<p>Então, nesse caso temos seis partes de informação registrados em <code>who2</code>: o país (<em>country</em>) e o ano (<em>year</em>) (já nas colunas); o método diagnóstico, a categoria do gênero, e a categoria do intervalo de idade (contido nos outros nomes de colunas); e a contagem dos pacientes em naquela categoria (valores das células). Para organizar essas seis partes de informação em seis colunas separadas, utilizaremos <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> passando um vetor de nomes de colunas para o parâmetro <code>names_to</code>, instruções para separar, nas partes, os nomes originais das variáveis para o parâmetro <code>names_sep</code> e um nome de coluna para <code>values_to</code>:</p>
+<p>Esse conjunto de dados, coletado pela Organização Mundial da Saúde (OMS)<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, armazena informações sobre diagnósticos de tuberculose. Existem duas colunas que já são variáveis e parecem fáceis de interpretar: <code>pais</code> e <code>ano</code>. Em seguida vêm outras 56 colunas tais como <code>fpp_m_014</code>, <code>fpn_m_4554</code> e <code>ep_m_3544</code>. Se você olhar com cuidado para essas colunas por tempo suficiente, verá que há um padrão. Cada nome de coluna é composto por três partes separadas por <code>_</code>. A primeira parte, <code>sp</code>/<code>rel</code>/<code>ep</code>, descreve o método utilizado para o diagnóstico, a segunda parte, <code>h</code>/<code>m</code> é o gênero - <code>genero</code> (codificado como uma variável binária nesse conjunto de dados), e a terceira parte, <code>014</code>/<code>1524</code>/<code>2534</code>/<code>3544</code>/<code>4554</code>/<code>5564</code>/<code>65</code> é o intervalo de idade - <code>idade</code> (<code>014</code> representa 0-14, por exemplo).</p>
+<p>Então, nesse caso temos seis partes de informação registrados em <code>dados_oms2</code>: o país e o ano (já nas colunas); o método diagnóstico, a categoria do gênero, e a categoria do intervalo de idade (contido nos outros nomes de colunas); e a contagem dos pacientes em naquela categoria (valores das células). Para organizar essas seis partes de informação em seis colunas separadas, utilizaremos <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> passando um vetor de nomes de colunas para o parâmetro <code>names_to</code>, instruções para separar, nas partes, os nomes originais das variáveis para o parâmetro <code>names_sep</code> e um nome de coluna para <code>values_to</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">who2</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_oms2</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
-<span>    cols <span class="op">=</span> <span class="op">!</span><span class="op">(</span><span class="va">country</span><span class="op">:</span><span class="va">year</span><span class="op">)</span>,</span>
-<span>    names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span><span class="op">)</span>, </span>
+<span>    cols <span class="op">=</span> <span class="op">!</span><span class="op">(</span><span class="va">pais</span><span class="op">:</span><span class="va">ano</span><span class="op">)</span>,</span>
+<span>    names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"diagnostico"</span>, <span class="st">"genero"</span>, <span class="st">"idade"</span><span class="op">)</span>, </span>
 <span>    names_sep <span class="op">=</span> <span class="st">"_"</span>,</span>
-<span>    values_to <span class="op">=</span> <span class="st">"count"</span></span>
+<span>    values_to <span class="op">=</span> <span class="st">"contagem"</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 405,440 × 6
-   country      year diagnosis gender age   count
-   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;
- 1 Afghanistan  1980 sp        m      014      NA
- 2 Afghanistan  1980 sp        m      1524     NA
- 3 Afghanistan  1980 sp        m      2534     NA
- 4 Afghanistan  1980 sp        m      3544     NA
- 5 Afghanistan  1980 sp        m      4554     NA
- 6 Afghanistan  1980 sp        m      5564     NA
- 7 Afghanistan  1980 sp        m      65       NA
- 8 Afghanistan  1980 sp        f      014      NA
- 9 Afghanistan  1980 sp        f      1524     NA
-10 Afghanistan  1980 sp        f      2534     NA
+   pais          ano diagnostico genero idade contagem
+   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;
+ 1 Afeganistão  1980 fpp         h      014         NA
+ 2 Afeganistão  1980 fpp         h      1524        NA
+ 3 Afeganistão  1980 fpp         h      2534        NA
+ 4 Afeganistão  1980 fpp         h      3544        NA
+ 5 Afeganistão  1980 fpp         h      4554        NA
+ 6 Afeganistão  1980 fpp         h      5564        NA
+ 7 Afeganistão  1980 fpp         h      65          NA
+ 8 Afeganistão  1980 fpp         m      014         NA
+ 9 Afeganistão  1980 fpp         m      1524        NA
+10 Afeganistão  1980 fpp         m      2534        NA
 # ℹ 405,430 more rows</code></pre>
 </div>
 </div>
@@ -1157,7 +1157,7 @@ Figura&nbsp;5.7: Pivotar com <code>names_to = c(".value", "num")</code> divide o
 <ol>
 <li id="fn1"><p>A música será incluída aos dados desde que tenha estado no top 100 em algum momento do ano 2000, e então será monitorada por até 72 semanas após a primeira aparição.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Voltaremos a essas ideias em <a href="missing-values.html" class="quarto-xref"><span>Capítulo 18</span></a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p><strong>Nota de tradução</strong>: do inglês <em>World Health Organisation</em> - WHO que é nome do conjunto de dados.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><strong>Nota de tradução</strong>: do inglês <em>World Health Organisation</em> (WHO).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p><strong>Nota de tradução:</strong> As <em>vignettes</em> são documentos que acompanham os pacotes do R e fornecem documentações mais extensas sobre o pacote e suas funções.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
