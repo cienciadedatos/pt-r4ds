@@ -513,7 +513,7 @@ file.remove("estudantes.rds")
 
 Às vezes você precisará montar um tibble "à mão" fazendo um pouco de entrada de dados no seu script R.
 Existem duas funções úteis para ajudá-lo a fazer isso que diferem se você organiza o tibble por colunas ou por linhas.
-`tibble()` funciona por coluna:
+A função `tibble()` funciona por coluna:
 
 ```{r}
 tibble(
@@ -523,11 +523,10 @@ tibble(
 )
 ```
 
-Laying out the data by column can make it hard to see how the rows are related, so an alternative is `tribble()`, short for **tr**ansposed t**ibble**, which lets you lay out your data row by row.
-`tribble()` é customizado para entrada de dados no código: os cabeçalhos das colunas começam com `~` e as entradas são separadas por vírgulas.
-Isso torna possível dispor pequenas quantidades de dados em uma forma fácil de ler:
-
 Inserir os dados por coluna pode dificultar a visualização de como as linhas estão relacionadas, então uma alternativa é `tribble()`, abreviação de ***tr**ansposed t**ibble*** (tibble transposta), que permite organizar seus dados linha por linha.
+
+A função `tribble()` é customizada para entrada de dados no código: os cabeçalhos das colunas começam com `~` e as entradas são separadas por vírgulas.
+Isso torna possível dispor pequenas quantidades de dados em uma forma fácil de ler:
 
 ```{r}
 tribble(
